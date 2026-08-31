@@ -1,0 +1,92 @@
+{
+  "period": "16 Set – 15 Ott 2026",
+  "gimmick": "When a character deals Swirl or Stellar Swirl DMG to an opponent, a shockwave will be unleashed at the opponent's position, dealing True DMG. This effect can be triggered once every 4s.",
+  "buff_first": "Characters' Swirl DMG increased by 200% and Stellar Swirl DMG increased by 75%.",
+  "buff_second": "Characters' Electro-Charged DMG increased by 200% and Lunar-Charged DMG increased by 75%.",
+  "slots": [
+    {
+      "slot": 1,
+      "label": "Piano 12-1 Prima Metà",
+      "enemies": [
+        {
+          "id": "Chimera_OwlPangolin",
+          "level": 95,
+          "hp": 3452578,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "label": "Piano 12-1 Seconda Metà",
+      "enemies": [
+        {
+          "id": "WildHunt",
+          "level": 95,
+          "hp": 408857,
+          "quantity": 1
+        },
+        {
+          "id": "Oprichnik_Male_Strong_LanceArquebus",
+          "level": 95,
+          "hp": 3660672,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "label": "Piano 12-2 Prima Metà",
+      "enemies": [
+        {
+          "id": "Zharptitsa_02",
+          "level": 98,
+          "hp": 5986943,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "label": "Piano 12-2 Seconda Metà",
+      "enemies": [
+        {
+          "id": "Lloigor_Sub",
+          "level": 98,
+          "hp": 579381,
+          "quantity": 1
+        },
+        {
+          "id": "Lloigor_Primo",
+          "level": 98,
+          "hp": 6140545,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 5,
+      "label": "Piano 12-3 Prima Metà",
+      "enemies": [
+        {
+          "id": "Karzelek_Tsereteli_01",
+          "level": 100,
+          "hp": 5767841,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 6,
+      "label": "Piano 12-3 Seconda Metà",
+      "enemies": [
+        {
+          "id": "WildHunt_Male_Sigurd",
+          "level": 100,
+          "hp": 2145122,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}

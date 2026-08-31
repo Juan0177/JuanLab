@@ -1,0 +1,240 @@
+{
+  "period": "Periodo live: 2026-11-01 ~ 2026-11-30",
+  "fixed_buff": "I personaggi di apertura avranno PS max, ATT e DIF aumentano del 20%.",
+  "mechanics": {
+    "recommended_elements": [
+      { "name": "Hydro", "icon": "assets/img/elements/Hydro.webp" },
+      { "name": "Electro", "icon": "assets/img/elements/Electro.webp" },
+      { "name": "Geo", "icon": "assets/img/elements/Geo.webp" }
+    ],
+    "opening_characters": [
+      { "name": "Yelan", "image": "assets/img/characters/UI_AvatarIcon_Yelan.webp" },
+      { "name": "Aino", "image": "assets/img/characters/UI_AvatarIcon_Aino.webp" },
+      { "name": "Flins", "image": "assets/img/characters/UI_AvatarIcon_Flins.webp" },
+      { "name": "Fischl", "image": "assets/img/characters/UI_AvatarIcon_Fischl.webp" },
+      { "name": "Zhongli", "image": "assets/img/characters/UI_AvatarIcon_Zhongli.webp" },
+      { "name": "Kachina", "image": "assets/img/characters/UI_AvatarIcon_Kachina.webp" }
+    ],
+    "guest_stars": [
+      { "name": "Qiqi", "image": "assets/img/characters/UI_AvatarIcon_Qiqi.webp" },
+      { "name": "Diona", "image": "assets/img/characters/UI_AvatarIcon_Diona.webp" },
+      { "name": "Nefer", "image": "assets/img/characters/UI_AvatarIcon_Nefer.webp" },
+      { "name": "Jahoda", "image": "assets/img/characters/UI_AvatarIcon_Jahoda.webp" }
+    ],
+    "season_effect_text": "After the above characters join your party, Max HP, ATK, and DEF are increased by 20%."
+  },
+  "selected_mode": "lunar",
+  "strategies": [],
+  "modes": {
+    "lunar": {
+      "conditions": {
+        "level": 100,
+        "rooms": 12,
+        "opening_characters": 6,
+        "characters_available": 28,
+        "characters_with_bonus": 32,
+        "min_level": 70,
+        "boss_acts": 10
+      },
+      "stages": [
+        {
+          "enemy_id": "Fungus_Raptor",
+          "instructions": [
+            "Act 3 · Jadeplume Terrorshroom",
+            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation.",
+            "When it is hit by Pyro attacks, it will lose Activation progress. When it accumulates sufficient Activation, it will enter an Activated state.",
+            "An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted. When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched."
+          ]
+        },
+        {
+          "enemy_id": "Lloigor_Primo",
+          "instructions": [
+            "Act 6 · Lord of the Hidden Depths: Whisperer of Nightmares",
+            "Lord of the swarm of monsters that surged through the Rift of Hidden Depths.",
+            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths.",
+            "The shield(s) can only be broken by Elemental Attacks or reaction DMG. Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
+          ]
+        },
+        {
+          "enemy_id": "Shaman_None_01",
+          "instructions": [
+            "Act 8 · Battle-Hardened Samachurl",
+            "During battle, the Nemesis will set up a bonfire and a Delicious Hot Pot at the center of the field, then attempt to cook a pot of its secret rich soup within a set period of time.",
+            "Extinguish the bonfire to halt the cooking progress. Destroy the Delicious Hot Pot before the soup is ready to leave the Nemesis in a weakened state.",
+            "If the timer expires without the soup being completed, hunger will drive the Nemesis into the extremely dangerous \"Enraged\" state. However, if it is allowed to finish cooking, it will recover HP and gain greatly increased All Elemental RES and Physical RES."
+          ]
+        },
+        {
+          "enemy_id": "Magbeast_Pergesa",
+          "instructions": [
+            "Act 10 · Radiant Moonfly",
+            "The strongest species, even among radiant beasts, whose \"Radiant Cocoon\" displays still more obvious effects.",
+            "Quickly heal your HP to its maximum to escape from a Radiant Cocoon.",
+            "Radiant beasts possess many mysterious characteristics - rumors even circle that they can change their Elemental Type under the right conditions..."
+          ]
+        },
+        {
+          "enemy_id": "",
+          "name": "Keep Fighting",
+          "instructions": [
+            "Extra Act 1 · Keep Fighting",
+            "Keep fighting until the countdown ends. End the stage with at least one character left standing to successfully complete the challenge.",
+            "Each opponent you defeat will take time off the countdown.",
+            "Once the challenge begins, Geo Bursts will periodically be set off, dealing Geo DMG to your active character."
+          ]
+        },
+        {
+          "enemy_id": "Wayob_Shamansaurus",
+          "instructions": [
+            "Extra Act 2 · Potapo's Solidarity: Secret Shadow's Re-Emergence",
+            "A Biting-Cold Wayob Manifestation that once appeared in a special trial.",
+            "Will manifest during combat as a \"Protection Spirit\" and a \"Hostile Spirit.\" Of the two types, the Protection Spirit will create a spirit connection with the character, and when each member of the party receives healing, HP will be recovered for the Protection Spirit.",
+            "When the Protection Spirit's HP is fully restored, it will use the coordinated attack \"Pierce: Binding of Dawn and Dusk's Breaking\" to attack the Hostile Spirit."
+          ]
+        }
+      ]
+    },
+    "visionary": {
+      "conditions": {
+        "level": 100,
+        "rooms": 10,
+        "opening_characters": 6,
+        "characters_available": 22,
+        "characters_with_bonus": 26,
+        "min_level": 70,
+        "boss_acts": 10
+      },
+      "stages": [
+        {
+          "enemy_id": "Fungus_Raptor",
+          "instructions": [
+            "Act 3 · Jadeplume Terrorshroom",
+            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation.",
+            "When it is hit by Pyro attacks, it will lose Activation progress. When it accumulates sufficient Activation, it will enter an Activated state.",
+            "An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted. When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched."
+          ]
+        },
+        {
+          "enemy_id": "Lloigor_Primo",
+          "instructions": [
+            "Act 6 · Lord of the Hidden Depths: Whisperer of Nightmares",
+            "Lord of the swarm of monsters that surged through the Rift of Hidden Depths.",
+            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths.",
+            "The shield(s) can only be broken by Elemental Attacks or reaction DMG. Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
+          ]
+        },
+        {
+          "enemy_id": "Shaman_None_01",
+          "instructions": [
+            "Act 8 · Battle-Hardened Samachurl",
+            "During battle, the Nemesis will set up a bonfire and a Delicious Hot Pot at the center of the field, then attempt to cook a pot of its secret rich soup within a set period of time.",
+            "Extinguish the bonfire to halt the cooking progress. Destroy the Delicious Hot Pot before the soup is ready to leave the Nemesis in a weakened state.",
+            "If the timer expires without the soup being completed, hunger will drive the Nemesis into the extremely dangerous \"Enraged\" state. However, if it is allowed to finish cooking, it will recover HP and gain greatly increased All Elemental RES and Physical RES."
+          ]
+        },
+        {
+          "enemy_id": "Magbeast_Pergesa",
+          "instructions": [
+            "Act 10 · Radiant Moonfly",
+            "The strongest species, even among radiant beasts, whose \"Radiant Cocoon\" displays still more obvious effects.",
+            "Quickly heal your HP to its maximum to escape from a Radiant Cocoon.",
+            "Radiant beasts possess many mysterious characteristics - rumors even circle that they can change their Elemental Type under the right conditions..."
+          ]
+        }
+      ]
+    },
+    "hard": {
+      "conditions": {
+        "level": 95,
+        "rooms": 8,
+        "opening_characters": 6,
+        "characters_available": 16,
+        "characters_with_bonus": 20,
+        "min_level": 70,
+        "boss_acts": 8
+      },
+      "stages": [
+        {
+          "enemy_id": "Fungus_Raptor",
+          "instructions": [
+            "Act 3 · Jadeplume Terrorshroom",
+            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation.",
+            "When it is hit by Pyro attacks, it will lose Activation progress. When it accumulates sufficient Activation, it will enter an Activated state.",
+            "An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted. When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched."
+          ]
+        },
+        {
+          "enemy_id": "Lloigor_Primo",
+          "instructions": [
+            "Act 6 · Lord of the Hidden Depths: Whisperer of Nightmares",
+            "Lord of the swarm of monsters that surged through the Rift of Hidden Depths.",
+            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths.",
+            "The shield(s) can only be broken by Elemental Attacks or reaction DMG. Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
+          ]
+        },
+        {
+          "enemy_id": "Shaman_None_01",
+          "instructions": [
+            "Act 8 · Battle-Hardened Samachurl",
+            "During battle, the Nemesis will set up a bonfire and a Delicious Hot Pot at the center of the field, then attempt to cook a pot of its secret rich soup within a set period of time.",
+            "Extinguish the bonfire to halt the cooking progress. Destroy the Delicious Hot Pot before the soup is ready to leave the Nemesis in a weakened state.",
+            "If the timer expires without the soup being completed, hunger will drive the Nemesis into the extremely dangerous \"Enraged\" state. However, if it is allowed to finish cooking, it will recover HP and gain greatly increased All Elemental RES and Physical RES."
+          ]
+        }
+      ]
+    },
+    "normal": {
+      "conditions": {
+        "level": 90,
+        "rooms": 6,
+        "opening_characters": 6,
+        "characters_available": 12,
+        "characters_with_bonus": 14,
+        "min_level": 60,
+        "boss_acts": 6
+      },
+      "stages": [
+        {
+          "enemy_id": "Fungus_Raptor",
+          "instructions": [
+            "Act 3 · Jadeplume Terrorshroom",
+            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation.",
+            "When it is hit by Pyro attacks, it will lose Activation progress. When it accumulates sufficient Activation, it will enter an Activated state.",
+            "An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted. When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched."
+          ]
+        },
+        {
+          "enemy_id": "Lloigor_Primo",
+          "instructions": [
+            "Act 6 · Lord of the Hidden Depths: Whisperer of Nightmares",
+            "Lord of the swarm of monsters that surged through the Rift of Hidden Depths.",
+            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths.",
+            "The shield(s) can only be broken by Elemental Attacks or reaction DMG. Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
+          ]
+        }
+      ]
+    },
+    "easy": {
+      "conditions": {
+        "level": 80,
+        "rooms": 3,
+        "opening_characters": 6,
+        "characters_available": 8,
+        "characters_with_bonus": 10,
+        "min_level": 60,
+        "boss_acts": 3
+      },
+      "stages": [
+        {
+          "enemy_id": "Fungus_Raptor",
+          "instructions": [
+            "Act 3 · Jadeplume Terrorshroom",
+            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation.",
+            "When it is hit by Pyro attacks, it will lose Activation progress. When it accumulates sufficient Activation, it will enter an Activated state.",
+            "An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted. When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched."
+          ]
+        }
+      ]
+    }
+  }
+}

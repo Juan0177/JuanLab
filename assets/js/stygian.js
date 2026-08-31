@@ -41,12 +41,18 @@
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  let activeIdx = stygianIndex.findIndex((entry) => {
-    const from = new Date(entry.from);
-    const to = new Date(entry.to);
-    to.setHours(23, 59, 59, 999);
-    return today >= from && today <= to;
-  });
+  const matchingIndexes = stygianIndex
+    .map((entry, index) => ({ entry, index }))
+    .filter(({ entry }) => {
+      const from = new Date(entry.from);
+      const to = new Date(entry.to);
+      from.setHours(0, 0, 0, 0);
+      to.setHours(23, 59, 59, 999);
+      return today >= from && today <= to;
+    });
+  let activeIdx = matchingIndexes.find(({ entry }) => entry.type !== 'test')?.index
+    ?? matchingIndexes[0]?.index
+    ?? -1;
   if (activeIdx < 0) activeIdx = 0;
 
   let currentPeriodIdx = activeIdx;

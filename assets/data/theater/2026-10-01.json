@@ -1,0 +1,237 @@
+{
+  "period": "Periodo live: 2026-10-01 ~ 2026-10-31",
+  "fixed_buff": "I personaggi di apertura avranno PS max, ATT e DIF aumentano del 20%.",
+  "mechanics": {
+    "recommended_elements": [
+      { "name": "Hydro", "icon": "assets/img/elements/Hydro.webp" },
+      { "name": "Cryo", "icon": "assets/img/elements/Cryo.webp" },
+      { "name": "Anemo", "icon": "assets/img/elements/Anemo.webp" }
+    ],
+    "opening_characters": [
+      { "name": "Neuvillette", "image": "assets/img/characters/UI_AvatarIcon_Neuvillette.webp" },
+      { "name": "Barbara", "image": "assets/img/characters/UI_AvatarIcon_Barbara.webp" },
+      { "name": "Citlali", "image": "assets/img/characters/UI_AvatarIcon_Citlali.webp" },
+      { "name": "Kaeya", "image": "assets/img/characters/UI_AvatarIcon_Kaeya.webp" },
+      { "name": "Wanderer", "image": "assets/img/characters/UI_AvatarIcon_Wanderer.webp" },
+      { "name": "Prune", "image": "assets/img/characters/UI_AvatarIcon_Prune.webp" }
+    ],
+    "guest_stars": [
+      { "name": "Ineffa", "image": "assets/img/characters/UI_AvatarIcon_Ineffa.webp" },
+      { "name": "Yae Miko", "image": "assets/img/characters/UI_AvatarIcon_Yae.webp" },
+      { "name": "Thoma", "image": "assets/img/characters/UI_AvatarIcon_Tohma.webp" },
+      { "name": "Chiori", "image": "assets/img/characters/UI_AvatarIcon_Chiori.webp" }
+    ],
+    "season_effect_text": "After the above characters join your party, Max HP, ATK, and DEF are increased by 20%."
+  },
+  "selected_mode": "lunar",
+  "strategies": [],
+  "modes": {
+    "lunar": {
+      "conditions": {
+        "level": 100,
+        "rooms": 12,
+        "opening_characters": 6,
+        "characters_available": 28,
+        "characters_with_bonus": 32,
+        "min_level": 70,
+        "boss_acts": 10
+      },
+      "stages": [
+        {
+          "enemy_id": "Apparatus_Perpetual",
+          "instructions": [
+            "Act 3 · Perpetual Mechanical Array",
+            "A mysterious ruin machine that can reconfigure itself into various forms.",
+            "In battle, the Perpetual Mechanical Array will enter the Absolute Defense state, in which it splits and summons several different kinds of Ruin Sentinels.",
+            "After defeating the enhanced Ruin Sentinels, Absolute Defense state will be removed and it will enter a weakened state."
+          ]
+        },
+        {
+          "enemy_id": "Volkodlak_Greyhound_Furiosa",
+          "instructions": [
+            "Act 6 · Battle-Hardened Chimeric Volkodlak Archer",
+            "During battle, when the Nemesis burrows underground or unleashes Arrow Shower, destroying all Hindering Roots on the field will interrupt the move and leave the opponent in a weakened state.",
+            "When affected by a Stellar Glimmer Reaction, the core of the Hindering Roots will be exposed in positions that are easier to attack."
+          ]
+        },
+        {
+          "enemy_id": "Chimera_Manticore",
+          "instructions": [
+            "Act 8 · Chimeric Winged Lion",
+            "The Chimeric Winged Lion will oscillate between two enhanced states: \"Thundercall\" and \"Galeforce.\"",
+            "When it is in the Thundercall state, it will become weakened when its Elemental Ward is broken. Additionally, any attempts by it to spread its thunder blades can be disrupted by the Stellar Glimmer reaction.",
+            "When it is in the Galeforce state, it will attempt to absorb any Anemo Orbs that are on the field to charge its attack. Destroying the orbs or using the Stellar Glimmer reaction can stop its charging and weaken it."
+          ]
+        },
+        {
+          "enemy_id": "DragonCollar",
+          "instructions": [
+            "Act 10 · Secret Source Automaton: Overseer Device",
+            "A civilization whose magnificence once marked distant eons built this overseer device to control multiple Secret Source machines.",
+            "After it enters Sweeper Mode, it will start attacking while generating Flow Momentum. The higher its Flow Momentum, the greater the DMG it will inflict.",
+            "During this time, you might be able to obstruct the buildup of Flow Momentum by using consecutive Cryo attacks."
+          ]
+        },
+        {
+          "enemy_id": "",
+          "name": "Keep Fighting",
+          "instructions": [
+            "Extra Act 1 · Keep Fighting",
+            "Keep fighting until the countdown ends. End the stage with at least one character left standing to successfully complete the challenge.",
+            "Each opponent you defeat will take time off the countdown.",
+            "Once the challenge begins, all party members will continuously lose small amounts of HP."
+          ]
+        },
+        {
+          "enemy_id": "",
+          "name": "Keep Fighting",
+          "instructions": [
+            "Extra Act 2 · Keep Fighting",
+            "Keep fighting until the countdown ends. End the stage with at least one character left standing to successfully complete the challenge.",
+            "Each opponent you defeat will take time off the countdown.",
+            "Cryo Bursts will periodically be set off, dealing Cryo DMG to your active character."
+          ]
+        }
+      ]
+    },
+    "visionary": {
+      "conditions": {
+        "level": 100,
+        "rooms": 10,
+        "opening_characters": 6,
+        "characters_available": 22,
+        "characters_with_bonus": 26,
+        "min_level": 70,
+        "boss_acts": 10
+      },
+      "stages": [
+        {
+          "enemy_id": "Apparatus_Perpetual",
+          "instructions": [
+            "Act 3 · Perpetual Mechanical Array",
+            "A mysterious ruin machine that can reconfigure itself into various forms.",
+            "In battle, the Perpetual Mechanical Array will enter the Absolute Defense state, in which it splits and summons several different kinds of Ruin Sentinels.",
+            "After defeating the enhanced Ruin Sentinels, Absolute Defense state will be removed and it will enter a weakened state."
+          ]
+        },
+        {
+          "enemy_id": "Volkodlak_Greyhound_Furiosa",
+          "instructions": [
+            "Act 6 · Battle-Hardened Chimeric Volkodlak Archer",
+            "During battle, when the Nemesis burrows underground or unleashes Arrow Shower, destroying all Hindering Roots on the field will interrupt the move and leave the opponent in a weakened state.",
+            "When affected by a Stellar Glimmer Reaction, the core of the Hindering Roots will be exposed in positions that are easier to attack."
+          ]
+        },
+        {
+          "enemy_id": "Chimera_Manticore",
+          "instructions": [
+            "Act 8 · Chimeric Winged Lion",
+            "The Chimeric Winged Lion will oscillate between two enhanced states: \"Thundercall\" and \"Galeforce.\"",
+            "When it is in the Thundercall state, it will become weakened when its Elemental Ward is broken. Additionally, any attempts by it to spread its thunder blades can be disrupted by the Stellar Glimmer reaction.",
+            "When it is in the Galeforce state, it will attempt to absorb any Anemo Orbs that are on the field to charge its attack. Destroying the orbs or using the Stellar Glimmer reaction can stop its charging and weaken it."
+          ]
+        },
+        {
+          "enemy_id": "DragonCollar",
+          "instructions": [
+            "Act 10 · Secret Source Automaton: Overseer Device",
+            "A civilization whose magnificence once marked distant eons built this overseer device to control multiple Secret Source machines.",
+            "After it enters Sweeper Mode, it will start attacking while generating Flow Momentum. The higher its Flow Momentum, the greater the DMG it will inflict.",
+            "During this time, you might be able to obstruct the buildup of Flow Momentum by using consecutive Cryo attacks."
+          ]
+        }
+      ]
+    },
+    "hard": {
+      "conditions": {
+        "level": 95,
+        "rooms": 8,
+        "opening_characters": 6,
+        "characters_available": 16,
+        "characters_with_bonus": 20,
+        "min_level": 70,
+        "boss_acts": 8
+      },
+      "stages": [
+        {
+          "enemy_id": "Apparatus_Perpetual",
+          "instructions": [
+            "Act 3 · Perpetual Mechanical Array",
+            "A mysterious ruin machine that can reconfigure itself into various forms.",
+            "In battle, the Perpetual Mechanical Array will enter the Absolute Defense state, in which it splits and summons several different kinds of Ruin Sentinels.",
+            "After defeating the enhanced Ruin Sentinels, Absolute Defense state will be removed and it will enter a weakened state."
+          ]
+        },
+        {
+          "enemy_id": "Volkodlak_Greyhound_Furiosa",
+          "instructions": [
+            "Act 6 · Battle-Hardened Chimeric Volkodlak Archer",
+            "During battle, when the Nemesis burrows underground or unleashes Arrow Shower, destroying all Hindering Roots on the field will interrupt the move and leave the opponent in a weakened state.",
+            "When affected by a Stellar Glimmer Reaction, the core of the Hindering Roots will be exposed in positions that are easier to attack."
+          ]
+        },
+        {
+          "enemy_id": "Chimera_Manticore",
+          "instructions": [
+            "Act 8 · Chimeric Winged Lion",
+            "The Chimeric Winged Lion will oscillate between two enhanced states: \"Thundercall\" and \"Galeforce.\"",
+            "When it is in the Thundercall state, it will become weakened when its Elemental Ward is broken. Additionally, any attempts by it to spread its thunder blades can be disrupted by the Stellar Glimmer reaction.",
+            "When it is in the Galeforce state, it will attempt to absorb any Anemo Orbs that are on the field to charge its attack. Destroying the orbs or using the Stellar Glimmer reaction can stop its charging and weaken it."
+          ]
+        }
+      ]
+    },
+    "normal": {
+      "conditions": {
+        "level": 90,
+        "rooms": 6,
+        "opening_characters": 6,
+        "characters_available": 12,
+        "characters_with_bonus": 14,
+        "min_level": 60,
+        "boss_acts": 6
+      },
+      "stages": [
+        {
+          "enemy_id": "Apparatus_Perpetual",
+          "instructions": [
+            "Act 3 · Perpetual Mechanical Array",
+            "A mysterious ruin machine that can reconfigure itself into various forms.",
+            "In battle, the Perpetual Mechanical Array will enter the Absolute Defense state, in which it splits and summons several different kinds of Ruin Sentinels.",
+            "After defeating the enhanced Ruin Sentinels, Absolute Defense state will be removed and it will enter a weakened state."
+          ]
+        },
+        {
+          "enemy_id": "Volkodlak_Greyhound_Furiosa",
+          "instructions": [
+            "Act 6 · Battle-Hardened Chimeric Volkodlak Archer",
+            "During battle, when the Nemesis burrows underground or unleashes Arrow Shower, destroying all Hindering Roots on the field will interrupt the move and leave the opponent in a weakened state.",
+            "When affected by a Stellar Glimmer Reaction, the core of the Hindering Roots will be exposed in positions that are easier to attack."
+          ]
+        }
+      ]
+    },
+    "easy": {
+      "conditions": {
+        "level": 80,
+        "rooms": 3,
+        "opening_characters": 6,
+        "characters_available": 8,
+        "characters_with_bonus": 10,
+        "min_level": 60,
+        "boss_acts": 3
+      },
+      "stages": [
+        {
+          "enemy_id": "Apparatus_Perpetual",
+          "instructions": [
+            "Act 3 · Perpetual Mechanical Array",
+            "A mysterious ruin machine that can reconfigure itself into various forms.",
+            "In battle, the Perpetual Mechanical Array will enter the Absolute Defense state, in which it splits and summons several different kinds of Ruin Sentinels.",
+            "After defeating the enhanced Ruin Sentinels, Absolute Defense state will be removed and it will enter a weakened state."
+          ]
+        }
+      ]
+    }
+  }
+}

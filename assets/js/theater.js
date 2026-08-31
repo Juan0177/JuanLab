@@ -41,13 +41,18 @@
 
   const today = new Date();
   today.setHours(0, 0, 0, 0);
-  let activeIdx = theaterIndex.findIndex((entry) => {
-    const from = new Date(entry.from);
-    const to = new Date(entry.to);
-    from.setHours(0, 0, 0, 0);
-    to.setHours(0, 0, 0, 0);
-    return today >= from && today < to;
-  });
+  const matchingIndexes = theaterIndex
+    .map((entry, index) => ({ entry, index }))
+    .filter(({ entry }) => {
+      const from = new Date(entry.from);
+      const to = new Date(entry.to);
+      from.setHours(0, 0, 0, 0);
+      to.setHours(23, 59, 59, 999);
+      return today >= from && today <= to;
+    });
+  let activeIdx = matchingIndexes.find(({ entry }) => entry.type !== 'test')?.index
+    ?? matchingIndexes[0]?.index
+    ?? -1;
   if (activeIdx < 0) activeIdx = 0;
 
   const modeConfig = {
@@ -70,6 +75,7 @@
 
     const target = new Date(isActive ? entry.to : entry.from);
     target.setHours(4, 0, 0, 0);
+    if (isActive) target.setDate(target.getDate() + 1);
 
     countdownInterval = setInterval(() => {
       const diff = target - Date.now();
