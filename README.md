@@ -5,7 +5,7 @@
 
 Sito personale pubblicato su GitHub Pages con tema dark, sfondo animato e contenuti organizzati in pagine dedicate.
 
-Live: [https://gianni0177.github.io/JuanLab/](https://gianni0177.github.io/JuanLab/)
+Live: [https://Juan0177.github.io/JuanLab/](https://Juan0177.github.io/JuanLab/)
 
 ## ✨ Contenuti del progetto
 
