@@ -1,11 +1,11 @@
 # JuanLab
 
-[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-blue?logo=github)](https://gianni0177.github.io/JuanLab/)
-[![Static Site](https://img.shields.io/badge/Type-HTML%20%2F%20CSS%20%2F%20JS-dark)](https://github.com/Gianni0177/JuanLab)
+[![GitHub Pages](https://img.shields.io/badge/Deploy-GitHub%20Pages-blue?logo=github)](https://juan0177.github.io/JuanLab/)
+[![Static Site](https://img.shields.io/badge/Type-HTML%20%2F%20CSS%20%2F%20JS-dark)](https://github.com/juan0177/JuanLab)
 
 Sito personale pubblicato su GitHub Pages con tema dark, sfondo animato e contenuti organizzati in pagine dedicate.
 
-Live: [https://Juan0177.github.io/JuanLab/](https://Juan0177.github.io/JuanLab/)
+Live: [https://juan0177.github.io/JuanLab/](https://juan0177.github.io/JuanLab/)
 
 ## ✨ Contenuti del progetto
 
