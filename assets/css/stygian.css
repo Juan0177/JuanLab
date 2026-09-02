@@ -428,6 +428,614 @@ article.stygian-boss-card {
   padding-left: 1rem;
 }
 
+.stygian-team-builder {
+  margin: 1rem 0;
+  padding: 1.1rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: linear-gradient(180deg, rgba(12, 16, 28, 0.94), rgba(19, 10, 29, 0.9));
+}
+
+.stygian-team-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stygian-team-heading h3,
+.stygian-team-heading p,
+.stygian-team-card h4 {
+  margin: 0;
+}
+
+.stygian-team-heading > p {
+  max-width: 410px;
+  color: var(--pico-muted-color);
+  font-size: 0.78rem;
+  text-align: right;
+}
+
+.stygian-team-instructions {
+  margin: 0 0 1rem;
+  padding: 0.5rem 0.7rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.025);
+  color: var(--pico-muted-color);
+  font-size: 0.74rem;
+}
+
+.stygian-team-instructions summary {
+  color: #dfe8ff;
+  cursor: pointer;
+  font-weight: 700;
+}
+
+.stygian-team-instructions ul {
+  margin: 0.55rem 0 0.1rem;
+  padding-left: 1.15rem;
+}
+
+.stygian-team-instructions li + li {
+  margin-top: 0.28rem;
+}
+
+.stygian-note-dialog {
+  width: min(360px, calc(100vw - 2rem));
+  padding: 1rem;
+  border: 1px solid rgba(186, 203, 255, 0.32);
+  border-radius: 8px;
+  background: #111522;
+  color: var(--pico-color);
+}
+
+.stygian-note-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.66);
+}
+
+.stygian-note-dialog label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.stygian-note-dialog input {
+  margin: 0;
+}
+
+.stygian-note-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.5rem;
+  margin-top: 0.8rem;
+}
+
+.stygian-note-actions button {
+  width: auto;
+  margin: 0;
+  padding: 0.4rem 0.75rem;
+  font-size: 0.75rem;
+}
+
+.stygian-team-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.8rem;
+}
+
+.stygian-team-card {
+  padding: 0.8rem;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.025);
+}
+
+.stygian-team-card h4 {
+  min-height: 2.5em;
+  font-size: 0.82rem;
+  line-height: 1.25;
+  text-align: center;
+}
+
+.stygian-confirm-team {
+  width: 100%;
+  margin: 0.7rem 0 0;
+  padding: 0.45rem 0.6rem;
+  font-size: 0.72rem;
+}
+
+.stygian-recommendations {
+  display: grid;
+  gap: 0.55rem;
+  margin-top: 0.9rem;
+}
+
+.stygian-recommendation {
+  padding-top: 0.65rem;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.stygian-recommendation h4 {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 0 0.4rem;
+  font-size: 0.72rem;
+  color: #b9edc9;
+}
+
+.stygian-remove-recommendation {
+  width: 1rem;
+  height: 1rem;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  border-radius: 0;
+  background: transparent;
+  color: rgba(255, 178, 191, 0.58);
+  font-size: 0.9rem;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.stygian-remove-recommendation:hover,
+.stygian-remove-recommendation:focus-visible {
+  color: #ffb2bf;
+}
+
+.stygian-recommendation-portraits {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.stygian-recommendation-slot {
+  position: relative;
+  display: block;
+  min-width: 0;
+  aspect-ratio: 1;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 5px;
+  background: #080b14;
+}
+
+.stygian-recommendation-slot.is-empty {
+  border-style: dashed;
+  opacity: 0.28;
+}
+
+.stygian-recommendation-slot > img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.stygian-recommendation-slot.is-multi {
+  position: relative;
+  display: block;
+}
+
+.stygian-recommendation-slot.is-multi > img {
+  position: absolute;
+  z-index: 2;
+  width: 42%;
+  height: 42%;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.stygian-recommendation-slot.is-2-way > img:first-of-type {
+  top: 4%;
+  left: 4%;
+}
+
+.stygian-recommendation-slot.is-2-way > img:nth-of-type(2) {
+  right: 4%;
+  bottom: 4%;
+}
+
+.stygian-recommendation-slot.is-3-way > img:nth-of-type(1) {
+  top: 4%;
+  left: 4%;
+}
+
+.stygian-recommendation-slot.is-3-way > img:nth-of-type(2) {
+  top: 4%;
+  right: 4%;
+}
+
+.stygian-recommendation-slot.is-3-way > img:nth-of-type(3) {
+  bottom: 4%;
+  left: 29%;
+}
+
+.stygian-recommendation-slot.is-4-way > img:nth-of-type(1) {
+  top: 3%;
+  left: 29%;
+}
+
+.stygian-recommendation-slot.is-4-way > img:nth-of-type(2) {
+  top: 29%;
+  left: 3%;
+}
+
+.stygian-recommendation-slot.is-4-way > img:nth-of-type(3) {
+  top: 29%;
+  right: 3%;
+}
+
+.stygian-recommendation-slot.is-4-way > img:nth-of-type(4) {
+  bottom: 3%;
+  left: 29%;
+}
+
+.stygian-recommendation-slot.is-2-way::before,
+.stygian-recommendation-slot.is-4-way::before,
+.stygian-recommendation-slot.is-4-way::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  width: 142%;
+  height: 1px;
+  left: -21%;
+  top: 50%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.stygian-recommendation-slot.is-2-way::before,
+.stygian-recommendation-slot.is-4-way::after {
+  transform: rotate(-45deg);
+}
+
+.stygian-recommendation-slot.is-4-way::before {
+  transform: rotate(45deg);
+}
+
+.stygian-recommendation-slot.is-3-way::before {
+  content: '';
+  position: absolute;
+  top: 8%;
+  left: calc(50% - 0.5px);
+  z-index: 1;
+  width: 1px;
+  height: 44%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.stygian-recommendation-y-arm {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 0.5px);
+  z-index: 1;
+  display: block;
+  width: 1px;
+  height: 52%;
+  background: rgba(255, 255, 255, 0.9);
+  transform-origin: top center;
+}
+
+.stygian-recommendation-y-arm.is-left {
+  transform: rotate(-60deg);
+}
+
+.stygian-recommendation-y-arm.is-right {
+  transform: rotate(60deg);
+}
+
+.stygian-recommendation-slot em {
+  position: absolute;
+  top: 0.12rem;
+  right: 0.12rem;
+  z-index: 2;
+  padding: 0.08rem 0.2rem;
+  border-radius: 3px;
+  background: rgba(5, 8, 16, 0.9);
+  color: #fff2bf;
+  font-size: 0.55rem;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.stygian-team-slots,
+.stygian-character-list {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  gap: 0.35rem;
+}
+
+.stygian-team-slots {
+  margin: 0.65rem 0;
+}
+
+.stygian-team-slot-wrap {
+  position: relative;
+  aspect-ratio: 1;
+}
+
+.stygian-team-slot,
+.stygian-character-choice {
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--pico-color);
+  cursor: pointer;
+}
+
+.stygian-team-slot {
+  position: relative;
+  width: 100%;
+  height: 100%;
+}
+
+.stygian-team-slot > span {
+  font-size: 1.25rem;
+  color: var(--pico-muted-color);
+}
+
+.stygian-team-slot img,
+.stygian-character-choice img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+}
+
+.stygian-slot-note {
+  position: absolute;
+  top: 0.18rem;
+  right: 0.18rem;
+  z-index: 2;
+  max-width: calc(100% - 0.36rem);
+  overflow: hidden;
+  padding: 0.1rem 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.34);
+  border-radius: 4px;
+  background: rgba(5, 8, 16, 0.9);
+  color: #fff2bf;
+  font-size: 0.58rem;
+  font-style: normal;
+  font-weight: 700;
+  line-height: 1.1;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stygian-team-slot .stygian-multi-content {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  padding: 0;
+  background: #080b14;
+}
+
+.stygian-team-slot .stygian-multi-content::before,
+.stygian-team-slot .stygian-multi-content::after {
+  content: '';
+  position: absolute;
+  z-index: 1;
+  pointer-events: none;
+}
+
+.stygian-team-slot .stygian-multi-content.is-3-way,
+.stygian-team-slot .stygian-multi-content.is-4-way {
+  background: #080b14;
+}
+
+.stygian-team-slot .stygian-multi-item {
+  position: absolute;
+  z-index: 2;
+  display: block;
+  width: 42%;
+  height: 42%;
+  padding: 0;
+  overflow: hidden;
+}
+
+.stygian-team-slot .stygian-multi-item img {
+  display: block;
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.stygian-team-slot .stygian-multi-content.is-2-way .stygian-multi-item:first-child {
+  top: 6%;
+  left: 6%;
+}
+
+.stygian-team-slot .stygian-multi-content.is-2-way .stygian-multi-item:nth-child(2) {
+  right: 6%;
+  bottom: 6%;
+}
+
+.stygian-team-slot .stygian-multi-content.is-2-way::before {
+  top: 50%;
+  left: -18%;
+  width: 136%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.9);
+  transform: rotate(-45deg);
+}
+
+.stygian-team-slot .stygian-multi-content.is-3-way .stygian-multi-item:nth-of-type(1) {
+  top: 4%;
+  left: 4%;
+}
+
+.stygian-team-slot .stygian-multi-content.is-3-way .stygian-multi-item:nth-of-type(2) {
+  top: 4%;
+  right: 4%;
+}
+
+.stygian-team-slot .stygian-multi-content.is-3-way .stygian-multi-item:nth-of-type(3) {
+  bottom: 4%;
+  left: 29%;
+}
+
+.stygian-team-slot .stygian-multi-content.is-4-way .stygian-multi-item:first-child {
+  top: 3%;
+  left: 27%;
+}
+
+.stygian-team-slot .stygian-multi-content.is-4-way .stygian-multi-item:nth-child(2) {
+  top: 27%;
+  left: 3%;
+}
+
+.stygian-team-slot .stygian-multi-content.is-4-way .stygian-multi-item:nth-child(3) {
+  top: 27%;
+  right: 3%;
+}
+
+.stygian-team-slot .stygian-multi-content.is-4-way .stygian-multi-item:nth-child(4) {
+  bottom: 4%;
+  left: 27%;
+}
+
+.stygian-team-slot .stygian-multi-content.is-3-way::before {
+  top: 8%;
+  left: calc(50% - 1px);
+  width: 2px;
+  height: 44%;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.stygian-team-slot .stygian-y-arm {
+  position: absolute;
+  top: 50%;
+  left: calc(50% - 1px);
+  z-index: 1;
+  display: block;
+  width: 2px;
+  height: 52%;
+  padding: 0;
+  background: rgba(255, 255, 255, 0.9);
+  transform-origin: top center;
+}
+
+.stygian-team-slot .stygian-y-arm.is-left {
+  transform: rotate(-60deg);
+}
+
+.stygian-team-slot .stygian-y-arm.is-right {
+  transform: rotate(60deg);
+}
+
+.stygian-team-slot .stygian-multi-content.is-4-way::before,
+.stygian-team-slot .stygian-multi-content.is-4-way::after {
+  top: 50%;
+  left: -18%;
+  width: 136%;
+  height: 2px;
+  background: rgba(255, 255, 255, 0.9);
+}
+
+.stygian-team-slot .stygian-multi-content.is-4-way::before {
+  transform: rotate(45deg);
+}
+
+.stygian-team-slot .stygian-multi-content.is-4-way::after {
+  transform: rotate(-45deg);
+}
+
+.stygian-team-slot span,
+.stygian-character-choice span {
+  display: block;
+  overflow: hidden;
+  padding: 0.18rem;
+  font-size: 0.6rem;
+  line-height: 1.15;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.stygian-team-slot:hover,
+.stygian-character-choice:hover {
+  border-color: rgba(172, 197, 255, 0.72);
+}
+
+.stygian-character-search {
+  display: block;
+  margin: 0 0 0.55rem;
+  color: var(--pico-muted-color);
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.stygian-character-search input {
+  height: 2rem;
+  margin: 0.25rem 0 0;
+  padding: 0.35rem 0.55rem;
+  font-size: 0.78rem;
+}
+
+.stygian-picker-tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.25rem;
+  margin-bottom: 0.55rem;
+}
+
+.stygian-picker-tabs button {
+  margin: 0;
+  min-height: 1.85rem;
+  padding: 0.25rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 5px;
+  background: transparent;
+  color: var(--pico-muted-color);
+  font-size: 0.64rem;
+  cursor: pointer;
+}
+
+.stygian-picker-tabs button.is-active {
+  border-color: rgba(172, 197, 255, 0.72);
+  background: rgba(102, 132, 218, 0.2);
+  color: #fff;
+}
+
+.stygian-character-list {
+  max-height: 184px;
+  overflow-y: auto;
+  padding-right: 0.2rem;
+}
+
+.stygian-character-choice span {
+  background: rgba(4, 7, 14, 0.8);
+}
+
+.stygian-team-slot.is-element img,
+.stygian-character-choice.is-element img {
+  padding: 0.45rem;
+  object-fit: contain;
+  background: radial-gradient(circle, rgba(97, 168, 255, 0.2), transparent 68%);
+}
+
+.stygian-team-slot.is-weapon,
+.stygian-character-choice.is-weapon {
+  background: radial-gradient(circle, rgba(209, 159, 53, 0.22), rgba(15, 11, 6, 0.72));
+}
+
+.stygian-no-results {
+  grid-column: 1 / -1;
+  padding: 0.5rem 0;
+  color: var(--pico-muted-color);
+  font-size: 0.72rem;
+  text-align: center;
+}
+
 .stygian-empty {
   margin: 0;
   color: var(--pico-muted-color);
@@ -435,6 +1043,10 @@ article.stygian-boss-card {
 
 @media (max-width: 960px) {
   .stygian-boss-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .stygian-team-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -446,6 +1058,15 @@ article.stygian-boss-card {
 
   .stygian-meta-row {
     align-items: flex-start;
+  }
+
+  .stygian-team-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .stygian-team-heading > p {
+    text-align: left;
   }
 
   .stygian-hp-tooltip {
