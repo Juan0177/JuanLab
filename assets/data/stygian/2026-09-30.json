@@ -16,8 +16,8 @@
           "display_name": "Secret Source Automaton: Overseer Device - Normal",
           "level": 90,
           "hp": 916730,
-          "advantages": ["Cryo", "Nightsoul's Blessing"],
-          "disadvantages": [],
+          "advantages": ["Cryo"],
+          "disadvantages": ["Nightsoul's Blessing"],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "10%", "geo": "10%", "physical": "10%" },
           "mechanics": [
             { "title": "Sweeper Mode", "description": "Genera Flow Momentum mentre attacca. Colpirlo con danni Cryo riduce il Momentum e puo fermare la rotazione, abbassando le sue resistenze." }
