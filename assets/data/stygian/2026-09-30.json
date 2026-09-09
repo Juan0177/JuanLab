@@ -58,8 +58,8 @@
           "display_name": "Secret Source Automaton: Overseer Device - Swift Strike",
           "level": 100,
           "hp": 1370390,
-          "advantages": ["Cryo", "Nightsoul's Blessing"],
-          "disadvantages": [],
+          "advantages": ["Cryo"],
+          "disadvantages": ["Nightsoul's Blessing"],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "10%", "geo": "10%", "physical": "10%" },
           "mechanics": [
             { "title": "Sweeper Mode", "description": "Genera Flow Momentum mentre attacca. Colpirlo con danni Cryo riduce il Momentum e puo fermare la rotazione, abbassando le sue resistenze." }
@@ -100,8 +100,8 @@
           "display_name": "Secret Source Automaton: Overseer Device - Obliterator Panoply",
           "level": 105,
           "hp": 7606010,
-          "advantages": ["Cryo", "Nightsoul's Blessing"],
-          "disadvantages": [],
+          "advantages": ["Cryo"],
+          "disadvantages": ["Nightsoul's Blessing"],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "10%", "geo": "10%", "physical": "10%" },
           "mechanics": [
             { "title": "Preemptive Sweeper Mode", "description": "Entra subito in Sweeper Mode, aumentando RES e Flow Momentum. I danni Cryo riducono il Momentum; sotto una certa soglia smette di ruotare e perde molte RES." },
@@ -145,8 +145,8 @@
           "display_name": "Secret Source Automaton: Overseer Device - Obliterator Panoply",
           "level": 110,
           "hp": 14743274,
-          "advantages": ["Cryo", "Nightsoul's Blessing"],
-          "disadvantages": [],
+          "advantages": ["Cryo"],
+          "disadvantages": ["Nightsoul's Blessing"],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "10%", "geo": "10%", "physical": "10%" },
           "mechanics": [
             { "title": "Preemptive Sweeper Mode", "description": "Entra subito in Sweeper Mode, aumentando RES e Flow Momentum. I danni Cryo riducono il Momentum; sotto una certa soglia smette di ruotare e perde molte RES." },
