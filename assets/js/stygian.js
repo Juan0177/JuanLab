@@ -8,7 +8,9 @@
 
   if (!metaEl || !difficultyEl || !bossesEl || !teamBuilderEl || !summaryEl || !toggleEl) return;
 
-  const characters = `Aino Albedo Alhatham Aloy Alyosha Ambor Arlecchino Ayaka Ayato Baizhuer Barbara Beidou Bennett Candace Charlotte Chasca Chevreuse Chiori Chongyun Citlali Clorinde Collei Columbina Cyno Dahlia Dehya Diluc Diona Dori Durin Emilie Escoffier Eula Faruzan Feiyan Fischl Flins Freminet Furina Gaming Ganyu Gorou Heizo Hutao Iansan Ifa Illuga Ineffa Itto Jahoda Kachina Kaeya Kaveh Kazuha Keqing Kinich Klee Kokomi Lanyan Lauma Layla Linette Liney Linnea Lisa Liuyun Lohen Mavuika Mika Mizuki Momoka Mona Mualani Nahida Navia Nefer Neuvillette Nicole Nilou Ningguang Noel Odette Olorun Prune Qiqi Razor Rosaria Sara Sayu Sethos Shenhe Shinobu Shougun Sigewinne Sucrose Tartaglia Tighnari Tohma Varesa Varka Venti Vesna Vodyanitsa Wanderer Wriothesley Xiangling Xiao Xilonen Xingqiu Xinyan Yae Yaoyao Yelan Yoimiya Yunjin Zhongli Zibai`.split(' ');
+  const characters = `Aino Albedo Alhatham Aloy Alyosha Ambor Arlecchino Ayaka Ayato Baizhuer Barbara Beidou Bennett Candace Charlotte Chasca Chevreuse Chiori Chongyun Citlali Clorinde Collei Columbina Cyno Dahlia Dehya Diluc Diona Dori Durin Emilie Escoffier Eula Faruzan Feiyan Fischl Flins Freminet Furina Gaming Ganyu Gorou Heizo Hutao Iansan Ifa Illuga Ineffa Itto Jahoda Kachina Kaeya Kaveh Kazuha Keqing Kinich Klee Kokomi Lanyan Lauma Layla Linette Liney Linnea Lisa Liuyun Lohen MarionetteNew Mavuika Mika Mizuki Momoka Mona Mualani Nahida Navia Nefer Neuvillette Nicole Nilou Ningguang Noel Odette Olorun PlayerBoy PlayerGirl Prune Qin Qiqi Razor Rosaria Sara Sayu Sethos Shenhe Shinobu Shougun Sigewinne SkirkNew Sucrose Tartaglia Tighnari Tohma Varesa Varka Venti Vesna Vodyanitsa Wanderer Wriothesley Xiangling Xiao Xilonen Xingqiu Xinyan Yae Yaoyao Yelan Yoimiya Yunjin Zhongli Zibai`
+    .split(' ')
+    .sort((a, b) => characterLabel(a).localeCompare(characterLabel(b), 'it-IT'));
   const elements = ['Anemo', 'Cryo', 'Dendro', 'Electro', 'Geo', 'Hydro', 'Pyro'];
   const weapons = [
     { id: 'Hunters_Bow', label: 'Arco' },
@@ -247,9 +249,9 @@
     return ({
       Alhatham: 'Alhaitham', Ambor: 'Amber', Baizhuer: 'Baizhu', Feiyan: 'Yanfei',
       Heizo: 'Heizou', Hutao: 'Hu Tao', Lanyan: 'Lan Yan', Liney: 'Lyney',
-      Liuyun: 'Xianyun', Momoka: 'Kirara', Mualani: 'Mualani', Noel: 'Noelle',
-      Qin: 'Jean', Shougun: 'Raiden Shogun', Tohma: 'Thoma',
-      Yae: 'Yae Miko', Yunjin: 'Yun Jin',
+      Liuyun: 'Xianyun', MarionetteNew: 'Sandrone', Momoka: 'Kirara', Mualani: 'Mualani', Noel: 'Noelle',
+      PlayerBoy: 'Aether', PlayerGirl: 'Lumine', Qin: 'Jean', Shougun: 'Raiden Shogun',
+      SkirkNew: 'Skirk', Tohma: 'Thoma', Yae: 'Yae Miko', Yunjin: 'Yun Jin',
     }[id] || id);
   }
 
@@ -453,8 +455,7 @@
       const query = searchTerm.trim().toLocaleLowerCase('it-IT');
       const matches = (label) => label.toLocaleLowerCase('it-IT').includes(query);
       const characterOptions = characters
-        .filter((id) => !selectedItems.some((item) => item.type === 'character' && item.id === id) && matches(characterLabel(id)))
-        .slice(0, query ? 8 : 12)
+        .filter((id) => !selectedItems.some((item) => item.type === 'character' && item.id === id) && (matches(characterLabel(id)) || matches(id)))
         .map((id) => ({ type: 'character', id, label: characterLabel(id) }));
       const elementOptions = elements
         .filter((id) => !selectedItems.some((item) => item.type === 'element' && item.id === id) && matches(id))
