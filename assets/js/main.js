@@ -51,6 +51,28 @@
     window.setInterval(updateCountdown, 1000);
   }
 
+  function initBetaCarousel() {
+    const carousel = document.querySelector('.beta-carousel');
+    const controls = carousel?.querySelectorAll('.beta-carousel-dots button');
+    if (!carousel) return;
+
+    let slide = 0;
+    const selectSlide = (nextSlide) => {
+      slide = nextSlide;
+      carousel.dataset.slide = String(slide);
+    };
+
+    const advance = () => {
+      if (document.hidden || carousel.matches(':hover, :focus-within')) return;
+      selectSlide(slide === 0 ? 1 : 0);
+    };
+
+    controls[0]?.addEventListener('click', () => selectSlide(slide === 0 ? 1 : 0));
+    controls[1]?.addEventListener('click', () => selectSlide(slide === 0 ? 1 : 0));
+
+    window.setInterval(advance, 9000);
+  }
+
   const canvas = document.getElementById('stars');
   if (!canvas) return;
 
@@ -205,6 +227,7 @@
   window.addEventListener('resize', resize);
   initSecretLogo();
   initWorksiteCountdown();
+  initBetaCarousel();
   loadChangelog();
   draw();
 }());
