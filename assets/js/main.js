@@ -21,6 +21,36 @@
     });
   }
 
+  function initWorksiteCountdown() {
+    const worksite = document.querySelector('.current-pg-worksite[data-release-date]');
+    const countdownValue = worksite?.querySelector('.worksite-countdown-value');
+    const countdownDate = worksite?.querySelector('.worksite-countdown-date');
+    if (!worksite || !countdownValue || !countdownDate) return;
+
+    const releaseDate = new Date(worksite.dataset.releaseDate);
+    if (Number.isNaN(releaseDate.getTime())) return;
+
+    countdownDate.textContent = releaseDate.toLocaleString('it-IT', {
+      dateStyle: 'full',
+      timeStyle: 'short'
+    });
+
+    function updateCountdown() {
+      const remainingSeconds = Math.max(0, Math.ceil((releaseDate.getTime() - Date.now()) / 1000));
+      const days = Math.floor(remainingSeconds / 86400);
+      const hours = Math.floor((remainingSeconds % 86400) / 3600);
+      const minutes = Math.floor((remainingSeconds % 3600) / 60);
+      const seconds = remainingSeconds % 60;
+
+      countdownValue.textContent = remainingSeconds === 0
+        ? 'DISPONIBILE ORA'
+        : `${days}g ${String(hours).padStart(2, '0')}h ${String(minutes).padStart(2, '0')}m ${String(seconds).padStart(2, '0')}s`;
+    }
+
+    updateCountdown();
+    window.setInterval(updateCountdown, 1000);
+  }
+
   const canvas = document.getElementById('stars');
   if (!canvas) return;
 
@@ -174,6 +204,7 @@
   resize();
   window.addEventListener('resize', resize);
   initSecretLogo();
+  initWorksiteCountdown();
   loadChangelog();
   draw();
 }());

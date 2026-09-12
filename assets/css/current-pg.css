@@ -136,7 +136,7 @@ main.current-pg-page > header {
 .orbit-track {
   position: absolute;
   inset: 0;
-  animation: worksite-orbit 13s linear infinite;
+  animation: worksite-orbit 13s linear infinite !important;
 }
 
 .orbit-avatar {
@@ -148,7 +148,7 @@ main.current-pg-page > header {
   border-radius: 50%;
   background: rgba(8, 12, 24, 0.85);
   box-shadow: 0 18px 40px rgba(0, 0, 0, 0.46), 0 0 26px rgba(255, 191, 64, 0.24);
-  animation: worksite-counter-orbit 13s linear infinite;
+  animation: worksite-counter-orbit 13s linear infinite !important;
 }
 
 .orbit-avatar-vesna {
@@ -228,10 +228,55 @@ main.current-pg-page > header {
 .worksite-copy {
   position: relative;
   z-index: 3;
+  display: grid;
+  place-items: center;
   max-width: 620px;
+  min-height: 132px;
   margin-top: 0;
   padding: 0 1rem;
   text-align: center;
+}
+
+.worksite-message,
+.worksite-countdown {
+  grid-area: 1 / 1;
+  width: 100%;
+}
+
+.worksite-countdown {
+  visibility: hidden;
+  opacity: 0;
+  color: #d8f7ff;
+  text-shadow: 2px 0 #ff4d82, -2px 0 #47d9ff;
+}
+
+.worksite-countdown-label,
+.worksite-countdown-date {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0;
+}
+
+.worksite-countdown-value {
+  display: block;
+  margin: 0.28rem 0;
+  color: #fff1b9;
+  font-family: ui-monospace, "Cascadia Code", monospace;
+  font-size: clamp(1.4rem, 5vw, 2.55rem);
+  letter-spacing: 0;
+  line-height: 1;
+}
+
+.worksite-countdown-date {
+  color: rgba(216, 247, 255, 0.78);
+}
+
+.current-pg-worksite:hover .worksite-message {
+  animation: worksite-message-glitch 700ms steps(2, end) 4.3s both !important;
+}
+
+.current-pg-worksite:hover .worksite-countdown {
+  animation: worksite-countdown-reveal 500ms steps(2, end) 5s forwards !important;
 }
 
 .worksite-barrier {
@@ -341,6 +386,60 @@ main.current-pg-page > header {
   to {
     opacity: 1;
     transform: scale(1.08);
+  }
+}
+
+@keyframes worksite-message-glitch {
+  0% {
+    opacity: 1;
+    transform: translate(0);
+    filter: none;
+  }
+
+  22% {
+    opacity: 0.6;
+    transform: translate(-12px, 2px) skewX(-4deg);
+    filter: drop-shadow(5px 0 #ff4d82) drop-shadow(-5px 0 #47d9ff);
+  }
+
+  48% {
+    opacity: 1;
+    transform: translate(9px, -2px) skewX(3deg);
+    filter: drop-shadow(-4px 0 #ff4d82) drop-shadow(4px 0 #47d9ff);
+  }
+
+  74% {
+    opacity: 0.22;
+    transform: translate(-5px, 1px);
+    filter: contrast(1.6) saturate(1.8);
+  }
+
+  100% {
+    opacity: 0;
+    transform: translate(0);
+    filter: none;
+  }
+}
+
+@keyframes worksite-countdown-reveal {
+  0% {
+    visibility: visible;
+    opacity: 0;
+    transform: translate(10px, -2px) skewX(-4deg);
+    clip-path: inset(42% 0 36% 0);
+  }
+
+  42% {
+    opacity: 0.75;
+    transform: translate(-7px, 1px) skewX(3deg);
+    clip-path: inset(8% 0 72% 0);
+  }
+
+  100% {
+    visibility: visible;
+    opacity: 1;
+    transform: translate(0);
+    clip-path: inset(0);
   }
 }
 
