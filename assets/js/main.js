@@ -54,12 +54,24 @@
   function initBetaCarousel() {
     const carousel = document.querySelector('.beta-carousel');
     const controls = carousel?.querySelectorAll('.beta-carousel-dots button');
+    const viewport = carousel?.querySelector('.beta-carousel-viewport');
+    const slides = carousel?.querySelectorAll('.beta-carousel-slide');
     if (!carousel) return;
 
     let slide = 0;
+    const syncViewportHeight = () => {
+      const activeSlide = slides[slide];
+      const contentBottom = Math.max(
+        ...Array.from(activeSlide.children, (child) => child.offsetTop + child.offsetHeight)
+      );
+      const paddingBottom = Number.parseFloat(getComputedStyle(activeSlide).paddingBottom);
+      viewport.style.height = `${contentBottom + paddingBottom}px`;
+    };
+
     const selectSlide = (nextSlide) => {
       slide = nextSlide;
       carousel.dataset.slide = String(slide);
+      syncViewportHeight();
     };
 
     const advance = () => {
@@ -70,6 +82,8 @@
     controls[0]?.addEventListener('click', () => selectSlide(slide === 0 ? 1 : 0));
     controls[1]?.addEventListener('click', () => selectSlide(slide === 0 ? 1 : 0));
 
+    syncViewportHeight();
+    window.addEventListener('resize', syncViewportHeight);
     window.setInterval(advance, 9000);
   }
 

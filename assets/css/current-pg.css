@@ -533,15 +533,18 @@ main.current-pg-page > header {
 
 .beta-carousel {
   overflow: visible;
+  padding-bottom: 1rem;
 }
 
 .beta-carousel-viewport {
   overflow: hidden;
   border-radius: 12px;
+  transition: height 500ms cubic-bezier(0.65, 0, 0.35, 1) !important;
 }
 
 .beta-carousel-track {
   display: flex;
+  align-items: flex-start;
   width: 200%;
   will-change: transform;
   transition: transform 800ms cubic-bezier(0.65, 0, 0.35, 1) !important;
@@ -554,9 +557,13 @@ main.current-pg-page > header {
 .beta-carousel-slide {
   width: 50%;
   flex: 0 0 50%;
+  align-self: flex-start !important;
+  height: fit-content;
+  box-sizing: border-box;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  margin: 0 !important;
   border: 0 !important;
 }
 
@@ -596,8 +603,13 @@ main.current-pg-page > header {
 
 .beta-tier-slide {
   display: grid;
+  align-content: start;
+  justify-content: start;
   gap: 0.65rem;
-  padding: 0.4rem 0.1rem 0;
+  padding: 1rem 1rem 0.65rem;
+  border: 1px solid rgba(154, 214, 255, 0.14) !important;
+  border-radius: 10px;
+  background: linear-gradient(155deg, rgba(18, 30, 47, 0.82), rgba(7, 11, 20, 0.72));
 }
 
 .beta-tier-slide .beta-infographic-header,
@@ -681,6 +693,7 @@ main.current-pg-page > header {
   border-top: 1px solid rgba(255, 255, 255, 0.07);
   border-right: 1px solid rgba(255, 255, 255, 0.05);
   border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+  border-radius: 6px;
   background: linear-gradient(90deg, rgba(255, 255, 255, 0.075), rgba(255, 255, 255, 0.02));
   box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
   align-items: center;
@@ -700,6 +713,7 @@ main.current-pg-page > header {
   margin-top: 0;
   padding: 0.65rem 0.8rem;
   border-left: 3px solid rgba(154, 214, 255, 0.6);
+  border-radius: 0 6px 6px 0;
   background: linear-gradient(90deg, rgba(154, 214, 255, 0.12), rgba(154, 214, 255, 0.035));
   box-shadow: inset 0 1px 0 rgba(216, 247, 255, 0.08);
   color: rgba(255, 255, 255, 0.72);
