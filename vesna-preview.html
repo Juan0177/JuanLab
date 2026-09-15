@@ -1,0 +1,1312 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Riassunto e Analisi: Vesna vs Mizuki | JuanLab</title>
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260814-1" />
+  <style>
+    :root {
+      --guide-bg: #0a1018;
+      --guide-panel: rgba(15, 22, 31, 0.92);
+      --guide-panel-soft: rgba(22, 29, 38, 0.78);
+      --guide-border: rgba(255,255,255,0.09);
+      --guide-gold: #f5d787;
+      --guide-gold-strong: #ffc857;
+      --guide-sky: #85cbff;
+      --guide-text: #edf5ff;
+      --guide-muted: rgba(237,245,255,0.76);
+      --guide-red: #ff7d7d;
+      --guide-shadow: rgba(0,0,0,0.34);
+    }
+
+    body {
+      min-height: 100vh;
+      background:
+        radial-gradient(circle at top left, rgba(245, 215, 135, 0.12), transparent 22%),
+        radial-gradient(circle at bottom right, rgba(133, 203, 255, 0.12), transparent 30%),
+        radial-gradient(circle at 18% 12%, rgba(255,255,255,0.8) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 74% 26%, rgba(133,203,255,0.72) 0 1px, transparent 1.5px),
+        radial-gradient(circle at 42% 68%, rgba(245,215,135,0.62) 0 1px, transparent 1.5px),
+        rgba(10, 16, 24, 0.84);
+      background-size: auto, auto, 170px 170px, 230px 230px, auto;
+      color: var(--guide-text);
+    }
+
+    #stars {
+      z-index: 0;
+      opacity: 0.9;
+    }
+
+    .guide-page,
+    body > footer {
+      position: relative;
+      z-index: 1;
+    }
+
+    .guide-page {
+      max-width: 1100px;
+      padding-top: 2rem;
+      padding-bottom: 4rem;
+    }
+
+    .guide-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1.4rem;
+    }
+
+    .guide-header a {
+      color: var(--guide-text);
+      text-decoration: none;
+      opacity: 0.8;
+    }
+
+    .guide-header a:first-child {
+      font-family: "GenshinDrip", "Segoe UI", sans-serif;
+      font-size: 1.05rem;
+      letter-spacing: 0.02em;
+      color: var(--guide-gold);
+    }
+
+    .guide-header a:hover {
+      opacity: 1;
+    }
+
+    .guide-top {
+      display: grid;
+      grid-template-columns: minmax(260px, 320px) minmax(0, 1fr);
+      gap: 1.2rem;
+      padding: 1.2rem;
+      border: 1px solid var(--guide-border);
+      border-radius: 24px;
+      background: linear-gradient(135deg, rgba(17, 24, 34, 0.94), rgba(11, 18, 25, 0.9));
+      box-shadow: 0 26px 60px var(--guide-shadow);
+      overflow: hidden;
+    }
+
+    .guide-art {
+      position: relative;
+      display: grid;
+      place-items: center;
+      min-height: 300px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: linear-gradient(135deg, rgba(255, 200, 87, 0.13), rgba(133, 203, 255, 0.08), rgba(14,20,28,0.85));
+      overflow: hidden;
+    }
+
+    .guide-art::before,
+    .guide-art::after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 2px solid rgba(255,200,87,0.25);
+      animation: orbit 12s linear infinite;
+    }
+
+    .guide-art::before {
+      width: 180px;
+      height: 180px;
+      right: 14%;
+      top: 10%;
+    }
+
+    .guide-art::after {
+      width: 220px;
+      height: 220px;
+      left: 10%;
+      bottom: 8%;
+      border-color: rgba(133,203,255,0.28);
+      animation-duration: 16s;
+    }
+
+    .guide-art img {
+      position: relative;
+      z-index: 1;
+      width: min(100%, 200px);
+      filter: drop-shadow(0 26px 30px rgba(0,0,0,0.4));
+    }
+
+    .guide-art .badge {
+      position: absolute;
+      right: 1rem;
+      bottom: 1rem;
+      z-index: 2;
+      padding: 0.45rem 0.75rem;
+      border-radius: 999px;
+      background: rgba(18, 24, 31, 0.9);
+      border: 1px solid rgba(255,255,255,0.08);
+      color: var(--guide-gold);
+      font-size: 0.68rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .guide-copy {
+      display: grid;
+      gap: 0.8rem;
+      align-content: center;
+    }
+
+    .eyebrow {
+      margin: 0;
+      color: var(--guide-gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.18em;
+      text-transform: uppercase;
+    }
+
+    .guide-copy h1 {
+      margin: 0;
+      line-height: 0.98;
+      letter-spacing: -0.04em;
+      font-size: clamp(2.2rem, 4vw, 3.5rem);
+    }
+
+    .guide-copy p {
+      margin: 0;
+      color: var(--guide-muted);
+      line-height: 1.7;
+    }
+
+    .summary-box {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+      gap: 0.8rem;
+      margin-top: 0.4rem;
+    }
+
+    .summary-tile {
+      padding: 0.8rem 0.9rem;
+      border-radius: 14px;
+      background: rgba(255,255,255,0.02);
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .summary-tile strong {
+      display: block;
+      color: var(--guide-gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      margin-bottom: 0.35rem;
+    }
+
+    .summary-tile span {
+      font-size: 1.3rem;
+      font-weight: 800;
+      color: var(--guide-text);
+    }
+
+    .section {
+      margin-top: 1.5rem;
+      padding: 1.25rem;
+      border: 1px solid var(--guide-border);
+      border-radius: 22px;
+      background: var(--guide-panel);
+      box-shadow: 0 18px 40px rgba(0,0,0,0.18);
+    }
+
+    .section-head {
+      display: flex;
+      align-items: end;
+      justify-content: space-between;
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .section-head h2 {
+      margin: 0;
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+    }
+
+    .section-head span {
+      color: var(--guide-muted);
+      font-size: 0.85rem;
+    }
+
+    .comparison-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .panel {
+      padding: 1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: var(--guide-panel-soft);
+    }
+
+    .panel h3 {
+      margin: 0 0 0.75rem;
+      color: var(--guide-gold);
+      font-size: 1.05rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .panel ul,
+    .panel p {
+      margin: 0;
+      padding-left: 1.1rem;
+      line-height: 1.9;
+      color: var(--guide-text);
+    }
+
+    .panel li + li {
+      margin-top: 0.18rem;
+    }
+
+    .legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+      margin-top: 1rem;
+    }
+
+    .legend span {
+      display: inline-flex;
+      padding: 0.38rem 0.7rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+      color: rgba(255,255,255,0.84);
+      font-size: 0.78rem;
+    }
+
+    .quote {
+      margin: 1rem 0 0;
+      padding: 1rem 1.1rem;
+      border-left: 3px solid var(--guide-gold);
+      background: rgba(245, 215, 135, 0.05);
+      color: var(--guide-text);
+      line-height: 1.8;
+      border-radius: 0 12px 12px 0;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1rem;
+    }
+
+    .image-card {
+      overflow: hidden;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .image-slot {
+      display: grid;
+      place-items: center;
+      min-height: 200px;
+      padding: 1rem;
+      background:
+        linear-gradient(135deg, rgba(133,203,255,0.08), rgba(245,215,135,0.05)),
+        rgba(10,16,24,0.9);
+      color: rgba(255,255,255,0.72);
+      text-align: center;
+      font-size: 0.8rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .image-card figcaption {
+      padding: 0.78rem 0.9rem 1rem;
+      color: var(--guide-muted);
+      font-size: 0.8rem;
+    }
+
+    .decision-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .decision-box {
+      padding: 1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255,255,255,0.08);
+      background: rgba(255,255,255,0.02);
+    }
+
+    .decision-box h3 {
+      margin: 0 0 0.6rem;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .decision-box p {
+      margin: 0;
+      line-height: 1.8;
+      color: var(--guide-text);
+    }
+
+    .decision-box.warning h3 {
+      color: var(--guide-red);
+    }
+
+    .decision-box.ok h3 {
+      color: var(--guide-gold);
+    }
+
+    .quote-block {
+      margin-top: 0.4rem;
+      padding: 1rem 1.1rem;
+      border-left: 3px solid var(--guide-gold);
+      background: rgba(245, 215, 135, 0.05);
+      border-radius: 0 14px 14px 0;
+    }
+
+    .quote-block ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      line-height: 1.9;
+      color: var(--guide-text);
+    }
+
+    .quote-block li + li {
+      margin-top: 0.3rem;
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.02);
+    }
+
+    .character-icons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.55rem;
+      margin-top: 0.7rem;
+      align-items: center;
+    }
+
+    .character-icons-label {
+      color: var(--guide-muted);
+      font-size: 0.78rem;
+      white-space: nowrap;
+    }
+
+    .shield-note {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 0.55rem;
+    }
+
+    .shield-note .character-icons {
+      display: inline-flex;
+      margin: 0;
+    }
+
+    .character-icon {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.35rem;
+      padding: 0.25rem 0.45rem 0.25rem 0.25rem;
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: 999px;
+      background: rgba(255,255,255,0.04);
+      color: var(--guide-muted);
+      font-size: 0.75rem;
+      white-space: nowrap;
+    }
+
+    .character-icon img {
+      width: 1.8rem;
+      height: 1.8rem;
+      object-fit: cover;
+      border-radius: 50%;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 0;
+    }
+
+    th, td {
+      padding: 0.9rem 1rem;
+      border-bottom: 1px solid rgba(255,255,255,0.08);
+      vertical-align: top;
+      text-align: left;
+      color: var(--guide-text);
+      line-height: 1.7;
+    }
+
+    th {
+      background: rgba(245, 215, 135, 0.06);
+      color: var(--guide-gold);
+      font-size: 0.72rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    tr:last-child td {
+      border-bottom: none;
+    }
+
+    .subsection {
+      margin-top: 1.2rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .subsection h3 {
+      margin: 0 0 0.8rem;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--guide-gold);
+    }
+
+    .image-placeholder {
+      display: grid;
+      place-items: center;
+      min-height: 150px;
+      margin: 0.6rem 0 1rem;
+      padding: 1rem;
+      border-radius: 18px;
+      border: 1px dashed rgba(245, 215, 135, 0.4);
+      background: rgba(245, 215, 135, 0.04);
+      color: rgba(255,255,255,0.78);
+      text-align: center;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      line-height: 1.6;
+    }
+
+    .image-placeholder img {
+      display: block;
+      width: min(100%, 760px);
+      max-height: 620px;
+      object-fit: contain;
+      border-radius: 12px;
+      box-shadow: 0 16px 32px rgba(0,0,0,0.28);
+    }
+
+    .image-placeholder.small {
+      min-height: 120px;
+    }
+
+    .image-placeholder.big {
+      min-height: 220px;
+    }
+
+    .image-placeholder.wide img {
+      width: min(100%, 1080px);
+      max-height: 520px;
+    }
+
+    .image-placeholder.tall img {
+      width: min(100%, 420px);
+      max-height: 560px;
+    }
+
+    .image-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+      gap: 1rem;
+      margin-bottom: 1rem;
+    }
+
+    .document-intro {
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(280px, 0.9fr);
+      gap: 1.2rem;
+      align-items: stretch;
+    }
+
+    .document-copy {
+      display: grid;
+      gap: 0.8rem;
+      align-content: center;
+    }
+
+    .document-copy p,
+    .playstyle-intro,
+    .decision-copy {
+      margin: 0;
+      color: var(--guide-muted);
+      line-height: 1.8;
+    }
+
+    .evidence-figure {
+      margin: 0;
+      padding: 0.65rem;
+      border: 1px solid rgba(255,255,255,0.09);
+      border-radius: 18px;
+      background: rgba(255,255,255,0.025);
+      overflow: hidden;
+    }
+
+    .evidence-figure img {
+      display: block;
+      width: 100%;
+      height: auto;
+      max-height: 420px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .evidence-figure figcaption {
+      padding: 0.65rem 0.25rem 0.05rem;
+      color: var(--guide-muted);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .evidence-figure figcaption strong {
+      display: block;
+      margin-bottom: 0.18rem;
+      color: var(--guide-gold);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .evidence-figure.supporting {
+      background: rgba(255,255,255,0.015);
+      border-color: rgba(255,255,255,0.06);
+    }
+
+    .evidence-figure.supporting figcaption {
+      font-size: 0.74rem;
+    }
+
+    .evidence-figure.supporting figcaption strong::after {
+      content: " · supporto";
+      letter-spacing: 0.04em;
+    }
+
+    .evidence-figure.primary-evidence {
+      border-color: rgba(245, 215, 135, 0.28);
+      box-shadow: 0 14px 30px rgba(0,0,0,0.16);
+    }
+
+    .evidence-figure.portrait-evidence img {
+      max-height: 360px;
+    }
+
+    .evidence-figure.wide-evidence img {
+      max-height: 360px;
+    }
+
+    .investment-visual .evidence-figure.portrait-evidence img {
+      max-height: 330px;
+    }
+
+    .investment-visual .evidence-figure.wide-evidence img {
+      max-height: 300px;
+    }
+
+    .endgame-grid .evidence-figure.wide-evidence img {
+      max-height: 370px;
+    }
+
+    .endgame-grid .evidence-figure.portrait-evidence img {
+      max-height: 330px;
+    }
+
+    .playstyle-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+      align-items: start;
+      margin-top: 1rem;
+      padding: 1rem;
+      border: 1px solid rgba(255,255,255,0.08);
+      border-radius: 18px;
+      background: var(--guide-panel-soft);
+    }
+
+    .playstyle-card,
+    .investment-block,
+    .endgame-grid {
+      margin-left: 0;
+      margin-right: 0;
+    }
+
+    .guide-page article {
+      aspect-ratio: auto;
+    }
+
+    .playstyle-card.mizuki {
+      display: grid;
+      grid-template-columns: minmax(0, 0.9fr) minmax(0, 1.1fr);
+      align-items: start;
+    }
+
+    .playstyle-card.mizuki .playstyle-copy {
+      order: 1;
+    }
+
+    .playstyle-card.mizuki .playstyle-copy > p {
+      width: calc(100% + 460px);
+      max-width: none;
+      position: relative;
+      z-index: 1;
+    }
+
+    .playstyle-card.mizuki .mizuki-playstyle-visual {
+      order: 2;
+      grid-template-columns: 1fr;
+      align-self: end;
+    }
+
+    .playstyle-visual,
+    .investment-visual {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.7rem;
+      align-content: start;
+      align-items: start;
+      min-height: 0;
+      height: max-content;
+    }
+
+    .vesna-playstyle-visual {
+      grid-template-columns: minmax(0, 1fr) 360px;
+    }
+
+    .mizuki-playstyle-visual {
+      grid-template-columns: minmax(0, 1fr);
+    }
+
+    .mizuki-playstyle-visual .sacrificial-figure {
+      width: min(100%, 520px);
+      max-width: 100%;
+      min-height: 460px;
+      height: auto;
+      align-self: start;
+      display: block;
+      justify-self: end;
+      order: 1;
+    }
+
+    .mizuki-playstyle-visual .sacrificial-figure img {
+      width: 75%;
+      height: auto;
+      max-width: none;
+      margin-left: auto;
+      margin-right: auto;
+      max-height: none !important;
+      transform: none;
+      object-fit: initial;
+    }
+
+    .mizuki-playstyle-visual .mizuki-passive-figure {
+      order: 2;
+    }
+
+    .playstyle-copy .mizuki-passive-figure {
+      width: 100%;
+      margin-top: 1rem;
+    }
+
+    .playstyle-copy {
+      align-self: start;
+      width: 100%;
+    }
+
+    .playstyle-visual .evidence-figure img {
+      max-height: 300px;
+    }
+
+    .playstyle-visual .evidence-figure {
+      align-self: stretch;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .playstyle-visual .evidence-figure figcaption {
+      margin-top: auto;
+    }
+
+    .playstyle-copy h3,
+    .investment-copy h3 {
+      margin: 0 0 0.6rem;
+      color: var(--guide-gold);
+      font-size: 1.1rem;
+    }
+
+    .playstyle-copy p,
+    .investment-copy p {
+      margin: 0;
+      color: var(--guide-text);
+      line-height: 1.8;
+    }
+
+    .playstyle-copy p + p,
+    .investment-copy p + p {
+      margin-top: 0.8rem;
+    }
+
+    .investment-point + .investment-point {
+      margin-top: 1rem;
+      padding-top: 1rem;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .investment-point-label {
+      display: block;
+      margin-bottom: 0.35rem;
+      color: var(--guide-gold);
+      font-size: 0.7rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .playstyle-copy ul {
+      margin: 0.8rem 0 0;
+      padding-left: 1.1rem;
+      color: var(--guide-text);
+      line-height: 1.8;
+    }
+
+    .investment-block {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1rem;
+      align-items: start;
+      padding: 1.15rem 0;
+      border-top: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .investment-block.scaling-block {
+      display: grid !important;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr) !important;
+      align-items: center;
+      width: 100%;
+    }
+
+    .investment-block.low-cost-block {
+      display: grid !important;
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr) !important;
+      align-items: center;
+      width: 100%;
+    }
+
+    .scaling-block .investment-copy,
+    .scaling-block .investment-visual,
+    .low-cost-block .investment-copy,
+    .low-cost-block .investment-visual {
+      min-width: 0;
+      width: 100%;
+    }
+
+    .scaling-block .investment-visual {
+      grid-template-columns: 1fr !important;
+      width: 100%;
+    }
+
+    .low-cost-block .investment-visual {
+      grid-template-columns: repeat(2, minmax(0, 1fr)) !important;
+    }
+
+    .scaling-block .evidence-figure {
+      width: 100%;
+    }
+
+    .scaling-block .evidence-figure img {
+      max-height: 420px;
+    }
+
+    .investment-block:first-of-type {
+      padding-top: 0;
+      border-top: 0;
+    }
+
+    .investment-block.reverse {
+      grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr) !important;
+      align-items: center;
+    }
+
+    .investment-block.reverse .investment-copy {
+      order: 1;
+    }
+
+    .investment-block.reverse .investment-visual {
+      order: 2;
+    }
+
+    .investment-visual .evidence-figure img {
+      max-height: 420px;
+    }
+
+    .investment-block.reverse .investment-visual {
+      grid-template-columns: 1fr;
+    }
+
+    .investment-block.reverse .investment-visual .evidence-figure {
+      grid-column: auto;
+      width: min(100%, 620px);
+      justify-self: center;
+    }
+
+    .investment-block.reverse .investment-visual .evidence-figure:last-child {
+      grid-column: auto;
+      width: min(100%, 620px);
+      justify-self: center;
+    }
+
+    .high-investment-block {
+      display: block !important;
+    }
+
+    .high-investment-block > h3 {
+      margin: 0 0 1rem;
+    }
+
+    .high-investment-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+      gap: 1rem;
+      align-items: start;
+      width: 100%;
+      padding: 1rem 0;
+      border-top: 1px solid rgba(255,255,255,0.1);
+    }
+
+    .high-investment-row:first-of-type {
+      grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    }
+
+    .high-investment-row .investment-point h3 {
+      position: relative;
+      margin: 0 0 1rem;
+      padding-bottom: 0.8rem;
+      color: var(--guide-gold);
+      font-size: clamp(1.2rem, 2vw, 1.8rem);
+      line-height: 1.2;
+      border-bottom: 4px solid var(--guide-gold-strong);
+    }
+
+    .high-investment-row > * {
+      min-width: 0;
+    }
+
+    .high-investment-row .investment-point {
+      margin: 0;
+    }
+
+    .high-investment-row .evidence-figure {
+      width: 100%;
+      max-width: none;
+      justify-self: stretch;
+    }
+
+    .high-investment-premium-visual {
+      display: grid;
+      gap: 0.8rem;
+      width: 100%;
+      min-width: 0;
+      overflow: hidden;
+      align-self: end;
+    }
+
+    .high-investment-premium-copy {
+      display: grid;
+      gap: 0.8rem;
+      min-width: 0;
+    }
+
+    .high-investment-premium-copy .investment-point {
+      margin: 0;
+    }
+
+    .high-investment-premium-copy .evidence-figure {
+      width: 100%;
+      max-width: none;
+    }
+
+    .high-investment-premium-visual .evidence-figure {
+      width: 100%;
+      max-width: none;
+      min-width: 0;
+    }
+
+    .high-investment-premium-visual .evidence-figure img {
+      max-height: 420px;
+    }
+
+    .investment-block:not(.reverse) .investment-visual {
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .endgame-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 0.8rem;
+      align-items: start;
+      align-content: start;
+    }
+
+    .endgame-grid .evidence-figure:first-child {
+      grid-column: auto;
+      width: auto;
+      justify-self: stretch;
+    }
+
+    .endgame-final-figure {
+      width: min(100%, 860px);
+      margin: 1.2rem auto 0;
+    }
+
+    .endgame-final-wide {
+      width: 100%;
+      margin: 1.2rem 0 0;
+    }
+
+    .endgame-final-wide img {
+      display: block;
+      width: 100%;
+      max-height: 560px;
+      object-fit: contain;
+      border-radius: 12px;
+    }
+
+    .endgame-final-wide figcaption {
+      padding-top: 0.65rem;
+      color: var(--guide-muted);
+      font-size: 0.8rem;
+      line-height: 1.5;
+    }
+
+    .endgame-final-wide figcaption strong {
+      margin-right: 0.35rem;
+      color: var(--guide-gold);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    .endgame-grid .evidence-figure {
+      height: auto;
+      align-self: start;
+    }
+
+    .endgame-grid .evidence-figure img {
+      max-height: 500px;
+    }
+
+    @keyframes orbit {
+      0% { transform: rotate(0deg) scale(0.98); }
+      50% { transform: rotate(180deg) scale(1.04); }
+      100% { transform: rotate(360deg) scale(0.98); }
+    }
+
+    @media (max-width: 760px) {
+      .guide-top,
+      .comparison-grid,
+      .decision-grid,
+      .document-intro,
+      .playstyle-card,
+      .playstyle-card.mizuki,
+      .investment-block,
+      .investment-block.reverse,
+      .investment-block.scaling-block,
+      .endgame-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .investment-block.scaling-block {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      .high-investment-row {
+        grid-template-columns: 1fr;
+      }
+
+      .investment-block.low-cost-block {
+        display: grid !important;
+        grid-template-columns: 1fr !important;
+      }
+
+      .guide-header {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .playstyle-card.mizuki .playstyle-visual,
+      .playstyle-card.mizuki .playstyle-copy,
+      .investment-block.reverse .investment-copy,
+      .investment-block.reverse .investment-visual {
+        order: initial;
+      }
+
+      .investment-block.reverse .investment-visual .evidence-figure:last-child {
+        width: auto;
+      }
+
+      .investment-block.reverse .investment-visual {
+        grid-template-columns: 1fr;
+      }
+
+      .playstyle-card.mizuki {
+        grid-template-columns: 1fr;
+      }
+
+      .playstyle-card.mizuki .playstyle-copy > p {
+        width: 100%;
+      }
+
+      .vesna-playstyle-visual,
+      .mizuki-playstyle-visual {
+        grid-template-columns: 1fr;
+      }
+
+      .vesna-playstyle-visual .talent-scaling-figure,
+      .mizuki-playstyle-visual .mizuki-passive-figure,
+      .mizuki-playstyle-visual .sacrificial-figure {
+        width: 100%;
+      }
+    }
+  </style>
+</head>
+  <body>
+  <canvas id="stars"></canvas>
+
+  <main class="container guide-page">
+    <header class="guide-header">
+      <a href="current-pg.html">&larr; Torna alla pagina guida</a>
+      <a href="index.html">JuanLab home</a>
+    </header>
+
+    <section class="guide-top" aria-label="Riassunto Vesna vs Mizuki">
+      <div class="guide-art">
+        <img src="assets/img/characters/UI_AvatarIcon_Vesna.webp" alt="Vesna" loading="lazy" />
+        <span class="badge">Main DPS &middot; Anemo</span>
+      </div>
+
+      <div class="guide-copy">
+        <p class="eyebrow">Riassunto e analisi</p>
+        <h1>Vesna vs Mizuki</h1>
+        <p>
+          Questo documento contiene il riassunto dettagliato, le meccaniche di gioco e il confronto dei danni tra <strong>Vesna</strong> e <strong>Mizuki</strong>, basato sul video <a href="https://youtu.be/9USbTicdqyI?si=KRNmdl3RE-D045n5">"Should You REALLY Skip Vesna If You Have Mizuki? | Calcs &amp; Analysis"</a>.
+        </p>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Panoramica Generale e Ruolo">
+      <div class="section-head">
+        <h2>1. Panoramica Generale e Ruolo</h2>
+        <span>Ruolo e archetipo</span>
+      </div>
+
+      <div class="document-intro">
+        <div class="document-copy">
+          <p>Entrambi i personaggi ricoprono il ruolo di <strong>Main DPS</strong> con lo stesso archetipo: danni Anemo.</p>
+          <p><strong>Mizuki</strong> è ottenibile gratuitamente, il che rende dubbia la necessità di pullare <strong>Vesna</strong>, specialmente per i giocatori casual.</p>
+          <div class="quote-block">
+            <ul>
+              <li>Stesso ruolo, ma non stesso costo.</li>
+              <li>La domanda centrale è quanto investimento serve per far emergere Vesna.</li>
+            </ul>
+          </div>
+        </div>
+        <figure class="evidence-figure supporting">
+          <img src="inspiration/Imges/00_00_04.png" alt="Vesna come Stellar Swirl DPS" loading="lazy" />
+          <figcaption>Vesna viene presentata come Main DPS Anemo.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-label="Stile di Gioco">
+      <div class="section-head">
+        <h2>2. Stile di Gioco (Playstyle)</h2>
+        <span>Confronto meccanico</span>
+      </div>
+
+      <p class="playstyle-intro">Ci sono differenze sostanziali nel modo in cui i due personaggi vengono giocati e ottimizzati.</p>
+
+      <article class="playstyle-card">
+          <div class="playstyle-visual vesna-playstyle-visual">
+          <figure class="evidence-figure supporting">
+            <img src="inspiration/Imges/00_01_39.png" alt="Meccanica principale di Vesna" loading="lazy" />
+            <figcaption>Gli attacchi normali e caricati alimentano il kit di Vesna.</figcaption>
+          </figure>
+          <figure class="evidence-figure supporting talent-scaling-figure">
+            <img src="inspiration/Imges/00_03_15.png" alt="Scaling dei talenti di Vesna" loading="lazy" />
+            <figcaption>Lo scaling delle abilità attive rende i talenti importanti.</figcaption>
+          </figure>
+        </div>
+        <div class="playstyle-copy">
+          <h3>Vesna: payoff alto, esecuzione esigente</h3>
+          <p>Usa attacchi normali/caricati per accumulare “punti” e scatenare le Abilità Elementali, la sua principale fonte di danni.</p>
+          <ul>
+            <li>Deve colpire costantemente per generare punti.</li>
+            <li>Schivare è una forte perdita di DPS.</li>
+            <li class="shield-note">
+              <span>Necessita di scudi o resistenza all'interruzione, come ad esempio</span>
+              <span class="character-icons" aria-label="Esempi di personaggi del setup consigliato">
+                <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Nicole.webp" alt="" loading="lazy" />Nicole</span>
+                <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Diona.webp" alt="" loading="lazy" />Diona</span>
+                <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Vodyanitsa.webp" alt="" loading="lazy" />Vodyanitsa</span>
+              </span>
+            </li>
+          </ul>
+        </div>
+      </article>
+
+      <article class="playstyle-card mizuki">
+        <div class="playstyle-visual mizuki-playstyle-visual">
+          <figure class="evidence-figure supporting sacrificial-figure">
+            <img src="inspiration/Imges/00_04_35.png" alt="Ottimizzazione casual-friendly di Mizuki" loading="lazy" />
+            <figcaption>Il Sacrificial Fragment rende la rotazione più lunga grazie alle 2 skill aumentando così il danno.</figcaption>
+          </figure>
+        </div>
+        <div class="playstyle-copy">
+          <h3>Mizuki: kit permissivo e casual-friendly</h3>
+          <p>I suoi danni e buff derivano in gran parte dalle passive. È facile da giocare anche con rotazioni complesse.</p>
+          <ul>
+            <li>Bassa dipendenza dal livello dei talenti.</li>
+            <li>Può sfruttare ottimizzazioni semplici.</li>
+            <li>È più pratica per la maggior parte dei giocatori.</li>
+          </ul>
+          <figure class="evidence-figure supporting mizuki-passive-figure">
+            <img src="inspiration/Imges/00_03_03_AND_00_03_10.png" alt="Passive e dipendenza dai talenti di Mizuki" loading="lazy" />
+            <figcaption>Le passive fanno la maggior parte del lavoro di Mizuki.</figcaption>
+          </figure>
+        </div>
+      </article>
+    </section>
+
+    <section class="section" aria-label="Confronto dei danni e costo dei team">
+      <div class="section-head">
+        <h2>3. Confronto dei Danni e Costo dei Team (Investment Levels)</h2>
+        <span>L'analisi del theorycrafting</span>
+      </div>
+
+      <div class="investment-block low-cost-block">
+        <div class="investment-copy">
+          <h3>Basso Investimento (Low Cost)</h3>
+          <p><strong>Mizuki</strong> ha un netto vantaggio. Un team con Mizuki e un solo personaggio 5-stelle limitato, o Mizuki C1/C2 (ottenibili gratis), raggiunge livelli di DPS eccezionali per il suo costo.</p>
+          <p><strong>Vesna</strong>, a questi livelli di investimento, non giustifica la spesa di un personaggio limitato rispetto a una Mizuki gratuita.</p>
+        </div>
+        <div class="investment-visual">
+          <figure class="evidence-figure primary-evidence portrait-evidence">
+            <img src="inspiration/Imges/00_04_12.png" alt="Danni relativi a basso investimento" loading="lazy" />
+            <figcaption>Danni a basso investimento (Relative Damage).</figcaption>
+          </figure>
+          <figure class="evidence-figure supporting portrait-evidence">
+            <img src="inspiration/Imges/00_04_53.png" alt="Confronto Vesna e Mizuki a basso investimento" loading="lazy" />
+            <figcaption>Il costo di Vesna non è giustificato rispetto a Mizuki gratuita.</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="investment-block reverse high-investment-block">
+        <div class="high-investment-row">
+          <div class="investment-point">
+            <h3>Alto Investimento e Team Offensivi (High Cost / Sustainless)</h3>
+            <span class="investment-point-label">Setup senza sustain</span>
+            <p>Se Vesna rinuncia a un personaggio di sustain (healer/shielder) per un setup puramente offensivo (es. con Faruzan), diventa altamente competitiva, ma è un gameplay “hardcore” adatto a pochi giocatori disposti a riprovare i livelli molte volte.</p>
+          </div>
+          <figure class="evidence-figure primary-evidence portrait-evidence">
+            <img src="inspiration/Imges/00_05_30.png" alt="Setup offensivo Vesna senza sustain" loading="lazy" />
+            <figcaption>Setup offensivo senza sustain.</figcaption>
+          </figure>
+        </div>
+        <div class="high-investment-row">
+          <div class="high-investment-premium-copy">
+            <div class="investment-point">
+            <span class="investment-point-label">Odette C2 e setup premium</span>
+            <p>Con <strong>Odette C2</strong> nel team, Vesna guadagna la riduzione della resistenza nemica in modo più consistente. In questi setup “premium” e senza sustain, Vesna supera Mizuki nei danni netti.</p>
+            </div>
+            <figure class="evidence-figure supporting wide-evidence">
+              <img src="inspiration/Imges/00_07_22.png" alt="Vantaggio di Vesna con Odette C2" loading="lazy" />
+              <figcaption>Odette C2 aumenta la consistenza del setup premium.</figcaption>
+            </figure>
+          </div>
+          <div class="high-investment-premium-visual">
+            <figure class="evidence-figure primary-evidence portrait-evidence">
+              <img src="inspiration/Imges/00_07_11.png" alt="Setup Vesna ad alto investimento" loading="lazy" />
+              <figcaption>Setup ad alto investimento, quattro limited pulls.</figcaption>
+            </figure>
+          </div>
+        </div>
+      </div>
+
+      <div class="investment-block scaling-block">
+        <div class="investment-copy">
+          <h3>Scaling con Talenti e Manufatti</h3>
+          <p>A parità di artefatti eccellenti e talenti massimizzati (lvl 9+), Vesna trae molti più benefici rispetto a Mizuki perché contribuisce a una fetta molto più grande dei danni totali del suo team.</p>
+        </div>
+        <div class="investment-visual">
+          <figure class="evidence-figure supporting wide-evidence">
+            <img src="inspiration/Imges/00_08_02.png" alt="Scaling con talenti e manufatti massimizzati" loading="lazy" />
+            <figcaption>Il vantaggio cresce con artefatti eccellenti e talenti massimizzati.</figcaption>
+          </figure>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-label="L'Endgame: Dire Stygian Onslaught">
+      <div class="section-head">
+        <h2>4. L'Endgame: Dire Stygian Onslaught</h2>
+        <span>Hardcore boss check</span>
+      </div>
+
+      <div class="endgame-grid">
+        <figure class="evidence-figure supporting portrait-evidence">
+          <img src="inspiration/Imges/00_08_34.png" alt="Confronto dei team Vesna e Mizuki per Dire Stygian Onslaught" loading="lazy" />
+          <figcaption>Un team Vesna ben investito offre più consistenza nel boss check.</figcaption>
+        </figure>
+        <figure class="evidence-figure supporting wide-evidence">
+          <img src="inspiration/Imges/00_09_08.png" alt="Sinergie future e vantaggio di Vesna nell'endgame" loading="lazy" />
+          <figcaption>Supporti futuri, armi peculiari e Costellazione 1 amplificano il vantaggio.</figcaption>
+        </figure>
+      </div>
+
+      <div class="quote-block">
+        <ul>
+          <li>I calcoli stimano che per superare i boss della modalità hardcore <em>Dire Stygian Onslaught</em>, un team Vesna ben investito offre molte più probabilità e consistenza rispetto a un team Mizuki.</li>
+          <li>Vesna sinergizza molto meglio con futuri supporti come Vodana, le sue armi peculiari e la Costellazione 1.</li>
+        </ul>
+      </div>
+
+      <figure class="endgame-final-wide">
+        <img src="inspiration/Imges/00_08_28.png" alt="DPS check per il boss Dire Stygian Onslaught" loading="lazy" />
+        <figcaption>DPS Check per Dire Stygian Onslaught Boss.</figcaption>
+      </figure>
+    </section>
+
+    <section class="section" aria-label="Conclusione">
+      <div class="section-head">
+        <h2>5. Conclusione: Dovresti Pullare Vesna?</h2>
+        <span>Verdetto finale</span>
+      </div>
+
+      <p class="decision-copy">La risposta dipende dal contenuto che vuoi affrontare e dal livello di investimento che sei disposto a sostenere.</p>
+
+      <div class="quote-block">
+        <ul>
+          <li><strong>Salta Vesna se:</strong> Ti interessa completare il 99% dei contenuti del gioco in tranquillità. Mizuki è più che sufficiente e molto più facile da usare.</li>
+          <li><strong>Pulla Vesna se:</strong> Vuoi dedicarti all'endgame hardcore (Dire Stygian Onslaught), sei disposto a investire molte risorse per massimizzare talenti/artefatti, e preferisci l'ottimizzazione pura per superare le sfide più difficili.</li>
+        </ul>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>JuanLab &mdash; Riassunto e Analisi: Vesna vs Mizuki</small>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260814-1"></script>
+</body>
+</html>
