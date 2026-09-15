@@ -400,14 +400,17 @@
 
     .shield-note {
       display: flex;
-      flex-wrap: wrap;
+      flex-wrap: nowrap;
       align-items: center;
       gap: 0.55rem;
+      white-space: nowrap;
     }
 
     .shield-note .character-icons {
       display: inline-flex;
       margin: 0;
+      flex-wrap: nowrap;
+      white-space: nowrap;
     }
 
     .character-icon {
@@ -1074,6 +1077,16 @@
       .mizuki-playstyle-visual .mizuki-passive-figure,
       .mizuki-playstyle-visual .sacrificial-figure {
         width: 100%;
+      }
+
+      .shield-note {
+        flex-wrap: wrap;
+        white-space: normal;
+      }
+
+      .shield-note .character-icons {
+        flex-wrap: wrap;
+        white-space: normal;
       }
     }
   </style>
