@@ -496,6 +496,49 @@ main.current-pg-page > header {
   background: rgba(255, 255, 255, 0.02);
 }
 
+@media (max-width: 560px) {
+  .vesna-preview-card {
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+    padding: 1rem;
+  }
+
+  .vesna-preview-visual {
+    width: min(100%, 260px);
+    height: 142px;
+    min-height: 142px;
+    margin: 0 auto;
+  }
+
+  .vesna-preview-floating {
+    width: clamp(76px, 25vw, 96px);
+  }
+
+  .vesna-preview-vesna {
+    left: 2%;
+    bottom: 4px;
+  }
+
+  .vesna-preview-vodyanitsa {
+    right: 2%;
+    bottom: 23px;
+  }
+
+  .vesna-preview-content h2 {
+    font-size: 1.7rem;
+  }
+
+  .vesna-preview-actions {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.55rem;
+  }
+
+  .vesna-preview-button {
+    width: 100%;
+  }
+}
+
 @keyframes worksite-orbit {
   to {
     transform: rotate(360deg);
