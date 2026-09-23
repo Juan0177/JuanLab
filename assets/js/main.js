@@ -87,6 +87,45 @@
     window.setInterval(advance, 9000);
   }
 
+  function initWorksitePoof() {
+    const page = document.querySelector('.current-pg-page');
+    const worksite = page?.querySelector('.current-pg-worksite');
+    const guides = page?.querySelector('.guide-infographics');
+    if (!worksite || !guides) return;
+
+    const revealGuides = () => {
+      guides.hidden = false;
+      void guides.offsetWidth; // reflow prima di attivare la transizione
+      guides.classList.add('is-visible');
+    };
+
+    const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if (prefersReduced) {
+      worksite.hidden = true;
+      revealGuides();
+      return;
+    }
+
+    const SHOW_MS = 1500;    // il cantiere resta visibile un attimo (l'attesa e' finita)
+    const POOF_MS = 900;     // durata dell'esplosione di fumo + SFX
+    const COLLAPSE_MS = 640; // collasso morbido della sezione
+
+    window.setTimeout(() => {
+      worksite.classList.add('is-poofing');
+
+      window.setTimeout(() => {
+        worksite.style.maxHeight = `${worksite.scrollHeight}px`;
+        void worksite.offsetWidth; // reflow per far partire il collasso
+        worksite.classList.add('is-gone');
+        revealGuides();
+
+        window.setTimeout(() => {
+          worksite.hidden = true;
+        }, COLLAPSE_MS);
+      }, POOF_MS);
+    }, SHOW_MS);
+  }
+
   const canvas = document.getElementById('stars');
   if (!canvas) return;
 
@@ -242,6 +281,7 @@
   initSecretLogo();
   initWorksiteCountdown();
   initBetaCarousel();
+  initWorksitePoof();
   loadChangelog();
   draw();
 }());
