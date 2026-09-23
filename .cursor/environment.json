@@ -1,0 +1,16 @@
+{
+  "name": "JuanLab",
+  "ports": [
+    {
+      "name": "static site",
+      "port": 8080
+    }
+  ],
+  "terminals": [
+    {
+      "name": "static-server",
+      "command": "python3 -m http.server 8080",
+      "description": "Serves the static JuanLab site on http://localhost:8080. Required because pages load JSON data via fetch(), which does not work over file://."
+    }
+  ]
+}
