@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Backup · Cantiere "Work in progress" | JuanLab</title>
+  <!--
+    BACKUP della sezione "cantiere" (.current-pg-worksite) usata in current-pg.html.
+    Conservata perche' carina e riutilizzabile: qui viene mostrata in modo persistente
+    (senza l'effetto "poof"), sfruttando gli stessi stili di assets/css/current-pg.css.
+    Per ripristinarla nella pagina nascosta, reincolla il <section class="current-pg-worksite"> in current-pg.html.
+  -->
+  <link rel="icon" type="image/png" href="../assets/img/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="../assets/css/style.css" />
+  <link rel="stylesheet" href="../assets/css/current-pg.css" />
+</head>
+<body>
+  <canvas id="stars"></canvas>
+
+  <main class="container current-pg-page">
+    <header>
+      <div class="hero-brand">
+        <a href="../index.html" class="back-link">&larr; JuanLab</a>
+        <div class="hero-divider"></div>
+        <strong class="hero-title">Backup · Cantiere</strong>
+      </div>
+    </header>
+
+    <section class="current-pg-worksite" aria-label="Guida in lavorazione" data-release-date="2026-09-23T03:00:00Z">
+      <div class="worksite-warning" aria-hidden="true"></div>
+      <div class="worksite-orbit" aria-hidden="true">
+        <div class="orbit-ring orbit-ring-outer"></div>
+        <div class="orbit-ring orbit-ring-inner"></div>
+        <div class="orbit-track">
+          <img class="orbit-avatar orbit-avatar-vesna" src="../assets/img/characters/UI_AvatarIcon_Vesna.webp" alt="" loading="lazy" />
+          <img class="orbit-avatar orbit-avatar-vodyanitsa" src="../assets/img/characters/UI_AvatarIcon_Vodyanitsa.webp" alt="" loading="lazy" />
+        </div>
+        <div class="worksite-core">
+          <span class="worksite-status">Cantiere in corso</span>
+          <strong>Guida in preparazione</strong>
+          <small>Voidyanitsa e Vesna stanno arrivando</small>
+        </div>
+      </div>
+      <div class="worksite-barrier" aria-hidden="true">
+        <span class="barrier-light barrier-light-left"></span>
+        <span class="barrier-board barrier-board-top"></span>
+        <span class="barrier-board barrier-board-bottom"></span>
+        <span class="barrier-leg barrier-leg-left"></span>
+        <span class="barrier-leg barrier-leg-right"></span>
+        <span class="barrier-light barrier-light-right"></span>
+      </div>
+      <div class="worksite-copy">
+        <div class="worksite-message">
+          <h1 class="page-title-font">Work in progress</h1>
+          <p class="current-pg-kicker">Guida Rapida | prossimamente</p>
+          <p>
+          Pagina temporanea in aggiornamento: guida in preparazione per i prossimi personaggi.
+          </p>
+        </div>
+        <div class="worksite-countdown" aria-live="polite">
+          <span class="worksite-countdown-label">Trasmissione sbloccata tra</span>
+          <strong class="worksite-countdown-value">--g --h --m --s</strong>
+          <small class="worksite-countdown-date"></small>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>JuanLab &mdash; Backup cantiere</small>
+  </footer>
+
+  <script src="../assets/js/main.js"></script>
+</body>
+</html>

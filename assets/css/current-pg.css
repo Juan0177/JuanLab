@@ -1452,3 +1452,286 @@ main.current-pg-page > header {
   }
 }
 
+/* ============================================================
+   Effetto "POOF!" del cantiere + reveal infografiche placeholder
+   ============================================================ */
+
+/* Collasso morbido del cantiere quando l'attesa e' finita */
+.current-pg-worksite {
+  transition:
+    max-height 620ms cubic-bezier(0.65, 0, 0.35, 1),
+    opacity 420ms ease,
+    transform 460ms cubic-bezier(0.34, 1.56, 0.64, 1),
+    margin 620ms ease,
+    padding 620ms ease;
+}
+
+.current-pg-worksite.is-gone {
+  max-height: 0 !important;
+  min-height: 0 !important;
+  margin-top: 0 !important;
+  margin-bottom: 0 !important;
+  padding-top: 0 !important;
+  padding-bottom: 0 !important;
+  border-color: transparent !important;
+  opacity: 0;
+  transform: scale(0.94);
+  overflow: hidden;
+}
+
+/* Il contenuto del cantiere "implode" verso il centro durante il poof */
+.current-pg-worksite.is-poofing .worksite-orbit,
+.current-pg-worksite.is-poofing .worksite-barrier,
+.current-pg-worksite.is-poofing .worksite-copy,
+.current-pg-worksite.is-poofing .worksite-warning {
+  animation: worksite-implode 460ms cubic-bezier(0.55, 0, 0.9, 0.35) forwards !important;
+}
+
+.current-pg-worksite.is-poofing .worksite-barrier {
+  animation-delay: 60ms;
+}
+
+.current-pg-worksite.is-poofing .worksite-copy {
+  animation-delay: 30ms;
+}
+
+/* Nuvoletta di fumo + SFX testuale */
+.worksite-poof {
+  position: absolute;
+  inset: 0;
+  z-index: 6;
+  display: grid;
+  place-items: center;
+  opacity: 0;
+  pointer-events: none;
+}
+
+.current-pg-worksite.is-poofing .worksite-poof {
+  opacity: 1;
+}
+
+.poof-cloud {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: clamp(90px, 22vw, 170px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  background:
+    radial-gradient(circle at 34% 32%, rgba(255, 255, 255, 0.98), rgba(226, 232, 245, 0.9) 42%, rgba(178, 190, 214, 0) 72%);
+  filter: blur(0.4px);
+  opacity: 0;
+  transform: translate(-50%, -50%) scale(0.2);
+}
+
+.current-pg-worksite.is-poofing .poof-cloud {
+  animation: poof-burst 900ms cubic-bezier(0.22, 1, 0.36, 1) forwards;
+}
+
+/* Posizioni/tempi diversi per un fumo piu' "vivo" */
+.poof-cloud-1 { --poof-x: -46%; --poof-y: -30%; animation-delay: 0ms; }
+.poof-cloud-2 { --poof-x: 40%; --poof-y: -34%; animation-delay: 60ms; }
+.poof-cloud-3 { --poof-x: 52%; --poof-y: 22%; animation-delay: 40ms; }
+.poof-cloud-4 { --poof-x: -50%; --poof-y: 26%; animation-delay: 90ms; }
+.poof-cloud-5 { --poof-x: 4%; --poof-y: -52%; animation-delay: 20ms; }
+.poof-cloud-6 { --poof-x: -6%; --poof-y: 48%; animation-delay: 110ms; }
+
+.poof-sfx {
+  position: relative;
+  z-index: 1;
+  font-family: "Comic Sans MS", "Chalkboard SE", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  font-size: clamp(2.6rem, 11vw, 5.4rem);
+  font-weight: 900;
+  font-style: italic;
+  letter-spacing: 0.02em;
+  color: #fff3c4;
+  text-shadow:
+    0 0 1px #6b4a00,
+    3px 3px 0 #d68d2a,
+    6px 6px 0 rgba(42, 29, 5, 0.55),
+    0 12px 30px rgba(0, 0, 0, 0.45);
+  transform: scale(0) rotate(-12deg);
+  opacity: 0;
+}
+
+.current-pg-worksite.is-poofing .poof-sfx {
+  animation: poof-sfx-pop 900ms cubic-bezier(0.34, 1.56, 0.64, 1) 120ms forwards;
+}
+
+@keyframes worksite-implode {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  60% {
+    opacity: 0.5;
+    transform: scale(0.5) rotate(-6deg);
+    filter: blur(2px);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.05) rotate(-14deg);
+    filter: blur(6px);
+  }
+}
+
+@keyframes poof-burst {
+  0% {
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(0.2);
+  }
+  35% {
+    opacity: 0.95;
+  }
+  100% {
+    opacity: 0;
+    transform:
+      translate(calc(-50% + var(--poof-x, 0%)), calc(-50% + var(--poof-y, 0%)))
+      scale(1.7);
+  }
+}
+
+@keyframes poof-sfx-pop {
+  0% {
+    opacity: 0;
+    transform: scale(0) rotate(-12deg);
+  }
+  45% {
+    opacity: 1;
+    transform: scale(1.12) rotate(4deg);
+  }
+  70% {
+    opacity: 1;
+    transform: scale(1) rotate(-2deg);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.05) rotate(0deg);
+  }
+}
+
+/* --- Infografiche placeholder --- */
+.guide-infographics {
+  display: grid;
+  gap: 1.1rem;
+  opacity: 0;
+  transform: translateY(14px);
+}
+
+.guide-infographics.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity 520ms ease, transform 620ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+.guide-infographics-header {
+  text-align: center;
+  margin-bottom: 0.2rem;
+}
+
+.guide-infographics-kicker {
+  margin: 0 0 0.25rem;
+  color: #f0d178;
+  font-size: 0.74rem;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.guide-infographics-header h1 {
+  margin: 0 0 0.4rem;
+  font-size: clamp(1.7rem, 4vw, 2.6rem);
+  line-height: 1.05;
+}
+
+.guide-infographics-note {
+  max-width: 46ch;
+  margin: 0 auto;
+  color: rgba(255, 255, 255, 0.78);
+  font-size: 0.86rem;
+  line-height: 1.5;
+}
+
+.guide-infographics-note strong {
+  color: #ffe7a3;
+}
+
+.guide-infographic {
+  margin: 0;
+  border: 1px solid rgba(255, 210, 84, 0.28);
+  border-radius: 16px;
+  overflow: hidden;
+  background: rgba(10, 14, 25, 0.6);
+  box-shadow: 0 24px 56px rgba(0, 0, 0, 0.4);
+}
+
+.guide-infographic img {
+  display: block;
+  width: 100%;
+  height: auto;
+}
+
+.guide-infographic figcaption {
+  padding: 0.55rem 0.8rem;
+  color: rgba(255, 231, 163, 0.85);
+  font-size: 0.78rem;
+  text-align: center;
+  border-top: 1px solid rgba(255, 210, 84, 0.16);
+  background: rgba(255, 198, 63, 0.05);
+}
+
+.guide-infographics.is-visible .guide-infographic {
+  animation: guide-rise 700ms cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+.guide-infographics.is-visible .guide-infographic:nth-of-type(2) {
+  animation-delay: 160ms;
+}
+
+.guide-infographics-footer {
+  margin: 0.4rem 0 0;
+  text-align: center;
+}
+
+.guide-infographics-back {
+  color: var(--pico-muted-color);
+  text-decoration: none;
+  font-size: 0.85rem;
+  transition: color 150ms;
+}
+
+.guide-infographics-back:hover {
+  color: var(--pico-color);
+}
+
+@keyframes guide-rise {
+  from {
+    opacity: 0;
+    transform: translateY(22px) scale(0.98);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Accessibilita': niente animazioni se l'utente le ha disattivate */
+@media (prefers-reduced-motion: reduce) {
+  .current-pg-worksite,
+  .current-pg-worksite.is-gone,
+  .worksite-poof,
+  .poof-cloud,
+  .poof-sfx,
+  .guide-infographics,
+  .guide-infographics.is-visible,
+  .guide-infographics.is-visible .guide-infographic {
+    transition: none !important;
+    animation: none !important;
+  }
+
+  .guide-infographics {
+    opacity: 1;
+    transform: none;
+  }
+}
+
