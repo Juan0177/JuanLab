@@ -1840,5 +1840,10 @@
     "image_path": "assets/img/enemies/UI_MonsterIcon_Thoarder_Elder_Standard_Hildegard_01.webp",
     "name": "Battle-Hardened Elite Treasure Hoarder",
     "info": [""] 
+  },
+  {
+    "image_path": "assets/img/enemies/UI_MonsterIcon_Volkodlak_Whale.webp",
+    "name": "Wavebinder",
+    "info": [""] 
   }
 ]

@@ -183,6 +183,8 @@
       ['Geo', 'assets/img/elements/Geo.webp', resistances.geo],
       ['Fisica', 'assets/img/elements/physical_converted.webp', resistances.physical],
     ];
+    const hasHp = Number.isFinite(Number(boss.hp)) && Number(boss.hp) > 0;
+    const hasResistances = resistances && Object.values(resistances).some((value) => value != null && String(value).trim() !== '');
     const enemyInfo = Array.isArray(enemy.info) ? enemy.info : [];
     const infoTooltip = enemyInfo.length
       ? `<span class="stygian-info">ⓘ<span class="stygian-info-tooltip enemy-tooltip-box"><strong class="enemy-tooltip-title">Info Nemico</strong><ul>${enemyInfo.map((item) => `<li>${escapeHtml(item)}</li>`).join('')}</ul></span></span>`
@@ -210,11 +212,12 @@
             <h3 class="stygian-boss-title">${escapeHtml(title)}</h3>
             ${infoTooltip}
           </div>
+          ${hasHp ? `
           <span class="stygian-boss-hp-label">HP</span>
           <div class="stygian-boss-hp-wrap">
-            <strong class="stygian-boss-hp">${Number(boss.hp || 0).toLocaleString('it-IT')}</strong>
-            ${hpTooltip}
-          </div>
+            <strong class="stygian-boss-hp">${Number(boss.hp).toLocaleString('it-IT')}</strong>
+            ${hasResistances ? hpTooltip : ''}
+          </div>` : ''}
 
           ${(advantages.length || disadvantages.length) ? `
             <div class="stygian-tag-list">
