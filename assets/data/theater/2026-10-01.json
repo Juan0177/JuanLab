@@ -68,6 +68,24 @@
             "A battle-seasoned Yumkasaurus that grew to this size due to its gluttony. It collects Flamegranates and spits them out as bombs.",
             "Use Pyro to ignite the Flamegranates before it can swallow them to disrupt it."
           ]
+        },
+        {
+          "enemy_id": "",
+          "name": "Keep Fighting",
+          "instructions": [
+            "Extra Act 1 · Keep Fighting",
+            "Keep fighting until the countdown ends. End the stage with at least one character left standing to complete the challenge.",
+            "Each opponent you defeat takes time off the countdown."
+          ]
+        },
+        {
+          "enemy_id": "",
+          "name": "Keep Fighting",
+          "instructions": [
+            "Extra Act 2 · Keep Fighting",
+            "Keep fighting until the countdown ends. End the stage with at least one character left standing to complete the challenge.",
+            "Each opponent you defeat takes time off the countdown."
+          ]
         }
       ]
     },
