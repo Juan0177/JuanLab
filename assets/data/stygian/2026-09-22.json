@@ -1,0 +1,248 @@
+{
+  "version": "v7.2",
+  "period": "Periodo live: 22 Settembre 2026 ~ 28 Ottobre 2026",
+  "selected_difficulty": "6",
+  "overview": {
+    "title": "Panoramica rotazione",
+    "description": "Battle Amid the Great Waves: tre Nemesi in sequenza (Emperor of Fire and Iron, Radiant Moongecko, Wavebinder). HP e resistenze non ancora pubblicati dalle fonti per questa rotazione.",
+    "points": []
+  },
+  "difficulties": {
+    "3": {
+      "label": "Difficolta 3",
+      "notes": "Difficolta Hard (reference lv90). I nemici usano le forme base.",
+      "bosses": [
+        {
+          "enemy_id": "HermitCrab_Primo",
+          "display_name": "Emperor of Fire and Iron: Normal",
+          "level": 90,
+          "advantages": ["Hydro", "Pyro"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Corona Fusa",
+              "description": "Le due corna fuse sul capo sono organi Pyro che potenziano i suoi attacchi e le difese. Durante certi attacchi restano vicine al suolo: usa le Reazioni Elementali per distruggerle. Esaurito il Pyro accumulato si spezzano, infliggendogli un colpo enorme; non si rigenerano per un po'."
+            }
+          ]
+        },
+        {
+          "enemy_id": "Magbeast_Gecko",
+          "display_name": "Radiant Moongecko: Normal",
+          "level": 90,
+          "advantages": ["Geo", "Guaritori"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Bozzolo Radiante",
+              "description": "Applica Bozzolo Radiante ai personaggi e aumenta la propria RES Geo. Chi ne e affetto infligge meno danni e riceve meno cure; curare un personaggio fino al 100% dei PS lo libera (effetto Districato). Quando un alleato si libera, il boss perde la RES Geo del Bozzolo."
+            },
+            {
+              "title": "Riverbero del Vuoto",
+              "description": "Lascia un'Ancora di Pietra Lunare e salta in alto per preparare un potente colpo ad area. Rompi i layer di Ward Geo dell'Ancora (meglio con danni Geo) per interrompere la carica e infliggere danni enormi."
+            }
+          ]
+        },
+        {
+          "enemy_id": "Volkodlak_Whale",
+          "display_name": "Wavebinder: Normal",
+          "level": 90,
+          "advantages": ["Electro", "Stellar Glimmer"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Coraggio contro il Freddo",
+              "description": "A intervalli beve da una fiaschetta accumulando Coraggio. Colpirlo con Radiance: Barlume Astrale mentre beve riduce l'accumulo; i danni Electro riducono il Coraggio (molto di piu se derivano dalla reazione di Barlume Astrale corrispondente)."
+            },
+            {
+              "title": "Stato Valoroso",
+              "description": "A Coraggio pieno entra nello Stato Valoroso: attacchi piu feroci e forte aumento di tutte le RES Elementali e Fisica. Consuma Coraggio nel tempo ed esce dallo stato una volta esaurito."
+            }
+          ]
+        }
+      ]
+    },
+    "4": {
+      "label": "Difficolta 4",
+      "notes": "Difficolta Menacing (lv100): i personaggi non possono essere schierati piu volte.",
+      "bosses": [
+        {
+          "enemy_id": "HermitCrab_Primo",
+          "display_name": "Emperor of Fire and Iron: Raid",
+          "level": 100,
+          "advantages": ["Hydro", "Pyro"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Corona Fusa",
+              "description": "Le due corna fuse sul capo sono organi Pyro che potenziano i suoi attacchi e le difese. Durante certi attacchi restano vicine al suolo: usa le Reazioni Elementali per distruggerle. Esaurito il Pyro accumulato si spezzano, infliggendogli un colpo enorme; non si rigenerano per un po'."
+            }
+          ]
+        },
+        {
+          "enemy_id": "Magbeast_Gecko",
+          "display_name": "Radiant Moongecko: Immovable",
+          "level": 100,
+          "advantages": ["Geo", "Guaritori"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Riverbero del Vuoto",
+              "description": "Lascia un'Ancora di Pietra Lunare e salta in alto per preparare un potente colpo ad area. Rompi i layer di Ward Geo dell'Ancora (meglio con danni Geo) per interrompere la carica e infliggere danni enormi."
+            },
+            {
+              "title": "Bozzolo Radiante",
+              "description": "Applica Bozzolo Radiante ai personaggi e aumenta la propria RES Geo. Chi ne e affetto infligge meno danni e riceve meno cure; curare un personaggio al 100% dei PS lo libera e fa perdere al boss la RES Geo del Bozzolo."
+            }
+          ]
+        },
+        {
+          "enemy_id": "Volkodlak_Whale",
+          "display_name": "Wavebinder: Valiant Charge",
+          "level": 100,
+          "advantages": ["Electro", "Stellar Glimmer"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Coraggio contro il Freddo",
+              "description": "All'inizio della battaglia beve dalla fiaschetta accumulando Coraggio. Radiance: Barlume Astrale durante la bevuta ne riduce l'accumulo; i danni Electro riducono il Coraggio (molto di piu se dalla reazione di Barlume Astrale)."
+            },
+            {
+              "title": "Stato Valoroso",
+              "description": "A Coraggio pieno entra nello Stato Valoroso: attacchi piu feroci e forte aumento di tutte le RES Elementali e Fisica. Consuma Coraggio nel tempo ed esce dallo stato una volta esaurito."
+            }
+          ]
+        }
+      ]
+    },
+    "5": {
+      "label": "Difficolta 5",
+      "notes": "Difficolta Fearless (lv105): nemici potenziati dalla Ley Line; i personaggi non possono essere schierati piu volte.",
+      "bosses": [
+        {
+          "enemy_id": "HermitCrab_Primo",
+          "display_name": "Emperor of Fire and Iron: Ordained Conquest",
+          "level": 105,
+          "advantages": ["Hydro", "Pyro"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Corona Fusa",
+              "description": "Le corna fuse Pyro potenziano attacchi e difese. Quando restano vicine al suolo, distruggile con le Reazioni Elementali: esaurito il Pyro si spezzano infliggendogli un colpo enorme e non si rigenerano per un po'."
+            },
+            {
+              "title": "Portatori di Scudo",
+              "description": "Evoca fino a 3 Granchi Scudo di Poppa che alimentano di Pyro le corna. Esaurito il loro Pyro vengono sconfitti; un Granchio sconfitto perde il controllo e si schianta sull'Imperatore, sovraccaricando e danneggiando le corna e infliggendo danni proporzionali a quelli che aveva subito."
+            },
+            {
+              "title": "Incoronazione Radiante",
+              "description": "Carica brevemente e poi colpisce in un'ampia area. Distruggi le corna fuse per interrompere la carica."
+            }
+          ]
+        },
+        {
+          "enemy_id": "Magbeast_Gecko",
+          "display_name": "Radiant Moongecko: Entangled Fangs",
+          "level": 105,
+          "advantages": ["Geo", "Guaritori"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Riverbero Errante",
+              "description": "Lascia un'Ancora di Pietra Lunare e salta in alto per preparare un potente colpo ad area. Rompi i layer di Ward Geo dell'Ancora (meglio con danni Geo) per interrompere la carica; piu danni subisce l'Ancora, maggiore il colpo di ritorno sul boss."
+            },
+            {
+              "title": "Roccia Incrollabile",
+              "description": "Per via del disturbo della Ley Line, la Ward Geo multi-strato dell'Ancora di Pietra Lunare diventa piu resistente."
+            },
+            {
+              "title": "Bozzolo Radiante",
+              "description": "Applica Bozzolo Radiante ai personaggi e aumenta la propria RES Geo. Chi ne e affetto infligge meno danni e riceve meno cure; curare un personaggio al 100% dei PS lo libera e fa perdere al boss la RES Geo del Bozzolo."
+            }
+          ]
+        },
+        {
+          "enemy_id": "Volkodlak_Whale",
+          "display_name": "Wavebinder: Stormfang",
+          "level": 105,
+          "advantages": ["Electro", "Stellar Glimmer"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Coraggio contro il Freddo: Sorso Corroborante",
+              "description": "Periodicamente beve dalla fiaschetta ottenendo molto Coraggio. Radiance: Barlume Astrale durante la bevuta ne riduce l'accumulo; i danni Electro riducono il Coraggio, molto di piu se dalla reazione di Barlume Astrale corrispondente."
+            },
+            {
+              "title": "Assalto Valoroso",
+              "description": "A Coraggio pieno entra in Assalto Valoroso: attacchi piu feroci, genera uno scudo e aumenta molto tutte le RES tranne quella Electro (che sale solo di poco). Consuma Coraggio nel tempo e i danni Electro lo drenano di piu; esaurito il Coraggio esce subendo un enorme danno di ritorno, tanto maggiore quanto piu lo scudo ha assorbito (aumentato dai danni da reazione Barlume Astrale)."
+            }
+          ]
+        }
+      ]
+    },
+    "6": {
+      "label": "Difficolta 6",
+      "notes": "Difficolta Dire (lv110): massima difficolta. Disturbo al massimo: anche gli Exalted Ones sono interferiti e i loro Eminent Boon non hanno effetto.",
+      "bosses": [
+        {
+          "enemy_id": "HermitCrab_Primo",
+          "display_name": "Emperor of Fire and Iron: Ordained Conquest",
+          "level": 110,
+          "advantages": ["Hydro", "Pyro"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Corona Fusa",
+              "description": "Le corna fuse Pyro potenziano attacchi e difese. Quando restano vicine al suolo, distruggile con le Reazioni Elementali: esaurito il Pyro si spezzano infliggendogli un colpo enorme e non si rigenerano per un po'."
+            },
+            {
+              "title": "Portatori di Scudo",
+              "description": "Evoca fino a 3 Granchi Scudo di Poppa che alimentano di Pyro le corna. Esaurito il loro Pyro vengono sconfitti; un Granchio sconfitto perde il controllo e si schianta sull'Imperatore, sovraccaricando e danneggiando le corna e infliggendo danni proporzionali a quelli che aveva subito."
+            },
+            {
+              "title": "Incoronazione Radiante",
+              "description": "Carica brevemente e poi colpisce in un'ampia area. Distruggi le corna fuse per interrompere la carica."
+            }
+          ]
+        },
+        {
+          "enemy_id": "Magbeast_Gecko",
+          "display_name": "Radiant Moongecko: Entangled Fangs",
+          "level": 110,
+          "advantages": ["Geo", "Guaritori"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Riverbero Errante",
+              "description": "Lascia un'Ancora di Pietra Lunare e salta in alto per preparare un potente colpo ad area. Rompi i layer di Ward Geo dell'Ancora (meglio con danni Geo) per interrompere la carica; piu danni subisce l'Ancora, maggiore il colpo di ritorno sul boss."
+            },
+            {
+              "title": "Roccia Incrollabile",
+              "description": "Per via del disturbo della Ley Line, la Ward Geo multi-strato dell'Ancora di Pietra Lunare diventa piu resistente."
+            },
+            {
+              "title": "Bozzolo Radiante",
+              "description": "Applica Bozzolo Radiante ai personaggi e aumenta la propria RES Geo. Chi ne e affetto infligge meno danni e riceve meno cure; curare un personaggio al 100% dei PS lo libera e fa perdere al boss la RES Geo del Bozzolo."
+            }
+          ]
+        },
+        {
+          "enemy_id": "Volkodlak_Whale",
+          "display_name": "Wavebinder: Stormfang",
+          "level": 110,
+          "advantages": ["Electro", "Stellar Glimmer"],
+          "disadvantages": [],
+          "mechanics": [
+            {
+              "title": "Coraggio contro il Freddo: Sorso Corroborante",
+              "description": "Periodicamente beve dalla fiaschetta ottenendo molto Coraggio. Radiance: Barlume Astrale durante la bevuta ne riduce l'accumulo; i danni Electro riducono il Coraggio, molto di piu se dalla reazione di Barlume Astrale corrispondente."
+            },
+            {
+              "title": "Assalto Valoroso",
+              "description": "A Coraggio pieno entra in Assalto Valoroso: attacchi piu feroci, genera uno scudo e aumenta molto tutte le RES tranne quella Electro (che sale solo di poco). Consuma Coraggio nel tempo e i danni Electro lo drenano di piu; esaurito il Coraggio esce subendo un enorme danno di ritorno, tanto maggiore quanto piu lo scudo ha assorbito (aumentato dai danni da reazione Barlume Astrale)."
+            }
+          ]
+        }
+      ]
+    }
+  }
+}
