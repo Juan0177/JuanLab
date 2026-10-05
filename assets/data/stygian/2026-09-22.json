@@ -16,8 +16,21 @@
           "enemy_id": "HermitCrab_Primo",
           "display_name": "Emperor of Fire and Iron: Normal",
           "level": 90,
-          "advantages": ["Hydro", "Pyro"],
+          "advantages": [
+            "Hydro",
+            "Pyro"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "60%",
+            "hydro": "10%",
+            "dendro": "10%",
+            "electro": "10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "10%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Corona Fusa",
@@ -29,8 +42,21 @@
           "enemy_id": "Magbeast_Gecko",
           "display_name": "Radiant Moongecko: Normal",
           "level": 90,
-          "advantages": ["Geo", "Guaritori"],
+          "advantages": [
+            "Geo",
+            "Guaritori"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "10%",
+            "hydro": "10%",
+            "dendro": "10%",
+            "electro": "10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "70%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Bozzolo Radiante",
@@ -46,8 +72,21 @@
           "enemy_id": "Volkodlak_Whale",
           "display_name": "Wavebinder: Normal",
           "level": 90,
-          "advantages": ["Electro", "Stellar Glimmer"],
+          "advantages": [
+            "Electro",
+            "Stellar Glimmer"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "10%",
+            "hydro": "70%",
+            "dendro": "10%",
+            "electro": "-10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "10%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Coraggio contro il Freddo",
@@ -69,8 +108,21 @@
           "enemy_id": "HermitCrab_Primo",
           "display_name": "Emperor of Fire and Iron: Raid",
           "level": 100,
-          "advantages": ["Hydro", "Pyro"],
+          "advantages": [
+            "Hydro",
+            "Pyro"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "60%",
+            "hydro": "10%",
+            "dendro": "10%",
+            "electro": "10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "10%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Corona Fusa",
@@ -82,8 +134,21 @@
           "enemy_id": "Magbeast_Gecko",
           "display_name": "Radiant Moongecko: Immovable",
           "level": 100,
-          "advantages": ["Geo", "Guaritori"],
+          "advantages": [
+            "Geo",
+            "Guaritori"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "10%",
+            "hydro": "10%",
+            "dendro": "10%",
+            "electro": "10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "70%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Riverbero del Vuoto",
@@ -99,8 +164,21 @@
           "enemy_id": "Volkodlak_Whale",
           "display_name": "Wavebinder: Valiant Charge",
           "level": 100,
-          "advantages": ["Electro", "Stellar Glimmer"],
+          "advantages": [
+            "Electro",
+            "Stellar Glimmer"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "10%",
+            "hydro": "70%",
+            "dendro": "10%",
+            "electro": "-10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "10%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Coraggio contro il Freddo",
@@ -122,8 +200,22 @@
           "enemy_id": "HermitCrab_Primo",
           "display_name": "Emperor of Fire and Iron: Ordained Conquest",
           "level": 105,
-          "advantages": ["Hydro", "Pyro"],
+          "hp": 8552749,
+          "advantages": [
+            "Hydro",
+            "Pyro"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "60%",
+            "hydro": "10%",
+            "dendro": "10%",
+            "electro": "10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "10%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Corona Fusa",
@@ -143,8 +235,22 @@
           "enemy_id": "Magbeast_Gecko",
           "display_name": "Radiant Moongecko: Entangled Fangs",
           "level": 105,
-          "advantages": ["Geo", "Guaritori"],
+          "hp": 10253207,
+          "advantages": [
+            "Geo",
+            "Guaritori"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "10%",
+            "hydro": "10%",
+            "dendro": "10%",
+            "electro": "10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "70%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Riverbero Errante",
@@ -164,8 +270,22 @@
           "enemy_id": "Volkodlak_Whale",
           "display_name": "Wavebinder: Stormfang",
           "level": 105,
-          "advantages": ["Electro", "Stellar Glimmer"],
+          "hp": 15310194,
+          "advantages": [
+            "Electro",
+            "Stellar Glimmer"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "10%",
+            "hydro": "70%",
+            "dendro": "10%",
+            "electro": "-10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "10%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Coraggio contro il Freddo: Sorso Corroborante",
@@ -187,8 +307,22 @@
           "enemy_id": "HermitCrab_Primo",
           "display_name": "Emperor of Fire and Iron: Ordained Conquest",
           "level": 110,
-          "advantages": ["Hydro", "Pyro"],
+          "hp": 14042886,
+          "advantages": [
+            "Hydro",
+            "Pyro"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "60%",
+            "hydro": "10%",
+            "dendro": "10%",
+            "electro": "10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "10%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Corona Fusa",
@@ -208,8 +342,22 @@
           "enemy_id": "Magbeast_Gecko",
           "display_name": "Radiant Moongecko: Entangled Fangs",
           "level": 110,
-          "advantages": ["Geo", "Guaritori"],
+          "hp": 20950087,
+          "advantages": [
+            "Geo",
+            "Guaritori"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "10%",
+            "hydro": "10%",
+            "dendro": "10%",
+            "electro": "10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "70%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Riverbero Errante",
@@ -229,8 +377,22 @@
           "enemy_id": "Volkodlak_Whale",
           "display_name": "Wavebinder: Stormfang",
           "level": 110,
-          "advantages": ["Electro", "Stellar Glimmer"],
+          "hp": 33517377,
+          "advantages": [
+            "Electro",
+            "Stellar Glimmer"
+          ],
           "disadvantages": [],
+          "resistances": {
+            "pyro": "10%",
+            "hydro": "70%",
+            "dendro": "10%",
+            "electro": "-10%",
+            "anemo": "10%",
+            "cryo": "10%",
+            "geo": "10%",
+            "physical": "10%"
+          },
           "mechanics": [
             {
               "title": "Coraggio contro il Freddo: Sorso Corroborante",
