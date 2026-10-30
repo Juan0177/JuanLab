@@ -37,7 +37,7 @@ body > footer {
 }
 
 .guide-page {
-  max-width: 1100px;
+  max-width: 1320px;
   padding-top: 2rem;
   padding-bottom: 4rem;
 }
@@ -65,6 +65,11 @@ body > footer {
 
 .guide-header a:hover {
   opacity: 1;
+}
+
+/* style.css rende quadrati tutti gli <article>: qui devono seguire il contenuto */
+.guide-page article {
+  aspect-ratio: auto;
 }
 
 /* Hero */
@@ -297,6 +302,10 @@ body > footer {
   color: var(--guide-muted);
 }
 
+.team-grid {
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+}
+
 .panel.tap h3 { color: var(--guide-sky); }
 .panel.hold h3 { color: var(--guide-electro); }
 
@@ -380,11 +389,14 @@ body > footer {
 .team-card {
   display: grid;
   gap: 0.7rem;
+  align-content: start;
+  margin: 0;
 }
 
 .character-icons {
   display: flex;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.5rem;
 }
 
@@ -520,8 +532,9 @@ body > footer {
 
   .guide-top,
   .split,
+  .team-grid,
   .decision-grid {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .split.reverse > :first-child {
