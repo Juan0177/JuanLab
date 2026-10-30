@@ -1,5 +1,6 @@
 [
   { "file": "2026-07-16.json", "label": "16 Lug – 15 Ago 2026", "from": "2026-07-16", "to": "2026-08-15", "type": "live" },
   { "file": "2026-08-16.json", "label": "16 Ago – 15 Set 2026", "from": "2026-08-16", "to": "2026-09-15", "type": "live" },
-  { "file": "2026-09-16.json", "label": "16 Set – 15 Ott 2026", "from": "2026-09-16", "to": "2026-10-15", "type": "live" }
+  { "file": "2026-09-16.json", "label": "16 Set – 15 Ott 2026", "from": "2026-09-16", "to": "2026-10-15", "type": "live" },
+  { "file": "2026-10-16.json", "label": "16 Ott – 15 Nov 2026", "from": "2026-10-16", "to": "2026-11-15", "type": "live" }
 ]

@@ -1,0 +1,92 @@
+{
+  "period": "16 Ott – 15 Nov 2026",
+  "gimmick": "When a character triggers a Superconduct, Stellar-Conduct, Cryo Swirl, Stellar Swirl, Frozen, or Shatter reaction on an opponent, or deals Stellar-Conduct or Stellar Swirl DMG to an opponent, a shockwave will be unleashed at the opponent's position, dealing True DMG. This effect can be triggered once every 2s.",
+  "buff_first": "Characters' Stellar Glimmer reaction DMG increased by 75%.",
+  "buff_second": "All party members gain a 75% Cryo DMG Bonus.",
+  "slots": [
+    {
+      "slot": 1,
+      "label": "Piano 12-1 Prima Metà",
+      "enemies": [
+        {
+          "id": "Volkodlak_Greyhound_Furiosa",
+          "level": 95,
+          "hp": 1165335,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "label": "Piano 12-1 Seconda Metà",
+      "enemies": [
+        {
+          "id": "Invoker_Archdeacon",
+          "level": 95,
+          "hp": 454286,
+          "quantity": 1
+        },
+        {
+          "id": "ForlornVessel_Strong_Warbanner_Fire",
+          "level": 95,
+          "hp": 227143,
+          "quantity": 1
+        },
+        {
+          "id": "ForlornVessel_Strong_Chargebow_Ice",
+          "level": 95,
+          "hp": 181714,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "label": "Piano 12-2 Prima Metà",
+      "enemies": [
+        {
+          "id": "Magbeast_Pergesa",
+          "level": 98,
+          "hp": 824009,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "label": "Piano 12-2 Seconda Metà",
+      "enemies": [
+        {
+          "id": "Thoarder_Elder_Standard_Hildegard_01",
+          "level": 98,
+          "hp": 1365795,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 5,
+      "label": "Piano 12-3 Prima Metà",
+      "enemies": [
+        {
+          "id": "Chimera_Manticore",
+          "level": 100,
+          "hp": 1430082,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 6,
+      "label": "Piano 12-3 Seconda Metà",
+      "enemies": [
+        {
+          "id": "DragonCollar",
+          "level": 100,
+          "hp": 1370390,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}
