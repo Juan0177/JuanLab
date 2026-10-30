@@ -1,0 +1,406 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guida Mitya C0 (7.2): build, rotazioni e team | JuanLab</title>
+  <meta name="description" content="Guida rapida a Mitya C0 in Genshin Impact 7.2: build, armi, artefatti, kit con Gradient Beacon, rotazioni Main DPS e Sub-DPS, team consigliati e showcase Stygian Onslaught." />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
+  <link rel="stylesheet" href="assets/css/guide-page.css?v=20261030-1" />
+</head>
+<body>
+  <canvas id="stars"></canvas>
+
+  <main class="container guide-page">
+    <header class="guide-header">
+      <a href="current-pg.html">&larr; Torna alla pagina guida</a>
+      <a href="index.html">JuanLab home</a>
+    </header>
+
+    <section class="guide-top" aria-label="Riassunto Mitya">
+      <div class="guide-art">
+        <img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="Mitya" width="256" height="256" />
+        <span class="badge">Electro &middot; Catalizzatore &middot; 5&#9733;</span>
+      </div>
+
+      <div class="guide-copy">
+        <p class="eyebrow">Guida rapida &middot; versione 7.2</p>
+        <h1>Mitya</h1>
+        <p>
+          Riassunto della build, del kit e dei team di <strong>Mitya a Costellazione 0</strong>, basato sullo showcase
+          <a href="https://youtu.be/B5gn8fjHUMU" rel="noopener">&ldquo;C0 Mitya is UNEXPECTED! Genshin Impact 7.2&rdquo;</a> di IWinToLose Gaming.
+          Mitya &egrave; un personaggio <strong>Stellar-Conduct a doppio ruolo</strong>: pu&ograve; fare da Main DPS oppure da Sub-DPS/Support off-field.
+        </p>
+        <div class="summary-box">
+          <div class="summary-tile"><strong>Ruolo</strong><span>Main DPS / Sub-DPS</span></div>
+          <div class="summary-tile"><strong>Scaling</strong><span>Maestria Elementale</span></div>
+          <div class="summary-tile"><strong>Testato a</strong><span>C0 &middot; talenti 10/10/10</span></div>
+          <div class="summary-tile"><strong>Difficolt&agrave;</strong><span>Support facile, DPS alta</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="mitya-build">
+      <div class="section-head">
+        <h2 id="mitya-build">1. Build</h2>
+        <span>Statistiche, armi e artefatti</span>
+      </div>
+
+      <div class="split">
+        <div class="split-copy">
+          <h3>Statistiche di base</h3>
+          <p>Mitya parte con <strong>100 di Maestria Elementale</strong> di base, oltre al CRIT DMG da ascensione: un bel pacchetto di statistiche &ldquo;gratis&rdquo;.</p>
+          <ul>
+            <li>Scala quasi <strong>solo sulla Maestria Elementale</strong>: molti buffer basati su ATK non funzionano con lui.</li>
+            <li>Statistiche da cercare: <strong>Maestria Elementale, CRIT Rate e CRIT DMG</strong>.</li>
+            <li>Il suo bonus allo Stellar-Conduct arriva al massimo (+14%) gi&agrave; con <strong>500 di Maestria</strong>, facile da raggiungere.</li>
+          </ul>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/mitya/01-stats.webp" alt="Statistiche di Mitya livello 90 senza artefatti: 100 di Maestria Elementale di base" loading="lazy" width="1280" height="720" />
+          <figcaption>Senza artefatti Mitya ha gi&agrave; 100 di Maestria Elementale.</figcaption>
+        </figure>
+      </div>
+
+      <div class="split reverse">
+        <div class="split-copy">
+          <h3>Armi (catalizzatori)</h3>
+          <p>Confronto del creator a parit&agrave; di rotazione (con un po&rsquo; di variabilit&agrave; dovuta agli stack e ai colpi):</p>
+          <ul class="rank-list">
+            <li><span><strong>Starsealed Edict</strong> (signature)</span><span class="rank-value">+35,1%</span></li>
+            <li><span><strong>Winter&rsquo;s Heavy Heart</strong> R5</span><span class="rank-value">+21,6%</span></li>
+            <li><span><strong>Winter&rsquo;s Heavy Heart</strong> R1</span><span class="rank-value">+4,4%</span></li>
+            <li><span><strong>Sacrificial Fragments</strong> (F2P)</span><span class="rank-value base">base</span></li>
+            <li><span><strong>Blackmarrow Lantern</strong> (F2P)</span><span class="rank-value base">&asymp; Sacrificial</span></li>
+          </ul>
+          <p>La Blackmarrow Lantern rende come le Sacrificial Fragments: le Sacrificial danno solo la possibilit&agrave; di riusare la skill un po&rsquo; prima. Nel ruolo di supporto si pu&ograve; usare anche <strong>Thrilling Tales of Dragon Slayers</strong>.</p>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/mitya/10-armi.webp" alt="Confronto danni delle armi di Mitya: Sacrificial Fragments, Winter's Heavy Heart R1 e R5, Starsealed Edict" loading="lazy" width="1280" height="720" />
+          <figcaption>Starsealed Edict: circa +35% di danno rispetto alle Sacrificial Fragments.</figcaption>
+        </figure>
+      </div>
+
+      <div class="split">
+        <div class="split-copy">
+          <h3>Artefatti</h3>
+          <ul>
+            <li><strong>2pz Flower of Paradise Lost + 2pz Night of the Sky&rsquo;s Unveiling</strong> (+80 e +80 Maestria): la scelta usata pi&ugrave; spesso.</li>
+            <li><strong>4pz Disenchantment in Deep Shadow</strong>: alternativa ugualmente valida (+40% danni Stellar-Conduct e +16% CRIT Rate contro nemici colpiti).</li>
+            <li><strong>4pz Tenacity of the Millelith</strong> o <strong>4pz Heart of the Furnace</strong>: opzioni di supporto viste in alcuni showcase.</li>
+            <li>Stat principali: <strong>Maestria Elementale</strong> su sabbie e calice, <strong>CRIT</strong> sul diadema.</li>
+          </ul>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/mitya/02-artefatti.webp" alt="Set di artefatti di Mitya: 2 pezzi Flower of Paradise Lost e 2 pezzi Night of the Sky's Unveiling" loading="lazy" width="1280" height="720" />
+          <figcaption>2+2 a Maestria Elementale: +415 Maestria dagli artefatti.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="mitya-kit">
+      <div class="section-head">
+        <h2 id="mitya-kit">2. Kit</h2>
+        <span>Da semplicissimo a molto tecnico</span>
+      </div>
+
+      <p><strong>Attacchi base:</strong> normali da catalizzatore con applicazione Electro (ICD standard: 3 colpi / 2,5 s). L&rsquo;attacco caricato normale &egrave; scarso, ma diventa la sua arma principale in modalit&agrave; DPS.</p>
+
+      <div class="split">
+        <div class="split-copy">
+          <h3>Skill: Principle: Variable Detection</h3>
+          <p>La skill crea un <strong>Detection Core</strong> e ha due versioni:</p>
+          <ul>
+            <li>Cooldown <strong>18 s</strong>, durata <strong>25 s</strong>, genera <strong>5 particelle</strong>.</li>
+            <li>Nei primi <strong>6 s</strong> puoi passare da tap a hold (e viceversa) premendo di nuovo E.</li>
+            <li>Fuori combattimento lo Steady State distrugge le rocce: comodo per farmare minerali.</li>
+          </ul>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/mitya/03-skill-tap-hold.webp" alt="Confronto tra skill tap (Steady State, supporto) e skill hold (Overloaded, Main DPS) di Mitya" loading="lazy" width="1280" height="720" />
+          <figcaption>Tap = Steady State (supporto) &middot; Hold = Overloaded (Main DPS).</figcaption>
+        </figure>
+      </div>
+
+      <div class="panel-grid" style="margin-top: 1rem;">
+        <article class="panel tap">
+          <h3>Tap E &middot; Sub-DPS / Support</h3>
+          <ul>
+            <li>Il core colpisce ogni 1,5 s e applica Electro un colpo s&igrave; e uno no.</li>
+            <li>Ogni <strong>Gradient Beacon</strong> attivo d&agrave; <strong>+30 Maestria a tutto il team</strong> (fino a +120 con 4 Beacon).</li>
+            <li>Con 4 Beacon, ogni colpo del core infligge danni Stellar-Conduct basati sulla sua Maestria.</li>
+            <li>Alla scadenza (o recast) il core esplode in base ai Beacon accumulati e li consuma.</li>
+            <li>Servono circa <strong>6 s</strong> dal primo Stellar-Conduct per arrivare a 4 Beacon.</li>
+          </ul>
+        </article>
+        <article class="panel hold">
+          <h3>Hold E &middot; Main DPS</h3>
+          <ul>
+            <li>Il core passa in modalit&agrave; <strong>Overloaded</strong>.</li>
+            <li>Con Stellar-Conduct attivo e almeno 1 Beacon, l&rsquo;attacco caricato diventa <strong>Gradient Detonation</strong>: raffica di colpi senza consumo di stamina.</li>
+            <li>Ogni colpo consuma un Beacon e infligge danni Stellar-Conduct.</li>
+            <li>I Beacon continuano a generarsi anche con Mitya <strong>off-field</strong>.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="split" style="margin-top: 1.2rem;">
+        <div class="split-copy">
+          <h3>Gradient Beacon</h3>
+          <ul>
+            <li>Massimo <strong>4 Beacon</strong> a C0, durata 6 s (rinnovata a ogni nuova generazione).</li>
+            <li>Si generano quando il team attiva lo <strong>Stellar-Conduct</strong>: 1 ogni 1,5 s per <strong>3 s</strong> (tap o senza skill) o per <strong>6 s</strong> (hold).</li>
+            <li>Si generano anche mentre Mitya li sta consumando con l&rsquo;attacco caricato.</li>
+          </ul>
+          <p><strong>4 o 5 colpi?</strong> Se un nuovo Beacon nasce nella finestra tra il 1&deg; e il 3&deg; colpo (circa 0,75&ndash;1 s), Mitya spara un 5&deg; colpo; altrimenti si ferma a 4. &Egrave; in parte RNG e pu&ograve; dipendere anche dal ping.</p>
+        </div>
+        <div class="figure-grid" style="margin-top: 0;">
+          <figure class="evidence-figure">
+            <img src="assets/img/guides/mitya/05-beacon.webp" alt="Riassunto delle meccaniche dei Gradient Beacon di Mitya" loading="lazy" width="1280" height="720" />
+            <figcaption>Riassunto delle regole dei Beacon.</figcaption>
+          </figure>
+          <figure class="evidence-figure">
+            <img src="assets/img/guides/mitya/04-colpi-4-5.webp" alt="Confronto tra attacco caricato da 4 colpi e da 5 colpi di Mitya" loading="lazy" width="1280" height="720" />
+            <figcaption>4 colpi (Beacon arrivato tardi) contro 5 colpi (Beacon in tempo).</figcaption>
+          </figure>
+        </div>
+      </div>
+
+      <div class="split reverse" style="margin-top: 1.2rem;">
+        <div class="split-copy">
+          <h3>Burst e passive</h3>
+          <ul>
+            <li><strong>Burst (Analysis: Gradient Theory):</strong> danno Electro ad area e <strong>3 Beacon</strong>. Poco utile da supporto (ruba tempo in campo), molto utile da DPS: pi&ugrave; Beacon = pi&ugrave; colpi.</li>
+            <li><strong>Passiva CRIT:</strong> +5% CRIT Rate per ogni Beacon creato, per 15 s, fino a <strong>+20%</strong>. Dopo la prima rotazione &egrave; praticamente sempre attiva; inoltre i Beacon durano 10 s.</li>
+            <li><strong>Passiva di team:</strong> basta averlo in squadra per abilitare lo Stellar-Conduct, che segue Mitya invece di restare fermo, e il moltiplicatore cresce fino a <strong>+14%</strong> con la sua Maestria.</li>
+          </ul>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/mitya/06-passiva-crit.webp" alt="Passiva di Mitya: 4 Beacon danno il 20% di CRIT Rate" loading="lazy" width="1280" height="720" />
+          <figcaption>4 Beacon = +20% CRIT Rate.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="mitya-rotazioni">
+      <div class="section-head">
+        <h2 id="mitya-rotazioni">3. Rotazioni Main DPS</h2>
+        <span>Dove si guadagna (o si perde) il danno</span>
+      </div>
+
+      <p>Mitya DPS preferisce entrare e uscire dal campo mentre i Beacon si ricaricano. Dividere sia la sua rotazione sia quella dei compagni fa una grande differenza:</p>
+
+      <div class="figure-grid">
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/mitya/07-rotazione-base.webp" alt="Rotazione semplice senza quickswap di Mitya: 12 colpi in circa 21 secondi" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Senza quickswap:</strong> 12 colpi in ~20,8 s.</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/mitya/08-rotazione-quickswap.webp" alt="Rotazione quickswap di Mitya con rotazioni divise: 15 colpi in circa 19,5 secondi" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Quickswap (rotazioni divise):</strong> 15 colpi in ~19,5 s.</figcaption>
+        </figure>
+      </div>
+
+      <span class="rotation-label">Loop semplice (Yae, Odette, Valeriy)</span>
+      <p class="rotation">Yae EEE &rarr; Odette EE &rarr; Valeriy QEC &rarr; Mitya C, E (hold), Q, C, N3, N1, C</p>
+      <span class="rotation-label">Loop quickswap</span>
+      <p class="rotation">Yae EEE &rarr; Valeriy EC &rarr; Mitya C, E (tap) &rarr; Odette EE &rarr; Valeriy Q &rarr; Mitya E (swap), C, Q, C</p>
+
+      <div class="quote-block">
+        <ul>
+          <li>&Egrave; un <strong>personaggio da attacco caricato</strong>: se tieni premuto troppo presto appena entra in campo non parte nulla, se lo fai troppo tardi perdi DPS.</li>
+          <li>Un livello di ottimizzazione in pi&ugrave;: usare a volte la <strong>tap E</strong> per accumulare stack e poi rientrare con E + attacco caricato.</li>
+          <li>Dopo aver cambiato modalit&agrave; del core sembra esserci circa <strong>1 s</strong> in cui non puoi fare swap: questo complica il dual DPS con il Viaggiatore Cryo.</li>
+          <li>Se ti piace il min-max &egrave; molto divertente; se non vuoi &ldquo;sudare&rdquo; sulle rotazioni, come Main DPS &egrave; difficile consigliarlo.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="mitya-team">
+      <div class="section-head">
+        <h2 id="mitya-team">4. Team consigliati</h2>
+        <span>Dal premium al F2P</span>
+      </div>
+
+      <div class="panel-grid">
+        <article class="panel team-card">
+          <h3>Premium (Main DPS)</h3>
+          <div class="character-icons">
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" loading="lazy" />Mitya</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Odette.webp" alt="" loading="lazy" />Odette</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Yae.webp" alt="" loading="lazy" />Yae Miko</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" loading="lazy" />Valeriy</span>
+          </div>
+          <p>Uno dei suoi team migliori all&rsquo;uscita. Valeriy a C0 &egrave; sostituibile, ma a C6 diventa fortissimo.</p>
+        </article>
+
+        <article class="panel team-card">
+          <h3>F2P</h3>
+          <div class="character-icons">
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" loading="lazy" />Mitya</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Diona.webp" alt="" loading="lazy" />Diona</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Sucrose.webp" alt="" loading="lazy" />Sucrose</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" loading="lazy" />Valeriy C0</span>
+          </div>
+          <p>Con Blackmarrow Lantern. Il limite qui &egrave; il cooldown di oltre 20 s di Diona, non l&rsquo;arma.</p>
+        </article>
+
+        <article class="panel team-card">
+          <h3>Sandrone + Mitya support</h3>
+          <div class="character-icons">
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Sandrone.webp" alt="" loading="lazy" />Sandrone</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Odette.webp" alt="" loading="lazy" />Odette</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Yae.webp" alt="" loading="lazy" />Yae Miko</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" loading="lazy" />Mitya</span>
+          </div>
+          <p>&ldquo;Premi E ed esci&rdquo;. Team senza sustain: funziona grazie alla mobilit&agrave; di Sandrone. Come buffer Mitya vale circa quanto Yae C1, ma fa meno danno personale. Rispetto ad <strong>Alyosha</strong> &egrave; un upgrade evidente, a meno che Alyosha non sia C6.</p>
+        </article>
+
+        <article class="panel team-card">
+          <h3>Senza Odette? C&rsquo;&egrave; Mitya</h3>
+          <div class="character-icons">
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Cyno.webp" alt="" loading="lazy" />Cyno</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Wriothesley.webp" alt="" loading="lazy" />Wriothesley</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" loading="lazy" />Mitya</span>
+          </div>
+          <p>Se Odette &egrave; impegnata in un altro team, Mitya abilita lo Stellar-Conduct al suo posto. Ottimo con <strong>Cyno</strong> (le sue 5 particelle aiutano con l&rsquo;energia) e con <strong>Wriothesley</strong>, che non vuole cure: nello showcase c&rsquo;&egrave; Beidou al posto di un healer.</p>
+        </article>
+      </div>
+
+      <div class="figure-grid">
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/mitya/09-team-premium.webp" alt="Team premium di Mitya con Odette, Yae Miko e Valeriy" loading="lazy" width="1280" height="720" />
+          <figcaption>Team premium con Valeriy C0.</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/mitya/11-team-f2p.webp" alt="Team F2P di Mitya con Diona, Sucrose e Valeriy C0" loading="lazy" width="1280" height="720" />
+          <figcaption>Team F2P con Blackmarrow Lantern.</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/mitya/12-senza-odette.webp" alt="Team con Cyno e Mitya come sostituto di Odette" loading="lazy" width="1280" height="720" />
+          <figcaption>Cyno con Mitya al posto di Odette.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="mitya-stygian">
+      <div class="section-head">
+        <h2 id="mitya-stygian">5. Stygian Onslaught: Wavebinder</h2>
+        <span>Showcase contro il nuovo boss</span>
+      </div>
+
+      <p>Il <strong>Wavebinder (&ldquo;Drunkard&rdquo;)</strong> ha moltissimi HP e meccaniche RNG, ma si rompe con tanto Electro e Stellar-Conduct: Mitya e Yae lo distruggono. In media la rotazione DPS fa circa 14 colpi su 15 possibili.</p>
+
+      <div class="split">
+        <div class="split-copy">
+          <span class="rotation-label">Prima rotazione</span>
+          <p class="rotation">Mitya hold E &rarr; Odette EE &rarr; Yae EEE &rarr; Valeriy EC &rarr; Mitya C5, N3, C3</p>
+          <span class="rotation-label">Loop</span>
+          <p class="rotation">Yae EEE &rarr; Valeriy EC &rarr; Mitya C5, tap E &rarr; Odette EE &rarr; Valeriy Q &rarr; Mitya E (swap), C5, Q, C5</p>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/mitya/13-stygian-rotazione.webp" alt="Mitya DPS contro il Wavebinder in Stygian Onslaught con la rotazione a schermo" loading="lazy" width="1280" height="720" />
+          <figcaption>Mitya DPS con Odette, Yae e Valeriy C0, tutte armi F2P.</figcaption>
+        </figure>
+      </div>
+
+      <div class="table-wrap" style="margin-top: 1.2rem;">
+        <table class="guide-table">
+          <thead>
+            <tr>
+              <th scope="col">Personaggio 1</th>
+              <th scope="col">Personaggio 2</th>
+              <th scope="col">Personaggio 3</th>
+              <th scope="col">Personaggio 4</th>
+              <th scope="col">Tempo</th>
+              <th scope="col">Costo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>C0 Sandrone<small>Atonement</small></td>
+              <td>C0 Odette<small>Exaiphanes</small></td>
+              <td>C1 Yae<small>Widsith</small></td>
+              <td>C0 Mitya<small>Sacrificial</small></td>
+              <td>73 s</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>C1 Cyno<small>R5 Deathmatch</small></td>
+              <td>C0 Odette<small>Exaiphanes</small></td>
+              <td>C1 Yae<small>Widsith</small></td>
+              <td>C0 Mitya<small>Sacrificial</small></td>
+              <td>80 s</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>C6 Viaggiatore (Cryo)<small>Exaiphanes</small></td>
+              <td>C0 Odette<small>Emberwell</small></td>
+              <td>C1 Yae<small>Widsith</small></td>
+              <td>C0 Mitya<small>Sacrificial</small></td>
+              <td>80 s</td>
+              <td>3</td>
+            </tr>
+            <tr>
+              <td>C1 Wriothesley<small>Echoes</small></td>
+              <td>C0 Odette<small>Exaiphanes</small></td>
+              <td>C1 Yae<small>Widsith</small></td>
+              <td>C0 Mitya<small>Sacrificial</small></td>
+              <td>83 s</td>
+              <td>4</td>
+            </tr>
+            <tr>
+              <td>C0 Mitya (DPS)<small>Sacrificial</small></td>
+              <td>C0 Odette<small>Exaiphanes</small></td>
+              <td>C1 Yae<small>Widsith</small></td>
+              <td>C0 Valeriy<small>Finale</small></td>
+              <td>90 s</td>
+              <td>3</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 0.6rem; font-size: 0.8rem;">Tempi di clear contro il Wavebinder. &ldquo;Costo&rdquo; indica il costo del team secondo il creator (pi&ugrave; alto = pi&ugrave; investimento in 5&#9733; limitati).</p>
+    </section>
+
+    <section class="section" aria-labelledby="mitya-verdetto">
+      <div class="section-head">
+        <h2 id="mitya-verdetto">6. Conclusione: vale la pena?</h2>
+        <span>Verdetto del creator</span>
+      </div>
+
+      <div class="decision-grid">
+        <div class="decision-box ok">
+          <h3>Pullalo se</h3>
+          <ul>
+            <li>Ti diverte sperimentare rotazioni e fare min-max.</li>
+            <li>Ti serve un 4&deg; slot senza sustain per Sandrone, un&rsquo;alternativa a Yae o un sostituto di Odette per Cyno e Wriothesley.</li>
+            <li>Pensi di investire nelle costellazioni: <strong>C1 e C2</strong> sono descritte come fortissime.</li>
+          </ul>
+        </div>
+        <div class="decision-box warning">
+          <h3>Aspetta se</h3>
+          <ul>
+            <li>Lo vuoi solo come &ldquo;E-bot&rdquo; di supporto: secondo il creator potrebbero arrivare presto altri supporti Stellar-Conduct (Electro e Cryo).</li>
+            <li>Non ti va di gestire timing di attacchi caricati e colpi 4/5.</li>
+            <li>Il tuo team si basa su buffer di ATK: Mitya scala quasi solo sulla Maestria.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="source-note">
+        Fonte: <a href="https://youtu.be/B5gn8fjHUMU" rel="noopener">IWinToLose Gaming &mdash; &ldquo;C0 Mitya is UNEXPECTED! Genshin Impact 7.2&rdquo;</a>.
+        Screenshot tratti dal video; numeri e tempi riferiti agli showcase del creator.
+      </p>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>JuanLab &mdash; Guida Mitya 7.2</small>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260923-1"></script>
+</body>
+</html>
