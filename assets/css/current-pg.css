@@ -151,12 +151,14 @@ main.current-pg-page > header {
   animation: worksite-counter-orbit 13s linear infinite !important;
 }
 
+.orbit-avatar-top,
 .orbit-avatar-vesna {
   top: 0;
   left: 50%;
   transform: translateX(-50%);
 }
 
+.orbit-avatar-bottom,
 .orbit-avatar-vodyanitsa {
   right: 50%;
   bottom: 0;
