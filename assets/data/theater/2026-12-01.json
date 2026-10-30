@@ -1,0 +1,239 @@
+{
+  "period": "Periodo beta (date live non ancora annunciate): 2026-12-01 ~ 2026-12-31",
+  "fixed_buff": "I personaggi di apertura avranno PS max, ATT e DIF aumentano del 20%.",
+  "mechanics": {
+    "recommended_elements": [
+      { "name": "Pyro", "icon": "assets/img/elements/Pyro.webp" },
+      { "name": "Hydro", "icon": "assets/img/elements/Hydro.webp" },
+      { "name": "Geo", "icon": "assets/img/elements/Geo.webp" }
+    ],
+    "opening_characters": [
+      { "name": "Arlecchino", "image": "assets/img/characters/UI_AvatarIcon_Arlecchino.webp" },
+      { "name": "Bennett", "image": "assets/img/characters/UI_AvatarIcon_Bennett.webp" },
+      { "name": "Furina", "image": "assets/img/characters/UI_AvatarIcon_Furina.webp" },
+      { "name": "Xingqiu", "image": "assets/img/characters/UI_AvatarIcon_Xingqiu.webp" },
+      { "name": "Navia", "image": "assets/img/characters/UI_AvatarIcon_Navia.webp" },
+      { "name": "Illuga", "image": "assets/img/characters/UI_AvatarIcon_Illuga.webp" }
+    ],
+    "guest_stars": [
+      { "name": "Jean", "image": "assets/img/characters/UI_AvatarIcon_Qin.webp" },
+      { "name": "Yae Miko", "image": "assets/img/characters/UI_AvatarIcon_Yae.webp" },
+      { "name": "Emilie", "image": "assets/img/characters/UI_AvatarIcon_Emilie.webp" },
+      { "name": "Iansan", "image": "assets/img/characters/UI_AvatarIcon_Iansan.webp" }
+    ],
+    "season_effect_text": "After the above characters join your party, Max HP, ATK, and DEF are increased by 20%."
+  },
+  "selected_mode": "lunar",
+  "strategies": [],
+  "modes": {
+    "lunar": {
+      "conditions": {
+        "level": 100,
+        "rooms": 12,
+        "opening_characters": 6,
+        "characters_available": 28,
+        "characters_with_bonus": 32,
+        "min_level": 70,
+        "boss_acts": 10
+      },
+      "stages": [
+        {
+          "enemy_id": "MachinaIustitia_Gravitas",
+          "instructions": [
+            "Act 3 · Experimental Field Generator",
+            "A large and out-of-control Fontaine Research Institute of Kinetic Energy Engineering device.",
+            "During combat, it will channel ousia energy to unleash a Gravity Reduction Field. Characters within this field can jump significantly higher.",
+            "When the device is in this state, its Gravity Reduction Field will shut down if its core is annihilated by Pneuma attacks."
+          ]
+        },
+        {
+          "enemy_id": "MachinaIustitia_Pylon",
+          "instructions": [
+            "Act 6 · Veteran Arithmetic Enhancer Mek",
+            "During combat, it will channel ousia energy to unleash a Gravity Reduction Field.",
+            "Characters within this field can jump significantly higher. its core will be defended by a Geo Ward.",
+            "Destroy said Ward and annihilate its core using Pneuma attacks to shut its Gravity Reduction Field down."
+          ]
+        },
+        {
+          "enemy_id": "Magbeast_Gecko",
+          "instructions": [
+            "Act 8 · Radiant Moongecko",
+            "A highly unique species among Radiant creatures, it can trap its enemies in a Radiant Cocoon during combat.",
+            "Quickly heal your HP to its maximum to escape from a Radiant Cocoon. Doing so will also reduce its Geo RES.",
+            "When it prepares to unleash Voidstep Reverberation, destroy the Moonstone Anchor it leaves behind to terminate the preparation of this Skill and deal massive DMG to it."
+          ]
+        },
+        {
+          "enemy_id": "Natsaurus_Hookwalker_Primo",
+          "instructions": [
+            "Act 10 · Gluttonous Yumkasaur Mountain King",
+            "A Yumkasaurus that has experienced numerous impressive battles. It is not some abnormal mutant but has grown into its current shape due to its gluttony.",
+            "It will collect Flamegranates during combat and spit them out as bombs.",
+            "However, if you can use Pyro to ignite the Flamegranates before the Gluttonous Yumkasaur Mountain King can swallow them, who knows what might happen..."
+          ]
+        },
+        {
+          "enemy_id": "ForlornVessel_Strong_Warbanner_Fire",
+          "instructions": [
+            "Extra Act 1 · Keep Fighting",
+            "Keep fighting until the countdown ends. End the stage with at least one character left standing to successfully complete the challenge.",
+            "Each opponent you defeat will take time off the countdown.",
+            "Once the challenge begins, all party members will continuously lose small amounts of HP."
+          ]
+        },
+        {
+          "enemy_id": "Panther_Sacred_Grass",
+          "instructions": [
+            "Extra Act 2 · Keep Fighting",
+            "Keep fighting until the countdown ends. End the stage with at least one character left standing to successfully complete the challenge.",
+            "Each opponent you defeat will take time off the countdown.",
+            "Once the challenge begins, Geo Bursts will periodically be set off, dealing Geo DMG to your active character."
+          ]
+        }
+      ]
+    },
+    "visionary": {
+      "conditions": {
+        "level": 100,
+        "rooms": 10,
+        "opening_characters": 6,
+        "characters_available": 22,
+        "characters_with_bonus": 26,
+        "min_level": 70,
+        "boss_acts": 10
+      },
+      "stages": [
+        {
+          "enemy_id": "MachinaIustitia_Gravitas",
+          "instructions": [
+            "Act 3 · Experimental Field Generator",
+            "A large and out-of-control Fontaine Research Institute of Kinetic Energy Engineering device.",
+            "During combat, it will channel ousia energy to unleash a Gravity Reduction Field. Characters within this field can jump significantly higher.",
+            "When the device is in this state, its Gravity Reduction Field will shut down if its core is annihilated by Pneuma attacks."
+          ]
+        },
+        {
+          "enemy_id": "MachinaIustitia_Pylon",
+          "instructions": [
+            "Act 6 · Veteran Arithmetic Enhancer Mek",
+            "During combat, it will channel ousia energy to unleash a Gravity Reduction Field.",
+            "Characters within this field can jump significantly higher. its core will be defended by a Geo Ward.",
+            "Destroy said Ward and annihilate its core using Pneuma attacks to shut its Gravity Reduction Field down."
+          ]
+        },
+        {
+          "enemy_id": "Magbeast_Gecko",
+          "instructions": [
+            "Act 8 · Radiant Moongecko",
+            "A highly unique species among Radiant creatures, it can trap its enemies in a Radiant Cocoon during combat.",
+            "Quickly heal your HP to its maximum to escape from a Radiant Cocoon. Doing so will also reduce its Geo RES.",
+            "When it prepares to unleash Voidstep Reverberation, destroy the Moonstone Anchor it leaves behind to terminate the preparation of this Skill and deal massive DMG to it."
+          ]
+        },
+        {
+          "enemy_id": "Natsaurus_Hookwalker_Primo",
+          "instructions": [
+            "Act 10 · Gluttonous Yumkasaur Mountain King",
+            "A Yumkasaurus that has experienced numerous impressive battles. It is not some abnormal mutant but has grown into its current shape due to its gluttony.",
+            "It will collect Flamegranates during combat and spit them out as bombs.",
+            "However, if you can use Pyro to ignite the Flamegranates before the Gluttonous Yumkasaur Mountain King can swallow them, who knows what might happen..."
+          ]
+        }
+      ]
+    },
+    "hard": {
+      "conditions": {
+        "level": 95,
+        "rooms": 8,
+        "opening_characters": 6,
+        "characters_available": 16,
+        "characters_with_bonus": 20,
+        "min_level": 70,
+        "boss_acts": 8
+      },
+      "stages": [
+        {
+          "enemy_id": "MachinaIustitia_Gravitas",
+          "instructions": [
+            "Act 3 · Experimental Field Generator",
+            "A large and out-of-control Fontaine Research Institute of Kinetic Energy Engineering device.",
+            "During combat, it will channel ousia energy to unleash a Gravity Reduction Field. Characters within this field can jump significantly higher.",
+            "When the device is in this state, its Gravity Reduction Field will shut down if its core is annihilated by Pneuma attacks."
+          ]
+        },
+        {
+          "enemy_id": "MachinaIustitia_Pylon",
+          "instructions": [
+            "Act 6 · Veteran Arithmetic Enhancer Mek",
+            "During combat, it will channel ousia energy to unleash a Gravity Reduction Field.",
+            "Characters within this field can jump significantly higher. its core will be defended by a Geo Ward.",
+            "Destroy said Ward and annihilate its core using Pneuma attacks to shut its Gravity Reduction Field down."
+          ]
+        },
+        {
+          "enemy_id": "Natsaurus_Hookwalker_Primo",
+          "instructions": [
+            "Act 8 · Gluttonous Yumkasaur Mountain King",
+            "A Yumkasaurus that has experienced numerous impressive battles. It is not some abnormal mutant but has grown into its current shape due to its gluttony.",
+            "It will collect Flamegranates during combat and spit them out as bombs.",
+            "However, if you can use Pyro to ignite the Flamegranates before the Gluttonous Yumkasaur Mountain King can swallow them, who knows what might happen..."
+          ]
+        }
+      ]
+    },
+    "normal": {
+      "conditions": {
+        "level": 90,
+        "rooms": 6,
+        "opening_characters": 6,
+        "characters_available": 12,
+        "characters_with_bonus": 14,
+        "min_level": 60,
+        "boss_acts": 6
+      },
+      "stages": [
+        {
+          "enemy_id": "MachinaIustitia_Gravitas",
+          "instructions": [
+            "Act 3 · Experimental Field Generator",
+            "A large and out-of-control Fontaine Research Institute of Kinetic Energy Engineering device.",
+            "During combat, it will channel ousia energy to unleash a Gravity Reduction Field. Characters within this field can jump significantly higher.",
+            "When the device is in this state, its Gravity Reduction Field will shut down if its core is annihilated by Pneuma attacks."
+          ]
+        },
+        {
+          "enemy_id": "MachinaIustitia_Pylon",
+          "instructions": [
+            "Act 6 · Veteran Arithmetic Enhancer Mek",
+            "During combat, it will channel ousia energy to unleash a Gravity Reduction Field.",
+            "Characters within this field can jump significantly higher. its core will be defended by a Geo Ward.",
+            "Destroy said Ward and annihilate its core using Pneuma attacks to shut its Gravity Reduction Field down."
+          ]
+        }
+      ]
+    },
+    "easy": {
+      "conditions": {
+        "level": 80,
+        "rooms": 3,
+        "opening_characters": 6,
+        "characters_available": 8,
+        "characters_with_bonus": 10,
+        "min_level": 60,
+        "boss_acts": 3
+      },
+      "stages": [
+        {
+          "enemy_id": "MachinaIustitia_Gravitas",
+          "instructions": [
+            "Act 3 · Experimental Field Generator",
+            "A large and out-of-control Fontaine Research Institute of Kinetic Energy Engineering device.",
+            "During combat, it will channel ousia energy to unleash a Gravity Reduction Field. Characters within this field can jump significantly higher.",
+            "When the device is in this state, its Gravity Reduction Field will shut down if its core is annihilated by Pneuma attacks."
+          ]
+        }
+      ]
+    }
+  }
+}

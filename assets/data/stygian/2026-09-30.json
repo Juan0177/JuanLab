@@ -4,6 +4,7 @@
   "selected_difficulty": "6",
   "overview": {
     "title": "Panoramica rotazione",
+    "description": "Luminous Battlefront (v7.1): Secret Source Automaton: Overseer Device, Battle-Hardened Domovoy Sculptor e Guardian Blade of Drifting Snow. Periodo live: 30 Settembre 2026 ~ 10 Novembre 2026.",
     "points": []
   },
   "difficulties": {
@@ -17,34 +18,35 @@
           "level": 90,
           "hp": 916730,
           "advantages": ["Cryo"],
-          "disadvantages": ["Nightsoul's Blessing"],
+          "disadvantages": [],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "10%", "geo": "10%", "physical": "10%" },
           "mechanics": [
-            { "title": "Sweeper Mode", "description": "Genera Flow Momentum mentre attacca. Colpirlo con danni Cryo riduce il Momentum e puo fermare la rotazione, abbassando le sue resistenze." }
+            { "title": "Sweeper Mode", "description": "Genera Flow Momentum mentre attacca. Colpirlo con danni Cryo riduce il Momentum e puo fermare la rotazione, abbassando le sue resistenze." },
+            { "title": "Counterstrike Mode", "description": "Se il personaggio attivo mantiene per un po' lo stato Nightsoul's Blessing, entra in Counterstrike Mode e attacca con raggi traccianti, ma le sue RES vengono ridotte; dopo un certo numero di colpi Cryo smette di attaccare e le RES calano ulteriormente." }
           ]
         },
         {
           "enemy_id": "Karzelek_Tsereteli_01",
-          "display_name": "Battle-Hardened Domovoy Sculptor",
+          "display_name": "Battle-Hardened Domovoy Sculptor: Normal",
           "level": 90,
           "hp": 3858430,
           "advantages": ["Stellar Glimmer"],
           "disadvantages": [],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "30%", "cryo": "30%", "geo": "10%", "physical": "10%" },
           "mechanics": [
-            { "title": "Prime Ice Sculpture", "description": "Crea sculture di Prime Ice usando energia Anemo. Interrompere la creazione con Radiance: Stellar Glimmer puo trasformare la scultura in una statua innocua." }
+            { "title": "Big-Mouthed Jack Frost", "description": "Periodicamente crea sculture di Prime Ice usando energia Anemo, che dopo poco diventano Big-Mouthed Jack Frost e lanciano snowball. Infliggere Radiance: Stellar Glimmer durante la creazione interrompe il processo e trasforma la scultura in una statua innocua." }
           ]
         },
         {
           "enemy_id": "Snegurochka_Contessa_02",
-          "display_name": "Guardian Blade of Drifting Snow",
+          "display_name": "Guardian Blade of Drifting Snow: Normal",
           "level": 90,
           "hp": 1001708,
-          "advantages": ["Stellar Glimmer"],
+          "advantages": ["Stellar Glimmer", "Electro", "Anemo", "Pyro"],
           "disadvantages": ["Cryo"],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "50%", "geo": "10%", "physical": "10%" },
           "mechanics": [
-            { "title": "Ice Coffin", "description": "Quando i suoi HP scendono sotto una certa soglia si chiude in una Ice Coffin e ottiene una Ward Cryo. Distruggerla la lascia in stato indebolito." }
+            { "title": "Ice Coffin", "description": "Quando i suoi HP scendono sotto una certa soglia (una sola volta per sfida) si chiude in una Ice Coffin e ottiene una Ward Cryo. Se non viene distrutta recupera HP e contrattacca; distruggerla la lascia in stato indebolito. Se e affetta da Radiance: Stellar Glimmer, gli attacchi Electro e Anemo distruggono la Ice Coffin piu efficacemente." }
           ]
         }
       ]
@@ -59,10 +61,11 @@
           "level": 100,
           "hp": 1370390,
           "advantages": ["Cryo"],
-          "disadvantages": ["Nightsoul's Blessing"],
+          "disadvantages": [],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "10%", "geo": "10%", "physical": "10%" },
           "mechanics": [
-            { "title": "Sweeper Mode", "description": "Genera Flow Momentum mentre attacca. Colpirlo con danni Cryo riduce il Momentum e puo fermare la rotazione, abbassando le sue resistenze." }
+            { "title": "Preemptive Sweeper Mode", "description": "Entra subito in Sweeper Mode, con RES molto aumentate, e genera Flow Momentum attaccando. I danni Cryo riducono il Momentum; sotto una certa soglia smette di ruotare e perde molte RES (la RES Cryo cala ancora di piu)." },
+            { "title": "Counterstrike Mode", "description": "Se il personaggio attivo mantiene per un po' lo stato Nightsoul's Blessing, entra in Counterstrike Mode e attacca con raggi traccianti, ma le sue RES vengono ridotte; dopo un certo numero di colpi Cryo smette di attaccare e le RES calano ulteriormente." }
           ]
         },
         {
@@ -74,7 +77,7 @@
           "disadvantages": [],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "30%", "cryo": "30%", "geo": "10%", "physical": "10%" },
           "mechanics": [
-            { "title": "Prime Ice Sculpture", "description": "Crea sculture di Prime Ice usando energia Anemo. Interrompere la creazione con Radiance: Stellar Glimmer puo trasformare la scultura in una statua innocua." }
+            { "title": "Big-Mouthed Jack Frost", "description": "All'inizio del combattimento crea una scultura di Prime Ice usando energia Anemo, che dopo poco diventa un Big-Mouthed Jack Frost e lanciano snowball. Infliggere Radiance: Stellar Glimmer durante la creazione interrompe il processo e la trasforma in una statua innocua." }
           ]
         },
         {
@@ -82,11 +85,11 @@
           "display_name": "Guardian Blade of Drifting Snow: Reprise",
           "level": 100,
           "hp": 1497421,
-          "advantages": ["Stellar Glimmer"],
+          "advantages": ["Stellar Glimmer", "Electro", "Anemo", "Pyro"],
           "disadvantages": ["Cryo"],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "50%", "geo": "10%", "physical": "10%" },
           "mechanics": [
-            { "title": "Ice Coffin", "description": "Quando i suoi HP scendono sotto una certa soglia si chiude in una Ice Coffin e ottiene una Ward Cryo. Distruggerla la lascia in stato indebolito." }
+            { "title": "Ice Coffin", "description": "Quando i suoi HP scendono sotto una certa soglia (una sola volta per sfida) si chiude in una Ice Coffin e ottiene una Ward Cryo. Se non viene distrutta recupera HP e contrattacca; distruggerla la lascia in stato indebolito. Se e affetta da Radiance: Stellar Glimmer, gli attacchi Electro e Anemo distruggono la Ice Coffin piu efficacemente." }
           ]
         }
       ]
@@ -101,7 +104,7 @@
           "level": 105,
           "hp": 7606010,
           "advantages": ["Cryo"],
-          "disadvantages": ["Nightsoul's Blessing"],
+          "disadvantages": [],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "10%", "geo": "10%", "physical": "10%" },
           "mechanics": [
             { "title": "Preemptive Sweeper Mode", "description": "Entra subito in Sweeper Mode, aumentando RES e Flow Momentum. I danni Cryo riducono il Momentum; sotto una certa soglia smette di ruotare e perde molte RES." },
@@ -113,7 +116,7 @@
           "display_name": "Battle-Hardened Domovoy Sculptor: Gale Hewing",
           "level": 105,
           "hp": 12126455,
-          "advantages": ["Stellar Glimmer"],
+          "advantages": ["Stellar Glimmer", "Anemo"],
           "disadvantages": [],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "30%", "cryo": "30%", "geo": "10%", "physical": "10%" },
           "mechanics": [
@@ -126,7 +129,7 @@
           "display_name": "Guardian Blade of Drifting Snow: Endless Reverberation",
           "level": 105,
           "hp": 10335049,
-          "advantages": ["Stellar Glimmer"],
+          "advantages": ["Stellar Glimmer", "Pyro"],
           "disadvantages": ["Cryo"],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "50%", "geo": "10%", "physical": "10%" },
           "mechanics": [
@@ -146,7 +149,7 @@
           "level": 110,
           "hp": 14743274,
           "advantages": ["Cryo"],
-          "disadvantages": ["Nightsoul's Blessing"],
+          "disadvantages": [],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "10%", "geo": "10%", "physical": "10%" },
           "mechanics": [
             { "title": "Preemptive Sweeper Mode", "description": "Entra subito in Sweeper Mode, aumentando RES e Flow Momentum. I danni Cryo riducono il Momentum; sotto una certa soglia smette di ruotare e perde molte RES." },
@@ -159,7 +162,7 @@
           "display_name": "Battle-Hardened Domovoy Sculptor: Gale Hewing",
           "level": 110,
           "hp": 29684899,
-          "advantages": ["Stellar Glimmer"],
+          "advantages": ["Stellar Glimmer", "Anemo"],
           "disadvantages": [],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "30%", "cryo": "30%", "geo": "10%", "physical": "10%" },
           "mechanics": [
@@ -172,7 +175,7 @@
           "display_name": "Guardian Blade of Drifting Snow: Endless Reverberation",
           "level": 110,
           "hp": 21871501,
-          "advantages": ["Stellar Glimmer"],
+          "advantages": ["Stellar Glimmer", "Pyro"],
           "disadvantages": ["Cryo"],
           "resistances": { "pyro": "10%", "hydro": "10%", "dendro": "10%", "electro": "10%", "anemo": "10%", "cryo": "50%", "geo": "10%", "physical": "10%" },
           "mechanics": [

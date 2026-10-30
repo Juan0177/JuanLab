@@ -167,7 +167,7 @@
       const fromDate = formatDateLongIt(periodEntry?.from);
       const toDate = formatDateLongIt(periodEntry?.to);
       const periodLabel = periodEntry?.from && periodEntry?.to
-        ? `Periodo live: ${fromDate} ~ ${toDate}`
+        ? `Periodo ${periodEntry?.type === 'test' ? 'beta (provvisorio)' : 'live'}: ${fromDate} ~ ${toDate}`
         : (data.period ?? '');
       meta.innerHTML = `
         <div class="abyss-period">${escapeHtml(periodLabel)}</div>

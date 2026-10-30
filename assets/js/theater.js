@@ -174,7 +174,7 @@
     const fromDate = formatDateLongIt(entry?.from);
     const toDate = formatDateLongIt(entry?.to);
     const periodLabel = entry?.from && entry?.to
-      ? `Periodo live: ${fromDate} ~ ${toDate}`
+      ? `Periodo ${entry?.type === 'test' ? 'beta (provvisorio)' : 'live'}: ${fromDate} ~ ${toDate}`
       : (data.period ?? '');
 
     metaEl.innerHTML = `

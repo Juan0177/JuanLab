@@ -355,7 +355,7 @@
     "info": [""] 
   },
   {
-    "image_path": "https://api.lunaris.moe/data/assets/monstericon/UI_MonsterIcon_Shaman_None_01.png",
+    "image_path": "assets/img/enemies/UI_MonsterIcon_Shaman_None_01.webp",
     "name": "Battle-Hardened Samachurl",
     "info": [""] 
   },
@@ -1812,7 +1812,7 @@
     "info": [""] 
   },
   {
-    "image_path": "https://api.lunaris.moe/data/assets/monstericon/UI_MonsterIcon_Karzelek_Tsereteli_01.png",
+    "image_path": "assets/img/enemies/UI_MonsterIcon_Karzelek_Tsereteli_01.webp",
     "name": "Battle-Hardened Domovoy Sculptor",
     "info": [""] 
   },
@@ -1822,7 +1822,7 @@
     "info": [""] 
   },
   {
-    "image_path": "https://api.lunaris.moe/data/assets/monstericon/UI_MonsterIcon_Snegurochka_Contessa_02.png",
+    "image_path": "assets/img/enemies/UI_MonsterIcon_Snegurochka_Contessa_02.webp",
     "name": "Guardian Blade of Drifting Snow",
     "info": [""] 
   },

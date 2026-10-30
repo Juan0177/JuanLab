@@ -1,25 +1,25 @@
 {
-  "period": "Periodo live: 2026-09-17 ~ 2026-10-29",
-  "fixed_buff": "I personaggi di apertura ottengono PS max, ATT e DIF aumentati del 20%.",
+  "period": "Periodo live: 2026-10-01 ~ 2026-10-31",
+  "fixed_buff": "I personaggi di apertura avranno PS max, ATT e DIF aumentano del 20%.",
   "mechanics": {
     "recommended_elements": [
-      { "name": "Pyro", "icon": "assets/img/elements/Pyro.webp" },
       { "name": "Hydro", "icon": "assets/img/elements/Hydro.webp" },
-      { "name": "Geo", "icon": "assets/img/elements/Geo.webp" }
+      { "name": "Cryo", "icon": "assets/img/elements/Cryo.webp" },
+      { "name": "Anemo", "icon": "assets/img/elements/Anemo.webp" }
     ],
     "opening_characters": [
-      { "name": "Arlecchino", "image": "assets/img/characters/UI_AvatarIcon_Arlecchino.webp" },
-      { "name": "Bennett", "image": "assets/img/characters/UI_AvatarIcon_Bennett.webp" },
-      { "name": "Furina", "image": "assets/img/characters/UI_AvatarIcon_Furina.webp" },
-      { "name": "Xingqiu", "image": "assets/img/characters/UI_AvatarIcon_Xingqiu.webp" },
-      { "name": "Navia", "image": "assets/img/characters/UI_AvatarIcon_Navia.webp" },
-      { "name": "Illuga", "image": "assets/img/characters/UI_AvatarIcon_Illuga.webp" }
+      { "name": "Neuvillette", "image": "assets/img/characters/UI_AvatarIcon_Neuvillette.webp" },
+      { "name": "Barbara", "image": "assets/img/characters/UI_AvatarIcon_Barbara.webp" },
+      { "name": "Citlali", "image": "assets/img/characters/UI_AvatarIcon_Citlali.webp" },
+      { "name": "Kaeya", "image": "assets/img/characters/UI_AvatarIcon_Kaeya.webp" },
+      { "name": "Wanderer", "image": "assets/img/characters/UI_AvatarIcon_Wanderer.webp" },
+      { "name": "Prune", "image": "assets/img/characters/UI_AvatarIcon_Prune.webp" }
     ],
     "guest_stars": [
-      { "name": "Jean", "image": "assets/img/characters/UI_AvatarIcon_Qin.webp" },
+      { "name": "Ineffa", "image": "assets/img/characters/UI_AvatarIcon_Ineffa.webp" },
       { "name": "Yae Miko", "image": "assets/img/characters/UI_AvatarIcon_Yae.webp" },
-      { "name": "Emilie", "image": "assets/img/characters/UI_AvatarIcon_Emilie.webp" },
-      { "name": "Iansan", "image": "assets/img/characters/UI_AvatarIcon_Iansan.webp" }
+      { "name": "Thoma", "image": "assets/img/characters/UI_AvatarIcon_Tohma.webp" },
+      { "name": "Chiori", "image": "assets/img/characters/UI_AvatarIcon_Chiori.webp" }
     ],
     "season_effect_text": "After the above characters join your party, Max HP, ATK, and DEF are increased by 20%."
   },
@@ -38,53 +38,56 @@
       },
       "stages": [
         {
-          "enemy_id": "MachinaIustitia_Gravitas",
+          "enemy_id": "Apparatus_Perpetual",
           "instructions": [
-            "Act 3 · Experimental Field Generator",
-            "A large and out-of-control Fontaine Research Institute of Kinetic Energy Engineering device. During combat, it channels ousia energy to unleash a Gravity Reduction Field, letting characters jump significantly higher.",
-            "Its Gravity Reduction Field shuts down when its core is annihilated by Pneuma attacks."
+            "Act 3 · Perpetual Mechanical Array",
+            "A mysterious ruin machine that can reconfigure itself into various forms.",
+            "In battle, the Perpetual Mechanical Array will enter the Absolute Defense state, in which it splits and summons several different kinds of Ruin Sentinels.",
+            "After defeating the enhanced Ruin Sentinels, Absolute Defense state will be removed and it will enter a weakened state."
           ]
         },
         {
-          "enemy_id": "MachinaIustitia_Pylon",
+          "enemy_id": "Volkodlak_Greyhound_Furiosa",
           "instructions": [
-            "Act 6 · Veteran Arithmetic Enhancer Mek",
-            "During combat it channels ousia energy to unleash a Gravity Reduction Field.",
-            "Its core is defended by a Geo Ward. Destroy the Ward and annihilate the core with Pneuma attacks to shut the field down."
+            "Act 6 · Battle-Hardened Chimeric Volkodlak Archer",
+            "During battle, when the Nemesis burrows underground or unleashes Arrow Shower, destroying all Hindering Roots on the field will interrupt the move and leave the opponent in a weakened state.",
+            "When affected by a Stellar Glimmer Reaction, the core of the Hindering Roots will be exposed in positions that are easier to attack."
           ]
         },
         {
-          "enemy_id": "Magbeast_Gecko",
+          "enemy_id": "Chimera_Manticore",
           "instructions": [
-            "Act 8 · Radiant Moongecko",
-            "It can trap your characters in a Radiant Cocoon. Heal to full HP to escape it, which also lowers its Geo RES.",
-            "When it prepares Voidstep Reverberation, destroy the Moonstone Anchor it leaves behind to interrupt the skill and deal massive DMG to it."
+            "Act 8 · Chimeric Winged Lion",
+            "The Chimeric Winged Lion will alternate between two enhanced states: \"Thundercall\" and \"Galeforce.\"",
+            "While in the Thundercall state, breaking its Electro Ward will weaken it. Additionally, Stellar Glimmer reactions can disrupt its attempts to spread its thunder blades.",
+            "While in the Galeforce state, it will attempt to absorb any Anemo Orbs that are on the field to charge its attack. Destroy the orbs or use Stellar Glimmer reactions to stop it from charging and weaken it."
           ]
         },
         {
-          "enemy_id": "Natsaurus_Hookwalker_Primo",
+          "enemy_id": "DragonCollar",
           "instructions": [
-            "Act 10 · Gluttonous Yumkasaur Mountain King",
-            "A battle-seasoned Yumkasaurus that grew to this size due to its gluttony. It collects Flamegranates and spits them out as bombs.",
-            "Use Pyro to ignite the Flamegranates before it can swallow them to disrupt it."
+            "Act 10 · Secret Source Automaton: Overseer Device",
+            "A civilization whose magnificence once marked distant eons built this overseer device to control multiple Secret Source machines. After it enters Sweeper Mode, it will start attacking while generating Flow Momentum.",
+            "The higher its Flow Momentum, the greater the DMG it will inflict. During this time, you might be able to obstruct the buildup of Flow Momentum by using consecutive Cryo attacks...",
+            "It is said that if characters enter and maintain the Nightsoul's Blessing state when fighting against it, the Secret Source Automaton: Overseer Device will enter a special \"Counterstrike Mode\" and change its offensive strategy..."
           ]
         },
         {
-          "enemy_id": "",
-          "name": "Keep Fighting",
+          "enemy_id": "Hound_Riftstalker_Rock",
           "instructions": [
             "Extra Act 1 · Keep Fighting",
-            "Keep fighting until the countdown ends. End the stage with at least one character left standing to complete the challenge.",
-            "Each opponent you defeat takes time off the countdown."
+            "Keep fighting until the countdown ends. End the stage with at least one character left standing to successfully complete the challenge.",
+            "Each opponent you defeat will take time off the countdown.",
+            "Once the challenge begins, all party members will continuously lose small amounts of HP."
           ]
         },
         {
-          "enemy_id": "",
-          "name": "Keep Fighting",
+          "enemy_id": "Konungmathr",
           "instructions": [
             "Extra Act 2 · Keep Fighting",
-            "Keep fighting until the countdown ends. End the stage with at least one character left standing to complete the challenge.",
-            "Each opponent you defeat takes time off the countdown."
+            "Keep fighting until the countdown ends. End the stage with at least one character left standing to successfully complete the challenge.",
+            "Each opponent you defeat will take time off the countdown.",
+            "Cryo Bursts will periodically be set off, dealing Cryo DMG to your active character."
           ]
         }
       ]
@@ -101,35 +104,38 @@
       },
       "stages": [
         {
-          "enemy_id": "MachinaIustitia_Gravitas",
+          "enemy_id": "Apparatus_Perpetual",
           "instructions": [
-            "Act 3 · Experimental Field Generator",
-            "A large and out-of-control Fontaine Research Institute of Kinetic Energy Engineering device that unleashes a Gravity Reduction Field letting characters jump much higher.",
-            "Its Gravity Reduction Field shuts down when its core is annihilated by Pneuma attacks."
+            "Act 3 · Perpetual Mechanical Array",
+            "A mysterious ruin machine that can reconfigure itself into various forms.",
+            "In battle, the Perpetual Mechanical Array will enter the Absolute Defense state, in which it splits and summons several different kinds of Ruin Sentinels.",
+            "After defeating the enhanced Ruin Sentinels, Absolute Defense state will be removed and it will enter a weakened state."
           ]
         },
         {
-          "enemy_id": "MachinaIustitia_Pylon",
+          "enemy_id": "Volkodlak_Greyhound_Furiosa",
           "instructions": [
-            "Act 6 · Veteran Arithmetic Enhancer Mek",
-            "During combat it channels ousia energy to unleash a Gravity Reduction Field.",
-            "Its core is defended by a Geo Ward. Destroy the Ward and annihilate the core with Pneuma attacks to shut the field down."
+            "Act 6 · Battle-Hardened Chimeric Volkodlak Archer",
+            "During battle, when the Nemesis burrows underground or unleashes Arrow Shower, destroying all Hindering Roots on the field will interrupt the move and leave the opponent in a weakened state.",
+            "When affected by a Stellar Glimmer Reaction, the core of the Hindering Roots will be exposed in positions that are easier to attack."
           ]
         },
         {
-          "enemy_id": "Magbeast_Gecko",
+          "enemy_id": "Chimera_Manticore",
           "instructions": [
-            "Act 8 · Radiant Moongecko",
-            "It can trap your characters in a Radiant Cocoon. Heal to full HP to escape it, which also lowers its Geo RES.",
-            "When it prepares Voidstep Reverberation, destroy the Moonstone Anchor it leaves behind to interrupt the skill and deal massive DMG to it."
+            "Act 8 · Chimeric Winged Lion",
+            "The Chimeric Winged Lion will alternate between two enhanced states: \"Thundercall\" and \"Galeforce.\"",
+            "While in the Thundercall state, breaking its Electro Ward will weaken it. Additionally, Stellar Glimmer reactions can disrupt its attempts to spread its thunder blades.",
+            "While in the Galeforce state, it will attempt to absorb any Anemo Orbs that are on the field to charge its attack. Destroy the orbs or use Stellar Glimmer reactions to stop it from charging and weaken it."
           ]
         },
         {
-          "enemy_id": "Natsaurus_Hookwalker_Primo",
+          "enemy_id": "DragonCollar",
           "instructions": [
-            "Act 10 · Gluttonous Yumkasaur Mountain King",
-            "A battle-seasoned Yumkasaurus that grew to this size due to its gluttony. It collects Flamegranates and spits them out as bombs.",
-            "Use Pyro to ignite the Flamegranates before it can swallow them to disrupt it."
+            "Act 10 · Secret Source Automaton: Overseer Device",
+            "A civilization whose magnificence once marked distant eons built this overseer device to control multiple Secret Source machines. After it enters Sweeper Mode, it will start attacking while generating Flow Momentum.",
+            "The higher its Flow Momentum, the greater the DMG it will inflict. During this time, you might be able to obstruct the buildup of Flow Momentum by using consecutive Cryo attacks...",
+            "It is said that if characters enter and maintain the Nightsoul's Blessing state when fighting against it, the Secret Source Automaton: Overseer Device will enter a special \"Counterstrike Mode\" and change its offensive strategy..."
           ]
         }
       ]
@@ -146,27 +152,29 @@
       },
       "stages": [
         {
-          "enemy_id": "MachinaIustitia_Gravitas",
+          "enemy_id": "Apparatus_Perpetual",
           "instructions": [
-            "Act 3 · Experimental Field Generator",
-            "A large and out-of-control Fontaine Research Institute of Kinetic Energy Engineering device that unleashes a Gravity Reduction Field letting characters jump much higher.",
-            "Its Gravity Reduction Field shuts down when its core is annihilated by Pneuma attacks."
+            "Act 3 · Perpetual Mechanical Array",
+            "A mysterious ruin machine that can reconfigure itself into various forms.",
+            "In battle, the Perpetual Mechanical Array will enter the Absolute Defense state, in which it splits and summons several different kinds of Ruin Sentinels.",
+            "After defeating the enhanced Ruin Sentinels, Absolute Defense state will be removed and it will enter a weakened state."
           ]
         },
         {
-          "enemy_id": "MachinaIustitia_Pylon",
+          "enemy_id": "Volkodlak_Greyhound_Furiosa",
           "instructions": [
-            "Act 6 · Veteran Arithmetic Enhancer Mek",
-            "During combat it channels ousia energy to unleash a Gravity Reduction Field.",
-            "Its core is defended by a Geo Ward. Destroy the Ward and annihilate the core with Pneuma attacks to shut the field down."
+            "Act 6 · Battle-Hardened Chimeric Volkodlak Archer",
+            "During battle, when the Nemesis burrows underground or unleashes Arrow Shower, destroying all Hindering Roots on the field will interrupt the move and leave the opponent in a weakened state.",
+            "When affected by a Stellar Glimmer Reaction, the core of the Hindering Roots will be exposed in positions that are easier to attack."
           ]
         },
         {
-          "enemy_id": "Natsaurus_Hookwalker_Primo",
+          "enemy_id": "DragonCollar",
           "instructions": [
-            "Act 8 · Gluttonous Yumkasaur Mountain King",
-            "A battle-seasoned Yumkasaurus that grew to this size due to its gluttony. It collects Flamegranates and spits them out as bombs.",
-            "Use Pyro to ignite the Flamegranates before it can swallow them to disrupt it."
+            "Act 8 · Secret Source Automaton: Overseer Device",
+            "A civilization whose magnificence once marked distant eons built this overseer device to control multiple Secret Source machines. After it enters Sweeper Mode, it will start attacking while generating Flow Momentum.",
+            "The higher its Flow Momentum, the greater the DMG it will inflict. During this time, you might be able to obstruct the buildup of Flow Momentum by using consecutive Cryo attacks...",
+            "It is said that if characters enter and maintain the Nightsoul's Blessing state when fighting against it, the Secret Source Automaton: Overseer Device will enter a special \"Counterstrike Mode\" and change its offensive strategy..."
           ]
         }
       ]
@@ -183,19 +191,20 @@
       },
       "stages": [
         {
-          "enemy_id": "MachinaIustitia_Gravitas",
+          "enemy_id": "Apparatus_Perpetual",
           "instructions": [
-            "Act 3 · Experimental Field Generator",
-            "A large and out-of-control Fontaine Research Institute of Kinetic Energy Engineering device that unleashes a Gravity Reduction Field letting characters jump much higher.",
-            "Its Gravity Reduction Field shuts down when its core is annihilated by Pneuma attacks."
+            "Act 3 · Perpetual Mechanical Array",
+            "A mysterious ruin machine that can reconfigure itself into various forms.",
+            "In battle, the Perpetual Mechanical Array will enter the Absolute Defense state, in which it splits and summons several different kinds of Ruin Sentinels.",
+            "After defeating the enhanced Ruin Sentinels, Absolute Defense state will be removed and it will enter a weakened state."
           ]
         },
         {
-          "enemy_id": "MachinaIustitia_Pylon",
+          "enemy_id": "Volkodlak_Greyhound_Furiosa",
           "instructions": [
-            "Act 6 · Veteran Arithmetic Enhancer Mek",
-            "During combat it channels ousia energy to unleash a Gravity Reduction Field.",
-            "Its core is defended by a Geo Ward. Destroy the Ward and annihilate the core with Pneuma attacks to shut the field down."
+            "Act 6 · Battle-Hardened Chimeric Volkodlak Archer",
+            "During battle, when the Nemesis burrows underground or unleashes Arrow Shower, destroying all Hindering Roots on the field will interrupt the move and leave the opponent in a weakened state.",
+            "When affected by a Stellar Glimmer Reaction, the core of the Hindering Roots will be exposed in positions that are easier to attack."
           ]
         }
       ]
@@ -212,11 +221,12 @@
       },
       "stages": [
         {
-          "enemy_id": "MachinaIustitia_Gravitas",
+          "enemy_id": "Apparatus_Perpetual",
           "instructions": [
-            "Act 3 · Experimental Field Generator",
-            "A large and out-of-control Fontaine Research Institute of Kinetic Energy Engineering device that unleashes a Gravity Reduction Field letting characters jump much higher.",
-            "Its Gravity Reduction Field shuts down when its core is annihilated by Pneuma attacks."
+            "Act 3 · Perpetual Mechanical Array",
+            "A mysterious ruin machine that can reconfigure itself into various forms.",
+            "In battle, the Perpetual Mechanical Array will enter the Absolute Defense state, in which it splits and summons several different kinds of Ruin Sentinels.",
+            "After defeating the enhanced Ruin Sentinels, Absolute Defense state will be removed and it will enter a weakened state."
           ]
         }
       ]

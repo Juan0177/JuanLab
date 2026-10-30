@@ -121,7 +121,7 @@
 
   function renderMeta(data, entry) {
     const periodLabel = entry?.from && entry?.to
-      ? `Periodo live: ${formatDateLongIt(entry.from)} ~ ${formatDateLongIt(entry.to)}`
+      ? `Periodo ${entry?.type === 'test' ? 'beta (provvisorio)' : 'live'}: ${formatDateLongIt(entry.from)} ~ ${formatDateLongIt(entry.to)}`
       : (data.period ?? '');
 
     metaEl.innerHTML = `
