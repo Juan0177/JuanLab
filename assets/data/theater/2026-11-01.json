@@ -17,8 +17,8 @@
     ],
     "guest_stars": [
       { "name": "Qiqi", "image": "assets/img/characters/UI_AvatarIcon_Qiqi.webp" },
-      { "name": "Diona", "image": "assets/img/characters/UI_AvatarIcon_Diona.webp" },
-      { "name": "Nefer", "image": "assets/img/characters/UI_AvatarIcon_Nefer.webp" },
+      { "name": "Odette", "image": "assets/img/characters/UI_AvatarIcon_Odette.webp" },
+      { "name": "Vesna", "image": "assets/img/characters/UI_AvatarIcon_Vesna.webp" },
       { "name": "Jahoda", "image": "assets/img/characters/UI_AvatarIcon_Jahoda.webp" }
     ],
     "season_effect_text": "After the above characters join your party, Max HP, ATK, and DEF are increased by 20%."
@@ -41,9 +41,9 @@
           "enemy_id": "Fungus_Raptor",
           "instructions": [
             "Act 3 · Jadeplume Terrorshroom",
-            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation.",
-            "When it is hit by Pyro attacks, it will lose Activation progress. When it accumulates sufficient Activation, it will enter an Activated state.",
-            "An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted. When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched."
+            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation. When it is hit by Pyro attacks, it will lose Activation progress.",
+            "When it accumulates sufficient Activation, it will enter an Activated state. An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted.",
+            "When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched. It will then spread spores around to create Fungi in an attempt to escape this status."
           ]
         },
         {
@@ -51,17 +51,17 @@
           "instructions": [
             "Act 6 · Lord of the Hidden Depths: Whisperer of Nightmares",
             "Lord of the swarm of monsters that surged through the Rift of Hidden Depths.",
-            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths.",
-            "The shield(s) can only be broken by Elemental Attacks or reaction DMG. Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
+            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths. The shield(s) can only be broken by Elemental Attacks or reaction DMG.",
+            "Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
           ]
         },
         {
           "enemy_id": "Shaman_None_01",
           "instructions": [
             "Act 8 · Battle-Hardened Samachurl",
-            "During battle, the Nemesis will set up a bonfire and a Delicious Hot Pot at the center of the field, then attempt to cook a pot of its secret rich soup within a set period of time.",
-            "Extinguish the bonfire to halt the cooking progress. Destroy the Delicious Hot Pot before the soup is ready to leave the Nemesis in a weakened state.",
-            "If the timer expires without the soup being completed, hunger will drive the Nemesis into the extremely dangerous \"Enraged\" state. However, if it is allowed to finish cooking, it will recover HP and gain greatly increased All Elemental RES and Physical RES."
+            "During battle, the Nemesis will set up a bonfire and a Delicious Hot Pot at the center of the field, then attempt to finish cooking a pot of its signature soup. Extinguish the bonfire to halt the cooking progress.",
+            "Destroy the Delicious Hot Pot before the soup is ready to leave the Nemesis in a weakened state. If the timer expires and the soup is incomplete, hunger will drive the Nemesis into the extremely dangerous \"Enraged\" state.",
+            "However, if the soup is done, the Nemesis will recover HP and gain greatly increased All Elemental RES and Physical RES."
           ]
         },
         {
@@ -74,8 +74,7 @@
           ]
         },
         {
-          "enemy_id": "",
-          "name": "Keep Fighting",
+          "enemy_id": "Panther_Sacred_Grass",
           "instructions": [
             "Extra Act 1 · Keep Fighting",
             "Keep fighting until the countdown ends. End the stage with at least one character left standing to successfully complete the challenge.",
@@ -87,9 +86,9 @@
           "enemy_id": "Wayob_Shamansaurus",
           "instructions": [
             "Extra Act 2 · Potapo's Solidarity: Secret Shadow's Re-Emergence",
-            "A Biting-Cold Wayob Manifestation that once appeared in a special trial.",
-            "Will manifest during combat as a \"Protection Spirit\" and a \"Hostile Spirit.\" Of the two types, the Protection Spirit will create a spirit connection with the character, and when each member of the party receives healing, HP will be recovered for the Protection Spirit.",
-            "When the Protection Spirit's HP is fully restored, it will use the coordinated attack \"Pierce: Binding of Dawn and Dusk's Breaking\" to attack the Hostile Spirit."
+            "A Biting-Cold Wayob Manifestation that once appeared in a special trial. Will manifest during combat as a \"Protection Spirit\" and a \"Hostile Spirit.\" Of the two types, the Protection Spirit will form a spiritual connection with the character, and whenever a member of the party receives healing, the Protection Spirit will also recover HP.",
+            "When the Protection Spirit's HP is fully restored, it will use the coordinated attack \"Pierce: Binding of Dawn and Dusk's Breaking\" to attack the Hostile Spirit.",
+            "Moreover, the more HP restored to the Protection Spirit, the greater its damage. Eventually, Pierce: Binding of Dawn and Dusk's Breaking can transform into the more powerful Decisive: Binding of Dawn and Dusk's Breaking."
           ]
         }
       ]
@@ -109,9 +108,9 @@
           "enemy_id": "Fungus_Raptor",
           "instructions": [
             "Act 3 · Jadeplume Terrorshroom",
-            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation.",
-            "When it is hit by Pyro attacks, it will lose Activation progress. When it accumulates sufficient Activation, it will enter an Activated state.",
-            "An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted. When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched."
+            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation. When it is hit by Pyro attacks, it will lose Activation progress.",
+            "When it accumulates sufficient Activation, it will enter an Activated state. An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted.",
+            "When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched. It will then spread spores around to create Fungi in an attempt to escape this status."
           ]
         },
         {
@@ -119,17 +118,17 @@
           "instructions": [
             "Act 6 · Lord of the Hidden Depths: Whisperer of Nightmares",
             "Lord of the swarm of monsters that surged through the Rift of Hidden Depths.",
-            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths.",
-            "The shield(s) can only be broken by Elemental Attacks or reaction DMG. Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
+            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths. The shield(s) can only be broken by Elemental Attacks or reaction DMG.",
+            "Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
           ]
         },
         {
           "enemy_id": "Shaman_None_01",
           "instructions": [
             "Act 8 · Battle-Hardened Samachurl",
-            "During battle, the Nemesis will set up a bonfire and a Delicious Hot Pot at the center of the field, then attempt to cook a pot of its secret rich soup within a set period of time.",
-            "Extinguish the bonfire to halt the cooking progress. Destroy the Delicious Hot Pot before the soup is ready to leave the Nemesis in a weakened state.",
-            "If the timer expires without the soup being completed, hunger will drive the Nemesis into the extremely dangerous \"Enraged\" state. However, if it is allowed to finish cooking, it will recover HP and gain greatly increased All Elemental RES and Physical RES."
+            "During battle, the Nemesis will set up a bonfire and a Delicious Hot Pot at the center of the field, then attempt to finish cooking a pot of its signature soup. Extinguish the bonfire to halt the cooking progress.",
+            "Destroy the Delicious Hot Pot before the soup is ready to leave the Nemesis in a weakened state. If the timer expires and the soup is incomplete, hunger will drive the Nemesis into the extremely dangerous \"Enraged\" state.",
+            "However, if the soup is done, the Nemesis will recover HP and gain greatly increased All Elemental RES and Physical RES."
           ]
         },
         {
@@ -158,9 +157,9 @@
           "enemy_id": "Fungus_Raptor",
           "instructions": [
             "Act 3 · Jadeplume Terrorshroom",
-            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation.",
-            "When it is hit by Pyro attacks, it will lose Activation progress. When it accumulates sufficient Activation, it will enter an Activated state.",
-            "An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted. When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched."
+            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation. When it is hit by Pyro attacks, it will lose Activation progress.",
+            "When it accumulates sufficient Activation, it will enter an Activated state. An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted.",
+            "When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched. It will then spread spores around to create Fungi in an attempt to escape this status."
           ]
         },
         {
@@ -168,17 +167,17 @@
           "instructions": [
             "Act 6 · Lord of the Hidden Depths: Whisperer of Nightmares",
             "Lord of the swarm of monsters that surged through the Rift of Hidden Depths.",
-            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths.",
-            "The shield(s) can only be broken by Elemental Attacks or reaction DMG. Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
+            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths. The shield(s) can only be broken by Elemental Attacks or reaction DMG.",
+            "Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
           ]
         },
         {
           "enemy_id": "Shaman_None_01",
           "instructions": [
             "Act 8 · Battle-Hardened Samachurl",
-            "During battle, the Nemesis will set up a bonfire and a Delicious Hot Pot at the center of the field, then attempt to cook a pot of its secret rich soup within a set period of time.",
-            "Extinguish the bonfire to halt the cooking progress. Destroy the Delicious Hot Pot before the soup is ready to leave the Nemesis in a weakened state.",
-            "If the timer expires without the soup being completed, hunger will drive the Nemesis into the extremely dangerous \"Enraged\" state. However, if it is allowed to finish cooking, it will recover HP and gain greatly increased All Elemental RES and Physical RES."
+            "During battle, the Nemesis will set up a bonfire and a Delicious Hot Pot at the center of the field, then attempt to finish cooking a pot of its signature soup. Extinguish the bonfire to halt the cooking progress.",
+            "Destroy the Delicious Hot Pot before the soup is ready to leave the Nemesis in a weakened state. If the timer expires and the soup is incomplete, hunger will drive the Nemesis into the extremely dangerous \"Enraged\" state.",
+            "However, if the soup is done, the Nemesis will recover HP and gain greatly increased All Elemental RES and Physical RES."
           ]
         }
       ]
@@ -198,9 +197,9 @@
           "enemy_id": "Fungus_Raptor",
           "instructions": [
             "Act 3 · Jadeplume Terrorshroom",
-            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation.",
-            "When it is hit by Pyro attacks, it will lose Activation progress. When it accumulates sufficient Activation, it will enter an Activated state.",
-            "An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted. When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched."
+            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation. When it is hit by Pyro attacks, it will lose Activation progress.",
+            "When it accumulates sufficient Activation, it will enter an Activated state. An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted.",
+            "When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched. It will then spread spores around to create Fungi in an attempt to escape this status."
           ]
         },
         {
@@ -208,8 +207,8 @@
           "instructions": [
             "Act 6 · Lord of the Hidden Depths: Whisperer of Nightmares",
             "Lord of the swarm of monsters that surged through the Rift of Hidden Depths.",
-            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths.",
-            "The shield(s) can only be broken by Elemental Attacks or reaction DMG. Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
+            "Lord of the Hidden Depths: Whisperer of Nightmares will deploy the Deepdark Shield in combat, summoning several Fishers of Hidden Depths. The shield(s) can only be broken by Elemental Attacks or reaction DMG.",
+            "Lunar Reaction DMG is especially effective at breaking the shield(s). Additionally, defeating a summoned Fisher of Hidden Depths will also deal damage to its shield."
           ]
         }
       ]
@@ -229,9 +228,9 @@
           "enemy_id": "Fungus_Raptor",
           "instructions": [
             "Act 3 · Jadeplume Terrorshroom",
-            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation.",
-            "When it is hit by Pyro attacks, it will lose Activation progress. When it accumulates sufficient Activation, it will enter an Activated state.",
-            "An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted. When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched."
+            "An evolved Fungus. When it is hit by Electro attacks and Catalyze reactions, it will accumulate Activation. When it is hit by Pyro attacks, it will lose Activation progress.",
+            "When it accumulates sufficient Activation, it will enter an Activated state. An activated Jadeplume Terrorshroom will unleash more fearsome attacks until it becomes exhausted.",
+            "When it is not Activated, the Jadeplume Terrorshroom can be put into a Burning state via the use of Pyro, which will cause it to become Scorched. It will then spread spores around to create Fungi in an attempt to escape this status."
           ]
         }
       ]
