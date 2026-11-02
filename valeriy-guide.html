@@ -1,0 +1,393 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Guida Valeriy C0–C6 (7.2): Quills, costellazioni e team | JuanLab</title>
+  <meta name="description" content="Guida rapida a Valeriy in Genshin Impact 7.2: build, Supercharged Shield, Quills (Offensive Directive), Elemental Burst, Constellations da C0 a C6, team con Mitya e Nefer e showcase Stygian Onslaught." />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
+  <link rel="stylesheet" href="assets/css/guide-page.css?v=20261030-2" />
+</head>
+<body>
+  <canvas id="stars"></canvas>
+
+  <main class="container guide-page">
+    <header class="guide-header">
+      <a href="current-pg.html">&larr; Torna alla pagina guida</a>
+      <a href="index.html">JuanLab home</a>
+    </header>
+
+    <section class="guide-top" aria-label="Riassunto Valeriy">
+      <div class="guide-art">
+        <img src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="Valeriy" width="256" height="256" />
+        <span class="badge">Electro &middot; Sword &middot; 4&#9733;</span>
+      </div>
+
+      <div class="guide-copy">
+        <p class="eyebrow">Guida rapida &middot; versione 7.2</p>
+        <h1>Valeriy</h1>
+        <p>
+          Riassunto della build, del kit, delle Constellations e dei team di <strong>Valeriy</strong>, basato sullo showcase
+          <a href="https://youtu.be/gw3YoSyO6TM" rel="noopener">&ldquo;Valeriy is kinda Busted? But at a cost... Genshin Impact 7.2&rdquo;</a> di IWinToLose Gaming.
+          &Egrave; un 4&#9733; Electro che d&agrave; uno <strong>scudo</strong>, le <strong>Quills</strong> e buff ai danni Electro e Stellar-Conduct: in pratica &egrave; costruito per supportare <a href="mitya-guide.html">Mitya</a>.
+        </p>
+        <div class="summary-box">
+          <div class="summary-tile"><strong>Ruolo</strong><span>Support / Shielder</span></div>
+          <div class="summary-tile"><strong>Scaling</strong><span>ATK</span></div>
+          <div class="summary-tile"><strong>Testato a</strong><span>C0 &rarr; C6 &middot; Talents 10/10/9</span></div>
+          <div class="summary-tile"><strong>Constellations chiave</strong><span>C2 e C6</span></div>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="valeriy-build">
+      <div class="section-head">
+        <h2 id="valeriy-build">1. Build</h2>
+        <span>Stats, Weapon e Artifacts</span>
+      </div>
+
+      <div class="split">
+        <div class="split-copy">
+          <h3>Stats e Weapon</h3>
+          <ul>
+            <li><strong>3.336 ATK</strong> (820 base + 2.516): scudo e Quills scalano sull&rsquo;<strong>ATK</strong>.</li>
+            <li><strong>194,6% Energy Recharge</strong>: pi&ugrave; di quanto gli serva di solito; a C0 per&ograve; un po&rsquo; di ricarica in pi&ugrave; aiuta.</li>
+            <li>CRIT Rate 15,1% e CRIT DMG 55,4%: i suoi danni personali contano poco.</li>
+            <li>Weapon: <strong>Finale of the Deep R5</strong> (+24% ATK dopo l&rsquo;Elemental Skill, pi&ugrave; ATK extra quando il Bond of Life viene rimosso).</li>
+          </ul>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/01-stats.webp" alt="Stats di Valeriy: 3336 ATK, 194,6% Energy Recharge" loading="lazy" width="1280" height="720" />
+          <figcaption>Stats della build usata nel video.</figcaption>
+        </figure>
+      </div>
+
+      <div class="split reverse">
+        <div class="split-copy">
+          <h3>Artifacts</h3>
+          <ul>
+            <li><strong>2pz Heart of the Furnace + 2pz Disenchantment in Deep Shadow</strong> (+18% ATK e +18% ATK).</li>
+            <li>Secondo il creator funzionano anche molti altri set: l&rsquo;importante &egrave; spingere l&rsquo;ATK.</li>
+          </ul>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/02-artefatti.webp" alt="Artifacts di Valeriy: 2 pezzi Heart of the Furnace e 2 pezzi Disenchantment in Deep Shadow" loading="lazy" width="1280" height="720" />
+          <figcaption>2+2 a ATK.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="valeriy-kit">
+      <div class="section-head">
+        <h2 id="valeriy-kit">2. Kit</h2>
+        <span>Scudo, Impact Momentum e Quills</span>
+      </div>
+
+      <p><strong>Normal Attack:</strong> solo 3 colpi da spada, danno Physical quasi inutile. Il talento &egrave; comunque importante, perch&eacute; le Quills scalano sul suo livello.</p>
+
+      <div class="split">
+        <div class="split-copy">
+          <h3>Elemental Skill: Active Defense: Bastion Charge</h3>
+          <ul>
+            <li>Carica in avanti con lo scudo: danno Electro ad area e <strong>+40 Impact Momentum</strong> (massimo 100).</li>
+            <li>Crea un <strong>Supercharged Shield</strong> che scala sull&rsquo;ATK (376% ATK + 2.881 a Lv. 10), con efficacia del <strong>250% contro i danni Electro</strong>.</li>
+            <li>Durata <strong>18 s</strong>, cooldown <strong>10 s</strong>. Nella build del video assorbe <strong>16.163</strong> danni (di solito 13k&ndash;18k).</li>
+          </ul>
+          <h3 style="margin-top: 1rem;">Charged Attack speciale</h3>
+          <p>Con almeno <strong>40 Impact Momentum</strong> pu&ograve; usare <strong>Direct-Fire Mortar: Point-Blank Bombardment</strong>: consuma tutto l&rsquo;Impact, infligge danno Electro ad area e d&agrave; <strong>15 stack di Offensive Directive</strong> (le &ldquo;Quills&rdquo;) al team. Entro 0,8 s dopo Elemental Skill o Burst basta premere Normal Attack per farlo partire subito.</p>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/03-scudo.webp" alt="Valori dello scudo di Valeriy: 376% ATK + 2881, durata 18 secondi, cooldown 10 secondi" loading="lazy" width="1280" height="720" />
+          <figcaption>Scudo a Lv. 10: 376% ATK + 2.881, 18 s di durata.</figcaption>
+        </figure>
+      </div>
+
+      <div class="split reverse" style="margin-top: 1.2rem;">
+        <div class="split-copy">
+          <h3>Quills (Offensive Directive)</h3>
+          <ul>
+            <li>Aggiungono <strong>danno piatto</strong> che scala sull&rsquo;ATK di Valeriy (talento Normal Attack + passiva <strong>Into the Breach</strong>).</li>
+            <li>Per ogni punto di Impact consumato: <strong>+0,9% ATK</strong> se lo Stellar-Conduct &egrave; attivo, <strong>+0,3% ATK</strong> altrimenti.</li>
+            <li><strong>Con Stellar-Conduct attivo</strong> valgono solo per i danni Stellar-Conduct del personaggio in campo; <strong>senza</strong>, valgono per tutti i danni Electro.</li>
+            <li><strong>Non</strong> funzionano con i danni Lunar-Charged.</li>
+          </ul>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/04-quills-tabella.webp" alt="Tabella del danno delle Quills di Valeriy C0 con 3533 ATK in base all'Impact" loading="lazy" width="1280" height="720" />
+          <figcaption>Valore delle Quills a C0 (3.533 ATK, Normal Attack Lv. 10).</figcaption>
+        </figure>
+      </div>
+
+      <div class="table-wrap" style="margin-top: 1rem;">
+        <table class="guide-table">
+          <thead>
+            <tr>
+              <th scope="col">Impact</th>
+              <th scope="col">Quill Electro</th>
+              <th scope="col">15 Quills Electro</th>
+              <th scope="col">Quill Stellar-Conduct</th>
+              <th scope="col">15 Quills Stellar-Conduct</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>40</td><td>1.971</td><td>29.561</td><td>5.912</td><td>88.677</td></tr>
+            <tr><td>60</td><td>2.183</td><td>32.740</td><td>6.548</td><td>98.216</td></tr>
+            <tr><td>80</td><td>2.395</td><td>35.920</td><td>7.184</td><td>107.755</td></tr>
+            <tr><td>100</td><td>2.607</td><td>39.100</td><td>7.820</td><td>117.294</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <div class="figure-grid">
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/05-quills-mitya.webp" alt="Test del danno di Mitya senza Quills, con 40 Impact e con 100 Impact" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Con Mitya</strong> (Stellar-Conduct): 43.906 &rarr; 58.518 con 40 Impact (+33%) &rarr; 63.233 con 100 Impact (+44%).</figcaption>
+        </figure>
+        <div class="panel">
+          <h3>Stellar-Conduct o Electro puro?</h3>
+          <p>Le Quills rendono molto di pi&ugrave; sullo <strong>Stellar-Conduct</strong>. Con Electro puro (test con Clorinde C1R1) il guadagno &egrave; enorme finch&eacute; durano, ma lei le consuma in fretta: in tutta la rotazione aggiungono circa <strong>90&ndash;125k</strong> danni. Sono quindi utili anche cos&igrave;, ma meno.</p>
+        </div>
+      </div>
+
+      <div class="split" style="margin-top: 1.2rem;">
+        <div class="split-copy">
+          <h3>Elemental Burst: Focused Fire: Lightning Salvo</h3>
+          <ul>
+            <li>Un colpo iniziale e circa <strong>21 proiettili</strong>: contro un singolo nemico sono circa <strong>7 applicazioni Electro</strong>; con pi&ugrave; nemici cambia bersaglio.</li>
+            <li>Mentre &egrave; attivo, ogni colpo Electro o Electro Stellar-Conduct del personaggio in campo (non Valeriy) gli d&agrave; <strong>+5 Impact</strong>, fino a <strong>80</strong> per Burst (passiva <strong>Advance With the Creeping Barrage</strong>).</li>
+            <li>Skill + Burst sono il modo per arrivare a <strong>100 Impact</strong> in una rotazione.</li>
+          </ul>
+          <p>Extra: +25% di ricompense dalle spedizioni a Snezhnaya.</p>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/06-burst.webp" alt="Proprietà dell'Elemental Burst di Valeriy: circa 7 applicazioni Electro e 21 proiettili" loading="lazy" width="1280" height="720" />
+          <figcaption>Circa 7 applicazioni Electro su un bersaglio singolo.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="valeriy-rotazione">
+      <div class="section-head">
+        <h2 id="valeriy-rotazione">3. Rotazione</h2>
+        <span>Burst, Skill e Charged Attack speciale</span>
+      </div>
+
+      <div class="split">
+        <div class="split-copy">
+          <p>Una rotazione tipica &egrave; <strong>Elemental Burst + Elemental Skill + Charged Attack speciale</strong>. L&rsquo;ordine &egrave; flessibile, si pu&ograve; dividere tra pi&ugrave; ingressi in campo e a volte conviene usare la skill pi&ugrave; volte.</p>
+          <span class="rotation-label">Varianti mostrate nel video</span>
+          <p class="rotation">E Q C &middot; E C Q &middot; Q C E &middot; E C (split) Q &middot; Q C (split) E &middot; E C (split) E C</p>
+          <div class="quote-block">
+            <ul>
+              <li><strong>Costo:</strong> occupa parecchio tempo in campo, circa <strong>3 s</strong> per rotazione nella maggior parte dei team.</li>
+            </ul>
+          </div>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/07-rotazioni.webp" alt="Varianti di rotazione di Valeriy: EQC, ECQ, QCE e versioni divise" loading="lazy" width="1280" height="720" />
+          <figcaption>Le varianti di rotazione provate dal creator.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="valeriy-costellazioni">
+      <div class="section-head">
+        <h2 id="valeriy-costellazioni">4. Constellations</h2>
+        <span>Test con il Charged Attack di Mitya</span>
+      </div>
+
+      <div class="split">
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Constellation</th>
+                <th scope="col">Danno Mitya</th>
+                <th scope="col">Totale</th>
+                <th scope="col">Guadagno</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Solo Mitya</td><td>43.906</td><td>100%</td><td>&ndash;</td></tr>
+              <tr><td>C0 Valeriy</td><td>63.233</td><td>144,0%</td><td>+44,0%</td></tr>
+              <tr><td>C2 Valeriy<small>+100 Elemental Mastery</small></td><td>70.461</td><td>160,5%</td><td>+11,4%</td></tr>
+              <tr><td>C3 Valeriy<small>+3 livelli Normal Attack</small></td><td>72.532</td><td>165,2%</td><td>+2,9%</td></tr>
+              <tr><td>C4 Valeriy<small>+30 Impact massimo</small></td><td>74.889</td><td>170,6%</td><td>+3,2%</td></tr>
+              <tr><td>C6 Valeriy<small>60 di CRIT value</small></td><td>96.382</td><td>219,5%</td><td>+28,7%</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/08-costellazioni.webp" alt="Tabella del guadagno di danno di Mitya con Valeriy da C0 a C6" loading="lazy" width="1280" height="720" />
+          <figcaption>Per il test di C6 Mitya passa a un diadema CRIT DMG.</figcaption>
+        </figure>
+      </div>
+
+      <div class="panel-grid" style="margin-top: 1rem;">
+        <article class="panel">
+          <h3>C1</h3>
+          <p>Migliora l&rsquo;energia (Burst pi&ugrave; affidabile gi&agrave; dalla prima rotazione) e la prima Elemental Skill in combattimento d&agrave; <strong>60 Impact</strong> invece di 40.</p>
+        </article>
+        <article class="panel">
+          <h3>C2</h3>
+          <p><strong>+100 Elemental Mastery a tutto il team</strong> per 18 s dopo l&rsquo;Elemental Skill. L&rsquo;Impact in eccesso rinforza lo scudo.</p>
+        </article>
+        <article class="panel">
+          <h3>C3 &middot; C4 &middot; C5</h3>
+          <p>C3: +3 livelli al Normal Attack (Quills un po&rsquo; pi&ugrave; forti). C4: Impact massimo <strong>130</strong>. C5: +3 livelli all&rsquo;Elemental Skill. Guadagni piccoli.</p>
+        </article>
+        <article class="panel">
+          <h3>C6</h3>
+          <p><strong>+10% CRIT Rate e +40% CRIT DMG</strong> ai danni Electro Stellar-Conduct. Secondo il creator funziona come un debuff sul nemico per circa 7 s, quindi potenzia anche Yae Miko (da verificare).</p>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="valeriy-team">
+      <div class="section-head">
+        <h2 id="valeriy-team">5. Team</h2>
+        <span>Nato per Mitya, con qualche sorpresa</span>
+      </div>
+
+      <div class="panel-grid team-grid">
+        <article class="panel team-card">
+          <h3>Mitya (uso principale)</h3>
+          <div class="character-icons">
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" loading="lazy" />Mitya</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Odette.webp" alt="" loading="lazy" />Odette</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Yae.webp" alt="" loading="lazy" />Yae Miko</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" loading="lazy" />Valeriy</span>
+          </div>
+          <p>Con Valeriy C0 Mitya ha bisogno di Burst e qualche colpo in pi&ugrave; per finire il Kongamato. Con <strong>Valeriy C6</strong> lo uccide con la prima raffica e ha ancora due raffiche a disposizione. C&rsquo;&egrave; anche una versione F2P con Diona e Sucrose.</p>
+        </article>
+
+        <article class="panel team-card">
+          <h3>Cyno</h3>
+          <div class="character-icons">
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Cyno.webp" alt="" loading="lazy" />Cyno</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Odette.webp" alt="" loading="lazy" />Odette</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" loading="lazy" />Mitya</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" loading="lazy" />Valeriy</span>
+          </div>
+          <p>Secondo il creator &egrave; uno dei personaggi che sfrutta meglio Valeriy: Cyno fa parecchi danni Stellar-Conduct, quindi usa bene le Quills (showcase con Cyno C1 e R5 Deathmatch).</p>
+        </article>
+
+        <article class="panel team-card">
+          <h3>Electro puro (Clorinde, Varesa, Flins)</h3>
+          <div class="character-icons">
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Clorinde.webp" alt="" loading="lazy" />Clorinde</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Varesa.webp" alt="" loading="lazy" />Varesa</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Flins.webp" alt="" loading="lazy" />Flins</span>
+          </div>
+          <p>Si pu&ograve; usare, ma ci sono opzioni migliori, ad esempio <strong>Nicole</strong>: senza Stellar-Conduct il +40% CRIT DMG della C6 non si applica e l&rsquo;Elemental Mastery della C2 &egrave; quasi sprecata. Con Flins rimangono solo il +10% CRIT Rate e l&rsquo;Elemental Mastery, perch&eacute; i danni Lunar-Charged non ricevono le Quills.</p>
+        </article>
+
+        <article class="panel team-card">
+          <h3>Sorpresa: Nefer (C2)</h3>
+          <div class="character-icons">
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Nefer.webp" alt="" loading="lazy" />Nefer</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Lauma.webp" alt="" loading="lazy" />Lauma</span>
+            <span class="character-icon"><img src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" loading="lazy" />Valeriy C2</span>
+          </div>
+          <p>Con <strong>C2</strong> (+100 Elemental Mastery a tutto il team) e set Instructor&rsquo;s + Sapwood Blade, Valeriy diventa una scelta valida come 4&deg; slot per Nefer, che ha pochi buffer di Elemental Mastery. Il buff aiuta anche Lauma. Il creator la definisce una &ldquo;sleeper choice&rdquo;.</p>
+        </article>
+      </div>
+
+      <div class="figure-grid">
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/09-team-mitya-c6.webp" alt="Team premium di Mitya con Valeriy C6" loading="lazy" width="1280" height="720" />
+          <figcaption>Mitya premium con Valeriy C6.</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/10-team-cyno.webp" alt="Cyno C1 con R5 Deathmatch e Valeriy C6" loading="lazy" width="1280" height="720" />
+          <figcaption>Cyno C1 R5 Deathmatch con Valeriy C6.</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/11-team-nefer.webp" alt="Team Nefer con Valeriy C2 che attiva Lunar-Bloom" loading="lazy" width="1280" height="720" />
+          <figcaption>Nefer con Valeriy C2: il team Lunar-Bloom approfitta dell&rsquo;Elemental Mastery.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="valeriy-stygian">
+      <div class="section-head">
+        <h2 id="valeriy-stygian">6. Stygian Onslaught: Wavebinder</h2>
+        <span>Valeriy C0 contro C6</span>
+      </div>
+
+      <p>Con <strong>Valeriy C6</strong> il team Mitya / Odette / Yae / Valeriy scende da <strong>90 s a 71 s</strong>, superando perfino il team Sandrone. Il boss favorisce Mitya pi&ugrave; di Sandrone, ma il salto resta enorme.</p>
+
+      <span class="rotation-label">Loop (DPS Mitya + Valeriy C6)</span>
+      <p class="rotation">Yae EEE &rarr; Valeriy EC &rarr; Mitya C5, tap E &rarr; Odette EE &rarr; Valeriy Q &rarr; Mitya E (swap), C5, Q, C5</p>
+
+      <div class="split" style="margin-top: 1rem;">
+        <div class="table-wrap">
+          <table class="guide-table">
+            <thead>
+              <tr>
+                <th scope="col">Team</th>
+                <th scope="col">Tempo</th>
+                <th scope="col">Costo</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>C0 Mitya &middot; C0 Odette &middot; C1 Yae &middot; <strong>C6 Valeriy</strong><small>Sacrificial &middot; Exaiphanes &middot; Widsith &middot; Finale</small></td><td>71 s</td><td>3</td></tr>
+              <tr><td>C0 Sandrone &middot; C0 Odette &middot; C1 Yae &middot; C0 Mitya<small>Atonement &middot; Exaiphanes &middot; Widsith &middot; Sacrificial</small></td><td>73 s</td><td>4</td></tr>
+              <tr><td>C6 Cryo Traveler &middot; C0 Odette &middot; C1 Yae &middot; C0 Mitya<small>Exaiphanes &middot; Emberwell &middot; Widsith &middot; Sacrificial</small></td><td>79 s</td><td>3</td></tr>
+              <tr><td>C1 Cyno &middot; C0 Odette &middot; C1 Yae &middot; C0 Mitya<small>R5 Deathmatch &middot; Exaiphanes &middot; Widsith &middot; Sacrificial</small></td><td>80 s</td><td>4</td></tr>
+              <tr><td>C1 Wriothesley &middot; C0 Odette &middot; C1 Yae &middot; C0 Mitya<small>Echoes &middot; Exaiphanes &middot; Widsith &middot; Sacrificial</small></td><td>83 s</td><td>4</td></tr>
+              <tr><td>C0 Mitya &middot; C0 Odette &middot; C1 Yae &middot; <strong>C0 Valeriy</strong><small>Sacrificial &middot; Exaiphanes &middot; Widsith &middot; Finale</small></td><td>90 s</td><td>3</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/valeriy/12-stygian-team.webp" alt="Tabella dei tempi di clear contro il Wavebinder con Valeriy C0 e C6" loading="lazy" width="1280" height="720" />
+          <figcaption>Tempi di clear contro il Wavebinder (&ldquo;Drunkard&rdquo;).</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="valeriy-verdetto">
+      <div class="section-head">
+        <h2 id="valeriy-verdetto">7. Conclusione: vale la pena?</h2>
+        <span>Verdetto del creator</span>
+      </div>
+
+      <div class="decision-grid">
+        <div class="decision-box ok">
+          <h3>Punti di forza</h3>
+          <ul>
+            <li>&Egrave; il 4&deg; slot ideale per <strong>Mitya</strong>: +44% di danno gi&agrave; a C0, oltre il +100% a C6.</li>
+            <li>A <strong>C6</strong> secondo il creator potrebbe essere migliore di altri 4&#9733; &ldquo;da un solo team&rdquo; come Illuga o Alyosha, almeno per il team che supporta.</li>
+            <li>Buffa anche <strong>Yae Miko</strong> nello stesso team.</li>
+            <li>Con <strong>C2</strong> &egrave; una sorpresa per <strong>Nefer</strong>: +100 Elemental Mastery a tutto il team.</li>
+            <li>Scudo solido, molto forte contro i danni Electro.</li>
+          </ul>
+        </div>
+        <div class="decision-box warning">
+          <h3>Il prezzo da pagare</h3>
+          <ul>
+            <li>Circa <strong>3 s</strong> di tempo in campo per rotazione.</li>
+            <li>Per l&rsquo;Electro puro ci sono opzioni migliori (es. Nicole).</li>
+            <li>Le Quills non funzionano con i danni Lunar-Charged.</li>
+            <li>Il grosso del valore arriva a <strong>C2</strong> e soprattutto <strong>C6</strong>: C3, C4 e C5 aggiungono poco.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="source-note">
+        Fonte: <a href="https://youtu.be/gw3YoSyO6TM" rel="noopener">IWinToLose Gaming &mdash; &ldquo;Valeriy is kinda Busted? But at a cost... Genshin Impact 7.2&rdquo;</a>.
+        Screenshot tratti dal video; numeri e tempi riferiti agli showcase del creator.
+      </p>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>JuanLab &mdash; Guida Valeriy 7.2</small>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260923-1"></script>
+</body>
+</html>
