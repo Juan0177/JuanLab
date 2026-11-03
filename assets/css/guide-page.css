@@ -485,6 +485,22 @@ body > footer {
   border-bottom: 0;
 }
 
+/* Build in breve: tabella voce / valore */
+.build-quick .section-head h1 {
+  margin: 0;
+  font-size: clamp(1.4rem, 2.6vw, 2.1rem);
+}
+
+.build-table .guide-table th[scope="row"] {
+  width: 11rem;
+  vertical-align: top;
+}
+
+.build-table .guide-table td {
+  white-space: normal;
+  line-height: 1.6;
+}
+
 /* Verdetto */
 .decision-grid {
   display: grid;
@@ -557,6 +573,16 @@ body > footer {
 
   .section-head span {
     text-align: left;
+  }
+
+  .build-table .guide-table tr {
+    display: grid;
+  }
+
+  .build-table .guide-table th[scope="row"] {
+    width: auto;
+    padding-bottom: 0;
+    border-bottom: 0;
   }
 }
 
