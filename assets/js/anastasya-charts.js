@@ -1,5 +1,5 @@
 // Grafici della pagina anastasya-impressions.html (SVG inline, nessuna libreria).
-// Dati: danni Stellar della Tsaritsa letti dai video (vedi tabella "Danni annotati").
+// Dati: danni Stellar-Conduct (Cryo su Electro) della Tsaritsa letti dai video (vedi la tabella completa nella pagina).
 (function () {
   const TEAMS = [
     { key: 'aly', name: 'Alyosha C6 + Danica', color: 'var(--series-4)', burst: [880067, 885145, 885145], leap: [184729, 185845, 185845], arrow: [238716, 238716] },
