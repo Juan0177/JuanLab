@@ -1,0 +1,275 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Tsaritsa (Anastasya) C0: prime impressioni beta 7.3 | JuanLab</title>
+  <meta name="description" content="Prime impressioni sulla Tsaritsa (Anastasya) C0 nella beta 7.3 v1: danni Stellar dell'Elemental Burst e dell'attacco con l'arco, confronto tra il team con Mitya C0 e quello con Yae Miko C1." />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
+  <link rel="stylesheet" href="assets/css/guide-page.css?v=20261103-1" />
+  <style>
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .video-embed {
+      position: relative;
+      margin: 0;
+      border-radius: 16px;
+      overflow: hidden;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .video-embed .frame {
+      position: relative;
+      aspect-ratio: 16 / 9;
+    }
+
+    .video-embed iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: 0;
+    }
+
+    .video-embed figcaption {
+      padding: 0.65rem 0.85rem 0.8rem;
+      color: var(--guide-muted);
+      font-size: 0.85rem;
+    }
+
+    .beta-note {
+      margin-top: 1rem;
+      padding: 0.8rem 1rem;
+      border-radius: 14px;
+      border: 1px solid rgba(255, 125, 125, 0.35);
+      background: rgba(255, 125, 125, 0.06);
+      color: var(--guide-text);
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    .num-up { color: var(--guide-green); font-weight: 700; }
+
+    @media (max-width: 760px) {
+      .video-grid { grid-template-columns: minmax(0, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <canvas id="stars"></canvas>
+
+  <main class="container guide-page">
+    <header class="guide-header">
+      <a href="current-pg.html">&larr; Torna alla pagina guida</a>
+      <a href="mitya-guide.html">Guida di Mitya &rarr;</a>
+    </header>
+
+    <section class="guide-top" aria-label="Riassunto Tsaritsa (Anastasya)">
+      <div class="guide-art">
+        <img src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="Anastasya, la Tsaritsa" width="256" height="256" />
+        <span class="badge">Cryo &middot; Bow &middot; 5&#9733;</span>
+      </div>
+
+      <div class="guide-copy">
+        <p class="eyebrow">Prime impressioni &middot; beta 7.3 v1 (dati 7.2.50)</p>
+        <h1>Tsaritsa (Anastasya) C0</h1>
+        <p>
+          Prime impressioni sulla <strong>Tsaritsa</strong> a C0 nei suoi due team pi&ugrave; discussi: con <strong>Mitya C0</strong> e con <strong>Yae Miko C1</strong>.
+          Ho annotato i danni <strong>Stellar</strong> (i numeri bianco-azzurri, non quelli bianco-viola) dei due colpi che contano di pi&ugrave;: la <strong>lancia che cade</strong> dell&rsquo;Elemental Burst e il <strong>colpo con l&rsquo;arco in aria</strong>.
+        </p>
+        <div class="summary-box">
+          <div class="summary-tile"><strong>Elemental Burst</strong><span>fino a 751.542</span></div>
+          <div class="summary-tile"><strong>Colpo con l&rsquo;arco</strong><span>fino a 282.534</span></div>
+          <div class="summary-tile"><strong>Yae vs Mitya</strong><span>Yae avanti</span></div>
+          <div class="summary-tile"><strong>Costellazione</strong><span>C0</span></div>
+        </div>
+      </div>
+    </section>
+
+    <p class="beta-note">
+      <strong>Contenuto beta.</strong> Kit e numeri vengono dalla beta 7.3 v1 (dati nanoka 7.2.50) e possono cambiare prima dell&rsquo;uscita. Non conosco le build dei personaggi nei video: i confronti valgono per questi due showcase, non come regola generale.
+    </p>
+
+    <section class="section" aria-labelledby="anastasya-video">
+      <div class="section-head">
+        <h2 id="anastasya-video">1. I due gameplay</h2>
+        <span>Stesso giocatore, stesso bersaglio</span>
+      </div>
+
+      <div class="video-grid">
+        <figure class="video-embed">
+          <div class="frame">
+            <iframe src="https://streamable.com/e/girsxw" title="Tsaritsa C0 con Yae Miko C1" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <figcaption><strong>Tsaritsa C0 &middot; Odette &middot; Yae Miko C1 &middot; Danica</strong></figcaption>
+        </figure>
+        <figure class="video-embed">
+          <div class="frame">
+            <iframe src="https://streamable.com/e/tyvhaw" title="Tsaritsa C0 con Mitya C0" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <figcaption><strong>Tsaritsa C0 &middot; Odette &middot; Mitya C0 &middot; Danica</strong></figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="anastasya-kit">
+      <div class="section-head">
+        <h2 id="anastasya-kit">2. Il kit in breve</h2>
+        <span>Il percorso usato nei video: Blessing of Honor</span>
+      </div>
+
+      <div class="split">
+        <div class="split-copy">
+          <h3>Hold E &rarr; Burst &rarr; Palestar Edict: Doom</h3>
+          <ul>
+            <li><strong>Elemental Skill (hold):</strong> ottiene la <strong>Blessing of Honor</strong>; i Normal Attack diventano una sequenza Cryo con la Blessed Armament. Cooldown 15 s.</li>
+            <li><strong>Elemental Burst &ldquo;The Evernight Yields to Dawn&rdquo;:</strong> la <strong>lancia che cade</strong>, 561,1% (Lv. 10) come danno Stellar-Conduct. Mette in stato <strong>Sealed</strong> fino a 3 compagni.</li>
+            <li><strong>Palestar Edict: Doom:</strong> quando finisce il Sealed, selezionare i compagni attiva 3 fasi: 1) raffica di fendenti, 2) balzo con fendente (160,3%), 3) <strong>colpo con l&rsquo;arco</strong> (200,4%), che chiude l&rsquo;effetto.</li>
+            <li><strong>Passiva &ldquo;The Radiant Reign of Night&rdquo;:</strong> +12% CRIT DMG a tutto il team dopo la skill. Quando i compagni sono Sealed, il loro bonus passa a chi non lo &egrave;, quindi alla Tsaritsa.</li>
+            <li><strong>Passiva &ldquo;Stellar Jubilee&rdquo;:</strong> +0,7% ai danni base Stellar-Conduct/Stellar Swirl ogni 100 ATK, fino a +14%.</li>
+          </ul>
+        </div>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/06-ult-cast.webp" alt="Elemental Burst della Tsaritsa: la lancia sospesa nel cielo prima di cadere" loading="lazy" width="1280" height="720" />
+          <figcaption>L&rsquo;Elemental Burst: la lancia sospesa prima dell&rsquo;impatto.</figcaption>
+        </figure>
+      </div>
+
+      <div class="quote-block">
+        <ul>
+          <li>Sul tap E (Blessing of Love) c&rsquo;&egrave; un altro percorso: Palestar Crown off-field e il Burst &ldquo;To the New World&rdquo;, che aumenta del 50% i danni Stellar Glimmer del team. Nei video non si vede, quindi qui non lo valuto.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="anastasya-danni">
+      <div class="section-head">
+        <h2 id="anastasya-danni">3. Danni annotati</h2>
+        <span>Solo numeri Stellar bianco-azzurri</span>
+      </div>
+
+      <div class="table-wrap">
+        <table class="guide-table">
+          <thead>
+            <tr>
+              <th scope="col">Team</th>
+              <th scope="col">Rotazione</th>
+              <th scope="col">Burst (lancia)</th>
+              <th scope="col">Doom 2 (balzo)</th>
+              <th scope="col">Doom 3 (arco)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Mitya C0</td><td>1</td><td>586.574</td><td>176.760</td><td>259.941</td></tr>
+            <tr><td>Mitya C0</td><td>2</td><td>652.340</td><td>213.009</td><td>266.261</td></tr>
+            <tr><td>Yae C1</td><td>1</td><td>751.542</td><td>226.027</td><td>282.534</td></tr>
+            <tr><td>Yae C1</td><td>2</td><td>731.765</td><td>226.027</td><td>282.534</td></tr>
+            <tr><td>Yae C1</td><td>3</td><td>731.765</td><td>214.726</td><td>282.534</td></tr>
+            <tr><td><strong>Media Mitya</strong></td><td>&ndash;</td><td><strong>619.457</strong></td><td><strong>194.885</strong></td><td><strong>263.101</strong></td></tr>
+            <tr><td><strong>Media Yae</strong></td><td>&ndash;</td><td><strong>738.357</strong> <span class="num-up">+19,2%</span></td><td><strong>222.260</strong> <span class="num-up">+14,0%</span></td><td><strong>282.534</strong> <span class="num-up">+7,4%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p style="margin-top: 0.6rem; font-size: 0.85rem;">Tutti i colpi sono critici. Il video con Mitya mostra 2 rotazioni complete, quello con Yae 3.</p>
+
+      <div class="figure-grid">
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/01-ult-yae.webp" alt="Burst della Tsaritsa nel team con Yae Miko: 751.542 danni" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Burst con Yae:</strong> 751.542 (il pi&ugrave; alto visto).</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/03-ult-mitya.webp" alt="Burst della Tsaritsa nel team con Mitya: 652.340 danni" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Burst con Mitya:</strong> 652.340.</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/02-arrow-yae.webp" alt="Colpo con l'arco della Tsaritsa nel team con Yae Miko: 282.534 danni" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Arco con Yae:</strong> 282.534 (identico in tutte e 3 le rotazioni).</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/04-arrow-mitya.webp" alt="Colpo con l'arco della Tsaritsa nel team con Mitya: 266.261 danni" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Arco con Mitya:</strong> 266.261.</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="anastasya-confronto">
+      <div class="section-head">
+        <h2 id="anastasya-confronto">4. Mitya C0 o Yae Miko C1?</h2>
+        <span>Cosa dicono i numeri e i kit</span>
+      </div>
+
+      <div class="panel-grid team-grid">
+        <article class="panel">
+          <h3>Yae Miko C1</h3>
+          <ul>
+            <li>I danni Stellar della Tsaritsa sono pi&ugrave; alti e <strong>pi&ugrave; costanti</strong>: l&rsquo;arco fa sempre 282.534 e il Burst sta tra 731k e 751k.</li>
+            <li>La passiva &ldquo;Edict of Cleansing&rdquo; di Yae fa scattare lo <strong>Stellar-Conduct</strong> di continuo dalle Sesshou Sakura, anche off-field.</li>
+            <li>La C1 di Yae d&agrave; solo energia (+8 per Tenko Thunderbolt): aiuta la rotazione, ma non buffa direttamente la Tsaritsa.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Mitya C0</h3>
+          <ul>
+            <li>I numeri sono pi&ugrave; bassi e <strong>variano</strong>: il primo Burst &egrave; 586k, il secondo 652k. Il primo ciclo sembra soffrire la carica iniziale.</li>
+            <li>Il tap E d&agrave; +30 Elemental Mastery al team per ogni Beacon (fino a +120), ma servono circa 6 s e Stellar-Conduct continui per arrivare a 4 Beacon.</li>
+            <li>La sua passiva aumenta il moltiplicatore Stellar-Conduct fino al +14% con 500 Elemental Mastery. Non so se si somma al +14% della Tsaritsa.</li>
+          </ul>
+        </article>
+      </div>
+
+      <div class="quote-block">
+        <ul>
+          <li><strong>Mia ipotesi (da verificare):</strong> la passiva &ldquo;Lament for the Lost&rdquo; della Tsaritsa potenzia il Polestar Field ogni volta che d&agrave; un buff. Yae tiene il campo attivo in modo pi&ugrave; regolare di Mitya, e questo spiegherebbe sia il danno pi&ugrave; alto sia la costanza.</li>
+          <li>Il rapporto Burst/arco del kit &egrave; 2,8 (561,1% contro 200,4%). Nei video &egrave; 2,6 con Yae e 2,35 con Mitya: con Mitya il <strong>Burst</strong> perde pi&ugrave; terreno dell&rsquo;arco.</li>
+        </ul>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="anastasya-impressioni">
+      <div class="section-head">
+        <h2 id="anastasya-impressioni">5. Prime impressioni</h2>
+        <span>Da rivedere con la beta successiva</span>
+      </div>
+
+      <div class="decision-grid">
+        <div class="decision-box ok">
+          <h3>Cosa convince</h3>
+          <ul>
+            <li>Gi&agrave; a <strong>C0</strong> il Burst supera i <strong>700k</strong> in un singolo colpo con Yae, e la combo Doom aggiunge altri ~650k (fasi 1&ndash;3).</li>
+            <li>Il percorso Honor &egrave; <strong>prevedibile</strong>: hold E, Burst, poi le tre fasi Doom selezionando i compagni.</li>
+            <li>Con Yae i numeri sono identici tra una rotazione e l&rsquo;altra, quindi il team &egrave; stabile.</li>
+            <li>Fa da buffer CRIT DMG per tutto il team (+12% a testa, che si concentra su di lei quando gli altri sono Sealed).</li>
+          </ul>
+        </div>
+        <div class="decision-box warning">
+          <h3>Dubbi</h3>
+          <ul>
+            <li>Con <strong>Mitya C0</strong> rende circa il <strong>19% in meno</strong> sul Burst e il 7% in meno sull&rsquo;arco. Al momento Yae C1 sembra la compagna migliore.</li>
+            <li>Il Sealed blocca gli swap fino a 14 s (si accorcia con i suoi Normal Attack): il team &ldquo;si ferma&rdquo; mentre lei &egrave; in campo.</li>
+            <li>&Egrave; beta v1: valori e interazioni (Elemental Mastery di Mitya, Polestar Field) potrebbero cambiare.</li>
+            <li>Mancano le build: non posso escludere che parte della differenza dipenda da artefatti o armi diverse.</li>
+          </ul>
+        </div>
+      </div>
+
+      <p class="source-note">
+        Gameplay forniti da JuanLab (beta 7.3 v1). Dati del kit da <a href="https://gi.nanoka.cc/" rel="noopener">gi.nanoka.cc</a> (7.2.50, Lv. 10).
+        Per le meccaniche di fondo vedi <a href="https://keqingmains.com/" rel="noopener">KeqingMains</a>.
+      </p>
+    </section>
+  </main>
+
+  <footer class="container">
+    <small>JuanLab &mdash; Tsaritsa (Anastasya): prime impressioni</small>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260923-1"></script>
+</body>
+</html>
