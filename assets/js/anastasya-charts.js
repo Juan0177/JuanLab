@@ -83,7 +83,7 @@
         const w = scale(v);
         el('rect', { x: left, y, width: W - left - right, height: rowH, rx: 4, class: 'viz-track' }, svg);
         el('rect', { x: left, y, width: Math.max(w, 4), height: rowH, rx: 4, fill: t.color }, svg);
-        const label = el('text', { x: left + w + 8, y: y + rowH / 2 + 4, class: 'viz-value' }, svg);
+        const label = el('text', { x: W - 2, y: y + rowH / 2 + 4, class: 'viz-value', 'text-anchor': 'end' }, svg);
         label.textContent = fmt(v);
         const delta = (v / best[hit.key] - 1) * 100;
         const hitbox = el('rect', { x: 0, y: y - gap / 2, width: W, height: rowH + gap, fill: 'transparent', class: 'viz-hit' }, svg);
@@ -180,7 +180,7 @@
         const w = (v / max) * (W - left - right);
         el('rect', { x: left, y, width: W - left - right, height: rowH, rx: 4, class: 'viz-track' }, svg);
         el('rect', { x: left, y, width: Math.max(w, 4), height: rowH, rx: 4, fill: t.color }, svg);
-        const label = el('text', { x: left + w + 8, y: y + rowH / 2 + 4, class: 'viz-value' }, svg);
+        const label = el('text', { x: W - 2, y: y + rowH / 2 + 4, class: 'viz-value', 'text-anchor': 'end' }, svg);
         label.textContent = fmt(v);
         const hitbox = el('rect', { x: 0, y: y - gap / 2, width: W, height: rowH + gap, fill: 'transparent', class: 'viz-hit' }, svg);
         const html = `<strong>${t.name}</strong><br>Rotazione ${tt.rot} &middot; ${tt.dur.toFixed(2).replace('.', ',')} s` +
