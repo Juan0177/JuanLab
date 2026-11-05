@@ -1757,3 +1757,123 @@ main.current-pg-page > header {
   }
 }
 
+
+/* --- Tab Guida attuale / Archivio --- */
+.pg-tabs {
+  display: flex;
+  gap: 0.5rem;
+  margin: 0 0 1.4rem;
+  padding: 0.35rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 999px;
+  background: rgba(12, 17, 28, 0.75);
+  width: fit-content;
+  max-width: 100%;
+}
+
+.pg-tab {
+  margin: 0;
+  padding: 0.55rem 1.2rem;
+  border: 0;
+  border-radius: 999px;
+  background: transparent;
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: 700;
+  font-size: 0.95rem;
+  width: auto;
+  cursor: pointer;
+  transition: background 150ms ease, color 150ms ease;
+}
+
+.pg-tab:hover {
+  color: #fff;
+}
+
+.pg-tab[aria-selected="true"] {
+  background: linear-gradient(135deg, #f0c76a, #d68d2a);
+  color: #341d02;
+}
+
+.pg-tab:focus-visible {
+  outline: 2px solid #f0d178;
+  outline-offset: 2px;
+}
+
+.archive-header h2 {
+  margin: 0 0 0.3rem;
+}
+
+.archive-header p {
+  margin: 0 0 1.2rem;
+  color: rgba(255, 255, 255, 0.75);
+}
+
+.archive-group + .archive-group {
+  margin-top: 1.6rem;
+}
+
+.archive-group h3 {
+  margin: 0 0 0.8rem;
+  color: #f0d178;
+  font-size: 0.85rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.archive-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 0.9rem;
+}
+
+.archive-card {
+  display: flex;
+  gap: 0.85rem;
+  align-items: center;
+  padding: 0.85rem;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 16px;
+  background: rgba(12, 17, 28, 0.85);
+  color: inherit;
+  text-decoration: none;
+  transition: transform 150ms ease, border-color 150ms ease;
+}
+
+.archive-card:hover {
+  transform: translateY(-2px);
+  border-color: rgba(240, 199, 106, 0.6);
+}
+
+.archive-card img {
+  width: 56px;
+  height: 56px;
+  flex: none;
+  border-radius: 50%;
+  border: 2px solid rgba(255, 205, 74, 0.8);
+  background: rgba(5, 10, 20, 0.9);
+  object-fit: cover;
+}
+
+.archive-card-body {
+  display: grid;
+  gap: 0.15rem;
+  min-width: 0;
+}
+
+.archive-card-kicker {
+  color: #f0d178;
+  font-size: 0.68rem;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+}
+
+.archive-card-body strong {
+  font-size: 1.05rem;
+  color: #fff;
+}
+
+.archive-card-body span:last-child {
+  color: rgba(255, 255, 255, 0.72);
+  font-size: 0.85rem;
+  line-height: 1.4;
+}

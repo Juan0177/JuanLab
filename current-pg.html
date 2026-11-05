@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
-  <link rel="stylesheet" href="assets/css/current-pg.css?v=20261105-1" />
+  <link rel="stylesheet" href="assets/css/current-pg.css?v=20261105-2" />
 </head>
 <body>
   <canvas id="stars"></canvas>
@@ -21,6 +21,12 @@
       </div>
     </header>
 
+    <nav class="pg-tabs" role="tablist" aria-label="Sezioni della pagina guida">
+      <button type="button" class="pg-tab" role="tab" id="tab-attuale" aria-controls="panel-attuale" aria-selected="true">Guida attuale</button>
+      <button type="button" class="pg-tab" role="tab" id="tab-archivio" aria-controls="panel-archivio" aria-selected="false" tabindex="-1">Archivio</button>
+    </nav>
+
+    <div class="pg-panel" role="tabpanel" id="panel-attuale" aria-labelledby="tab-attuale">
     <section class="current-pg-worksite" aria-label="Guide di Anastasya (Tsaritsa) e Danica in lavorazione">
       <div class="worksite-warning" aria-hidden="true"></div>
       <div class="worksite-orbit" aria-hidden="true">
@@ -127,6 +133,96 @@
         </div>
       </div>
     </section>
+    </div>
+
+    <div class="pg-panel" role="tabpanel" id="panel-archivio" aria-labelledby="tab-archivio" hidden>
+      <header class="archive-header">
+        <h2>Archivio guide</h2>
+        <p>Tutte le guide e le analisi pubblicate finora, dalla pi&ugrave; recente.</p>
+      </header>
+
+      <section class="archive-group" aria-labelledby="arch-73">
+        <h3 id="arch-73">Versione 7.3 &middot; beta</h3>
+        <div class="archive-grid">
+        <a class="archive-card" href="anastasya-impressions.html">
+          <img src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" loading="lazy" />
+          <span class="archive-card-body">
+            <span class="archive-card-kicker">Prime impressioni</span>
+            <strong>Tsaritsa (Anastasya) C0</strong>
+            <span>Danni Stellar con Mitya, Yae e Nicole (team di nicchia).</span>
+          </span>
+        </a>
+        </div>
+      </section>
+
+      <section class="archive-group" aria-labelledby="arch-72">
+        <h3 id="arch-72">Versione 7.2</h3>
+        <div class="archive-grid">
+        <a class="archive-card" href="mitya-guide.html">
+          <img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" width="256" height="256" loading="lazy" />
+          <span class="archive-card-body">
+            <span class="archive-card-kicker">Guida estesa</span>
+            <strong>Mitya</strong>
+            <span>Kit, rotazioni, team e showcase Stygian.</span>
+          </span>
+        </a>
+        <a class="archive-card" href="mitya-build.html">
+          <img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" width="256" height="256" loading="lazy" />
+          <span class="archive-card-body">
+            <span class="archive-card-kicker">Build in breve</span>
+            <strong>Mitya</strong>
+            <span>Infografica di @Laimelea_V e tabella della build.</span>
+          </span>
+        </a>
+        <a class="archive-card" href="valeriy-guide.html">
+          <img src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" width="256" height="256" loading="lazy" />
+          <span class="archive-card-body">
+            <span class="archive-card-kicker">Guida estesa</span>
+            <strong>Valeriy</strong>
+            <span>Quills, Constellations C0&ndash;C6 e team.</span>
+          </span>
+        </a>
+        <a class="archive-card" href="valeriy-build.html">
+          <img src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" width="256" height="256" loading="lazy" />
+          <span class="archive-card-body">
+            <span class="archive-card-kicker">Build in breve</span>
+            <strong>Valeriy</strong>
+            <span>Infografica di @Laimelea_V e tabella della build.</span>
+          </span>
+        </a>
+        </div>
+      </section>
+
+      <section class="archive-group" aria-labelledby="arch-71">
+        <h3 id="arch-71">Versione 7.1</h3>
+        <div class="archive-grid">
+        <a class="archive-card" href="vesna-preview.html">
+          <img src="assets/img/characters/UI_AvatarIcon_Vesna.webp" alt="" width="256" height="256" loading="lazy" />
+          <span class="archive-card-body">
+            <span class="archive-card-kicker">Analisi</span>
+            <strong>Vesna vs Mizuki</strong>
+            <span>Confronto di danni e investimento tra le due Main DPS Anemo.</span>
+          </span>
+        </a>
+        <a class="archive-card" href="assets/img/guides/vesna-7.1.jpg">
+          <img src="assets/img/characters/UI_AvatarIcon_Vesna.webp" alt="" width="256" height="256" loading="lazy" />
+          <span class="archive-card-body">
+            <span class="archive-card-kicker">Infografica</span>
+            <strong>Vesna</strong>
+            <span>Guida rapida 7.1 di @Laimelea_V.</span>
+          </span>
+        </a>
+        <a class="archive-card" href="assets/img/guides/vodyanitsa-7.1.jpg">
+          <img src="assets/img/characters/UI_AvatarIcon_Vodyanitsa.webp" alt="" width="256" height="256" loading="lazy" />
+          <span class="archive-card-body">
+            <span class="archive-card-kicker">Infografica</span>
+            <strong>Vodyanitsa</strong>
+            <span>Guida rapida 7.1 di @Laimelea_V.</span>
+          </span>
+        </a>
+        </div>
+      </section>
+    </div>
   </main>
 
   <footer class="container">
@@ -134,5 +230,6 @@
   </footer>
 
   <script src="assets/js/main.js?v=20260923-1"></script>
+  <script src="assets/js/current-pg-tabs.js?v=20261105-1"></script>
 </body>
 </html>
