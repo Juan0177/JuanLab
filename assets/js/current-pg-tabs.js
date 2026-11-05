@@ -38,4 +38,15 @@
       window.scrollTo({ top: 0, behavior: 'smooth' });
     });
   });
+
+  // Filtri per versione nella tab "Guida attuale"
+  const chips = Array.from(document.querySelectorAll('.pg-intro-chip[data-filter]'));
+  const groups = Array.from(document.querySelectorAll('.pg-block[data-group]'));
+  chips.forEach((chip) => {
+    chip.addEventListener('click', () => {
+      const filter = chip.dataset.filter;
+      chips.forEach((c) => c.setAttribute('aria-pressed', String(c === chip)));
+      groups.forEach((g) => { g.hidden = filter !== 'all' && g.dataset.group !== filter; });
+    });
+  });
 })();
