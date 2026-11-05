@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
-  <link rel="stylesheet" href="assets/css/current-pg.css?v=20261105-2" />
+  <link rel="stylesheet" href="assets/css/current-pg.css?v=20261105-3" />
 </head>
 <body>
   <canvas id="stars"></canvas>
@@ -27,112 +27,93 @@
     </nav>
 
     <div class="pg-panel" role="tabpanel" id="panel-attuale" aria-labelledby="tab-attuale">
-    <section class="current-pg-worksite" aria-label="Guide di Anastasya (Tsaritsa) e Danica in lavorazione">
-      <div class="worksite-warning" aria-hidden="true"></div>
-      <div class="worksite-orbit" aria-hidden="true">
-        <div class="orbit-ring orbit-ring-outer"></div>
-        <div class="orbit-ring orbit-ring-inner"></div>
-        <div class="orbit-track">
-          <img class="orbit-avatar orbit-avatar-top" src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" />
-          <img class="orbit-avatar orbit-avatar-bottom" src="assets/img/characters/UI_AvatarIcon_Danica.webp" alt="" width="256" height="256" />
-        </div>
-        <div class="worksite-core">
-          <span class="worksite-status">Cantiere in corso</span>
-          <strong>Guida in preparazione</strong>
-          <small>Anastasya e Danica stanno arrivando</small>
-        </div>
-      </div>
-      <div class="worksite-barrier" aria-hidden="true">
-        <span class="barrier-light barrier-light-left"></span>
-        <span class="barrier-board barrier-board-top"></span>
-        <span class="barrier-board barrier-board-bottom"></span>
-        <span class="barrier-leg barrier-leg-left"></span>
-        <span class="barrier-leg barrier-leg-right"></span>
-        <span class="barrier-light barrier-light-right"></span>
-      </div>
-      <div class="worksite-copy">
-        <div class="worksite-message">
-          <h1 class="page-title-font">Work in progress</h1>
-          <p class="current-pg-kicker">Prossimamente | Anastasya (Tsaritsa) e Danica</p>
-          <p>
-          Le guide di <strong>Anastasya</strong>, la Tsaritsa (Cryo, Bow), e di <strong>Danica</strong> (Electro, Claymore) sono in preparazione. Qui sotto trovi le guide gi&agrave; disponibili di Mitya e Valeriy.
-          </p>
-        </div>
-      </div>
-    </section>
+      <section class="pg-intro" aria-label="Stato attuale">
+        <div class="pg-intro-chip"><span class="pg-dot pg-dot-live"></span>Live: <strong>versione 7.2</strong></div>
+        <div class="pg-intro-chip"><span class="pg-dot pg-dot-beta"></span>In beta: <strong>versione 7.3</strong></div>
+      </section>
 
-    <section aria-label="Guide disponibili">
-      <div class="vesna-preview-card">
-        <div class="vesna-preview-visual" aria-hidden="true">
-          <div class="vesna-preview-floating vesna-preview-vesna">
-            <img src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" />
-          </div>
-          <div class="vesna-preview-floating vesna-preview-vodyanitsa">
-            <img src="assets/img/characters/UI_AvatarIcon_Yae.webp" alt="" width="256" height="256" />
-          </div>
-          <div class="vesna-preview-floating vesna-preview-third">
-            <img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" width="256" height="256" />
-          </div>
-        </div>
-        <div class="vesna-preview-content">
-          <p class="vesna-preview-kicker">Prime impressioni &middot; beta 7.3</p>
-          <h2 id="anastasya-preview-title">Tsaritsa (Anastasya)</h2>
-          <p>
-            Danni Stellar di Burst e colpo con l&rsquo;arco a C0: quanto Mitya C0 e Yae Miko C1 buffano la Tsaritsa (non il danno totale del team), con i due gameplay.
-          </p>
-          <div class="vesna-preview-actions">
-            <a class="vesna-preview-button primary" href="anastasya-impressions.html">Prime impressioni</a>
-            <a class="vesna-preview-button secondary" href="index.html">Torna alla home</a>
-          </div>
-        </div>
-      </div>
+      <section class="pg-block" aria-labelledby="pg-live-title">
+        <header class="pg-block-head">
+          <h2 id="pg-live-title">Disponibili ora</h2>
+          <span>Banner 7.2</span>
+        </header>
+        <div class="pg-grid">
+          <article class="pg-card">
+            <div class="pg-card-top">
+              <img class="pg-av pg-av-main" src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" width="256" height="256" loading="lazy" />
+              <div>
+                <p class="pg-kicker">Electro &middot; Catalyst &middot; 5&#9733;</p>
+                <h3>Mitya</h3>
+              </div>
+            </div>
+            <p class="pg-card-text">Kit con i Gradient Beacon, rotazioni Main DPS e Sub-DPS, team consigliati e showcase Stygian Onslaught a C0.</p>
+            <div class="pg-actions">
+              <a class="pg-btn primary" href="mitya-guide.html">Guida estesa</a>
+              <a class="pg-btn" href="mitya-build.html">Build in breve</a>
+            </div>
+          </article>
 
-      <div class="vesna-preview-card">
-        <div class="vesna-preview-visual" aria-hidden="true">
-          <div class="vesna-preview-floating vesna-preview-vesna">
-            <img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" width="256" height="256" />
-          </div>
-          <div class="vesna-preview-floating vesna-preview-vodyanitsa">
-            <img src="assets/img/characters/UI_AvatarIcon_Odette.webp" alt="" width="256" height="256" />
-          </div>
+          <article class="pg-card">
+            <div class="pg-card-top">
+              <img class="pg-av pg-av-main" src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" width="256" height="256" loading="lazy" />
+              <div>
+                <p class="pg-kicker">Electro &middot; Sword &middot; 4&#9733;</p>
+                <h3>Valeriy</h3>
+              </div>
+            </div>
+            <p class="pg-card-text">Supercharged Shield e Quills, Constellations da C0 a C6, team con Mitya, Cyno e Nefer e showcase Stygian Onslaught.</p>
+            <div class="pg-actions">
+              <a class="pg-btn primary" href="valeriy-guide.html">Guida estesa</a>
+              <a class="pg-btn" href="valeriy-build.html">Build in breve</a>
+            </div>
+          </article>
         </div>
-        <div class="vesna-preview-content">
-          <p class="vesna-preview-kicker">Guida disponibile &middot; versione 7.2</p>
-          <h2 id="mitya-preview-title">Mitya</h2>
-          <p>
-            Build, Weapons e Artifacts, kit con i Gradient Beacon, rotazioni Main DPS e Sub-DPS, team consigliati e showcase Stygian Onslaught di Mitya C0.
-          </p>
-          <div class="vesna-preview-actions">
-            <a class="vesna-preview-button primary" href="mitya-guide.html">Guida estesa</a>
-            <a class="vesna-preview-button secondary" href="mitya-build.html">Build in breve</a>
-            <a class="vesna-preview-button secondary" href="index.html">Torna alla home</a>
-          </div>
-        </div>
-      </div>
+      </section>
 
-      <div class="vesna-preview-card">
-        <div class="vesna-preview-visual" aria-hidden="true">
-          <div class="vesna-preview-floating vesna-preview-vesna">
-            <img src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" width="256" height="256" />
-          </div>
-          <div class="vesna-preview-floating vesna-preview-vodyanitsa">
-            <img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" width="256" height="256" />
-          </div>
+      <section class="pg-block" aria-labelledby="pg-next-title">
+        <header class="pg-block-head">
+          <h2 id="pg-next-title">In arrivo</h2>
+          <span>Beta 7.3</span>
+        </header>
+        <div class="pg-grid">
+          <article class="pg-card pg-card-beta">
+            <div class="pg-card-top">
+              <div class="pg-av-stack" aria-hidden="true">
+                <img class="pg-av pg-av-main" src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" loading="lazy" />
+                <img class="pg-av pg-av-mini" src="assets/img/characters/UI_AvatarIcon_Yae.webp" alt="" width="256" height="256" loading="lazy" />
+                <img class="pg-av pg-av-mini" src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" width="256" height="256" loading="lazy" />
+              </div>
+              <div>
+                <p class="pg-kicker">Prime impressioni &middot; Cryo &middot; Bow</p>
+                <h3>Tsaritsa (Anastasya)</h3>
+              </div>
+            </div>
+            <p class="pg-card-text">Danni Stellar di Burst e colpo con l&rsquo;arco a C0: quanto la buffano Mitya C0, Yae Miko C1 e Nicole C2 (non il danno totale del team), con i gameplay.</p>
+            <div class="pg-actions">
+              <a class="pg-btn primary" href="anastasya-impressions.html">Prime impressioni</a>
+            </div>
+          </article>
+
+          <article class="pg-card pg-card-wip">
+            <div class="pg-card-top">
+              <div class="pg-av-stack" aria-hidden="true">
+                <img class="pg-av pg-av-main" src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" loading="lazy" />
+                <img class="pg-av pg-av-mini" src="assets/img/characters/UI_AvatarIcon_Danica.webp" alt="" width="256" height="256" loading="lazy" />
+              </div>
+              <div>
+                <p class="pg-kicker"><span class="pg-wip-badge">Cantiere</span> Guide complete</p>
+                <h3>Anastasya e Danica</h3>
+              </div>
+            </div>
+            <p class="pg-card-text">Le guide estese della <strong>Tsaritsa</strong> (Cryo, Bow) e di <strong>Danica</strong> (Electro, Claymore) sono in preparazione: arriveranno con i video e le build definitive.</p>
+            <div class="pg-actions">
+              <span class="pg-btn is-disabled" aria-disabled="true">In preparazione</span>
+            </div>
+          </article>
         </div>
-        <div class="vesna-preview-content">
-          <p class="vesna-preview-kicker">Guida disponibile &middot; versione 7.2</p>
-          <h2 id="valeriy-preview-title">Valeriy</h2>
-          <p>
-            Build, Supercharged Shield e Quills, Constellations da C0 a C6, team con Mitya, Cyno e Nefer e showcase Stygian Onslaught.
-          </p>
-          <div class="vesna-preview-actions">
-            <a class="vesna-preview-button primary" href="valeriy-guide.html">Guida estesa</a>
-            <a class="vesna-preview-button secondary" href="valeriy-build.html">Build in breve</a>
-            <a class="vesna-preview-button secondary" href="index.html">Torna alla home</a>
-          </div>
-        </div>
-      </div>
-    </section>
+      </section>
+
+      <p class="pg-archive-hint">Cerchi una guida passata? <a href="#archivio" data-open-archive>Apri l&rsquo;archivio &rarr;</a></p>
     </div>
 
     <div class="pg-panel" role="tabpanel" id="panel-archivio" aria-labelledby="tab-archivio" hidden>
@@ -230,6 +211,6 @@
   </footer>
 
   <script src="assets/js/main.js?v=20260923-1"></script>
-  <script src="assets/js/current-pg-tabs.js?v=20261105-1"></script>
+  <script src="assets/js/current-pg-tabs.js?v=20261105-2"></script>
 </body>
 </html>

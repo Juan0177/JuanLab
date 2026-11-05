@@ -28,4 +28,14 @@
   });
 
   if (location.hash === '#archivio') select(document.getElementById('tab-archivio'), false);
+
+  document.querySelectorAll('[data-open-archive]').forEach((link) => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const tab = document.getElementById('tab-archivio');
+      select(tab, true);
+      tab.focus();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
+  });
 })();
