@@ -437,6 +437,26 @@ main.current-pg-page > header {
   box-shadow: 0 16px 32px rgba(0, 0, 0, 0.38), 0 0 25px rgba(77, 186, 255, 0.2);
 }
 
+.vesna-preview-third {
+  left: 0;
+  right: 0;
+  top: 0;
+  margin-inline: auto;
+  animation-delay: 0.8s;
+  border-color: rgba(197, 155, 255, 0.9);
+  box-shadow: 0 16px 32px rgba(0, 0, 0, 0.38), 0 0 25px rgba(197, 155, 255, 0.22);
+}
+
+.vesna-preview-visual:has(.vesna-preview-third) .vesna-preview-vesna {
+  left: 0;
+  bottom: 4px;
+}
+
+.vesna-preview-visual:has(.vesna-preview-third) .vesna-preview-vodyanitsa {
+  right: 0;
+  bottom: 4px;
+}
+
 .vesna-preview-content {
   display: grid;
   gap: 0.5rem;
