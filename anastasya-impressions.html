@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tsaritsa (Anastasya) C0: prime impressioni beta 7.3 | JuanLab</title>
-  <meta name="description" content="Prime impressioni sulla Tsaritsa (Anastasya) C0 nella beta 7.3 v1: danni Stellar dell'Elemental Burst e dell'attacco con l'arco, confronto tra il team con Mitya C0 e quello con Yae Miko C1." />
+  <meta name="description" content="Prime impressioni sulla Tsaritsa (Anastasya) C0 nella beta 7.3 v1: danni Stellar dell'Elemental Burst e dell'attacco con l'arco, quanto Mitya C0 e Yae Miko C1 buffano la Tsaritsa (non il danno totale del team)." />
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
@@ -57,6 +57,36 @@
 
     .num-up { color: var(--guide-green); font-weight: 700; }
 
+    .scope-note {
+      margin-top: 1rem;
+      padding: 1rem 1.15rem;
+      border-radius: 14px;
+      border: 2px solid rgba(255, 200, 87, 0.75);
+      background: rgba(255, 200, 87, 0.1);
+      color: var(--guide-text);
+    }
+
+    .scope-note > strong {
+      display: block;
+      color: var(--guide-gold);
+      font-size: 1.05rem;
+      margin-bottom: 0.35rem;
+    }
+
+    .scope-note p {
+      margin: 0;
+      line-height: 1.65;
+    }
+
+    .scope-inline {
+      margin: 0 0 1rem;
+      padding: 0.6rem 0.85rem;
+      border-left: 3px solid var(--guide-gold);
+      background: rgba(255, 200, 87, 0.06);
+      border-radius: 0 10px 10px 0;
+      color: var(--guide-text);
+    }
+
     @media (max-width: 760px) {
       .video-grid { grid-template-columns: minmax(0, 1fr); }
     }
@@ -87,11 +117,17 @@
         <div class="summary-box">
           <div class="summary-tile"><strong>Elemental Burst</strong><span>fino a 751.542</span></div>
           <div class="summary-tile"><strong>Colpo con l&rsquo;arco</strong><span>fino a 282.534</span></div>
-          <div class="summary-tile"><strong>Yae vs Mitya</strong><span>Yae avanti</span></div>
+          <div class="summary-tile"><strong>Buff alla Tsaritsa</strong><span>Yae avanti*</span></div>
           <div class="summary-tile"><strong>Costellazione</strong><span>C0</span></div>
         </div>
+        <p style="font-size: 0.8rem;">* Solo quanto i compagni fanno salire i danni della Tsaritsa, non il danno totale del team.</p>
       </div>
     </section>
+
+    <div class="scope-note" role="note">
+      <strong>&#9888; Attenzione: qui NON si misura il danno totale del team.</strong>
+      <p>Questa pagina confronta <strong>solo quanto Mitya C0 e Yae Miko C1 buffano la Tsaritsa</strong>, cio&egrave; quanto fanno salire i <em>suoi</em> danni Stellar (Burst e colpo con l&rsquo;arco). Il danno fatto da Mitya, da Yae e dagli altri compagni <strong>non &egrave; conteggiato</strong>. &ldquo;Yae avanti&rdquo; significa che Yae fa colpire pi&ugrave; forte la Tsaritsa, <strong>non</strong> che il team con Yae faccia pi&ugrave; danni in totale.</p>
+    </div>
 
     <p class="beta-note">
       <strong>Contenuto beta.</strong> Kit e numeri vengono dalla beta 7.3 v1 (dati nanoka 7.2.50) e possono cambiare prima dell&rsquo;uscita. Non conosco le build dei personaggi nei video: i confronti valgono per questi due showcase, non come regola generale.
@@ -201,9 +237,11 @@
 
     <section class="section" aria-labelledby="anastasya-confronto">
       <div class="section-head">
-        <h2 id="anastasya-confronto">4. Mitya C0 o Yae Miko C1?</h2>
-        <span>Cosa dicono i numeri e i kit</span>
+        <h2 id="anastasya-confronto">4. Chi buffa di pi&ugrave; la Tsaritsa: Mitya C0 o Yae Miko C1?</h2>
+        <span>Solo danni della Tsaritsa, non del team</span>
       </div>
+
+      <p class="scope-inline"><strong>Promemoria:</strong> si confrontano solo i danni della Tsaritsa. Il danno personale di Mitya e di Yae non entra nel confronto, quindi questo <strong>non dice quale team fa pi&ugrave; danni in totale</strong>.</p>
 
       <div class="panel-grid team-grid">
         <article class="panel">
@@ -251,7 +289,8 @@
         <div class="decision-box warning">
           <h3>Dubbi</h3>
           <ul>
-            <li>Con <strong>Mitya C0</strong> rende circa il <strong>19% in meno</strong> sul Burst e il 7% in meno sull&rsquo;arco. Al momento Yae C1 sembra la compagna migliore.</li>
+            <li><strong>Non &egrave; un confronto di DPS di team:</strong> manca il danno di Mitya, Yae, Odette e Danica.</li>
+            <li>Con <strong>Mitya C0</strong> rende circa il <strong>19% in meno</strong> sul Burst e il 7% in meno sull&rsquo;arco. Per <em>buffare la Tsaritsa</em>, al momento Yae C1 sembra la compagna migliore. Resta da vedere quale team fa pi&ugrave; danni in totale, contando anche Mitya e Yae.</li>
             <li>Il Sealed blocca gli swap fino a 14 s (si accorcia con i suoi Normal Attack): il team &ldquo;si ferma&rdquo; mentre lei &egrave; in campo.</li>
             <li>&Egrave; beta v1: valori e interazioni (Elemental Mastery di Mitya, Polestar Field) potrebbero cambiare.</li>
             <li>Mancano le build: non posso escludere che parte della differenza dipenda da artefatti o armi diverse.</li>
