@@ -90,7 +90,7 @@
     /* Card dei team */
     .team-results {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1rem;
     }
 
@@ -190,7 +190,7 @@
     /* Video */
     .video-grid {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(2, minmax(0, 1fr));
       gap: 1rem;
     }
 
@@ -224,7 +224,7 @@
 
     .shots {
       display: grid;
-      grid-template-columns: repeat(3, minmax(0, 1fr));
+      grid-template-columns: repeat(4, minmax(0, 1fr));
       gap: 0.8rem;
       margin-top: 1rem;
     }
@@ -244,6 +244,7 @@
       --series-1: #3987e5;
       --series-2: #d95926;
       --series-3: #199e70;
+      --series-4: #c98500;
       --viz-grid: rgba(255, 255, 255, 0.08);
       --viz-text: rgba(237, 245, 255, 0.72);
       margin-bottom: 1.4rem;
@@ -319,6 +320,7 @@
 
       .team-results, .video-grid { grid-template-columns: minmax(0, 1fr); }
       .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+      .team-results { grid-template-columns: minmax(0, 1fr); }
     }
 
     @media (max-width: 760px) {
@@ -342,11 +344,11 @@
       <div>
         <p class="eyebrow">Prime impressioni &middot; beta 7.3 v1</p>
         <h1>Tsaritsa (Anastasya) C0</h1>
-        <p>Quanto Mitya C0, Yae Miko C1 e Nicole C2 fanno salire i danni <strong>Stellar</strong> della Tsaritsa: la <strong>lancia che cade</strong> dell&rsquo;Elemental Burst e il <strong>colpo con l&rsquo;arco in aria</strong>.</p>
+        <p>Quanto Alyosha C6, Mitya C0, Yae Miko C1 e Nicole C2 fanno salire i danni <strong>Stellar</strong> della Tsaritsa: la <strong>lancia che cade</strong> dell&rsquo;Elemental Burst e il <strong>colpo con l&rsquo;arco in aria</strong>.</p>
         <div class="ts-tags">
           <span class="ts-tag">Cryo &middot; Bow &middot; 5&#9733;</span>
           <span class="ts-tag">C0</span>
-          <span class="ts-tag">3 team &middot; 8 rotazioni</span>
+          <span class="ts-tag">4 team &middot; 11 rotazioni</span>
           <span class="ts-tag beta">Beta &middot; dati 7.2.50</span>
         </div>
       </div>
@@ -355,7 +357,7 @@
     <div class="ts-callout" role="note">
       <strong class="title">&#9888; Prima di leggere</strong>
       <ul>
-        <li><strong>Qui NON si misura il danno totale del team</strong> (tranne la sezione 5, che riporta calcoli di team a parte). Si confrontano solo i danni della Tsaritsa: il danno di Mitya, Yae, Nicole, Odette e Danica non &egrave; conteggiato.</li>
+        <li><strong>Qui NON si misura il danno totale del team</strong>. Si confrontano solo i danni della Tsaritsa: il danno di Alyosha, Mitya, Yae, Nicole, Odette e Danica non &egrave; conteggiato.</li>
         <li>Si leggono solo i numeri <strong>Stellar bianco-azzurri</strong>, non quelli bianco-viola.</li>
         <li>&Egrave; <strong>beta</strong>: kit e numeri possono cambiare. Le build dei personaggi nei video non sono note.</li>
       </ul>
@@ -370,8 +372,29 @@
       <div class="team-results">
         <article class="team-result best">
           <div class="team-result-head">
+            <h3>Alyosha C6 + Danica</h3>
+            <span class="rank">F2P &middot; Burst top</span>
+          </div>
+          <div class="team-avatars" aria-label="Tsaritsa, Odette, Alyosha, Danica">
+            <img src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" loading="lazy" />
+            <img src="assets/img/characters/UI_AvatarIcon_Odette.webp" alt="" width="256" height="256" loading="lazy" />
+            <img class="key" src="assets/img/characters/UI_AvatarIcon_Alyosha.webp" alt="" width="256" height="256" loading="lazy" />
+            <img src="assets/img/characters/UI_AvatarIcon_Danica.webp" alt="" width="256" height="256" loading="lazy" />
+          </div>
+          <div class="metric">
+            <div class="metric-row"><span>Burst (lancia)</span><strong>883.452</strong></div>
+            <div class="bar"><i style="width: 100%"></i></div>
+          </div>
+          <div class="metric">
+            <div class="metric-row"><span>Colpo con l&rsquo;arco</span><strong>238.716</strong></div>
+            <div class="bar"><i style="width: 84.5%"></i></div>
+          </div>
+          <span class="delta"><span class="num-up">+19,7% Burst</span> &middot; <span class="num-down">&minus;15,5% arco</span></span>
+        </article>
+        <article class="team-result">
+          <div class="team-result-head">
             <h3>Yae Miko C1 + Danica</h3>
-            <span class="rank">Migliore</span>
+            <span class="rank">Pi&ugrave; costante</span>
           </div>
           <div class="team-avatars" aria-label="Tsaritsa, Odette, Yae Miko, Danica">
             <img src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" loading="lazy" />
@@ -381,13 +404,13 @@
           </div>
           <div class="metric">
             <div class="metric-row"><span>Burst (lancia)</span><strong>738.357</strong></div>
-            <div class="bar"><i style="width: 100%"></i></div>
+            <div class="bar"><i style="width: 83.6%"></i></div>
           </div>
           <div class="metric">
             <div class="metric-row"><span>Colpo con l&rsquo;arco</span><strong>282.534</strong></div>
             <div class="bar"><i style="width: 100%"></i></div>
           </div>
-          <span class="delta num-up">Riferimento &middot; valori costanti</span>
+          <span class="delta num-up">Arco pi&ugrave; alto &middot; riferimento per le percentuali</span>
         </article>
 
         <article class="team-result">
@@ -403,7 +426,7 @@
           </div>
           <div class="metric">
             <div class="metric-row"><span>Burst (lancia)</span><strong>619.457</strong></div>
-            <div class="bar"><i style="width: 83.9%"></i></div>
+            <div class="bar"><i style="width: 70.1%"></i></div>
           </div>
           <div class="metric">
             <div class="metric-row"><span>Colpo con l&rsquo;arco</span><strong>263.101</strong></div>
@@ -425,7 +448,7 @@
           </div>
           <div class="metric">
             <div class="metric-row"><span>Burst (lancia)</span><strong>599.990</strong></div>
-            <div class="bar"><i style="width: 81.3%"></i></div>
+            <div class="bar"><i style="width: 67.9%"></i></div>
           </div>
           <div class="metric">
             <div class="metric-row"><span>Colpo con l&rsquo;arco</span><strong>228.433</strong></div>
@@ -434,13 +457,14 @@
           <span class="delta num-down">&minus;19% su tutti i colpi</span>
         </article>
       </div>
-      <p class="ref-note">Barre in percentuale rispetto al team Yae + Danica. Medie su 3 rotazioni (Yae + Danica, Yae + Nicole) e 2 rotazioni (Mitya + Danica). Tutti i colpi sono critici.</p>
+      <p class="ref-note">Barre in percentuale rispetto al valore pi&ugrave; alto (Burst: Alyosha; arco: Yae). Percentuali scritte rispetto al team Yae + Danica. Medie su 3 rotazioni (2 per Mitya); per l&rsquo;arco con Alyosha solo le 2 rotazioni critiche.</p>
 
       <div class="takeaways">
         <div class="decision-box ok">
           <h3>Cosa convince</h3>
           <ul>
-            <li>Gi&agrave; a <strong>C0</strong> la lancia supera i <strong>700k</strong> in un colpo con Yae, e la combo Doom aggiunge circa altri 650k.</li>
+            <li>Gi&agrave; a <strong>C0</strong> la lancia supera gli <strong>880k</strong> con <strong>Alyosha C6</strong>, un 4&#9733;: il team pi&ugrave; F2P &egrave; anche quello con il Burst pi&ugrave; alto.</li>
+            <li>Con Yae la lancia supera i 700k e la combo Doom aggiunge circa altri 650k.</li>
             <li>Con <strong>Yae + Danica</strong> i numeri sono identici tra una rotazione e l&rsquo;altra: il team &egrave; stabile.</li>
             <li>Il percorso Honor &egrave; <strong>prevedibile</strong>: hold E, Burst, una combo di Normal Attack e le tre fasi Doom.</li>
             <li>D&agrave; +12% CRIT DMG a tutto il team, che si concentra su di lei quando gli altri sono Sealed.</li>
@@ -450,6 +474,7 @@
           <h3>Dubbi</h3>
           <ul>
             <li><strong>Non &egrave; un confronto di DPS di team:</strong> resta da vedere quale team fa pi&ugrave; danni in totale.</li>
+            <li>Con <strong>Alyosha C6</strong> il Burst &egrave; il pi&ugrave; alto, ma balzo e arco sono pi&ugrave; bassi che con Yae: il totale dipende da quanto pesa il Burst nella rotazione.</li>
             <li><strong>Danica sembra quasi obbligatoria</strong>: senza di lei (Nicole al suo posto) la Tsaritsa perde circa il 19%.</li>
             <li>Durante il Sealing il team non pu&ograve; cambiare personaggio finch&eacute; lei non completa la combo: il team &ldquo;si ferma&rdquo;.</li>
             <li>Beta v1 e build sconosciute: valori e interazioni possono cambiare.</li>
@@ -465,6 +490,12 @@
       </div>
 
       <div class="video-grid">
+        <figure class="video-embed">
+          <div class="frame">
+            <iframe src="https://streamable.com/e/h82mq1" title="Tsaritsa C0 con Alyosha C6 e Danica" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <figcaption><strong>Alyosha C6 + Danica (F2P)</strong>Tsaritsa C0 &middot; Odette &middot; Alyosha C6 &middot; Danica</figcaption>
+        </figure>
         <figure class="video-embed">
           <div class="frame">
             <iframe src="https://streamable.com/e/girsxw" title="Tsaritsa C0 con Yae Miko C1 e Danica" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
@@ -515,6 +546,11 @@
             </tr>
           </thead>
           <tbody>
+            <tr class="group-row"><td colspan="4">Alyosha C6 + Danica (F2P)</td></tr>
+            <tr><td>1</td><td>880.067</td><td>184.729</td><td>75.028 <small>(non critico)</small></td></tr>
+            <tr><td>2</td><td>885.145</td><td>185.845</td><td>238.716</td></tr>
+            <tr><td>3</td><td>885.145</td><td>185.845</td><td>238.716</td></tr>
+            <tr><td><strong>Media</strong></td><td><strong>883.452</strong> <span class="num-up">+19,7%</span></td><td><strong>185.473</strong> <span class="num-down">&minus;16,6%</span></td><td><strong>238.716</strong>* <span class="num-down">&minus;15,5%</span></td></tr>
             <tr class="group-row"><td colspan="4">Yae Miko C1 + Danica</td></tr>
             <tr><td>1</td><td>751.542</td><td>226.027</td><td>282.534</td></tr>
             <tr><td>2</td><td>731.765</td><td>226.027</td><td>282.534</td></tr>
@@ -534,9 +570,17 @@
           </tbody>
         </table>
       </div>
-      <p class="ref-note">Percentuali rispetto alla media del team Yae Miko C1 + Danica.</p>
+      <p class="ref-note">Percentuali rispetto alla media del team Yae Miko C1 + Danica. * Media dell&rsquo;arco con Alyosha solo sulle 2 rotazioni critiche: nella prima il colpo non &egrave; critico (75.028).</p>
 
       <div class="shots">
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/09-ult-alyosha.webp" alt="Burst della Tsaritsa con Alyosha e Danica: 885.145" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Burst &middot; Alyosha + Danica:</strong> 885.145</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/10-arrow-alyosha.webp" alt="Colpo con l'arco della Tsaritsa con Alyosha e Danica: 238.716" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Arco &middot; Alyosha + Danica:</strong> 238.716</figcaption>
+        </figure>
         <figure class="evidence-figure">
           <img src="assets/img/guides/anastasya/01-ult-yae.webp" alt="Burst della Tsaritsa con Yae e Danica: 751.542" loading="lazy" width="1280" height="720" />
           <figcaption><strong>Burst &middot; Yae + Danica:</strong> 751.542</figcaption>
@@ -586,6 +630,13 @@
           </ul>
         </article>
         <article class="panel">
+          <h3>Alyosha C6 (F2P)</h3>
+          <ul>
+            <li>Quando si attiva un Hunter&rsquo;s Mark, l&rsquo;<strong>Hunter&rsquo;s Precision</strong> d&agrave; ATK al personaggio in campo e, in Radiance: Stellar-Conduct, <strong>+20% ai danni Stellar-Conduct</strong>. A C6 si accumula fino a 2 volte e aggiunge +100 Elemental Mastery.</li>
+            <li>Il Burst della Tsaritsa arriva subito dopo il suo ingresso, con il buff attivo: <strong>+19,7%</strong>. Doom e arco arrivano pi&ugrave; tardi e, a quanto pare, con meno buff: &minus;15/17%. <em>Ipotesi, da verificare.</em></li>
+          </ul>
+        </article>
+        <article class="panel">
           <h3>Danica vs Nicole C2</h3>
           <ul>
             <li>La passiva di Danica in Radiance: Stellar-Conduct riduce la <strong>RES Cryo dei nemici del 30%</strong> (Electro 15%) e d&agrave; ATK al team.</li>
@@ -602,63 +653,9 @@
       </div>
     </section>
 
-    <section class="section" aria-labelledby="ts-calcoli">
-      <div class="section-head">
-        <h2 id="ts-calcoli">5. Calcoli di team: Danica C0 DPS</h2>
-        <span>Calcoli della community &middot; 4/11/2026</span>
-      </div>
-
-      <p class="scope-inline"><strong>Attenzione, qui cambia tutto:</strong> a differenza del resto della pagina, questa sezione riporta il <strong>danno totale del team</strong> da un foglio di calcolo, non dai video. I team sono diversi da quelli dei gameplay (Danica fa da <strong>DPS</strong> e c&rsquo;&egrave; Qiqi C2 come support).</p>
-
-      <div class="viz-root">
-        <div id="viz-team" class="viz-block"></div>
-      </div>
-
-      <div class="table-wrap" style="margin-top: 1rem;">
-        <table class="guide-table">
-          <thead>
-            <tr>
-              <th scope="col">Personaggio</th>
-              <th scope="col">Arma &middot; set &middot; ER</th>
-              <th scope="col">Danno</th>
-              <th scope="col">Quota</th>
-              <th scope="col">Tempo in campo</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr class="group-row"><td colspan="5">Danica &middot; Yae &middot; Odette &middot; Qiqi &mdash; DPR 2.918.528 &middot; DPS 162.140</td></tr>
-            <tr><td>C0 Danica</td><td>Tidal Shadow &middot; Disenchant &middot; 112%</td><td>907.915</td><td>31,1%</td><td>12,5 s</td></tr>
-            <tr><td>C1 Yae Miko</td><td>Widsith &middot; Disenchant &middot; 100%</td><td>1.160.023</td><td>39,7%</td><td>2,0 s</td></tr>
-            <tr><td>C0 Odette</td><td>Silver &middot; Vestiges &middot; 100%</td><td>795.174</td><td>27,2%</td><td>2,0 s</td></tr>
-            <tr><td>C2 Qiqi</td><td>Finale &middot; Furnace &middot; 100%</td><td>55.415</td><td>1,9%</td><td>1,5 s</td></tr>
-            <tr class="group-row"><td colspan="5">Danica &middot; Yae &middot; Tsaritsa &middot; Qiqi &mdash; DPR 3.154.111 &middot; DPS 175.228</td></tr>
-            <tr><td>C0 Danica</td><td>Tidal Shadow &middot; Disenchant &middot; 112%</td><td>991.787</td><td>31,4%</td><td>11,5 s</td></tr>
-            <tr><td>C1 Yae Miko</td><td>Widsith &middot; Disenchant &middot; 100%</td><td>1.252.207</td><td>39,7%</td><td>2,0 s</td></tr>
-            <tr><td>C0 Tsaritsa (Anastasya)</td><td>BP Bow &middot; Disenchant &middot; 100%</td><td>850.749</td><td>27,0%</td><td>3,0 s</td></tr>
-            <tr><td>C2 Qiqi</td><td>Finale &middot; Furnace &middot; 100%</td><td>59.367</td><td>1,9%</td><td>1,5 s</td></tr>
-          </tbody>
-        </table>
-      </div>
-
-      <span class="rotation-label">Rotazione con Odette (18 s)</span>
-      <p class="rotation">Yae EEE &rarr; Odette EE &rarr; Qiqi E &rarr; Danica EQE 4N2E</p>
-      <span class="rotation-label">Rotazione con la Tsaritsa (18 s)</span>
-      <p class="rotation">Yae EEE &rarr; Tsaritsa tap E, Q &rarr; Qiqi E &rarr; Danica EQE 4N2E</p>
-
-      <div class="quote-block">
-        <ul>
-          <li><strong>Danica C0R0 come DPS non sembra male</strong> al momento: fa circa il 31% del danno del team.</li>
-          <li>Mettere la <strong>Tsaritsa al posto di Odette</strong> porta il team da 162.140 a <strong>175.228 DPS (+8,1%)</strong>, e alza anche il danno di Danica (+9,2%) e di Yae (+7,9%).</li>
-          <li>Qui la Tsaritsa usa il <strong>tap E (Blessing of Love)</strong>, non l&rsquo;hold E dei video: entra, fa E e Q e lascia il campo a Danica.</li>
-          <li><strong>Artifacts:</strong> nei team Stellar-Conduct la Tsaritsa va comunque in <strong>Disenchantment in Deep Shadow</strong>, come un DPS. Il set nuovo ha senso solo nei team Stellar Swirl, dove al momento non c&rsquo;&egrave; di meglio.</li>
-          <li>Il foglio non conosce il tempo in campo esatto di Danica: <em>assume che la rotazione stia tutta nella finestra da 18 s</em>.</li>
-        </ul>
-      </div>
-    </section>
-
     <section class="section" aria-labelledby="ts-kit">
       <div class="section-head">
-        <h2 id="ts-kit">6. Il kit in breve</h2>
+        <h2 id="ts-kit">5. Il kit in breve</h2>
         <span>Percorso usato nei video: Blessing of Honor</span>
       </div>
 
@@ -730,6 +727,6 @@
   </footer>
 
   <script src="assets/js/main.js?v=20260923-1"></script>
-  <script src="assets/js/anastasya-charts.js?v=20261105-3"></script>
+  <script src="assets/js/anastasya-charts.js?v=20261105-4"></script>
 </body>
 </html>

@@ -2256,3 +2256,7 @@ button.pg-intro-chip:focus-visible {
 .pg-intro button.pg-intro-chip:focus:not(:focus-visible) {
   box-shadow: none;
 }
+
+.pg-grid .pg-card-wip:nth-child(odd):last-child {
+  grid-column: 1 / -1;
+}
