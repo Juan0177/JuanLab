@@ -7,7 +7,7 @@
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
-  <link rel="stylesheet" href="assets/css/current-pg.css?v=20261105-3" />
+  <link rel="stylesheet" href="assets/css/current-pg.css?v=20261105-6" />
 </head>
 <body>
   <canvas id="stars"></canvas>
@@ -27,12 +27,13 @@
     </nav>
 
     <div class="pg-panel" role="tabpanel" id="panel-attuale" aria-labelledby="tab-attuale">
-      <section class="pg-intro" aria-label="Stato attuale">
-        <div class="pg-intro-chip"><span class="pg-dot pg-dot-live"></span>Live: <strong>versione 7.2</strong></div>
-        <div class="pg-intro-chip"><span class="pg-dot pg-dot-beta"></span>In beta: <strong>versione 7.3</strong></div>
-      </section>
+      <div class="pg-intro" role="group" aria-label="Filtra per versione">
+        <button type="button" class="pg-intro-chip" data-filter="all" aria-pressed="true">Tutte</button>
+        <button type="button" class="pg-intro-chip" data-filter="live" aria-pressed="false"><span class="pg-dot pg-dot-live"></span>Live: <strong>versione 7.2</strong></button>
+        <button type="button" class="pg-intro-chip" data-filter="beta" aria-pressed="false"><span class="pg-dot pg-dot-beta"></span>In beta: <strong>versione 7.3</strong></button>
+      </div>
 
-      <section class="pg-block" aria-labelledby="pg-live-title">
+      <section class="pg-block" aria-labelledby="pg-live-title" data-group="live">
         <header class="pg-block-head">
           <h2 id="pg-live-title">Disponibili ora</h2>
           <span>Banner 7.2</span>
@@ -70,7 +71,7 @@
         </div>
       </section>
 
-      <section class="pg-block" aria-labelledby="pg-next-title">
+      <section class="pg-block" aria-labelledby="pg-next-title" data-group="beta">
         <header class="pg-block-head">
           <h2 id="pg-next-title">In arrivo</h2>
           <span>Beta 7.3</span>
@@ -95,10 +96,15 @@
           </article>
 
           <article class="pg-card pg-card-wip">
+            <div class="pg-tape" aria-hidden="true"><span>Cantiere in corso &middot; Cantiere in corso &middot; Cantiere in corso &middot; Cantiere in corso &middot;</span></div>
             <div class="pg-card-top">
-              <div class="pg-av-stack" aria-hidden="true">
-                <img class="pg-av pg-av-main" src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" loading="lazy" />
-                <img class="pg-av pg-av-mini" src="assets/img/characters/UI_AvatarIcon_Danica.webp" alt="" width="256" height="256" loading="lazy" />
+              <div class="pg-mini-orbit" aria-hidden="true">
+                <span class="pg-mini-ring"></span>
+                <span class="pg-mini-core">&#128679;</span>
+                <span class="pg-mini-track">
+                  <img class="pg-av pg-mini-av pg-mini-a" src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" loading="lazy" />
+                  <img class="pg-av pg-mini-av pg-mini-b" src="assets/img/characters/UI_AvatarIcon_Danica.webp" alt="" width="256" height="256" loading="lazy" />
+                </span>
               </div>
               <div>
                 <p class="pg-kicker"><span class="pg-wip-badge">Cantiere</span> Guide complete</p>
@@ -211,6 +217,6 @@
   </footer>
 
   <script src="assets/js/main.js?v=20260923-1"></script>
-  <script src="assets/js/current-pg-tabs.js?v=20261105-2"></script>
+  <script src="assets/js/current-pg-tabs.js?v=20261105-3"></script>
 </body>
 </html>

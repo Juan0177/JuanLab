@@ -4,20 +4,197 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tsaritsa (Anastasya) C0: prime impressioni beta 7.3 | JuanLab</title>
-  <meta name="description" content="Prime impressioni sulla Tsaritsa (Anastasya) C0 nella beta 7.3 v1: danni Stellar dell'Elemental Burst e dell'attacco con l'arco, quanto Mitya C0 e Yae Miko C1 buffano la Tsaritsa (non il danno totale del team)." />
+  <meta name="description" content="Prime impressioni sulla Tsaritsa (Anastasya) C0 nella beta 7.3 v1: danni Stellar dell'Elemental Burst e del colpo con l'arco, quanto Mitya C0, Yae Miko C1 e Nicole C2 buffano la Tsaritsa (non il danno totale del team)." />
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
   <link rel="stylesheet" href="assets/css/guide-page.css?v=20261103-1" />
   <style>
-    .video-grid {
+    .guide-page article { aspect-ratio: auto; margin: 0; }
+
+    /* Hero compatto */
+    .ts-hero {
+      display: flex;
+      align-items: center;
+      gap: 1.2rem;
+      padding: 1.2rem;
+      border: 1px solid var(--guide-border);
+      border-radius: 22px;
+      background:
+        radial-gradient(circle at 0% 0%, rgba(133, 203, 255, 0.16), transparent 45%),
+        linear-gradient(135deg, rgba(23, 18, 38, 0.94), rgba(11, 18, 25, 0.9));
+    }
+
+    .ts-hero img {
+      width: 108px;
+      height: 108px;
+      flex: none;
+      border-radius: 50%;
+      border: 3px solid rgba(133, 203, 255, 0.85);
+      background: rgba(5, 10, 20, 0.9);
+      box-shadow: 0 0 30px rgba(133, 203, 255, 0.25);
+    }
+
+    .ts-hero h1 {
+      margin: 0.15rem 0 0.4rem;
+      font-size: clamp(1.8rem, 3.6vw, 2.8rem);
+      line-height: 1.05;
+    }
+
+    .ts-hero p {
+      margin: 0;
+      color: var(--guide-muted);
+      line-height: 1.6;
+    }
+
+    .ts-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+      margin-top: 0.7rem;
+    }
+
+    .ts-tag {
+      padding: 0.25rem 0.6rem;
+      border-radius: 999px;
+      border: 1px solid rgba(255, 255, 255, 0.12);
+      background: rgba(255, 255, 255, 0.03);
+      font-size: 0.75rem;
+      color: var(--guide-text);
+    }
+
+    .ts-tag.beta { border-color: rgba(255, 125, 125, 0.45); color: #ffb3b3; }
+
+    /* Avviso unico */
+    .ts-callout {
+      margin-top: 1rem;
+      padding: 0.9rem 1.1rem;
+      border-radius: 14px;
+      border: 2px solid rgba(255, 200, 87, 0.75);
+      background: rgba(255, 200, 87, 0.08);
+    }
+
+    .ts-callout strong.title {
+      display: block;
+      color: var(--guide-gold);
+      margin-bottom: 0.3rem;
+    }
+
+    .ts-callout ul {
+      margin: 0;
+      padding-left: 1.1rem;
+      font-size: 0.9rem;
+      line-height: 1.6;
+    }
+
+    /* Card dei team */
+    .team-results {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1rem;
+    }
+
+    .team-result {
+      display: flex;
+      flex-direction: column;
+      gap: 0.7rem;
+      padding: 1rem;
+      border-radius: 18px;
+      border: 1px solid rgba(255, 255, 255, 0.1);
+      background: var(--guide-panel-soft);
+    }
+
+    .team-result.best {
+      border-color: rgba(143, 227, 165, 0.6);
+      box-shadow: 0 0 0 1px rgba(143, 227, 165, 0.15), 0 18px 40px rgba(0, 0, 0, 0.25);
+    }
+
+    .team-result-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 0.5rem;
+    }
+
+    .team-result-head h3 {
+      margin: 0;
+      font-size: 1.05rem;
+    }
+
+    .rank {
+      padding: 0.15rem 0.55rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      background: rgba(255, 255, 255, 0.08);
+      color: var(--guide-muted);
+      white-space: nowrap;
+    }
+
+    .team-result.best .rank { background: rgba(143, 227, 165, 0.18); color: var(--guide-green); }
+
+    .team-avatars {
+      display: flex;
+      gap: 0.3rem;
+    }
+
+    .team-avatars img {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      border: 2px solid rgba(255, 255, 255, 0.2);
+      background: rgba(5, 10, 20, 0.9);
+    }
+
+    .team-avatars img.key { border-color: var(--guide-gold); }
+
+    .metric { display: grid; gap: 0.25rem; }
+
+    .metric-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 0.5rem;
+      font-size: 0.85rem;
+    }
+
+    .metric-row span:first-child { color: var(--guide-muted); }
+    .metric-row strong { color: var(--guide-text); }
+
+    .bar {
+      height: 8px;
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      overflow: hidden;
+    }
+
+    .bar i {
+      display: block;
+      height: 100%;
+      border-radius: inherit;
+      background: linear-gradient(90deg, #85cbff, #c59bff);
+    }
+
+    .delta { font-size: 0.8rem; font-weight: 700; }
+    .num-up { color: var(--guide-green); font-weight: 700; }
+    .num-down { color: var(--guide-red); font-weight: 700; }
+
+    .takeaways {
       display: grid;
       grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 1rem;
+      margin-top: 1rem;
+    }
+
+    /* Video */
+    .video-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
       gap: 1rem;
     }
 
     .video-embed {
-      position: relative;
       margin: 0;
       border-radius: 16px;
       overflow: hidden;
@@ -25,10 +202,7 @@
       background: rgba(255, 255, 255, 0.02);
     }
 
-    .video-embed .frame {
-      position: relative;
-      aspect-ratio: 16 / 9;
-    }
+    .video-embed .frame { position: relative; aspect-ratio: 16 / 9; }
 
     .video-embed iframe {
       position: absolute;
@@ -39,57 +213,108 @@
     }
 
     .video-embed figcaption {
-      padding: 0.65rem 0.85rem 0.8rem;
+      padding: 0.6rem 0.85rem 0.75rem;
       color: var(--guide-muted);
-      font-size: 0.85rem;
+      font-size: 0.82rem;
     }
 
-    .beta-note {
+    .video-embed figcaption strong { display: block; color: var(--guide-text); }
+
+    .group-row td { color: var(--guide-gold) !important; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(255, 200, 87, 0.05) !important; }
+
+    .shots {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.8rem;
       margin-top: 1rem;
-      padding: 0.8rem 1rem;
-      border-radius: 14px;
-      border: 1px solid rgba(255, 125, 125, 0.35);
-      background: rgba(255, 125, 125, 0.06);
-      color: var(--guide-text);
-      font-size: 0.9rem;
-      line-height: 1.6;
     }
 
-    .num-up { color: var(--guide-green); font-weight: 700; }
-    .num-down { color: var(--guide-red); font-weight: 700; }
+    .ref-note { margin-top: 0.6rem; font-size: 0.8rem; color: var(--guide-muted); }
 
-    .scope-note {
-      margin-top: 1rem;
-      padding: 1rem 1.15rem;
-      border-radius: 14px;
-      border: 2px solid rgba(255, 200, 87, 0.75);
-      background: rgba(255, 200, 87, 0.1);
-      color: var(--guide-text);
-    }
-
-    .scope-note > strong {
-      display: block;
+    .sub-title {
+      margin: 1.4rem 0 0.6rem;
       color: var(--guide-gold);
-      font-size: 1.05rem;
-      margin-bottom: 0.35rem;
+      font-size: 1rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
     }
 
-    .scope-note p {
-      margin: 0;
-      line-height: 1.65;
+    /* Grafici */
+    .viz-root {
+      --series-1: #3987e5;
+      --series-2: #d95926;
+      --series-3: #199e70;
+      --viz-grid: rgba(255, 255, 255, 0.08);
+      --viz-text: rgba(237, 245, 255, 0.72);
+      margin-bottom: 1.4rem;
     }
 
-    .scope-inline {
-      margin: 0 0 1rem;
-      padding: 0.6rem 0.85rem;
-      border-left: 3px solid var(--guide-gold);
-      background: rgba(255, 200, 87, 0.06);
-      border-radius: 0 10px 10px 0;
+    .viz-block {
+      padding: 1rem;
+      border-radius: 16px;
+      border: 1px solid rgba(255, 255, 255, 0.08);
+      background: rgba(255, 255, 255, 0.02);
+    }
+
+    .viz-block svg { display: block; width: 100%; height: auto; overflow: visible; }
+
+    .viz-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem 1.1rem;
+      margin-bottom: 0.9rem;
+      font-size: 0.82rem;
       color: var(--guide-text);
+    }
+
+    .viz-legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .viz-legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+
+    .viz-multiples {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 1.2rem;
+    }
+
+    .viz-cell { margin: 0; }
+    .viz-cell figcaption { margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 700; color: var(--guide-text); }
+
+    .viz-track { fill: rgba(255, 255, 255, 0.05); }
+    .viz-value { fill: var(--guide-text); font-size: 13px; font-weight: 700; }
+    .viz-grid { stroke: var(--viz-grid); stroke-width: 1; }
+    .viz-axis { fill: var(--viz-text); font-size: 12px; }
+    .viz-direct { fill: var(--guide-text); font-size: 12px; font-weight: 600; }
+    .viz-dot { stroke: #141c26; stroke-width: 2; }
+    .viz-hit { cursor: pointer; }
+
+    .viz-tip {
+      position: fixed;
+      z-index: 50;
+      max-width: 260px;
+      padding: 0.55rem 0.7rem;
+      border-radius: 10px;
+      border: 1px solid rgba(255, 255, 255, 0.15);
+      background: rgba(10, 14, 22, 0.96);
+      color: var(--guide-text);
+      font-size: 0.8rem;
+      line-height: 1.45;
+      pointer-events: none;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+    }
+
+    .viz-tip strong { color: var(--guide-gold); }
+
+    @media (max-width: 960px) {
+      .viz-multiples { grid-template-columns: minmax(0, 1fr); }
+
+      .team-results, .video-grid { grid-template-columns: minmax(0, 1fr); }
+      .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     }
 
     @media (max-width: 760px) {
-      .video-grid { grid-template-columns: minmax(0, 1fr); }
+      .ts-hero { flex-direction: column; text-align: center; }
+      .ts-tags { justify-content: center; }
+      .takeaways { grid-template-columns: minmax(0, 1fr); }
     }
   </style>
 </head>
@@ -102,76 +327,288 @@
       <a href="mitya-guide.html">Guida di Mitya &rarr;</a>
     </header>
 
-    <section class="guide-top" aria-label="Riassunto Tsaritsa (Anastasya)">
-      <div class="guide-art">
-        <img src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="Anastasya, la Tsaritsa" width="256" height="256" />
-        <span class="badge">Cryo &middot; Bow &middot; 5&#9733;</span>
-      </div>
-
-      <div class="guide-copy">
-        <p class="eyebrow">Prime impressioni &middot; beta 7.3 v1 (dati 7.2.50)</p>
+    <section class="ts-hero" aria-label="Tsaritsa (Anastasya)">
+      <img src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="Anastasya, la Tsaritsa" width="256" height="256" />
+      <div>
+        <p class="eyebrow">Prime impressioni &middot; beta 7.3 v1</p>
         <h1>Tsaritsa (Anastasya) C0</h1>
-        <p>
-          Prime impressioni sulla <strong>Tsaritsa</strong> a C0 nei suoi due team pi&ugrave; discussi: con <strong>Mitya C0</strong> e con <strong>Yae Miko C1</strong>.
-          Ho annotato i danni <strong>Stellar</strong> (i numeri bianco-azzurri, non quelli bianco-viola) dei due colpi che contano di pi&ugrave;: la <strong>lancia che cade</strong> dell&rsquo;Elemental Burst e il <strong>colpo con l&rsquo;arco in aria</strong>.
-        </p>
-        <div class="summary-box">
-          <div class="summary-tile"><strong>Elemental Burst</strong><span>fino a 751.542</span></div>
-          <div class="summary-tile"><strong>Colpo con l&rsquo;arco</strong><span>fino a 282.534</span></div>
-          <div class="summary-tile"><strong>Buff alla Tsaritsa</strong><span>Yae avanti*</span></div>
-          <div class="summary-tile"><strong>Costellazione</strong><span>C0</span></div>
+        <p>Quanto Mitya C0, Yae Miko C1 e Nicole C2 fanno salire i danni <strong>Stellar</strong> della Tsaritsa: la <strong>lancia che cade</strong> dell&rsquo;Elemental Burst e il <strong>colpo con l&rsquo;arco in aria</strong>.</p>
+        <div class="ts-tags">
+          <span class="ts-tag">Cryo &middot; Bow &middot; 5&#9733;</span>
+          <span class="ts-tag">C0</span>
+          <span class="ts-tag">3 team &middot; 8 rotazioni</span>
+          <span class="ts-tag beta">Beta &middot; dati 7.2.50</span>
         </div>
-        <p style="font-size: 0.8rem;">* Solo quanto i compagni fanno salire i danni della Tsaritsa, non il danno totale del team.</p>
       </div>
     </section>
 
-    <div class="scope-note" role="note">
-      <strong>&#9888; Attenzione: qui NON si misura il danno totale del team.</strong>
-      <p>Questa pagina confronta <strong>solo quanto Mitya C0 e Yae Miko C1 buffano la Tsaritsa</strong>, cio&egrave; quanto fanno salire i <em>suoi</em> danni Stellar (Burst e colpo con l&rsquo;arco). Il danno fatto da Mitya, da Yae e dagli altri compagni <strong>non &egrave; conteggiato</strong>. &ldquo;Yae avanti&rdquo; significa che Yae fa colpire pi&ugrave; forte la Tsaritsa, <strong>non</strong> che il team con Yae faccia pi&ugrave; danni in totale.</p>
+    <div class="ts-callout" role="note">
+      <strong class="title">&#9888; Prima di leggere</strong>
+      <ul>
+        <li><strong>Qui NON si misura il danno totale del team.</strong> Si confrontano solo i danni della Tsaritsa: il danno di Mitya, Yae, Nicole, Odette e Danica non &egrave; conteggiato.</li>
+        <li>Si leggono solo i numeri <strong>Stellar bianco-azzurri</strong>, non quelli bianco-viola.</li>
+        <li>&Egrave; <strong>beta</strong>: kit e numeri possono cambiare. Le build dei personaggi nei video non sono note.</li>
+      </ul>
     </div>
 
-    <p class="beta-note">
-      <strong>Contenuto beta.</strong> Kit e numeri vengono dalla beta 7.3 v1 (dati nanoka 7.2.50) e possono cambiare prima dell&rsquo;uscita. Non conosco le build dei personaggi nei video: i confronti valgono per questi due showcase, non come regola generale.
-    </p>
-
-    <section class="section" aria-labelledby="anastasya-video">
+    <section class="section" aria-labelledby="ts-sintesi">
       <div class="section-head">
-        <h2 id="anastasya-video">1. I due gameplay</h2>
+        <h2 id="ts-sintesi">1. In breve</h2>
+        <span>Media dei danni della Tsaritsa per team</span>
+      </div>
+
+      <div class="team-results">
+        <article class="team-result best">
+          <div class="team-result-head">
+            <h3>Yae Miko C1 + Danica</h3>
+            <span class="rank">Migliore</span>
+          </div>
+          <div class="team-avatars" aria-label="Tsaritsa, Odette, Yae Miko, Danica">
+            <img src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" loading="lazy" />
+            <img src="assets/img/characters/UI_AvatarIcon_Odette.webp" alt="" width="256" height="256" loading="lazy" />
+            <img class="key" src="assets/img/characters/UI_AvatarIcon_Yae.webp" alt="" width="256" height="256" loading="lazy" />
+            <img src="assets/img/characters/UI_AvatarIcon_Danica.webp" alt="" width="256" height="256" loading="lazy" />
+          </div>
+          <div class="metric">
+            <div class="metric-row"><span>Burst (lancia)</span><strong>738.357</strong></div>
+            <div class="bar"><i style="width: 100%"></i></div>
+          </div>
+          <div class="metric">
+            <div class="metric-row"><span>Colpo con l&rsquo;arco</span><strong>282.534</strong></div>
+            <div class="bar"><i style="width: 100%"></i></div>
+          </div>
+          <span class="delta num-up">Riferimento &middot; valori costanti</span>
+        </article>
+
+        <article class="team-result">
+          <div class="team-result-head">
+            <h3>Mitya C0 + Danica</h3>
+            <span class="rank">2&deg;</span>
+          </div>
+          <div class="team-avatars" aria-label="Tsaritsa, Odette, Mitya, Danica">
+            <img src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" loading="lazy" />
+            <img src="assets/img/characters/UI_AvatarIcon_Odette.webp" alt="" width="256" height="256" loading="lazy" />
+            <img class="key" src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" width="256" height="256" loading="lazy" />
+            <img src="assets/img/characters/UI_AvatarIcon_Danica.webp" alt="" width="256" height="256" loading="lazy" />
+          </div>
+          <div class="metric">
+            <div class="metric-row"><span>Burst (lancia)</span><strong>619.457</strong></div>
+            <div class="bar"><i style="width: 83.9%"></i></div>
+          </div>
+          <div class="metric">
+            <div class="metric-row"><span>Colpo con l&rsquo;arco</span><strong>263.101</strong></div>
+            <div class="bar"><i style="width: 93.1%"></i></div>
+          </div>
+          <span class="delta num-down">&minus;16% Burst &middot; &minus;7% arco &middot; valori variabili</span>
+        </article>
+
+        <article class="team-result">
+          <div class="team-result-head">
+            <h3>Yae Miko C1 + Nicole C2</h3>
+            <span class="rank">Nicchia</span>
+          </div>
+          <div class="team-avatars" aria-label="Tsaritsa, Odette, Yae Miko, Nicole">
+            <img src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" loading="lazy" />
+            <img src="assets/img/characters/UI_AvatarIcon_Odette.webp" alt="" width="256" height="256" loading="lazy" />
+            <img src="assets/img/characters/UI_AvatarIcon_Yae.webp" alt="" width="256" height="256" loading="lazy" />
+            <img class="key" src="assets/img/characters/UI_AvatarIcon_Nicole.webp" alt="" width="256" height="256" loading="lazy" />
+          </div>
+          <div class="metric">
+            <div class="metric-row"><span>Burst (lancia)</span><strong>599.990</strong></div>
+            <div class="bar"><i style="width: 81.3%"></i></div>
+          </div>
+          <div class="metric">
+            <div class="metric-row"><span>Colpo con l&rsquo;arco</span><strong>228.433</strong></div>
+            <div class="bar"><i style="width: 80.9%"></i></div>
+          </div>
+          <span class="delta num-down">&minus;19% su tutti i colpi</span>
+        </article>
+      </div>
+      <p class="ref-note">Barre in percentuale rispetto al team Yae + Danica. Medie su 3 rotazioni (Yae + Danica, Yae + Nicole) e 2 rotazioni (Mitya + Danica). Tutti i colpi sono critici.</p>
+
+      <div class="takeaways">
+        <div class="decision-box ok">
+          <h3>Cosa convince</h3>
+          <ul>
+            <li>Gi&agrave; a <strong>C0</strong> la lancia supera i <strong>700k</strong> in un colpo con Yae, e la combo Doom aggiunge circa altri 650k.</li>
+            <li>Con <strong>Yae + Danica</strong> i numeri sono identici tra una rotazione e l&rsquo;altra: il team &egrave; stabile.</li>
+            <li>Il percorso Honor &egrave; <strong>prevedibile</strong>: hold E, Burst, una combo di Normal Attack e le tre fasi Doom.</li>
+            <li>D&agrave; +12% CRIT DMG a tutto il team, che si concentra su di lei quando gli altri sono Sealed.</li>
+          </ul>
+        </div>
+        <div class="decision-box warning">
+          <h3>Dubbi</h3>
+          <ul>
+            <li><strong>Non &egrave; un confronto di DPS di team:</strong> resta da vedere quale team fa pi&ugrave; danni in totale.</li>
+            <li><strong>Danica sembra quasi obbligatoria</strong>: senza di lei (Nicole al suo posto) la Tsaritsa perde circa il 19%.</li>
+            <li>Durante il Sealing il team non pu&ograve; cambiare personaggio finch&eacute; lei non completa la combo: il team &ldquo;si ferma&rdquo;.</li>
+            <li>Beta v1 e build sconosciute: valori e interazioni possono cambiare.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="ts-video">
+      <div class="section-head">
+        <h2 id="ts-video">2. I gameplay</h2>
         <span>Stesso giocatore, stesso bersaglio</span>
       </div>
 
       <div class="video-grid">
         <figure class="video-embed">
           <div class="frame">
-            <iframe src="https://streamable.com/e/girsxw" title="Tsaritsa C0 con Yae Miko C1" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
+            <iframe src="https://streamable.com/e/girsxw" title="Tsaritsa C0 con Yae Miko C1 e Danica" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
           </div>
-          <figcaption><strong>Tsaritsa C0 &middot; Odette &middot; Yae Miko C1 &middot; Danica</strong></figcaption>
+          <figcaption><strong>Yae Miko C1 + Danica</strong>Tsaritsa C0 &middot; Odette &middot; Yae Miko C1 &middot; Danica</figcaption>
         </figure>
         <figure class="video-embed">
           <div class="frame">
-            <iframe src="https://streamable.com/e/tyvhaw" title="Tsaritsa C0 con Mitya C0" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
+            <iframe src="https://streamable.com/e/tyvhaw" title="Tsaritsa C0 con Mitya C0 e Danica" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
           </div>
-          <figcaption><strong>Tsaritsa C0 &middot; Odette &middot; Mitya C0 &middot; Danica</strong></figcaption>
+          <figcaption><strong>Mitya C0 + Danica</strong>Tsaritsa C0 &middot; Odette &middot; Mitya C0 &middot; Danica</figcaption>
+        </figure>
+        <figure class="video-embed">
+          <div class="frame">
+            <iframe src="https://streamable.com/e/5sjgg4" title="Tsaritsa C0 con Yae Miko C1 e Nicole C2" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
+          </div>
+          <figcaption><strong>Yae Miko C1 + Nicole C2 (nicchia)</strong>Tsaritsa C0 &middot; Odette &middot; Yae Miko C1 &middot; Nicole C2</figcaption>
         </figure>
       </div>
     </section>
 
-    <section class="section" aria-labelledby="anastasya-kit">
+    <section class="section" aria-labelledby="ts-danni">
       <div class="section-head">
-        <h2 id="anastasya-kit">2. Il kit in breve</h2>
-        <span>Il percorso usato nei video: Blessing of Honor</span>
+        <h2 id="ts-danni">3. Danni annotati</h2>
+        <span>Solo numeri Stellar bianco-azzurri della Tsaritsa</span>
+      </div>
+
+      <div class="viz-root">
+        <h3 class="sub-title" style="margin-top: 0;">Media per colpo</h3>
+        <div id="viz-bars" class="viz-block"></div>
+
+        <h3 class="sub-title">Burst rotazione per rotazione</h3>
+        <p class="ref-note" style="margin-top: 0;">Pi&ugrave; la linea &egrave; piatta, pi&ugrave; il team &egrave; costante. L&rsquo;asse parte da 550k per mostrare le differenze.</p>
+        <div id="viz-lines" class="viz-block"></div>
+        <p class="ref-note">Passa il mouse (o tocca) su barre e punti per i valori. I numeri completi sono nella tabella qui sotto.</p>
+      </div>
+
+      <h3 class="sub-title">Tabella completa</h3>
+
+      <div class="table-wrap">
+        <table class="guide-table">
+          <thead>
+            <tr>
+              <th scope="col">Rotazione</th>
+              <th scope="col">Burst (lancia)</th>
+              <th scope="col">Doom 2 (balzo)</th>
+              <th scope="col">Doom 3 (arco)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-row"><td colspan="4">Yae Miko C1 + Danica</td></tr>
+            <tr><td>1</td><td>751.542</td><td>226.027</td><td>282.534</td></tr>
+            <tr><td>2</td><td>731.765</td><td>226.027</td><td>282.534</td></tr>
+            <tr><td>3</td><td>731.765</td><td>214.726</td><td>282.534</td></tr>
+            <tr><td><strong>Media</strong></td><td><strong>738.357</strong></td><td><strong>222.260</strong></td><td><strong>282.534</strong></td></tr>
+
+            <tr class="group-row"><td colspan="4">Mitya C0 + Danica</td></tr>
+            <tr><td>1</td><td>586.574</td><td>176.760</td><td>259.941</td></tr>
+            <tr><td>2</td><td>652.340</td><td>213.009</td><td>266.261</td></tr>
+            <tr><td><strong>Media</strong></td><td><strong>619.457</strong> <span class="num-down">&minus;16,1%</span></td><td><strong>194.885</strong> <span class="num-down">&minus;12,3%</span></td><td><strong>263.101</strong> <span class="num-down">&minus;6,9%</span></td></tr>
+
+            <tr class="group-row"><td colspan="4">Yae Miko C1 + Nicole C2 (nicchia)</td></tr>
+            <tr><td>1</td><td>577.349</td><td>179.512</td><td>224.390</td></tr>
+            <tr><td>2</td><td>611.311</td><td>174.650</td><td>230.454</td></tr>
+            <tr><td>3</td><td>611.311</td><td>179.512</td><td>230.454</td></tr>
+            <tr><td><strong>Media</strong></td><td><strong>599.990</strong> <span class="num-down">&minus;18,7%</span></td><td><strong>177.891</strong> <span class="num-down">&minus;20,0%</span></td><td><strong>228.433</strong> <span class="num-down">&minus;19,1%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="ref-note">Percentuali rispetto alla media del team Yae Miko C1 + Danica.</p>
+
+      <div class="shots">
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/01-ult-yae.webp" alt="Burst della Tsaritsa con Yae e Danica: 751.542" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Burst &middot; Yae + Danica:</strong> 751.542</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/03-ult-mitya.webp" alt="Burst della Tsaritsa con Mitya e Danica: 652.340" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Burst &middot; Mitya + Danica:</strong> 652.340</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/07-ult-nicole.webp" alt="Burst della Tsaritsa con Yae e Nicole: 611.311" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Burst &middot; Yae + Nicole:</strong> 611.311</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/02-arrow-yae.webp" alt="Colpo con l'arco della Tsaritsa con Yae e Danica: 282.534" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Arco &middot; Yae + Danica:</strong> 282.534</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/04-arrow-mitya.webp" alt="Colpo con l'arco della Tsaritsa con Mitya e Danica: 266.261" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Arco &middot; Mitya + Danica:</strong> 266.261</figcaption>
+        </figure>
+        <figure class="evidence-figure">
+          <img src="assets/img/guides/anastasya/08-arrow-nicole.webp" alt="Colpo con l'arco della Tsaritsa con Yae e Nicole: 230.454" loading="lazy" width="1280" height="720" />
+          <figcaption><strong>Arco &middot; Yae + Nicole:</strong> 230.454</figcaption>
+        </figure>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="ts-analisi">
+      <div class="section-head">
+        <h2 id="ts-analisi">4. Perch&eacute; questi numeri</h2>
+        <span>Lettura dal kit (beta, da verificare)</span>
+      </div>
+
+      <div class="panel-grid team-grid">
+        <article class="panel">
+          <h3>Yae Miko C1</h3>
+          <ul>
+            <li>La passiva &ldquo;Edict of Cleansing&rdquo; fa scattare lo <strong>Stellar-Conduct</strong> di continuo dalle Sesshou Sakura, anche off-field: i danni della Tsaritsa sono alti e <strong>costanti</strong>.</li>
+            <li>La C1 d&agrave; solo energia (+8 per Tenko Thunderbolt): aiuta la rotazione ma non buffa direttamente la Tsaritsa.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Mitya C0</h3>
+          <ul>
+            <li>Numeri pi&ugrave; bassi e <strong>variabili</strong> (Burst 586k poi 652k): il primo ciclo sembra soffrire la carica dei Beacon.</li>
+            <li>Il tap E d&agrave; fino a +120 Elemental Mastery al team, ma servono circa 6 s di Stellar-Conduct continui. La sua passiva (+14% al moltiplicatore) potrebbe non sommarsi a quella della Tsaritsa.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Danica vs Nicole C2</h3>
+          <ul>
+            <li>La passiva di Danica in Radiance: Stellar-Conduct riduce la <strong>RES Cryo dei nemici del 30%</strong> (Electro 15%) e d&agrave; ATK al team.</li>
+            <li>Nicole C2 d&agrave; molto ATK e &minus;25% RES all&rsquo;elemento di chi ha Guidance of Theosis, ma non compensa: &minus;19% su tutti i colpi. Inoltre Yae resta l&rsquo;unico Electro.</li>
+          </ul>
+        </article>
+        <article class="panel">
+          <h3>Ipotesi</h3>
+          <ul>
+            <li>La passiva &ldquo;Lament for the Lost&rdquo; della Tsaritsa potenzia il Polestar Field ogni volta che d&agrave; un buff: Yae lo tiene attivo in modo pi&ugrave; regolare di Mitya.</li>
+            <li>Il rapporto Burst/arco del kit &egrave; 2,8 (561,1% / 200,4%): nei video &egrave; 2,6 con Yae e 2,35 con Mitya, quindi con Mitya &egrave; il <strong>Burst</strong> a perdere di pi&ugrave;.</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" aria-labelledby="ts-kit">
+      <div class="section-head">
+        <h2 id="ts-kit">5. Il kit in breve</h2>
+        <span>Percorso usato nei video: Blessing of Honor</span>
       </div>
 
       <div class="split">
         <div class="split-copy">
           <h3>Hold E &rarr; Burst &rarr; Palestar Edict: Doom</h3>
           <ul>
-            <li><strong>Elemental Skill (hold):</strong> ottiene la <strong>Blessing of Honor</strong>; i Normal Attack diventano una sequenza Cryo con la Blessed Armament. Cooldown 15 s.</li>
-            <li><strong>Elemental Burst &ldquo;The Evernight Yields to Dawn&rdquo;:</strong> la <strong>lancia che cade</strong>, 561,1% (Lv. 10) come danno Stellar-Conduct. Mette in stato <strong>Sealed</strong> fino a 3 compagni.</li>
-            <li><strong>Palestar Edict: Doom:</strong> quando finisce il Sealed, selezionare i compagni attiva 3 fasi: 1) raffica di fendenti, 2) balzo con fendente (160,3%), 3) <strong>colpo con l&rsquo;arco</strong> (200,4%), che chiude l&rsquo;effetto.</li>
-            <li><strong>Passiva &ldquo;The Radiant Reign of Night&rdquo;:</strong> +12% CRIT DMG a tutto il team dopo la skill. Quando i compagni sono Sealed, il loro bonus passa a chi non lo &egrave;, quindi alla Tsaritsa.</li>
-            <li><strong>Passiva &ldquo;Stellar Jubilee&rdquo;:</strong> +0,7% ai danni base Stellar-Conduct/Stellar Swirl ogni 100 ATK, fino a +14%.</li>
+            <li><strong>Elemental Skill (hold):</strong> Blessing of Honor; i Normal Attack diventano una sequenza Cryo con la Blessed Armament. Cooldown 15 s.</li>
+            <li><strong>Elemental Burst &ldquo;The Evernight Yields to Dawn&rdquo;:</strong> la <strong>lancia che cade</strong>, 561,1% (Lv. 10) come danno Stellar-Conduct. Mette in Sealed fino a 3 compagni.</li>
+            <li><strong>Palestar Edict: Doom:</strong> a Sealed finito, selezionare i compagni attiva 3 fasi: fendenti, balzo (160,3%) e <strong>colpo con l&rsquo;arco</strong> (200,4%).</li>
+            <li><strong>&ldquo;The Radiant Reign of Night&rdquo;:</strong> +12% CRIT DMG al team; il bonus dei Sealed passa a chi non lo &egrave;.</li>
+            <li><strong>&ldquo;Stellar Jubilee&rdquo;:</strong> +0,7% ai danni base Stellar-Conduct/Stellar Swirl ogni 100 ATK, fino a +14%.</li>
           </ul>
+          <p class="ref-note">Sul tap E (Blessing of Love) c&rsquo;&egrave; un altro percorso, con il Burst &ldquo;To the New World&rdquo; (+50% ai danni Stellar Glimmer del team): nei video non si vede.</p>
         </div>
         <figure class="evidence-figure">
           <img src="assets/img/guides/anastasya/06-ult-cast.webp" alt="Elemental Burst della Tsaritsa: la lancia sospesa nel cielo prima di cadere" loading="lazy" width="1280" height="720" />
@@ -179,21 +616,13 @@
         </figure>
       </div>
 
-      <div class="quote-block">
-        <ul>
-          <li>Sul tap E (Blessing of Love) c&rsquo;&egrave; un altro percorso: Palestar Crown off-field e il Burst &ldquo;To the New World&rdquo;, che aumenta del 50% i danni Stellar Glimmer del team. Nei video non si vede, quindi qui non lo valuto.</li>
-        </ul>
-      </div>
-
-      <h3 style="margin: 1.4rem 0 0.6rem; color: var(--guide-gold); font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase;">Come funziona il Sealing</h3>
-      <p>Dopo il Burst i personaggi Sealed non si possono selezionare e compare un <strong>indicatore nascosto</strong>. Quando si riempie, tutti i personaggi Sealed vengono liberati. Si riempie da solo col tempo, ma si pu&ograve; accelerare:</p>
+      <h3 class="sub-title">Come funziona il Sealing</h3>
+      <p>Dopo il Burst i personaggi Sealed non si possono selezionare e compare un <strong>indicatore nascosto</strong>: quando si riempie, tutti vengono liberati. Si riempie da solo, ma si pu&ograve; accelerare.</p>
 
       <div class="panel-grid team-grid" style="margin-top: 0.8rem;">
         <div class="table-wrap">
           <table class="guide-table">
-            <thead>
-              <tr><th scope="col" colspan="2">Love Burst (tap E)</th></tr>
-            </thead>
+            <thead><tr><th scope="col" colspan="2">Love Burst (tap E)</th></tr></thead>
             <tbody>
               <tr><td>Indicatore massimo</td><td>100</td></tr>
               <tr><td>Riempimento passivo</td><td>5/s</td></tr>
@@ -203,9 +632,7 @@
         </div>
         <div class="table-wrap">
           <table class="guide-table">
-            <thead>
-              <tr><th scope="col" colspan="2">Honor Burst (hold E, quello dei video)</th></tr>
-            </thead>
+            <thead><tr><th scope="col" colspan="2">Honor Burst (hold E, quello dei video)</th></tr></thead>
             <tbody>
               <tr><td>Indicatore massimo</td><td>120</td></tr>
               <tr><td>Riempimento passivo</td><td>5/s</td></tr>
@@ -219,183 +646,12 @@
 
       <div class="quote-block">
         <ul>
-          <li><strong>Honor:</strong> una combo completa di 5 Normal Attack d&agrave; +110 su 120. Con il riempimento passivo, in pratica <strong>una combo dopo il Burst basta per liberare il team</strong> e passare alle fasi Doom, come si vede nei video.</li>
-          <li><strong>Love:</strong> lo si riempie colpendo con danni Stellar Glimmer (+2 a colpo) oltre ai 5/s passivi, quindi conta avere compagni che fanno tanti colpi Stellar.</li>
-          <li>Il CRIT DMG in pi&ugrave; (o in meno) dato dagli Accolades durante il Sealing <strong>resta per altri 8 s</strong> dopo la fine. In quei secondi si possono usare le skill di ingresso/extra (Palestar Edict).</li>
+          <li><strong>Honor:</strong> una combo di 5 Normal Attack d&agrave; +110 su 120: in pratica <strong>una combo dopo il Burst basta per liberare il team</strong>.</li>
+          <li><strong>Love:</strong> si riempie anche con i colpi Stellar Glimmer del team (+2 a colpo), quindi contano compagni con tanti colpi Stellar.</li>
+          <li>Il CRIT DMG degli Accolades resta per altri <strong>8 s</strong> dopo la fine del Sealing; in quei secondi si possono usare le skill di ingresso (Palestar Edict).</li>
         </ul>
       </div>
-      <p style="margin-top: 0.6rem; font-size: 0.8rem;">Dati sul Sealing: grazie a <strong>kuroo</strong>.</p>
-    </section>
-
-    <section class="section" aria-labelledby="anastasya-danni">
-      <div class="section-head">
-        <h2 id="anastasya-danni">3. Danni annotati</h2>
-        <span>Solo numeri Stellar bianco-azzurri</span>
-      </div>
-
-      <div class="table-wrap">
-        <table class="guide-table">
-          <thead>
-            <tr>
-              <th scope="col">Team</th>
-              <th scope="col">Rotazione</th>
-              <th scope="col">Burst (lancia)</th>
-              <th scope="col">Doom 2 (balzo)</th>
-              <th scope="col">Doom 3 (arco)</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr><td>Mitya C0</td><td>1</td><td>586.574</td><td>176.760</td><td>259.941</td></tr>
-            <tr><td>Mitya C0</td><td>2</td><td>652.340</td><td>213.009</td><td>266.261</td></tr>
-            <tr><td>Yae C1</td><td>1</td><td>751.542</td><td>226.027</td><td>282.534</td></tr>
-            <tr><td>Yae C1</td><td>2</td><td>731.765</td><td>226.027</td><td>282.534</td></tr>
-            <tr><td>Yae C1</td><td>3</td><td>731.765</td><td>214.726</td><td>282.534</td></tr>
-            <tr><td><strong>Media Mitya</strong></td><td>&ndash;</td><td><strong>619.457</strong></td><td><strong>194.885</strong></td><td><strong>263.101</strong></td></tr>
-            <tr><td><strong>Media Yae</strong></td><td>&ndash;</td><td><strong>738.357</strong> <span class="num-up">+19,2%</span></td><td><strong>222.260</strong> <span class="num-up">+14,0%</span></td><td><strong>282.534</strong> <span class="num-up">+7,4%</span></td></tr>
-          </tbody>
-        </table>
-      </div>
-      <p style="margin-top: 0.6rem; font-size: 0.85rem;">Tutti i colpi sono critici. Il video con Mitya mostra 2 rotazioni complete, quello con Yae 3. Entrambi i team hanno anche Odette e Danica. Il team di nicchia con Nicole &egrave; nella sezione 5.</p>
-
-      <div class="figure-grid">
-        <figure class="evidence-figure">
-          <img src="assets/img/guides/anastasya/01-ult-yae.webp" alt="Burst della Tsaritsa nel team con Yae Miko: 751.542 danni" loading="lazy" width="1280" height="720" />
-          <figcaption><strong>Burst con Yae:</strong> 751.542 (il pi&ugrave; alto visto).</figcaption>
-        </figure>
-        <figure class="evidence-figure">
-          <img src="assets/img/guides/anastasya/03-ult-mitya.webp" alt="Burst della Tsaritsa nel team con Mitya: 652.340 danni" loading="lazy" width="1280" height="720" />
-          <figcaption><strong>Burst con Mitya:</strong> 652.340.</figcaption>
-        </figure>
-        <figure class="evidence-figure">
-          <img src="assets/img/guides/anastasya/02-arrow-yae.webp" alt="Colpo con l'arco della Tsaritsa nel team con Yae Miko: 282.534 danni" loading="lazy" width="1280" height="720" />
-          <figcaption><strong>Arco con Yae:</strong> 282.534 (identico in tutte e 3 le rotazioni).</figcaption>
-        </figure>
-        <figure class="evidence-figure">
-          <img src="assets/img/guides/anastasya/04-arrow-mitya.webp" alt="Colpo con l'arco della Tsaritsa nel team con Mitya: 266.261 danni" loading="lazy" width="1280" height="720" />
-          <figcaption><strong>Arco con Mitya:</strong> 266.261.</figcaption>
-        </figure>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="anastasya-confronto">
-      <div class="section-head">
-        <h2 id="anastasya-confronto">4. Chi buffa di pi&ugrave; la Tsaritsa: Mitya C0 o Yae Miko C1?</h2>
-        <span>Solo danni della Tsaritsa, non del team</span>
-      </div>
-
-      <p class="scope-inline"><strong>Promemoria:</strong> si confrontano solo i danni della Tsaritsa. Il danno personale di Mitya e di Yae non entra nel confronto, quindi questo <strong>non dice quale team fa pi&ugrave; danni in totale</strong>.</p>
-
-      <div class="panel-grid team-grid">
-        <article class="panel">
-          <h3>Yae Miko C1</h3>
-          <ul>
-            <li>I danni Stellar della Tsaritsa sono pi&ugrave; alti e <strong>pi&ugrave; costanti</strong>: l&rsquo;arco fa sempre 282.534 e il Burst sta tra 731k e 751k.</li>
-            <li>La passiva &ldquo;Edict of Cleansing&rdquo; di Yae fa scattare lo <strong>Stellar-Conduct</strong> di continuo dalle Sesshou Sakura, anche off-field.</li>
-            <li>La C1 di Yae d&agrave; solo energia (+8 per Tenko Thunderbolt): aiuta la rotazione, ma non buffa direttamente la Tsaritsa.</li>
-          </ul>
-        </article>
-        <article class="panel">
-          <h3>Mitya C0</h3>
-          <ul>
-            <li>I numeri sono pi&ugrave; bassi e <strong>variano</strong>: il primo Burst &egrave; 586k, il secondo 652k. Il primo ciclo sembra soffrire la carica iniziale.</li>
-            <li>Il tap E d&agrave; +30 Elemental Mastery al team per ogni Beacon (fino a +120), ma servono circa 6 s e Stellar-Conduct continui per arrivare a 4 Beacon.</li>
-            <li>La sua passiva aumenta il moltiplicatore Stellar-Conduct fino al +14% con 500 Elemental Mastery. Non so se si somma al +14% della Tsaritsa.</li>
-          </ul>
-        </article>
-      </div>
-
-      <div class="quote-block">
-        <ul>
-          <li><strong>Mia ipotesi (da verificare):</strong> la passiva &ldquo;Lament for the Lost&rdquo; della Tsaritsa potenzia il Polestar Field ogni volta che d&agrave; un buff. Yae tiene il campo attivo in modo pi&ugrave; regolare di Mitya, e questo spiegherebbe sia il danno pi&ugrave; alto sia la costanza.</li>
-          <li>Il rapporto Burst/arco del kit &egrave; 2,8 (561,1% contro 200,4%). Nei video &egrave; 2,6 con Yae e 2,35 con Mitya: con Mitya il <strong>Burst</strong> perde pi&ugrave; terreno dell&rsquo;arco.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="anastasya-nicchia">
-      <div class="section-head">
-        <h2 id="anastasya-nicchia">5. Team di nicchia: Nicole C2 al posto di Danica</h2>
-        <span>Tsaritsa C0 &middot; Odette &middot; Yae Miko C1 &middot; Nicole C2</span>
-      </div>
-
-      <p class="scope-inline"><strong>Promemoria:</strong> anche qui contano solo i danni della Tsaritsa. Il danno di Nicole, Yae e Odette non &egrave; conteggiato.</p>
-
-      <div class="table-wrap">
-          <table class="guide-table">
-            <thead>
-              <tr>
-                <th scope="col">Rotazione</th>
-                <th scope="col">Burst (lancia)</th>
-                <th scope="col">Doom 2 (balzo)</th>
-                <th scope="col">Doom 3 (arco)</th>
-              </tr>
-            </thead>
-            <tbody>
-              <tr><td>1</td><td>577.349</td><td>179.512</td><td>224.390</td></tr>
-              <tr><td>2</td><td>611.311</td><td>174.650</td><td>230.454</td></tr>
-              <tr><td>3</td><td>611.311</td><td>179.512</td><td>230.454</td></tr>
-              <tr><td><strong>Media</strong></td><td><strong>599.990</strong></td><td><strong>177.891</strong></td><td><strong>228.433</strong></td></tr>
-              <tr><td>vs team Yae + Danica</td><td class="num-down">&minus;18,7%</td><td class="num-down">&minus;20,0%</td><td class="num-down">&minus;19,1%</td></tr>
-            </tbody>
-          </table>
-        </div>
-
-      <div class="figure-grid">
-        <figure class="video-embed">
-          <div class="frame">
-            <iframe src="https://streamable.com/e/5sjgg4" title="Tsaritsa C0 con Yae Miko C1 e Nicole C2" allow="fullscreen" allowfullscreen loading="lazy"></iframe>
-          </div>
-          <figcaption><strong>Tsaritsa C0 &middot; Odette &middot; Yae Miko C1 &middot; Nicole C2</strong></figcaption>
-        </figure>
-        <figure class="evidence-figure">
-          <img src="assets/img/guides/anastasya/07-ult-nicole.webp" alt="Burst della Tsaritsa nel team con Nicole: 611.311 danni" loading="lazy" width="1280" height="720" />
-          <figcaption><strong>Burst con Nicole:</strong> 611.311.</figcaption>
-        </figure>
-        <figure class="evidence-figure">
-          <img src="assets/img/guides/anastasya/08-arrow-nicole.webp" alt="Colpo con l'arco della Tsaritsa nel team con Nicole: 230.454 danni" loading="lazy" width="1280" height="720" />
-          <figcaption><strong>Arco con Nicole:</strong> 230.454.</figcaption>
-        </figure>
-      </div>
-
-      <div class="quote-block">
-        <ul>
-          <li>&Egrave; lo stesso team con Yae del video principale, ma con <strong>Nicole C2 al posto di Danica</strong>. Il risultato &egrave; circa <strong>&minus;19%</strong> su tutti i colpi della Tsaritsa: Burst, balzo e arco.</li>
-          <li><strong>Perch&eacute;, secondo il kit (beta, da verificare):</strong> la passiva di Danica in Radiance: Stellar-Conduct riduce la <strong>RES Cryo dei nemici del 30%</strong> (e quella Electro del 15%) e d&agrave; ATK al team. Nicole C2 d&agrave; molto ATK (fino a +600, pi&ugrave; +300 e +300) e &minus;25% di RES all&rsquo;elemento di chi ha Guidance of Theosis, ma nel complesso a quanto pare non compensa Danica.</li>
-          <li>Con Nicole l&rsquo;unico Electro del team &egrave; Yae: lo Stellar-Conduct dipende tutto da lei.</li>
-          <li>Rispetto al team con <strong>Mitya</strong> il Burst &egrave; simile (&minus;3%), ma l&rsquo;arco &egrave; pi&ugrave; basso (&minus;13%).</li>
-          <li>Per questo lo considero un <strong>team di nicchia</strong>: ha senso se non hai Danica, o se Nicole ti serve per lo scudo e la comodit&agrave;.</li>
-        </ul>
-      </div>
-    </section>
-
-    <section class="section" aria-labelledby="anastasya-impressioni">
-      <div class="section-head">
-        <h2 id="anastasya-impressioni">6. Prime impressioni</h2>
-        <span>Da rivedere con la beta successiva</span>
-      </div>
-
-      <div class="decision-grid">
-        <div class="decision-box ok">
-          <h3>Cosa convince</h3>
-          <ul>
-            <li>Gi&agrave; a <strong>C0</strong> il Burst supera i <strong>700k</strong> in un singolo colpo con Yae, e la combo Doom aggiunge altri ~650k (fasi 1&ndash;3).</li>
-            <li>Il percorso Honor &egrave; <strong>prevedibile</strong>: hold E, Burst, poi le tre fasi Doom selezionando i compagni.</li>
-            <li>Con Yae i numeri sono identici tra una rotazione e l&rsquo;altra, quindi il team &egrave; stabile.</li>
-            <li>Fa da buffer CRIT DMG per tutto il team (+12% a testa, che si concentra su di lei quando gli altri sono Sealed).</li>
-          </ul>
-        </div>
-        <div class="decision-box warning">
-          <h3>Dubbi</h3>
-          <ul>
-            <li><strong>Non &egrave; un confronto di DPS di team:</strong> manca il danno di Mitya, Yae, Odette e Danica.</li>
-            <li>Con <strong>Mitya C0</strong> rende circa il <strong>19% in meno</strong> sul Burst e il 7% in meno sull&rsquo;arco. Per <em>buffare la Tsaritsa</em>, al momento Yae C1 sembra la compagna migliore. Resta da vedere quale team fa pi&ugrave; danni in totale, contando anche Mitya e Yae.</li>
-            <li>Durante il Sealing il team non pu&ograve; cambiare personaggio finch&eacute; l&rsquo;indicatore non &egrave; pieno: con Honor serve una combo di Normal Attack della Tsaritsa (+110 su 120), quindi il team &ldquo;si ferma&rdquo; mentre lei &egrave; in campo.</li>
-            <li>Con <strong>Nicole C2 al posto di Danica</strong> la Tsaritsa perde circa il 19% su tutti i colpi: Danica sembra quasi obbligatoria nel team con Yae.</li>
-            <li>&Egrave; beta v1: valori e interazioni (Elemental Mastery di Mitya, Polestar Field) potrebbero cambiare.</li>
-            <li>Mancano le build: non posso escludere che parte della differenza dipenda da artefatti o armi diverse.</li>
-          </ul>
-        </div>
-      </div>
+      <p class="ref-note">Dati sul Sealing: grazie a <strong>kuroo</strong>.</p>
 
       <p class="source-note">
         Gameplay forniti da JuanLab (beta 7.3 v1). Dati del kit da <a href="https://gi.nanoka.cc/" rel="noopener">gi.nanoka.cc</a> (7.2.50, Lv. 10).
@@ -409,5 +665,6 @@
   </footer>
 
   <script src="assets/js/main.js?v=20260923-1"></script>
+  <script src="assets/js/anastasya-charts.js?v=20261105-2"></script>
 </body>
 </html>
