@@ -17,4 +17,6 @@ Lavora in autonomia sul repository per completare il task richiesto, mantenendo 
 - Per aggiornare i contenuti di Spyral Abyss, Imaginarium Theater e Stygian Onslaught, usa come fonti di riferimento:
   - https://lunaris.moe/
   - https://gi.nanoka.cc/
+- Per meccaniche di gioco, fondamenta e theorycrafting (reazioni, ICD, scaling, build, guide ai personaggi), consulta:
+  - https://keqingmains.com/
 - Altre fonti potranno essere aggiunte in seguito su indicazione dell'utente.
