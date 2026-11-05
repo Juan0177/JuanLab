@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Tsaritsa (Anastasya) C0: prime impressioni beta 7.3 | JuanLab</title>
-  <meta name="description" content="Prime impressioni sulla Tsaritsa (Anastasya) C0 nella beta 7.3 v1: danni Stellar-Conduct (Cryo su Electro) dell'Elemental Burst e di Palestar Edict: Doom (3ª fase), quanto Alyosha C6, Mitya C0, Yae Miko C1 e Nicole C2 buffano la Tsaritsa (non il danno totale del team)." />
+  <meta name="description" content="Prime impressioni sulla Tsaritsa (Anastasya) C0 nella beta 7.3 v1: danni Stellar-Conduct (Cryo su Electro) dell'Elemental Burst e di Palestar Edict: Doom (3ª fase) con Alyosha C6, Mitya C0, Yae Miko C1 e Nicole C2, più DPR e DPS di ogni team letti dai gameplay." />
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
@@ -288,6 +288,7 @@
       gap: 1.2rem;
     }
 
+    .viz-multiples.two { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     .viz-cell { margin: 0; }
     .viz-cell figcaption { margin-bottom: 0.4rem; font-size: 0.85rem; font-weight: 700; color: var(--guide-text); }
 
@@ -317,7 +318,7 @@
     .viz-tip strong { color: var(--guide-gold); }
 
     @media (max-width: 960px) {
-      .viz-multiples { grid-template-columns: minmax(0, 1fr); }
+      .viz-multiples, .viz-multiples.two { grid-template-columns: minmax(0, 1fr); }
 
       .team-results, .video-grid { grid-template-columns: minmax(0, 1fr); }
       .shots { grid-template-columns: repeat(2, minmax(0, 1fr)); }
@@ -345,11 +346,12 @@
       <div>
         <p class="eyebrow">Prime impressioni &middot; beta 7.3 v1</p>
         <h1>Tsaritsa (Anastasya) C0</h1>
-        <p>Quanto Alyosha C6, Mitya C0, Yae Miko C1 e Nicole C2 alzano i danni Stellar-Conduct (Cryo su Electro) della Tsaritsa su due colpi: l&rsquo;Elemental Burst (la lancia che cade) e Palestar Edict: Doom (3&ordf; fase, il colpo con l&rsquo;arco in aria).</p>
+        <p>Quanto Alyosha C6, Mitya C0, Yae Miko C1 e Nicole C2 alzano i danni Stellar-Conduct (Cryo su Electro) della Tsaritsa su due colpi: l&rsquo;Elemental Burst (la lancia che cade) e Palestar Edict: Doom (3&ordf; fase, il colpo con l&rsquo;arco in aria). Nella sezione 4 c&rsquo;&egrave; anche il danno totale di ogni team.</p>
         <div class="ts-tags">
           <span class="ts-tag">Cryo &middot; Bow &middot; 5&#9733;</span>
           <span class="ts-tag">C0</span>
           <span class="ts-tag">4 team &middot; 11 rotazioni</span>
+          <span class="ts-tag">DPR &middot; DPS di team</span>
           <span class="ts-tag beta">Beta &middot; dati 7.2.50</span>
         </div>
       </div>
@@ -358,8 +360,8 @@
     <div class="ts-callout" role="note">
       <strong class="title">&#9888; Prima di leggere</strong>
       <ul>
-        <li><strong>Questa pagina non misura il danno totale del team.</strong> Confronta solo i danni della Tsaritsa: quelli di Alyosha, Mitya, Yae, Nicole, Odette e Danica non sono contati.</li>
-        <li>Sono registrati solo i danni Stellar-Conduct (Cryo su Electro), quelli con i numeri bianco-azzurri. I danni Stellar-Conduct (Electro su Cryo), bianco-violetti, sono esclusi.</li>
+        <li><strong>Le sezioni 1&ndash;3 non misurano il danno totale del team.</strong> Confrontano solo i danni della Tsaritsa: quelli di Alyosha, Mitya, Yae, Nicole, Odette e Danica non sono contati. Il danno del team &egrave; nella sezione 4.</li>
+        <li>In quelle sezioni sono registrati solo i danni Stellar-Conduct (Cryo su Electro), quelli con i numeri bianco-azzurri. I danni Stellar-Conduct (Electro su Cryo), bianco-violetti, sono esclusi.</li>
         <li>&Egrave; una beta: kit e numeri possono cambiare. Le build usate nei video non sono note.</li>
       </ul>
     </div>
@@ -474,7 +476,7 @@
         <div class="decision-box warning">
           <h3>Dubbi</h3>
           <ul>
-            <li>Non &egrave; un confronto tra i DPS dei team: quale team faccia pi&ugrave; danni in totale resta da vedere.</li>
+            <li>Questi sono solo i danni della Tsaritsa: un Burst pi&ugrave; alto non vuol dire un team pi&ugrave; forte. Il danno totale dei team &egrave; nella sezione 4.</li>
             <li>Con Alyosha C6 il Burst &egrave; il pi&ugrave; alto, ma Doom 2 (balzo) e Doom 3 (arco) sono pi&ugrave; bassi che con Yae. Il totale dipende da quanto pesa il Burst nella rotazione.</li>
             <li>Danica sembra quasi obbligatoria: con Nicole al suo posto la Tsaritsa perde circa il 19%.</li>
             <li>Durante il Sealing non si pu&ograve; fare swap finch&eacute; la Tsaritsa non chiude la combo, quindi il resto del team resta fermo.</li>
@@ -609,9 +611,54 @@
       </div>
     </section>
 
+    <section class="section" aria-labelledby="ts-team">
+      <div class="section-head">
+        <h2 id="ts-team">4. DPR e DPS di team</h2>
+        <span>Tutti i danni del team, una rotazione per team</span>
+      </div>
+
+      <p>Qui contano i danni di tutto il team, non solo quelli della Tsaritsa. Per ogni team si prende la rotazione con Burst e Doom pi&ugrave; alti e si sommano tutti i numeri di danno comparsi a schermo: &egrave; il DPR. Il DPS &egrave; il DPR diviso per la durata della rotazione.</p>
+
+      <div class="viz-root">
+        <div id="viz-team" class="viz-block"></div>
+        <p class="ref-note">Passa il mouse (o tocca) sulle barre per vedere durata e differenze.</p>
+      </div>
+
+      <div class="table-wrap">
+        <table class="guide-table">
+          <thead>
+            <tr>
+              <th scope="col">Team</th>
+              <th scope="col">Rotazione</th>
+              <th scope="col">Durata</th>
+              <th scope="col">DPR</th>
+              <th scope="col">DPS</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr><td>Alyosha C6 + Danica (F2P)</td><td>2</td><td>22,10 s</td><td>4.725.588 <span class="num-down">&minus;2,5%</span></td><td><strong>213.828</strong> <span class="num-down">&minus;0,2%</span></td></tr>
+            <tr><td>Yae Miko C1 + Danica</td><td>1</td><td>22,63 s</td><td><strong>4.848.828</strong></td><td><strong>214.265</strong></td></tr>
+            <tr><td>Mitya C0 + Danica</td><td>2</td><td>21,55 s</td><td>3.163.763 <span class="num-down">&minus;34,8%</span></td><td>146.810 <span class="num-down">&minus;31,5%</span></td></tr>
+            <tr><td>Yae Miko C1 + Nicole C2 (nicchia)</td><td>3</td><td>21,38 s</td><td>3.976.983 <span class="num-down">&minus;18,0%</span></td><td>186.014 <span class="num-down">&minus;13,2%</span></td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="ref-note">Percentuali rispetto al team Yae Miko C1 + Danica. La durata va dallo swap che apre la rotazione all&rsquo;ultimo numero dopo il Doom 3. I numeri sono letti dai video fotogramma per fotogramma: quelli coperti da altri numeri o dagli effetti sono stimati (dallo 0,6% al 3,5% del DPR, a seconda del team) e qualche colpo piccolo pu&ograve; mancare. Prendi i valori come stime, con un margine di qualche punto percentuale.</p>
+
+      <div class="quote-block">
+        <ul>
+          <li>Alyosha C6 + Danica e Yae C1 + Danica sono praticamente pari: 213.828 contro 214.265 DPS. La differenza (0,2%) &egrave; pi&ugrave; piccola dell&rsquo;errore di lettura. Con Yae il DPR &egrave; pi&ugrave; alto del 2,5%, ma la rotazione dura circa mezzo secondo in pi&ugrave;.</li>
+          <li>Nicole C2 al posto di Danica costa il 13,2% di DPS. Il DPR scende del 18%, ma la rotazione &egrave; un po&rsquo; pi&ugrave; corta.</li>
+          <li>Mitya C0 &egrave; il team pi&ugrave; debole, con il 31,5% di DPS in meno.</li>
+          <li>Nel team Alyosha c&rsquo;&egrave; un colpo da 881.102 subito dopo lo swap: &egrave; la Elemental Skill di Odette, non il Burst della Tsaritsa.</li>
+          <li>Nel video con Nicole i colpi off-field continuano anche dopo la fine della rotazione 3, fino alla fine del video. Non sono contati.</li>
+        </ul>
+      </div>
+    </section>
+
     <section class="section" aria-labelledby="ts-analisi">
       <div class="section-head">
-        <h2 id="ts-analisi">4. Perch&eacute; questi numeri</h2>
+        <h2 id="ts-analisi">5. Perch&eacute; questi numeri</h2>
         <span>Lettura dal kit (beta, da verificare)</span>
       </div>
 
@@ -656,7 +703,7 @@
 
     <section class="section" aria-labelledby="ts-kit">
       <div class="section-head">
-        <h2 id="ts-kit">5. Il kit in breve</h2>
+        <h2 id="ts-kit">6. Il kit in breve</h2>
         <span>Percorso usato nei video: Blessing of Honor</span>
       </div>
 
@@ -729,6 +776,6 @@
 
   <script src="assets/js/main.js?v=20260923-1"></script>
   <script src="assets/js/lightbox.js?v=20261105-1"></script>
-  <script src="assets/js/anastasya-charts.js?v=20261105-4"></script>
+  <script src="assets/js/anastasya-charts.js?v=20261105-5"></script>
 </body>
 </html>
