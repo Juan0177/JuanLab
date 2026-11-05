@@ -1,0 +1,132 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Danica C0 DPS: prime impressioni beta 7.3 | JuanLab</title>
+  <meta name="description" content="Danica C0R0 come DPS nella beta 7.3: calcoli di team con Yae Miko, Odette o Tsaritsa e Qiqi, danno per rotazione, DPS e ripartizione per personaggio." />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
+  <link rel="stylesheet" href="assets/css/guide-page.css?v=20261103-1" />
+  <style>
+    .guide-page article { aspect-ratio: auto; margin: 0; }
+    .dn-hero { display: flex; align-items: center; gap: 1.2rem; padding: 1.2rem; border: 1px solid var(--guide-border); border-radius: 22px;
+      background: radial-gradient(circle at 0% 0%, rgba(197, 155, 255, 0.16), transparent 45%), linear-gradient(135deg, rgba(23, 18, 38, 0.94), rgba(11, 18, 25, 0.9)); }
+    .dn-hero img { width: 108px; height: 108px; flex: none; border-radius: 50%; border: 3px solid rgba(197, 155, 255, 0.85); background: rgba(5, 10, 20, 0.9); }
+    .dn-hero h1 { margin: 0.15rem 0 0.4rem; font-size: clamp(1.8rem, 3.6vw, 2.8rem); line-height: 1.05; }
+    .dn-hero p { margin: 0; color: var(--guide-muted); line-height: 1.6; }
+    .kpis { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 1rem; margin-top: 1rem; }
+    .kpi { padding: 1rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.1); background: var(--guide-panel-soft); }
+    .kpi strong { display: block; color: var(--guide-gold); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 0.3rem; }
+    .kpi span { font-size: 1.6rem; font-weight: 800; color: var(--guide-text); }
+    .kpi small { display: block; color: var(--guide-muted); font-size: 0.8rem; margin-top: 0.2rem; }
+    .group-row td { color: var(--guide-gold) !important; font-size: 0.72rem; letter-spacing: 0.12em; text-transform: uppercase; background: rgba(255, 200, 87, 0.05) !important; }
+    .scope-inline { margin: 0 0 1rem; padding: 0.6rem 0.85rem; border-left: 3px solid var(--guide-gold); background: rgba(255, 200, 87, 0.06); border-radius: 0 10px 10px 0; color: var(--guide-text); }
+    .ref-note { margin-top: 0.6rem; font-size: 0.8rem; color: var(--guide-muted); }
+    .viz-root { --char-danica: #9085e9; --char-yae: #d55181; --char-odette: #3987e5; --char-tsaritsa: #199e70; --char-qiqi: #c98500; margin-bottom: 1rem; }
+    .viz-block { padding: 1rem; border-radius: 16px; border: 1px solid rgba(255,255,255,0.08); background: rgba(255,255,255,0.02); }
+    .viz-block svg { display: block; width: 100%; height: auto; overflow: visible; }
+    .viz-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1.1rem; margin-bottom: 0.9rem; font-size: 0.82rem; color: var(--guide-text); }
+    .viz-legend span { display: inline-flex; align-items: center; gap: 0.4rem; }
+    .viz-legend i { width: 12px; height: 12px; border-radius: 3px; display: inline-block; }
+    .viz-value { fill: var(--guide-text); font-size: 13px; font-weight: 700; }
+    .viz-axis { fill: rgba(237,245,255,0.72); font-size: 12px; }
+    .viz-inbar { fill: #0b0f16; font-size: 12px; font-weight: 700; pointer-events: none; }
+    .viz-hit { cursor: pointer; }
+    .viz-tip { position: fixed; z-index: 50; max-width: 260px; padding: 0.55rem 0.7rem; border-radius: 10px; border: 1px solid rgba(255,255,255,0.15); background: rgba(10,14,22,0.96); color: var(--guide-text); font-size: 0.8rem; line-height: 1.45; pointer-events: none; box-shadow: 0 10px 30px rgba(0,0,0,0.4); }
+    .viz-tip strong { color: var(--guide-gold); }
+    .beta-note { margin-top: 1rem; padding: 0.8rem 1rem; border-radius: 14px; border: 1px solid rgba(255,125,125,0.35); background: rgba(255,125,125,0.06); font-size: 0.9rem; line-height: 1.6; }
+    @media (max-width: 760px) { .dn-hero { flex-direction: column; text-align: center; } .kpis { grid-template-columns: minmax(0, 1fr); } }
+  </style>
+</head>
+<body>
+  <canvas id="stars"></canvas>
+
+  <main class="container guide-page">
+    <header class="guide-header">
+      <a href="current-pg.html">&larr; Torna alla pagina guida</a>
+      <a href="anastasya-impressions.html">Tsaritsa: prime impressioni &rarr;</a>
+    </header>
+
+    <section class="dn-hero" aria-label="Danica">
+      <img src="assets/img/characters/UI_AvatarIcon_Danica.webp" alt="Danica" width="256" height="256" />
+      <div>
+        <p class="eyebrow">Prime impressioni &middot; beta 7.3 v1 &middot; Electro &middot; Claymore &middot; 5&#9733;</p>
+        <h1>Danica C0 come DPS</h1>
+        <p>Danica <strong>C0R0</strong> come DPS principale, per ora, <strong>non sembra male</strong>: fa circa un terzo del danno del team. Qui sotto i calcoli di team con Yae Miko C1, Qiqi C2 e, come terzo slot, Odette o la Tsaritsa.</p>
+      </div>
+    </section>
+
+    <div class="kpis">
+      <div class="kpi"><strong>Miglior DPS di team</strong><span>175.228</span><small>con la Tsaritsa al posto di Odette</small></div>
+      <div class="kpi"><strong>Tsaritsa vs Odette</strong><span>+8,1%</span><small>162.140 &rarr; 175.228 DPS</small></div>
+      <div class="kpi"><strong>Quota di Danica</strong><span>~31%</span><small>907k&ndash;992k per rotazione da 18 s</small></div>
+    </div>
+
+    <p class="beta-note"><strong>Contenuto beta.</strong> Dati da un foglio di calcolo della community (4/11/2026) su kit beta: possono cambiare. Il foglio non conosce il tempo in campo esatto di Danica e assume che la rotazione stia nei 18 s.</p>
+
+    <section class="section" aria-labelledby="ts-calcoli">
+      <div class="section-head">
+        <h2 id="ts-calcoli">Calcoli di team</h2>
+        <span>Calcoli della community &middot; 4/11/2026</span>
+      </div>
+
+      <p class="scope-inline">Qui si parla di <strong>danno totale del team</strong>, da un foglio di calcolo della community (non da gameplay). <strong>Danica</strong> fa da <strong>DPS</strong> e Qiqi C2 da support; il confronto &egrave; tra Odette e la Tsaritsa come terzo slot.</p>
+
+      <div class="viz-root">
+        <div id="viz-team" class="viz-block"></div>
+      </div>
+
+      <div class="table-wrap" style="margin-top: 1rem;">
+        <table class="guide-table">
+          <thead>
+            <tr>
+              <th scope="col">Personaggio</th>
+              <th scope="col">Arma &middot; set &middot; ER</th>
+              <th scope="col">Danno</th>
+              <th scope="col">Quota</th>
+              <th scope="col">Tempo in campo</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr class="group-row"><td colspan="5">Danica &middot; Yae &middot; Odette &middot; Qiqi &mdash; DPR 2.918.528 &middot; DPS 162.140</td></tr>
+            <tr><td>C0 Danica</td><td>Tidal Shadow &middot; Disenchant &middot; 112%</td><td>907.915</td><td>31,1%</td><td>12,5 s</td></tr>
+            <tr><td>C1 Yae Miko</td><td>Widsith &middot; Disenchant &middot; 100%</td><td>1.160.023</td><td>39,7%</td><td>2,0 s</td></tr>
+            <tr><td>C0 Odette</td><td>Silver &middot; Vestiges &middot; 100%</td><td>795.174</td><td>27,2%</td><td>2,0 s</td></tr>
+            <tr><td>C2 Qiqi</td><td>Finale &middot; Furnace &middot; 100%</td><td>55.415</td><td>1,9%</td><td>1,5 s</td></tr>
+            <tr class="group-row"><td colspan="5">Danica &middot; Yae &middot; Tsaritsa &middot; Qiqi &mdash; DPR 3.154.111 &middot; DPS 175.228</td></tr>
+            <tr><td>C0 Danica</td><td>Tidal Shadow &middot; Disenchant &middot; 112%</td><td>991.787</td><td>31,4%</td><td>11,5 s</td></tr>
+            <tr><td>C1 Yae Miko</td><td>Widsith &middot; Disenchant &middot; 100%</td><td>1.252.207</td><td>39,7%</td><td>2,0 s</td></tr>
+            <tr><td>C0 Tsaritsa (Anastasya)</td><td>BP Bow &middot; Disenchant &middot; 100%</td><td>850.749</td><td>27,0%</td><td>3,0 s</td></tr>
+            <tr><td>C2 Qiqi</td><td>Finale &middot; Furnace &middot; 100%</td><td>59.367</td><td>1,9%</td><td>1,5 s</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <span class="rotation-label">Rotazione con Odette (18 s)</span>
+      <p class="rotation">Yae EEE &rarr; Odette EE &rarr; Qiqi E &rarr; Danica EQE 4N2E</p>
+      <span class="rotation-label">Rotazione con la Tsaritsa (18 s)</span>
+      <p class="rotation">Yae EEE &rarr; Tsaritsa tap E, Q &rarr; Qiqi E &rarr; Danica EQE 4N2E</p>
+
+      <div class="quote-block">
+        <ul>
+          <li><strong>Danica C0R0 come DPS non sembra male</strong> al momento: fa circa il 31% del danno del team.</li>
+          <li>Mettere la <strong>Tsaritsa al posto di Odette</strong> porta il team da 162.140 a <strong>175.228 DPS (+8,1%)</strong>, e alza anche il danno di Danica (+9,2%) e di Yae (+7,9%).</li>
+          <li>Qui la Tsaritsa usa il <strong>tap E (Blessing of Love)</strong>, non l&rsquo;hold E dei video: entra, fa E e Q e lascia il campo a Danica.</li>
+          <li><strong>Artifacts:</strong> nei team Stellar-Conduct la Tsaritsa va comunque in <strong>Disenchantment in Deep Shadow</strong>, come un DPS. Il set nuovo ha senso solo nei team Stellar Swirl, dove al momento non c&rsquo;&egrave; di meglio.</li>
+          <li>Il foglio non conosce il tempo in campo esatto di Danica: <em>assume che la rotazione stia tutta nella finestra da 18 s</em>.</li>
+        </ul>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="container">
+    <small>JuanLab &mdash; Danica C0 DPS: prime impressioni</small>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260923-1"></script>
+  <script src="assets/js/danica-charts.js?v=20261105-1"></script>
+</body>
+</html>
