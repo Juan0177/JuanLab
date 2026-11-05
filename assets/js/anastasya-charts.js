@@ -12,8 +12,8 @@
     { key: 'leap', label: 'Doom 2 (balzo)' },
     { key: 'arrow', label: 'Doom 3 (arco)' },
   ];
-  // DPR = somma di tutti i numeri di danno del team nella rotazione migliore; durata in secondi.
-  const TEAM_TOTALS = { aly: { rot: 2, dpr: 4725588, dur: 22.10 }, yae: { rot: 1, dpr: 4848828, dur: 22.63 }, mitya: { rot: 2, dpr: 3163763, dur: 21.55 }, nicole: { rot: 3, dpr: 3976983, dur: 21.38 } };
+  // DPR = somma di tutti i numeri di danno del team nella rotazione migliore; durata dal primo all'ultimo numero, in secondi.
+  const TEAM_TOTALS = { aly: { rot: 2, dpr: 4725588, dur: 21.58 }, yae: { rot: 1, dpr: 4848828, dur: 21.61 }, mitya: { rot: 2, dpr: 3163763, dur: 21.10 }, nicole: { rot: 3, dpr: 3976983, dur: 20.21 } };
   const NS = 'http://www.w3.org/2000/svg';
   const fmt = (n) => Math.round(n).toLocaleString('it-IT');
   const avg = (a) => a.reduce((s, v) => s + v, 0) / a.length;
