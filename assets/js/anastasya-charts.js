@@ -12,8 +12,6 @@
     { key: 'leap', label: 'Doom 2 (balzo)' },
     { key: 'arrow', label: 'Doom 3 (arco)' },
   ];
-  // DPR = somma di tutti i numeri di danno del team nella rotazione migliore; durata dal primo all'ultimo numero, in secondi.
-  const TEAM_TOTALS = { aly: { rot: 2, dpr: 4725588, dur: 21.58 }, yae: { rot: 1, dpr: 4848828, dur: 21.61 }, mitya: { rot: 2, dpr: 3163763, dur: 21.10 }, nicole: { rot: 3, dpr: 3976983, dur: 20.21 } };
   const NS = 'http://www.w3.org/2000/svg';
   const fmt = (n) => Math.round(n).toLocaleString('it-IT');
   const avg = (a) => a.reduce((s, v) => s + v, 0) / a.length;
@@ -152,50 +150,8 @@
   }
 
 
-  // 3) DPR e DPS di team: due pannelli affiancati, stessa scala per pannello
-  function teamChart(root) {
-    legend(root);
-    const grid = document.createElement('div');
-    grid.className = 'viz-multiples two';
-    root.appendChild(grid);
-    const pct = (d) => `${d > 0 ? '+' : ''}${d.toFixed(1).replace('.', ',')}%`;
-    const metrics = [
-      { label: 'DPR (danno per rotazione)', get: (t) => TEAM_TOTALS[t.key].dpr },
-      { label: 'DPS (DPR / durata)', get: (t) => TEAM_TOTALS[t.key].dpr / TEAM_TOTALS[t.key].dur },
-    ];
-    metrics.forEach((m) => {
-      const cell = document.createElement('figure');
-      cell.className = 'viz-cell';
-      cell.innerHTML = `<figcaption>${m.label}</figcaption>`;
-      grid.appendChild(cell);
-      const W = 360, rowH = 30, gap = 10, left = 6, right = 92, top = 6;
-      const H = top + TEAMS.length * (rowH + gap);
-      const max = Math.max(...TEAMS.map(m.get));
-      const ref = m.get(TEAMS[1]);
-      const svg = el('svg', { viewBox: `0 0 ${W} ${H}`, role: 'img', 'aria-label': `${m.label} per team` }, cell);
-      TEAMS.forEach((t, i) => {
-        const v = m.get(t);
-        const tt = TEAM_TOTALS[t.key];
-        const y = top + i * (rowH + gap);
-        const w = (v / max) * (W - left - right);
-        el('rect', { x: left, y, width: W - left - right, height: rowH, rx: 4, class: 'viz-track' }, svg);
-        el('rect', { x: left, y, width: Math.max(w, 4), height: rowH, rx: 4, fill: t.color }, svg);
-        const label = el('text', { x: W - 2, y: y + rowH / 2 + 4, class: 'viz-value', 'text-anchor': 'end' }, svg);
-        label.textContent = fmt(v);
-        const hitbox = el('rect', { x: 0, y: y - gap / 2, width: W, height: rowH + gap, fill: 'transparent', class: 'viz-hit' }, svg);
-        const html = `<strong>${t.name}</strong><br>Rotazione ${tt.rot} &middot; ${tt.dur.toFixed(2).replace('.', ',')} s` +
-          `<br>DPR: <b>${fmt(tt.dpr)}</b><br>DPS: <b>${fmt(tt.dpr / tt.dur)}</b>` +
-          (i === 1 ? '<br><em>Riferimento</em>' : `<br>${pct((v / ref - 1) * 100)} rispetto a Yae + Danica`);
-        hitbox.addEventListener('mousemove', (e) => showTip(e, html));
-        hitbox.addEventListener('mouseleave', hideTip);
-      });
-    });
-  }
-
   const bars = document.getElementById('viz-bars');
   const lines = document.getElementById('viz-lines');
   if (bars) barsChart(bars);
   if (lines) lineChart(lines);
-  const team = document.getElementById('viz-team');
-  if (team) teamChart(team);
 })();
