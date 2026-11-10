@@ -1,0 +1,80 @@
+{
+  "period": "16 Dic 2026 – 15 Gen 2027 (beta)",
+  "gimmick": "When a character deals Stellar-Conduct or Stellar Swirl DMG on an opponent, they gain 1 stack count, and when the stack count reaches 6, a shockwave is unleashed at the opponent's position, dealing True DMG and consuming all stack counts at the same time. Up to 1 stack count can be gained every 0.1s. A shockwave can be unleashed this way every 6s.",
+  "buff_first": "Characters' Stellar Glimmer reaction DMG increased by 75%.",
+  "buff_second": "Anemo DMG dealt by the active character is increased by 75%.",
+  "slots": [
+    {
+      "slot": 1,
+      "label": "Piano 12-1 Prima Metà",
+      "enemies": [
+        {
+          "id": "Chimera_Manticore",
+          "level": 95,
+          "hp": 990345,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "label": "Piano 12-1 Seconda Metà",
+      "enemies": [
+        {
+          "id": "Watcher_Primo_01",
+          "level": 95,
+          "hp": 1090288,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "label": "Piano 12-2 Prima Metà",
+      "enemies": [
+        {
+          "id": "Zharptitsa_02",
+          "level": 98,
+          "hp": 1596518,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "label": "Piano 12-2 Seconda Metà",
+      "enemies": [
+        {
+          "id": "Magbeast_Steppenwolf_02",
+          "level": 98,
+          "hp": 1111383,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 5,
+      "label": "Piano 12-3 Prima Metà",
+      "enemies": [
+        {
+          "id": "Volkodlak_Greyhound_Furiosa",
+          "level": 100,
+          "hp": 1422660,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 6,
+      "label": "Piano 12-3 Seconda Metà",
+      "enemies": [
+        {
+          "id": "Drake_Primo_Rock",
+          "level": 100,
+          "hp": 1102954,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}

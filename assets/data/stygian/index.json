@@ -22,9 +22,9 @@
   },
   {
     "file": "2026-11-11.json",
-    "label": "v7.2 (beta)",
+    "label": "v7.2",
     "from": "2026-11-11",
     "to": "2026-12-22",
-    "type": "test"
+    "type": "live"
   }
 ]
