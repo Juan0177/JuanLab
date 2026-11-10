@@ -9,9 +9,9 @@
       "label": "Piano 12-1 Prima Metà",
       "enemies": [
         {
-          "id": "Chimera_OwlPangolin",
+          "id": "Chimera_OwlPangolin_02",
           "level": 95,
-          "hp": 3452578,
+          "hp": 2977849,
           "quantity": 1
         }
       ]
@@ -23,13 +23,13 @@
         {
           "id": "WildHunt",
           "level": 95,
-          "hp": 408857,
-          "quantity": 1
+          "hp": 408858,
+          "quantity": 9
         },
         {
-          "id": "Oprichnik_Male_Strong_LanceArquebus",
+          "id": "Oprichnik_Male_Strong_LanceArquebus_Rodya",
           "level": 95,
-          "hp": 3660672,
+          "hp": 3903939,
           "quantity": 1
         }
       ]
@@ -41,7 +41,7 @@
         {
           "id": "Zharptitsa_02",
           "level": 98,
-          "hp": 5986943,
+          "hp": 5986944,
           "quantity": 1
         }
       ]
@@ -53,14 +53,20 @@
         {
           "id": "Lloigor_Sub",
           "level": 98,
-          "hp": 579381,
-          "quantity": 1
+          "hp": 579382,
+          "quantity": 4
         },
         {
           "id": "Lloigor_Primo",
           "level": 98,
-          "hp": 6140545,
+          "hp": 5214435,
           "quantity": 1
+        },
+        {
+          "id": "Lloigor_Sub",
+          "level": 98,
+          "hp": 938598,
+          "quantity": 4
         }
       ]
     },
@@ -71,7 +77,7 @@
         {
           "id": "Karzelek_Tsereteli_01",
           "level": 100,
-          "hp": 5767841,
+          "hp": 5234317,
           "quantity": 1
         }
       ]
@@ -83,8 +89,14 @@
         {
           "id": "WildHunt_Male_Sigurd",
           "level": 100,
-          "hp": 2145122,
+          "hp": 1965364,
           "quantity": 1
+        },
+        {
+          "id": "WildHunt",
+          "level": 100,
+          "hp": 499140,
+          "quantity": 4
         }
       ]
     }

@@ -11,7 +11,7 @@
         {
           "id": "Slime_Moon_01",
           "level": 95,
-          "hp": 1399203,
+          "hp": 6646213,
           "quantity": 1
         }
       ]
@@ -23,7 +23,7 @@
         {
           "id": "Volkodlak_Whale",
           "level": 95,
-          "hp": 1317431,
+          "hp": 6257798,
           "quantity": 1
         }
       ]
@@ -35,7 +35,7 @@
         {
           "id": "HerraFrost",
           "level": 98,
-          "hp": 1133013,
+          "hp": 5381812,
           "quantity": 1
         }
       ]
@@ -47,7 +47,7 @@
         {
           "id": "Snegurochka_Contessa_02",
           "level": 98,
-          "hp": 1390516,
+          "hp": 6604951,
           "quantity": 1
         }
       ]
@@ -59,7 +59,7 @@
         {
           "id": "Magbeast_Gecko",
           "level": 100,
-          "hp": 1164660,
+          "hp": 5532137,
           "quantity": 1
         }
       ]
@@ -69,33 +69,33 @@
       "label": "Piano 12-3 Seconda Metà",
       "enemies": [
         {
+          "id": "Apparatus_Perpetual",
+          "level": 100,
+          "hp": 4214961,
+          "quantity": 1
+        },
+        {
           "id": "Apparatus_Enigma_BionicDrone",
           "level": 100,
-          "hp": 166380,
+          "hp": 790305,
           "quantity": 1
         },
         {
           "id": "Apparatus_Enigma_BionicFlora",
           "level": 100,
-          "hp": 166380,
+          "hp": 790305,
           "quantity": 1
         },
         {
           "id": "Apparatus_Enigma_BionicInsecta",
           "level": 100,
-          "hp": 232932,
+          "hp": 1106427,
           "quantity": 1
         },
         {
           "id": "Apparatus_Enigma_BionicNettler",
           "level": 100,
-          "hp": 232932,
-          "quantity": 1
-        },
-        {
-          "id": "Apparatus_Perpetual",
-          "level": 100,
-          "hp": 887360,
+          "hp": 1106427,
           "quantity": 1
         }
       ]

@@ -1855,5 +1855,15 @@
     "image_path": "assets/img/enemies/UI_MonsterIcon_Magbeast_Steppenwolf_02.webp",
     "name": "Battle-Hardened Glacial Wolf",
     "info": [""] 
+    },
+  {
+    "image_path": "assets/img/enemies/UI_MonsterIcon_Chimera_OwlPangolin_02.webp",
+    "name": "Battle-Hardened Chimeric Burrowbeast",
+    "info": [""] 
+  },
+  {
+    "image_path": "assets/img/enemies/UI_MonsterIcon_Oprichnik_Male_Strong_LanceArquebus_Rodya.webp",
+    "name": "Battle-Hardened Fireblade Shock Trooper",
+    "info": [""] 
   }
 ]
