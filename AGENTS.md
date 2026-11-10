@@ -18,6 +18,7 @@ Lavora in autonomia sul repository per completare il task richiesto, mantenendo 
   - https://lunaris.moe/
   - https://gi.nanoka.cc/
   - https://alioth.wiki/en (sezioni `gi/abyss`, `gi/theater`, `gi/stygian`; ha anche i periodi beta. Nei JSON dell'Abyss si salvano gli HP reali come li mostra alioth, già moltiplicati per il moltiplicatore HP del piano 12, e le quantità `×N` di ogni nemico; le date dei periodi seguono alioth)
+- Negli `index.json` di Abyss, Theater e Stygian tieni solo tre periodi: quello precedente, quello attuale e il prossimo. Gli altri vanno spostati in `assets/data/<modalità>/archive/` (file JSON più la voce nel relativo `archive/index.json`); il sito non li carica, ma si possono ripristinare riportandoli nella cartella principale e nell'`index.json`.
 - Per meccaniche di gioco, fondamenta e theorycrafting (reazioni, ICD, scaling, build, guide ai personaggi), consulta:
   - https://keqingmains.com/
 - Altre fonti potranno essere aggiunte in seguito su indicazione dell'utente.
