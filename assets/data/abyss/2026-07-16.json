@@ -12,7 +12,7 @@
           "id": "Wayob_Bisonsaurus",
           "level": 95,
           "hp": 1192502,
-          "quantity": 1
+          "quantity": 4
         },
         {
           "id": "Moonbeast_Electric",
@@ -27,15 +27,15 @@
       "label": "Piano 12-1 Seconda Metà",
       "enemies": [
         {
-          "id": "WildHunt_Elite",
-          "level": 95,
-          "hp": 1771718,
-          "quantity": 1
-        },
-        {
           "id": "Samurai_Ningyo",
           "level": 95,
           "hp": 2081163,
+          "quantity": 1
+        },
+        {
+          "id": "WildHunt_Elite",
+          "level": 95,
+          "hp": 1771718,
           "quantity": 1
         }
       ]
@@ -48,7 +48,7 @@
           "id": "Gargoyle",
           "level": 98,
           "hp": 1351891,
-          "quantity": 1
+          "quantity": 2
         },
         {
           "id": "Gargoyle_Fafnir",
@@ -63,22 +63,22 @@
       "label": "Piano 12-2 Seconda Metà",
       "enemies": [
         {
+          "id": "Fungus_Raptor",
+          "level": 98,
+          "hp": 2703781,
+          "quantity": 1
+        },
+        {
           "id": "Fungus_Amanita_Du_Udatta_Rock",
           "level": 98,
           "hp": 540756,
-          "quantity": 1
+          "quantity": 3
         },
         {
           "id": "Fungus_Amanita_Du_Anudatta_Water",
           "level": 98,
           "hp": 386254,
-          "quantity": 1
-        },
-        {
-          "id": "Fungus_Raptor",
-          "level": 98,
-          "hp": 2703781,
-          "quantity": 1
+          "quantity": 3
         }
       ]
     },
@@ -89,7 +89,7 @@
         {
           "id": "Monitor_02",
           "level": 100,
-          "hp": 4099188,
+          "hp": 4099189,
           "quantity": 1
         }
       ]

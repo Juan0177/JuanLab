@@ -11,7 +11,7 @@
         {
           "id": "Volkodlak_Greyhound_Furiosa",
           "level": 95,
-          "hp": 1165335,
+          "hp": 5535346,
           "quantity": 1
         }
       ]
@@ -23,19 +23,19 @@
         {
           "id": "Invoker_Archdeacon",
           "level": 95,
-          "hp": 454286,
+          "hp": 2157861,
           "quantity": 1
         },
         {
           "id": "ForlornVessel_Strong_Warbanner_Fire",
           "level": 95,
-          "hp": 227143,
+          "hp": 1078931,
           "quantity": 1
         },
         {
           "id": "ForlornVessel_Strong_Chargebow_Ice",
           "level": 95,
-          "hp": 181714,
+          "hp": 863145,
           "quantity": 1
         }
       ]
@@ -47,7 +47,7 @@
         {
           "id": "Magbeast_Pergesa",
           "level": 98,
-          "hp": 824009,
+          "hp": 3914045,
           "quantity": 1
         }
       ]
@@ -59,7 +59,7 @@
         {
           "id": "Thoarder_Elder_Standard_Hildegard_01",
           "level": 98,
-          "hp": 1365795,
+          "hp": 6487530,
           "quantity": 1
         }
       ]
@@ -71,7 +71,7 @@
         {
           "id": "Chimera_Manticore",
           "level": 100,
-          "hp": 1430082,
+          "hp": 5742885,
           "quantity": 1
         }
       ]
@@ -83,7 +83,7 @@
         {
           "id": "DragonCollar",
           "level": 100,
-          "hp": 1370390,
+          "hp": 5690198,
           "quantity": 1
         }
       ]

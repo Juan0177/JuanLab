@@ -12,13 +12,13 @@
           "id": "Apparatus_Enigma_BionicDrone",
           "level": 95,
           "hp": 511072,
-          "quantity": 1
+          "quantity": 4
         },
         {
           "id": "Apparatus_Enigma_BionicNettler",
           "level": 95,
           "hp": 715501,
-          "quantity": 1
+          "quantity": 8
         },
         {
           "id": "Apparatus_Perpetual",
@@ -59,7 +59,7 @@
         {
           "id": "Chimera_Manticore",
           "level": 98,
-          "hp": 1429994,
+          "hp": 4210173,
           "quantity": 1
         }
       ]
@@ -69,15 +69,15 @@
       "label": "Piano 12-2 Seconda Metà",
       "enemies": [
         {
-          "id": "Abyss_Ice_01",
-          "level": 98,
-          "hp": 229937,
-          "quantity": 1
-        },
-        {
           "id": "Invoker_Archdeacon",
           "level": 98,
           "hp": 1931272,
+          "quantity": 1
+        },
+        {
+          "id": "Abyss_Ice_01",
+          "level": 98,
+          "hp": 229937,
           "quantity": 1
         }
       ]
@@ -89,7 +89,7 @@
         {
           "id": "Volkodlak_Greyhound_Furiosa",
           "level": 100,
-          "hp": 5334976,
+          "hp": 5334977,
           "quantity": 1
         }
       ]
