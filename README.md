@@ -40,6 +40,10 @@ flowchart TD
     G --> K[img]
 ```
 
+## Dati endgame
+
+I periodi di Spiral Abyss, Imaginarium Theater e Stygian Onslaught sono in `assets/data/<modalità>/`, elencati nel relativo `index.json`. Il sito mostra il periodo precedente, quello attuale e tutti quelli futuri (beta compresi). I periodi più vecchi sono archiviati in `assets/data/<modalità>/archive/`: il sito non li carica, ma si possono ripristinare.
+
 ## Avvio locale
 
 Non è richiesto alcun build step. Il sito è statico e può essere visualizzato in locale in due modi:
