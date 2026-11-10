@@ -1845,5 +1845,15 @@
     "image_path": "assets/img/enemies/UI_MonsterIcon_Volkodlak_Whale.webp",
     "name": "Wavebinder",
     "info": [""] 
+    },
+  {
+    "image_path": "assets/img/enemies/UI_MonsterIcon_Slime_Moon_01.webp",
+    "name": "Battle-Hardened Prism Slime",
+    "info": [""] 
+  },
+  {
+    "image_path": "assets/img/enemies/UI_MonsterIcon_Magbeast_Steppenwolf_02.webp",
+    "name": "Battle-Hardened Glacial Wolf",
+    "info": [""] 
   }
 ]

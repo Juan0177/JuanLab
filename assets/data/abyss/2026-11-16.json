@@ -1,0 +1,104 @@
+{
+  "period": "16 Nov – 15 Dic 2026",
+  "gimmick": "When a character triggers Superconduct or Stellar-Conduct reaction on an opponent, they gain 1 stack count, and when the stack count reaches 3, a shockwave is unleashed at the opponent's position, dealing True DMG and consuming all stack counts at the same time. Up to 1 stack count can be gained every 0.1s. A shockwave can be unleashed this way every 4s.",
+  "buff_first": "Lunar-Crystallize DMG is increased by 75%.",
+  "buff_second": "All party members have their Elemental Mastery increased by 200.",
+  "slots": [
+    {
+      "slot": 1,
+      "label": "Piano 12-1 Prima Metà",
+      "enemies": [
+        {
+          "id": "Slime_Moon_01",
+          "level": 95,
+          "hp": 1399203,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 2,
+      "label": "Piano 12-1 Seconda Metà",
+      "enemies": [
+        {
+          "id": "Volkodlak_Whale",
+          "level": 95,
+          "hp": 1317431,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 3,
+      "label": "Piano 12-2 Prima Metà",
+      "enemies": [
+        {
+          "id": "HerraFrost",
+          "level": 98,
+          "hp": 1133013,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 4,
+      "label": "Piano 12-2 Seconda Metà",
+      "enemies": [
+        {
+          "id": "Snegurochka_Contessa_02",
+          "level": 98,
+          "hp": 1390516,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 5,
+      "label": "Piano 12-3 Prima Metà",
+      "enemies": [
+        {
+          "id": "Magbeast_Gecko",
+          "level": 100,
+          "hp": 1164660,
+          "quantity": 1
+        }
+      ]
+    },
+    {
+      "slot": 6,
+      "label": "Piano 12-3 Seconda Metà",
+      "enemies": [
+        {
+          "id": "Apparatus_Enigma_BionicDrone",
+          "level": 100,
+          "hp": 166380,
+          "quantity": 1
+        },
+        {
+          "id": "Apparatus_Enigma_BionicFlora",
+          "level": 100,
+          "hp": 166380,
+          "quantity": 1
+        },
+        {
+          "id": "Apparatus_Enigma_BionicInsecta",
+          "level": 100,
+          "hp": 232932,
+          "quantity": 1
+        },
+        {
+          "id": "Apparatus_Enigma_BionicNettler",
+          "level": 100,
+          "hp": 232932,
+          "quantity": 1
+        },
+        {
+          "id": "Apparatus_Perpetual",
+          "level": 100,
+          "hp": 887360,
+          "quantity": 1
+        }
+      ]
+    }
+  ]
+}
