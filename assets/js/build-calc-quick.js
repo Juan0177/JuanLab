@@ -296,13 +296,21 @@
       const [, tier, cls] = BUILD_TIERS.find(([min]) => cv >= min);
       const bad = !CR || !CD || artCr < -0.5 || artCd < -0.5;
 
-      // Corona alternativa
-      let coronaTip = '';
-      if (state.corona !== 'altro') {
-        const alt = state.corona === 'cr' ? multiplier(combatCr - 31.1, CD + 62.2) : multiplier(combatCr + 31.1, CD - 62.2);
-        const gain = (alt / mult - 1) * 100;
-        if (gain > 1.5) coronaTip = `Con una Corona <b>${state.corona === 'cr' ? 'DAN da CRIT' : 'Tasso di CRIT'}</b> il danno medio dei CRIT salirebbe di circa il <b>${fmt(gain)}%</b>.`;
-      }
+      // Corona consigliata: Tasso o DAN da CRIT come principale, a parita di secondarie
+      const crBase = combatCr - (state.corona === 'cr' ? 31.1 : 0);
+      const cdBase = CD - (state.corona === 'cd' ? 62.2 : 0);
+      const mWithCr = multiplier(crBase + 31.1, cdBase);
+      const mWithCd = multiplier(crBase, cdBase + 62.2);
+      const best = mWithCr >= mWithCd ? 'cr' : 'cd';
+      const diff = (Math.max(mWithCr, mWithCd) / Math.min(mWithCr, mWithCd) - 1) * 100;
+      const BEST_NAME = { cr: 'Tasso di CRIT', cd: 'DAN da CRIT' };
+      let coronaRec;
+      if (diff < 1) coronaRec = { k: 'pari', title: 'Tasso o DAN da CRIT', text: `Quasi uguali (${fmt(diff)}% di differenza): tieni la Corona con le secondarie migliori.` };
+      else if (state.corona === best) coronaRec = { k: best, title: BEST_NAME[best], text: `&Egrave; gi&agrave; la scelta giusta: con ${best === 'cr' ? 'DAN da CRIT' : 'Tasso di CRIT'} faresti circa il <b>${fmt((1 - Math.min(mWithCr, mWithCd) / Math.max(mWithCr, mWithCd)) * 100)}%</b> di danno medio in meno.` };
+      else if (state.corona === 'altro') coronaRec = { k: best, title: BEST_NAME[best], text: `Tra le due Corone CRIT &egrave; la migliore: <b>+${fmt(diff)}%</b> di danno medio rispetto all&rsquo;altra. Tieni la Corona attuale solo se &egrave; un supporto (guarigione, PS%, Maestria&hellip;).` };
+      else coronaRec = { k: best, title: BEST_NAME[best], text: `Cambiala: con ${BEST_NAME[best]} il danno medio sale di circa il <b>${fmt(diff)}%</b>.`, change: true };
+      if (combatCr - (state.corona === 'cr' ? 31.1 : 0) + 31.1 > 100 && best === 'cd' && diff >= 1) coronaRec.text += ' Con il Tasso andresti oltre il 100% in combattimento.';
+
       const tips = [];
       if (bad) tips.push('I valori non tornano: controlla Tasso e DAN da CRIT della schermata, la Corona e gli eventuali bonus fissi.');
       if (combatCr > 100) tips.push(`In combattimento il Tasso di CRIT arriva a <b>${fmt(combatCr)}%</b>: il <b>${fmt(combatCr - 100)}%</b> oltre il 100% &egrave; sprecato. Punta ai DAN da CRIT.`);
@@ -310,7 +318,6 @@
       else if (ratio > 2.6) tips.push(`Rapporto in combattimento 1 : ${fmt(ratio)}: ti serve pi&ugrave; <b>Tasso di CRIT</b>.`);
       else if (ratio < 1.6) tips.push(`Rapporto in combattimento 1 : ${fmt(ratio)}: ti servono pi&ugrave; <b>DAN da CRIT</b>.`);
       else tips.push(`Rapporto in combattimento 1 : ${fmt(ratio)}: vicino all&rsquo;1:2, bene.`);
-      if (coronaTip) tips.push(coronaTip);
       notes.forEach((n) => tips.push(n));
 
       const sc = scale();
@@ -336,6 +343,7 @@
           <li><span>${ICON.star}Moltiplicatore CRIT</span><strong>&times;${fmt(mult, 2)}</strong><small>danno medio; in schermata &times;${fmt(multScreen, 2)}</small></li>
           <li><span>${ICON.style}Statistiche di danno</span><strong class="bg-out-scale">${scaleRows.join('<br>') || '&ndash;'}</strong></li>
         </ul>
+        ${bad ? '' : `<div class="bg-corona-rec${coronaRec.change ? ' is-change' : ''}"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" /><span><small>Corona consigliata</small><strong>${coronaRec.k === 'pari' ? '' : ICON[coronaRec.k]}${coronaRec.title}</strong><em>${coronaRec.text}</em></span></div>`}
         <ul class="bg-tips">${tips.map((t) => `<li>${t}</li>`).join('')}</ul>
         ${combat.length ? `<p class="bg-out-foot">Bonus in combattimento contati: ${combat.map((f) => `${esc(f[0])} +${f[1]}%${f[2] ? ` (${f[2]})` : ''}`).join('; ')}.</p>` : ''}`;
     }

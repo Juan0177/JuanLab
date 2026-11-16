@@ -22,7 +22,8 @@ In più c'è una pagina nascosta con le guide dei personaggi ancora in beta: si 
 
 - Home: `index.html`
 - Guide: `guide.html`
-- Guida generale alle build (Crit Value, Roll Value, calcolatore): `build-guide.html`
+- Guida generale alle build (Crit Value, Roll Value): `build-guide.html`
+- Tools (calcolatore della build, semplice e avanzato): `tools.html`
 - Spyral Abyss: `abyss.html`
 - Imaginarium Theater: `theater.html`
 - Stygian Onslaught: `stygian.html`
@@ -139,7 +140,7 @@ Esempio di singola strategia:
 - Quando un personaggio esce, sposta la sua card da `current-pg.html` a `guide.html` e cambia il link "Torna a..." nella sua pagina.
 - Gli stili di entrambe sono in `assets/css/current-pg.css`.
 - `build-guide.html` è la guida generale alle build, linkata in "Guide generali". Gli screenshot sono in `assets/img/guides/build/` (ritagliati senza UID), il calcolatore del CV è in `assets/js/build-guide.js` e lo stile in `assets/css/build-guide.css`. La tabella "Le 12 build" è una foto della vetrina letta da Enka.network: per aggiornarla vanno ricalcolati CV e RV.
-- Il calcolatore della build ha due schede. "Semplice" (`assets/js/build-calc-quick.js`) parte dalla schermata del personaggio e usa `assets/data/build-calc.json`: personaggi, armi (liv. 90) e set con i nomi italiani, generati da genshin-db, più le icone in `assets/img/calc/`. Il file JSON contiene anche, scritti a mano, la statistica di danno dei personaggi (campo `s`) e i bonus al Tasso di CRIT dei set (`s2`, `c4`). "Avanzato" (`assets/js/build-guide.js`) calcola CV e RV pezzo per pezzo.
+- Il calcolatore della build sta in `tools.html` (linkato dalla home e dalla guida) e ha due schede. "Semplice" (`assets/js/build-calc-quick.js`) parte dalla schermata del personaggio e usa `assets/data/build-calc.json`: personaggi, armi (liv. 90) e set con i nomi italiani, generati da genshin-db, più le icone in `assets/img/calc/`. Il file JSON contiene anche, scritti a mano, la statistica di danno dei personaggi (campo `s`) e i bonus al Tasso di CRIT dei set (`s2`, `c4`). "Avanzato" (`assets/js/build-guide.js`) calcola CV e RV pezzo per pezzo.
 
 ### Stygian Onslaught
 
