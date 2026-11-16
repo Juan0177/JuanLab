@@ -463,6 +463,7 @@
     }
 
     function multiplier(cr, cd) { return 1 + Math.min(Math.max(cr, 0), 100) / 100 * cd / 100; }
+    const ROLL_AVG = 0.85; // un roll medio vale l'85% del massimo
 
     function update() {
       cur = state.mode === 'avanzato' ? synth() : values;
@@ -481,18 +482,32 @@
       const cvRaw = 2 * artCr + artCd;
       const cv = Math.abs(cvRaw) < 0.05 ? 0 : cvRaw; // niente "-0,0" con i pezzi vuoti
       const combatCr = CR + combat.reduce((t, f) => t + f[1], 0);
+      const empty = !CR && !CD;
+      const bad = !CR || !CD || artCr < -0.5 || artCd < -0.5;
+      // Il consiglio sul prossimo roll viene sempre dal calcolo di "Cosa aumentare": riquadri e
+      // suggerimenti non hanno soglie proprie, cosi non possono contraddire la lista
+      const gains = bad || empty ? null : rollGains(combatCr, CD);
+      const gainTxt = (x) => `<b>${x[1]}</b> (+${fmt(x[2] * 100)}%)`;
+      const bestGain = gains && gains.items[0][2] > 0 ? gains.items[0] : null;
+      const nearGains = bestGain ? gains.items.filter((x) => x !== bestGain && x[2] >= bestGain[2] * 0.9) : [];
+      const nextRoll = bestGain ? `Il prossimo roll che rende di pi&ugrave;: ${gainTxt(bestGain)}${nearGains.length ? `, quasi alla pari con ${nearGains.map(gainTxt).join(' e ')}` : ''}.` : '';
+      // Un roll di Tasso contro uno di DAN da CRIT: non dipende dalla statistica di danno
+      const m0 = multiplier(combatCr, CD);
+      const crGain = multiplier(combatCr + 3.89 * ROLL_AVG, CD) / m0 - 1;
+      const cdGain = multiplier(combatCr, CD + 7.77 * ROLL_AVG) / m0 - 1;
+      const crVsCd = `un roll di Tasso rende pi&ugrave; di uno di DAN da CRIT (+${fmt(crGain * 100)}% contro +${fmt(cdGain * 100)}%)`;
       // Riquadri 3 e 4: giudizio, cosa fare e da dove arrivano Tasso e DAN
       const cdTarget = 2 * Math.min(combatCr, 100);
       const critState = combatCr > 100
         ? { cls: 't2', label: `${fmt(combatCr - 100)}% sprecato`, title: 'Per non sprecarlo', how: state.corona === 'cr' ? 'oltre il 100% il Tasso non serve: usa una Corona DAN da CRIT invece che Tasso (&minus;31,1% di Tasso, +62,2% di DAN).' : 'oltre il 100% il Tasso non serve: cerca pezzi con meno Tasso e pi&ugrave; DAN da CRIT nelle secondarie (ogni roll spostato: &minus;3,3% di Tasso, +6,6% di DAN).' }
         : combatCr < 50 ? { cls: 't1', label: 'troppo basso', title: 'Per alzarlo', how: `Corona Tasso CRIT (+31,1%), ogni roll di Tasso +3,3%, un&rsquo;arma con Tasso secondario o un set che lo d&agrave; in combattimento.` }
           : combatCr < 65 ? { cls: 't2', label: 'un po&rsquo; basso', title: 'Per alzarlo', how: `ogni roll di Tasso nelle secondarie d&agrave; circa +3,3%; ${state.corona === 'cr' ? 'la Corona Tasso c&rsquo;&egrave; gi&agrave;' : 'una Corona Tasso CRIT d&agrave; +31,1%'}.` }
-            : { cls: 't4', label: 'buono', title: 'Va bene', how: 'i prossimi roll mettili nel DAN da CRIT o nella statistica di danno.' };
+            : { cls: 't4', label: 'buono', title: 'Va bene', how: `&egrave; nell&rsquo;obiettivo, non ti serve altro Tasso per forza.${nextRoll ? ` ${nextRoll}` : ''}` };
       const cdMiss = cdTarget - CD;
       const cdState = cdMiss > 40
         ? { cls: 't2', label: `ti mancano ${fmt(cdMiss, 0)}%`, title: 'Per alzarlo', how: `ogni roll di DAN da CRIT d&agrave; circa +6,6%; ${state.corona === 'cd' ? 'la Corona DAN c&rsquo;&egrave; gi&agrave;' : 'una Corona DAN da CRIT d&agrave; +62,2%'}; anche un&rsquo;arma con DAN secondario aiuta.` }
-        : cdMiss < -60 && combatCr < 85 ? { cls: 't2', label: 'alto rispetto al Tasso', title: 'Cosa fare', how: 'il DAN c&rsquo;&egrave;, manca il Tasso: guarda il riquadro del Tasso in combattimento e metti i prossimi roll l&igrave;.' }
-          : cdMiss < -40 ? { cls: 't4', label: 'ottimo', title: 'Va bene', how: 'il Tasso &egrave; gi&agrave; quasi al massimo, quindi altro DAN da CRIT &egrave; proprio quello che serve.' }
+        : cdMiss < -60 && combatCr < 85 ? { cls: 't2', label: 'alto rispetto al Tasso', title: 'Cosa fare', how: `il DAN c&rsquo;&egrave; gi&agrave;: con questo rapporto ${crVsCd}.` }
+          : cdMiss < -40 ? { cls: 't4', label: 'ottimo', title: 'Va bene', how: crGain > cdGain ? `ne hai gi&agrave; in abbondanza: con questo rapporto ${crVsCd}.` : 'il Tasso &egrave; gi&agrave; al massimo: tra i CRIT ora conta solo il DAN da CRIT.' }
           : { cls: 't4', label: 'bilanciato col Tasso', title: 'Va bene', how: 'Tasso e DAN sono vicini all&rsquo;1:2: per salire servono roll in entrambi.' };
       const critRows = [
         ['Base del personaggio', 5, 50],
@@ -520,8 +535,6 @@
       const ratio = CD / Math.max(Math.min(combatCr, 100), 1);
       // con valori a zero un arrotondamento puo dare -0,000..1: si cade sull'ultima fascia
       const [, tier, cls] = BUILD_TIERS.find(([min]) => cv >= min) || BUILD_TIERS[BUILD_TIERS.length - 1];
-      const empty = !CR && !CD;
-      const bad = !CR || !CD || artCr < -0.5 || artCd < -0.5;
 
       // Corona consigliata: Tasso o DAN da CRIT come principale, a parita di secondarie
       const crBase = combatCr - (state.corona === 'cr' ? 31.1 : 0);
@@ -542,10 +555,13 @@
       if (empty) tips.push('Inserisci le statistiche della schermata del personaggio (passo 4), oppure scegli &ldquo;Dai 5 manufatti&rdquo;.');
       else if (bad) tips.push('I CRIT non tornano: controlla Tasso e DAN da CRIT della schermata, la Corona, l&rsquo;arma e gli eventuali bonus fissi.');
       if (combatCr > 100) tips.push(`In combattimento il Tasso di CRIT arriva a <b>${fmt(combatCr)}%</b>: il <b>${fmt(combatCr - 100)}%</b> oltre il 100% &egrave; sprecato. Punta ai DAN da CRIT.`);
-      else if (combatCr >= 85) tips.push(`In combattimento il Tasso di CRIT &egrave; gi&agrave; al <b>${fmt(combatCr)}%</b>: i prossimi roll mettili nei <b>DAN da CRIT</b>.`);
-      else if (ratio > 2.6) tips.push(`Rapporto in combattimento 1 : ${fmt(ratio)}: ti serve pi&ugrave; <b>Tasso di CRIT</b>.`);
-      else if (ratio < 1.6) tips.push(`Rapporto in combattimento 1 : ${fmt(ratio)}: ti servono pi&ugrave; <b>DAN da CRIT</b>.`);
-      else tips.push(`Rapporto in combattimento 1 : ${fmt(ratio)}: vicino all&rsquo;1:2, bene.`);
+      else {
+        // "ti serve" solo quando il riquadro del Tasso lo da sotto l'obiettivo (65%)
+        const verdict = ratio > 2.6
+          ? (combatCr < 65 ? 'tra i CRIT ti serve pi&ugrave; <b>Tasso</b>.' : `hai molto DAN da CRIT rispetto al Tasso, ma il Tasso (${fmt(combatCr)}%) &egrave; gi&agrave; nell&rsquo;obiettivo.`)
+          : ratio < 1.6 ? 'tra i CRIT ti servono pi&ugrave; <b>DAN da CRIT</b>.' : 'vicino all&rsquo;1:2, bene.';
+        tips.push(`Rapporto in combattimento 1 : ${fmt(ratio)}: ${verdict}${nextRoll ? ` ${nextRoll}` : ''}`);
+      }
       notes.forEach((n) => tips.push(n));
 
       // Roll Value della build: roll pieni nelle statistiche utili, ricavati dalla schermata
@@ -625,7 +641,7 @@
         </div>
         ${bad || empty ? '' : critSourcesHtml}
         ${bad ? '' : `<div class="bg-corona-rec${coronaRec.change ? ' is-change' : ''}"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" /><span><small>Corona consigliata</small><strong>${coronaRec.k === 'pari' ? '' : ICON[coronaRec.k]}${coronaRec.title}</strong><em>${coronaRec.text}</em></span></div>`}
-        ${gainsHtml({ bad, empty, combatCr, CD })}
+        ${gainsHtml(gains)}
         ${pieceBanner()}
         ${guideHtml({ sc, combatCr, bad })}
         <ul class="bg-tips">${tips.map((t) => `<li>${t}</li>`).join('')}</ul>
@@ -634,11 +650,10 @@
 
     // CV e Roll Value di ogni pezzo (solo modalita avanzata) e pezzo da cambiare per primo
     // Cosa aumentare: quanto sale il danno medio con un roll medio (85% del massimo) di ogni statistica
-    function gainsHtml({ bad, empty, combatCr, CD }) {
-      if (bad || empty) return '';
+    function rollGains(combatCr, CD) {
       const c = state.char; const w = state.weapon; const sc = scale(); const k = SCALES[sc][1];
       const S = num(cur[k]); const EM = num(cur.em);
-      if (!S) return '';
+      if (!S) return null;
       const base = { atk: c.atk + (w ? w.atk : 0), hp: c.hp, def: c.def }[k];
       // Bonus della Maestria come in Genshin Optimizer (libs/gi/wr/src/formula.ts e reaction/special.ts):
       // amplificative 1 + 25/9 * M/(M+1400); Lunari e Stellari 1 + 6 * M/(M+2000) (bonus dei set esclusi)
@@ -648,7 +663,7 @@
       const usesEm = amp || lunarLike;
       // Chi scala sulla Maestria: la Maestria e' insieme statistica di danno e bonus della reazione
       const D = (s, cr, cd, em) => s * (1 + Math.min(Math.max(cr, 0), 100) / 100 * cd / 100) * emF(sc === 'em' ? s : em);
-      const R = 0.85;
+      const R = ROLL_AVG;
       const d0 = D(S, combatCr, CD, EM);
       const items = [];
       items.push(['cr', 'Tasso di CRIT', D(S, combatCr + 3.89 * R, CD, EM) / d0 - 1, combatCr >= 100 ? 'gi&agrave; al 100% in combattimento' : '']);
@@ -658,6 +673,12 @@
       else items.push([{ atk: 'atkp', hp: 'hpp', def: 'defp' }[sc], SCALE_PCT[sc], D(S + base * (sc === 'def' ? 7.29 : 5.83) * R / 100, combatCr, CD, EM) / d0 - 1, '']);
       if (usesEm && sc !== 'em') items.push(['em', 'Maestria', D(S, combatCr, CD, EM + 23.31 * R) / d0 - 1, EM ? emWhy : `${emWhy} &middot; inserisci la Maestria per un valore preciso`]);
       items.sort((a, b) => b[2] - a[2]);
+      return { items, usesEm };
+    }
+    function gainsHtml(gains) {
+      if (!gains) return '';
+      const { items, usesEm } = gains;
+      const c = state.char; const R = ROLL_AVG;
       const top = Math.max(...items.map((x) => x[2]), 0.0001);
       const g = GUIDE[c.id || c.i];
       const er = num(cur.er);
