@@ -816,3 +816,17 @@ i.bg-ava-none { display: inline-block; }
 .bg-kpi > small { align-self: end; margin-top: 0.35rem; color: var(--guide-muted); font-size: 0.72rem; line-height: 1.4; }
 @media (max-width: 1100px) { .bg-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 760px) { .bg-qstep { padding: 0.8rem; } }
+
+/* Calcolatore avanzato con lo stile del semplice */
+.bg-qstep-note { color: var(--guide-muted); font-size: 0.75rem; font-weight: 400; }
+.bg-qstep .bg-chips { margin: 0; }
+.bg-qstep .bg-build { margin: 0; }
+.bg-kpi-pair { display: flex; flex-wrap: wrap; align-items: center; gap: 0.15rem; font-size: 1.35rem !important; }
+.bg-kpi-pair i { color: var(--guide-muted); font-style: normal; }
+.bg-kpi-pair .bg-sico { width: 0.9em; height: 0.9em; }
+.bg-slot label > span { display: flex; align-items: center; }
+.bg-chips button .bg-sico { margin-right: 0.15em; }
+.bg-stars { color: var(--guide-gold); letter-spacing: 0.05em; }
+.bg-kpi-pair { flex-wrap: nowrap; font-size: 1.15rem !important; white-space: nowrap; }
+@media (max-width: 1100px) { .bg-kpi-pair { font-size: 1.3rem !important; } }
+@media (max-width: 760px) { .bg-kpi-pair { flex-wrap: wrap; font-size: 1.05rem !important; white-space: normal; } }

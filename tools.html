@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
   <link rel="stylesheet" href="assets/css/guide-page.css?v=20261109-1" />
-  <link rel="stylesheet" href="assets/css/build-guide.css?v=20261117-1" />
+  <link rel="stylesheet" href="assets/css/build-guide.css?v=20261117-4" />
 </head>
 <body>
   <canvas id="stars"></canvas>
@@ -49,26 +49,31 @@
       </div>
 
       <div class="bg-tabpanel" role="tabpanel" id="calc-avanzato" aria-labelledby="tab-avanzato" hidden>
-        <div class="bg-calc-bar">
-          <div class="bg-chips" aria-label="Carica un esempio">
-            <span>Esempi</span>
-            <button type="button" data-preset="mavuika"><img src="assets/img/characters/UI_AvatarIcon_Mavuika.webp" alt="" width="256" height="256" />Mavuika</button>
-            <button type="button" data-preset="nefer"><img src="assets/img/characters/UI_AvatarIcon_Nefer.webp" alt="" width="256" height="256" />Nefer</button>
-            <button type="button" data-preset="neuvillette"><img src="assets/img/characters/UI_AvatarIcon_Neuvillette.webp" alt="" width="256" height="256" />Neuvillette</button>
-            <button type="button" data-preset="vuoto" class="is-ghost">Svuota</button>
-          </div>
-          <div class="bg-chips" role="radiogroup" aria-label="Statistica del personaggio per il Roll Value">
-            <span>Roll Value con</span>
-            <button type="button" role="radio" data-profile="none" aria-checked="true">Solo CRIT</button>
-            <button type="button" role="radio" data-profile="atk" aria-checked="false">ATT%</button>
-            <button type="button" role="radio" data-profile="hp" aria-checked="false">PS%</button>
-            <button type="button" role="radio" data-profile="def" aria-checked="false">DIF%</button>
-            <button type="button" role="radio" data-profile="em" aria-checked="false">Maestria</button>
-          </div>
+        <div class="bg-quick">
+          <section class="bg-qstep">
+            <h4 class="bg-qstep-title"><span>1</span>Esempi e statistica per il Roll Value</h4>
+            <div class="bg-chips" aria-label="Carica un esempio">
+              <span>Esempi</span>
+              <button type="button" data-preset="mavuika"><img src="assets/img/characters/UI_AvatarIcon_Mavuika.webp" alt="" width="256" height="256" />Mavuika</button>
+              <button type="button" data-preset="nefer"><img src="assets/img/characters/UI_AvatarIcon_Nefer.webp" alt="" width="256" height="256" />Nefer</button>
+              <button type="button" data-preset="neuvillette"><img src="assets/img/characters/UI_AvatarIcon_Neuvillette.webp" alt="" width="256" height="256" />Neuvillette</button>
+              <button type="button" data-preset="vuoto" class="is-ghost">Svuota</button>
+            </div>
+            <div class="bg-chips" role="radiogroup" aria-label="Statistica del personaggio per il Roll Value">
+              <span>Roll Value con</span>
+              <button type="button" role="radio" data-profile="none" data-sicon="critrate" aria-checked="true">Solo CRIT</button>
+              <button type="button" role="radio" data-profile="atk" data-sicon="atk" aria-checked="false">ATT%</button>
+              <button type="button" role="radio" data-profile="hp" data-sicon="hp" aria-checked="false">PS%</button>
+              <button type="button" role="radio" data-profile="def" data-sicon="def" aria-checked="false">DIF%</button>
+              <button type="button" role="radio" data-profile="em" data-sicon="em" aria-checked="false">Maestria</button>
+            </div>
+          </section>
+          <section class="bg-qstep">
+            <h4 class="bg-qstep-title"><span>2</span>I 5 manufatti <small class="bg-qstep-note">secondarie CRIT di ogni pezzo</small></h4>
+            <form class="bg-build" id="build-calc" autocomplete="off" novalidate></form>
+          </section>
         </div>
-
-        <form class="bg-build" id="build-calc" autocomplete="off" novalidate></form>
-        <output class="bg-build-out" id="build-out" aria-live="polite"></output>
+        <output class="bg-quick-out" id="build-out" aria-live="polite"></output>
         <p class="ref-note">Lascia vuoto quello che il pezzo non ha. Le secondarie si leggono nella schermata del manufatto; la principale della Corona si sceglie con i pulsanti.</p>
       </div>
     </section>
@@ -79,7 +84,7 @@
   </footer>
 
   <script src="assets/js/main.js?v=20260923-1"></script>
-  <script src="assets/js/build-guide.js?v=20261116-5"></script>
-  <script src="assets/js/build-calc-quick.js?v=20261117-1"></script>
+  <script src="assets/js/build-guide.js?v=20261117-2"></script>
+  <script src="assets/js/build-calc-quick.js?v=20261117-2"></script>
 </body>
 </html>

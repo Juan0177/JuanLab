@@ -124,7 +124,8 @@
     }
     function paint() {
       const r = api.value ? render(api.value) : { icon: '', name: '—', meta: '' };
-      btn.innerHTML = `${r.icon}<span>${esc(r.name)}${r.meta ? `<small>${r.meta}</small>` : ''}</span>${ICON.chevron}`;
+      const meta = 'btnMeta' in r ? r.btnMeta : r.meta; // il pulsante puo' mostrare meno del menu
+      btn.innerHTML = `${r.icon}<span>${esc(r.name)}${meta ? `<small>${meta}</small>` : ''}</span>${ICON.chevron}`;
     }
     api.open = () => {
       if (btn.disabled) return;
@@ -243,6 +244,7 @@
     const setRender = (s) => ({
       icon: s.i ? `<img src="assets/img/calc/sets/${s.i}.webp" alt="" width="64" height="64" class="bg-ava" />` : '<i class="bg-ava bg-ava-none"></i>',
       name: s.n,
+      btnMeta: s.r ? `<span class="bg-stars">${'&#9733;'.repeat(s.r)}</span>` : '',
       meta: s.b2 ? `<span class="bg-set-line"><b>2pz</b>${ICON[s.b2[1]] || ''}${esc(s.b2[0])}</span><span class="bg-set-line"><b>4pz</b>${ICON[s.b4[1]] || ''}${esc(s.b4[0])}</span>` : '',
     });
     const pSet1 = Picker(form.querySelector('#pick-set1'), {

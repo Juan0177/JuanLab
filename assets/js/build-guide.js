@@ -25,7 +25,12 @@
   // ---- Calcolatore della build ----
   // Roll massimi 5★ (KeqingMains)
   const MAX = { cr: 3.89, cd: 7.77, atk: 5.83, hp: 5.83, def: 7.29, em: 23.31 };
-  const PROFILE_LABEL = { atk: 'ATT %', hp: 'PS %', def: 'DIF %', em: 'Maestria' };
+  // Icone delle statistiche (lunaris.moe) come maschera: prendono il colore del testo.
+  // Indirizzo completo perche' le url() nelle variabili CSS si risolvono rispetto al foglio di stile.
+  const STAT_BASE = new URL('assets/img/calc/stats/', document.baseURI).href;
+  const sIcon = (n) => `<i class="bg-ico bg-sico" style="--src:url('${STAT_BASE}${n}.webp')" aria-hidden="true"></i>`;
+  const PROFILE_ICON = { atk: 'atk', hp: 'hp', def: 'def', em: 'em' };
+  const PROFILE_LABEL = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria' };
   const SLOTS = [
     { name: 'Fiore', icon: 'flower', main: 'PS 4.780 (fissa)' },
     { name: 'Piuma', icon: 'plume', main: 'ATT 311 (fissa)' },
@@ -61,8 +66,8 @@
             <button type="button" role="radio" data-corona="altro">Altro</button>
           </div>`}
         </div>
-        <label><span>Tasso di CRIT</span><input type="text" name="cr" placeholder="0" inputmode="decimal" autocomplete="off" /></label>
-        <label><span>DAN da CRIT</span><input type="text" name="cd" placeholder="0" inputmode="decimal" autocomplete="off" /></label>
+        <label><span>${sIcon('critrate')}Tasso di CRIT</span><input type="text" name="cr" placeholder="0" inputmode="decimal" autocomplete="off" /></label>
+        <label><span>${sIcon('critdmg')}DAN da CRIT</span><input type="text" name="cd" placeholder="0" inputmode="decimal" autocomplete="off" /></label>
         <label class="bg-extra"><span class="bg-extra-name">ATT %</span><input type="text" name="x" placeholder="0" inputmode="decimal" autocomplete="off" /></label>
         <div class="bg-slot-cv"><b>0,0</b><small>CV</small><i class="bg-meter" aria-hidden="true"><i></i></i></div>
       </fieldset>`).join('');
@@ -74,7 +79,7 @@
       profile = p;
       document.querySelectorAll('[data-profile]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.profile === p)));
       form.classList.toggle('has-extra', p !== 'none');
-      form.querySelectorAll('.bg-extra-name').forEach((el) => { el.textContent = PROFILE_LABEL[p] || ''; });
+      form.querySelectorAll('.bg-extra-name').forEach((el) => { el.innerHTML = PROFILE_LABEL[p] ? `${sIcon(PROFILE_ICON[p])}${PROFILE_LABEL[p]}` : ''; });
     }
     function setCorona(c) {
       corona = c;
@@ -118,21 +123,45 @@
       const withCorona = total + (corona === 'altro' ? 0 : 62.2);
       const weakName = weakest ? SLOTS[rows.indexOf(weakest)].name : null;
 
-      out.className = `bg-build-out ${cls}`;
+      const crSubs = rows.reduce((t, r) => t + r.cr, 0);
+      const cdSubs = rows.reduce((t, r) => t + r.cd, 0);
+      const weakSlot = weakest ? SLOTS[rows.indexOf(weakest)] : null;
+      const rvTiers = [[30, 'top', 't5'], [25, 'ottimo', 't4'], [20, 'buono', 't3'], [15, 'discreto', 't2'], [0, 'basso', 't1']];
+      const rolls = profile === 'none' ? total / 7.77 : totalRv / 100;
+      const [, rvLabel, rvCls] = rvTiers.find(([min]) => rolls >= min);
+      out.className = `bg-quick-out ${filled ? cls : 't1'}`;
       out.innerHTML = `
-        <div class="bg-out-main">
-          <b>${fmt(total)}</b>
-          <span>CV della build<strong>${filled ? label : 'scrivi i CRIT dei pezzi'}</strong></span>
-          <i class="bg-meter bg-meter-big" aria-hidden="true"><i style="width:${Math.min(total / 250, 1) * 100}%"></i>${[120, 150, 180, 210].map((t) => `<em style="left:${t / 2.5}%"></em>`).join('')}</i>
+        <div class="bg-kpis">
+          <div class="bg-kpi ${filled ? cls : 't1'}">
+            <span>CV della build</span>
+            <b>${fmt(total)}</b>
+            <strong>${filled ? label : 'scrivi i CRIT dei pezzi'}</strong>
+            <i class="bg-meter" aria-hidden="true"><i style="width:${Math.min(total / 250, 1) * 100}%"></i>${[120, 150, 180, 210].map((t) => `<em style="left:${t / 2.5}%"></em>`).join('')}</i>
+            <small>${sIcon('critrate')}+${fmt(crSubs)}% &middot; ${sIcon('critdmg')}+${fmt(cdSubs)}% dalle secondarie</small>
+          </div>
+          <div class="bg-kpi ${filled ? cls : 't1'}">
+            <span>CV con la Corona</span>
+            <b>${fmt(withCorona)}</b>
+            <strong>come lo conta Akasha</strong>
+            <i class="bg-meter" aria-hidden="true"><i style="width:${Math.min(withCorona / 312, 1) * 100}%"></i></i>
+            <small>${corona === 'altro' ? 'Corona senza CRIT: non cambia' : `+62,2 della Corona ${corona === 'cr' ? 'Tasso' : 'DAN'}`}</small>
+          </div>
+          <div class="bg-kpi ${filled ? rvCls : 't1'}">
+            <span>${profile === 'none' ? 'Roll CRIT' : 'Roll Value'}</span>
+            <b>${profile === 'none' ? `&asymp; ${fmt(rolls)}` : `${fmt(totalRv, 0)}%`}</b>
+            <strong>${rvLabel} &middot; ${fmt(rolls)} roll su 45</strong>
+            <i class="bg-meter" aria-hidden="true"><i style="width:${Math.min(rolls / 45, 1) * 100}%"></i></i>
+            <small>${profile === 'none' ? 'solo CRIT: scegli una statistica sopra per il Roll Value' : `CRIT + ${PROFILE_LABEL[profile]}`}</small>
+          </div>
+          <div class="bg-kpi t3">
+            <span>CRIT dai manufatti</span>
+            <b class="bg-kpi-pair">${sIcon('critrate')}${fmt(crTot)}% <i>/</i> ${sIcon('critdmg')}${fmt(cdTot)}%</b>
+            <strong>Tasso / DAN</strong>
+            <i class="bg-meter" aria-hidden="true"><i style="width:${Math.min(cdTot / Math.max(crTot, 1) / 4, 1) * 100}%"></i></i>
+            <small>Corona compresa, senza base, arma e set</small>
+          </div>
         </div>
-        <ul class="bg-out-list">
-          <li><span>Con la Corona</span><strong>${fmt(withCorona)} CV</strong><small>come lo conta Akasha</small></li>
-          <li><span>CRIT dai manufatti</span><strong>+${fmt(crTot)}% / +${fmt(cdTot)}%</strong><small>Tasso / DAN, Corona compresa</small></li>
-          ${profile === 'none'
-            ? `<li><span>Roll CRIT</span><strong>&asymp; ${fmt(total / 7.77)}</strong><small>su 45 roll totali</small></li>`
-            : `<li><span>Roll Value</span><strong>${fmt(totalRv, 0)}%</strong><small>&asymp; ${fmt(totalRv / 100)} roll utili su 45</small></li>`}
-          <li class="${weakest ? 'is-hint' : ''}"><span>Da cambiare per primo</span><strong>${weakName || '&ndash;'}</strong><small>${weakest ? `${fmt(weakest.cv)} CV${profile === 'none' ? '' : ` · ${fmt(weakest.rv, 0)}% RV`}` : 'compila tutti e 5 i pezzi'}</small></li>
-        </ul>`;
+        ${weakSlot ? `<div class="bg-corona-rec is-change"><img src="assets/img/guides/build/slot-${weakSlot.icon}.webp" alt="" width="96" height="96" /><span><small>Da cambiare per primo</small><strong>${weakSlot.name}</strong><em>&Egrave; il pezzo pi&ugrave; debole: ${fmt(weakest.cv)} CV${profile === 'none' ? '' : ` &middot; ${fmt(weakest.rv, 0)}% di Roll Value`}.</em></span></div>` : `<p class="bg-out-foot">Compila tutti e 5 i pezzi per sapere quale cambiare per primo.</p>`}`;
     }
 
     function load(name) {
@@ -148,6 +177,7 @@
       update();
     }
 
+    document.querySelectorAll('[data-sicon]').forEach((el) => el.insertAdjacentHTML('afterbegin', sIcon(el.dataset.sicon)));
     document.querySelectorAll('[data-preset]').forEach((b) => b.addEventListener('click', () => load(b.dataset.preset)));
     document.querySelectorAll('[data-profile]').forEach((b) => b.addEventListener('click', () => { setProfile(b.dataset.profile); update(); }));
     form.querySelectorAll('[data-corona]').forEach((b) => b.addEventListener('click', () => { setCorona(b.dataset.corona); update(); }));
