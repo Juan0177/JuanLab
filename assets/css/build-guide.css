@@ -532,7 +532,7 @@
   text-align: left;
   box-shadow: none;
 }
-.bg-pick-pop li button span { display: grid; min-width: 0; line-height: 1.25; }
+.bg-pick-pop li button > span { display: grid; min-width: 0; line-height: 1.25; }
 .bg-pick-pop li button small { color: var(--guide-muted); font-size: 0.72rem; }
 .bg-pick-pop li button:hover,
 .bg-pick-pop li button:focus-visible { background: rgba(245, 215, 135, 0.12); outline: none; }
@@ -765,3 +765,26 @@ i.bg-ava-none { display: inline-block; }
 .bg-set-card details p { margin: 0.3rem 0 0; color: var(--guide-muted); font-size: 0.76rem; line-height: 1.5; }
 @media (max-width: 760px) { .bg-set-info { grid-template-columns: minmax(0, 1fr); } .bg-set-card > p { flex-wrap: wrap; } }
 .bg-set-info { grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }
+
+/* Righe 2pz / 4pz del menu: etichetta, icona e testo sulla stessa riga */
+.bg-set-line { display: flex; align-items: baseline; gap: 0.3rem; min-width: 0; }
+.bg-set-line b { flex: none; margin: 0; }
+.bg-set-line .bg-ico { flex: none; margin: 0; align-self: center; }
+.bg-pick-btn .bg-set-line { overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.bg-pick-pop .bg-set-line + .bg-set-line { margin-top: 0.1rem; }
+
+/* Principali di Sabbie, Calice e Corona: 4 pulsanti senza sovrapposizioni */
+.bg-q-3 .bg-seg-lg {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 0.3rem;
+  height: auto;
+}
+.bg-q-3 .bg-seg-lg button {
+  height: 2.6rem;
+  overflow: hidden;
+  padding: 0.2rem 0.3rem;
+  white-space: nowrap;
+  text-overflow: ellipsis;
+}
+.bg-q-3 .bg-seg-lg button .bg-ico { margin-right: 0.2em; }
