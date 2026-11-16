@@ -36,15 +36,20 @@
 
   // Icone delle statistiche (SVG in linea, colore del testo)
   const SVG = (p) => `<svg viewBox="0 0 24 24" aria-hidden="true" class="bg-ico">${p}</svg>`;
+  const STAT_BASE = new URL('assets/img/calc/stats/', document.baseURI).href;
+  const STAT_IMG = (n) => `<i class="bg-ico bg-sico" style="--src:url('${STAT_BASE}${n}.webp')" aria-hidden="true"></i>`;
   const ICON = {
-    cr: SVG('<path d="M12 2l2.6 7.4L22 12l-7.4 2.6L12 22l-2.6-7.4L2 12l7.4-2.6z" fill="currentColor"/>'),
-    cd: SVG('<path d="M12 4l1.8 5.2L19 11l-5.2 1.8L12 18l-1.8-5.2L5 11l5.2-1.8z" fill="currentColor"/><circle cx="12" cy="11" r="9.5" fill="none" stroke="currentColor" stroke-width="1.6" stroke-dasharray="3 3"/>'),
-    atk: SVG('<path d="M19 3l2 2-9.5 9.5-2-2zM8.5 13.5l2 2-2.8 2.8 1.4 1.4-1.4 1.4-1.4-1.4L3.5 21.5 2.5 20.5l2.8-2.8-1.4-1.4 1.4-1.4 1.4 1.4z" fill="currentColor"/>'),
-    hp: SVG('<path d="M12 2.5S5 10.2 5 14.5a7 7 0 0014 0C19 10.2 12 2.5 12 2.5z" fill="currentColor"/>'),
-    def: SVG('<path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z" fill="currentColor"/>'),
-    em: SVG('<circle cx="8" cy="9" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="16" cy="9" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/><circle cx="12" cy="16" r="4.2" fill="none" stroke="currentColor" stroke-width="2"/>'),
-    er: SVG('<path d="M12 4a8 8 0 107.4 5" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/><path d="M20 3v6h-6" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>'),
-    heal: SVG('<path d="M9.5 3h5v6.5H21v5h-6.5V21h-5v-6.5H3v-5h6.5z" fill="currentColor"/>'),
+    cr: STAT_IMG('critrate'),
+    cd: STAT_IMG('critdmg'),
+    atk: STAT_IMG('atk_base'),
+    hp: STAT_IMG('hp_base'),
+    def: STAT_IMG('def_base'),
+    atkp: STAT_IMG('atk'),
+    hpp: STAT_IMG('hp'),
+    defp: STAT_IMG('def'),
+    em: STAT_IMG('em'),
+    er: STAT_IMG('er'),
+    heal: STAT_IMG('healing'),
     char: SVG('<circle cx="12" cy="8" r="4.5" fill="currentColor"/><path d="M3.5 21c.8-4.6 4.2-7 8.5-7s7.7 2.4 8.5 7z" fill="currentColor"/>'),
     weapon: SVG('<path d="M20.5 2.5l1 1-11 11-1-1zM6.5 12.5l5 5-1.5 1.5-1.8-1.8L4.5 21 3 19.5l3.8-3.7-1.8-1.8z" fill="currentColor"/>'),
     set: SVG('<path d="M12 2c2.5 3 2.5 5.5 0 8-2.5-2.5-2.5-5 0-8zM4 9c3.8-.3 6 1 7 4-3.8.6-6-.8-7-4zm16 0c-1 3.2-3.2 4.6-7 4 1-3 3.2-4.3 7-4zM11 14h2v8h-2z" fill="currentColor"/>'),
@@ -55,6 +60,7 @@
     pcs: SVG('<rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="3" y="13" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor" opacity=".45"/>'),
     screen: SVG('<rect x="2.5" y="4" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'),
     plus: SVG('<path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>'),
+    phys: STAT_IMG('physical'),
     dmg: SVG('<path d="M12 2l2.2 6.3L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.8-.7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>'),
     res: SVG('<path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 12h8" stroke="currentColor" stroke-width="2"/>'),
     chevron: SVG('<path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>'),
@@ -67,7 +73,7 @@
     heal: 'Bonus di guarigione', phys: 'Bonus DAN fisici', pyro: 'Bonus DAN da Pyro', hydro: 'Bonus DAN da Hydro', dendro: 'Bonus DAN da Dendro',
     electro: 'Bonus DAN da Electro', anemo: 'Bonus DAN da Anemo', cryo: 'Bonus DAN da Cryo', geo: 'Bonus DAN da Geo',
   };
-  const STAT_ICON = { cr: 'cr', cd: 'cd', atkp: 'atk', hpp: 'hp', defp: 'def', em: 'em', er: 'er', heal: 'heal' };
+  const STAT_ICON = { cr: 'cr', cd: 'cd', atkp: 'atkp', hpp: 'hpp', defp: 'defp', em: 'em', er: 'er', heal: 'heal' };
   const statText = (s) => (s ? `${STAT_NAME[s[0]] || s[0]} ${s[0] === 'em' ? fmt(s[1], 0) : `${fmt(s[1])}%`}` : 'nessuna');
 
   const STYLES = [
@@ -168,8 +174,8 @@
 
   // Codici delle statistiche usati nelle schede dei personaggi
   const CODE = {
-    atkp: ['ATT%', 'atk'], hpp: ['PS%', 'hp'], defp: ['DIF%', 'def'], em: ['Maestria', 'em'], er: ['Ricarica', 'er'],
-    cr: ['Tasso di CRIT', 'cr'], cd: ['DAN da CRIT', 'cd'], heal: ['Bonus di guarigione', 'heal'], dmg: ['Bonus DAN elementale', null], phys: ['Bonus DAN fisici', null],
+    atkp: ['ATT%', 'atkp'], hpp: ['PS%', 'hpp'], defp: ['DIF%', 'defp'], em: ['Maestria', 'em'], er: ['Ricarica', 'er'],
+    cr: ['Tasso di CRIT', 'cr'], cd: ['DAN da CRIT', 'cd'], heal: ['Bonus di guarigione', 'heal'], dmg: ['Bonus DAN elementale', 'dmg'], phys: ['Bonus DAN fisici', 'phys'],
   };
   const ROLE = { dps: 'DPS', subdps: 'Sub-DPS', support: 'Supporto', healer: 'Guaritore', shield: 'Scudo' };
 
@@ -185,42 +191,42 @@
       style: 'amp', corona: 'cd', sands: 'em', goblet: 'dmg', scale: null, reso: true,
     };
 
-    form.innerHTML = `
-      <div class="bg-q-row bg-q-2">
-        <div class="bg-field"><span class="bg-label">${ICON.char}Personaggio</span><div class="bg-pick" id="pick-char"></div></div>
-        <div class="bg-field"><span class="bg-label">${ICON.weapon}Arma</span><div class="bg-pick" id="pick-weapon"></div></div>
-      </div>
-      <div class="bg-q-row bg-q-3" id="q-mains"></div>
-      <div class="bg-q-row bg-q-set">
-        <div class="bg-field"><span class="bg-label">${ICON.set}Set</span><div class="bg-pick" id="pick-set1"></div></div>
-        <div class="bg-field bg-field-pcs"><span class="bg-label">${ICON.pcs}Pezzi</span>
-          <div class="bg-seg bg-seg-lg" role="radiogroup" aria-label="Pezzi del primo set">
-            <button type="button" role="radio" data-q-pcs="2">2pz</button>
-            <button type="button" role="radio" data-q-pcs="4">4pz</button>
+    const step = (n, title, body, extra = '') => `<section class="bg-qstep"><h4 class="bg-qstep-title"><span>${n}</span>${title}${extra}</h4>${body}</section>`;
+    form.innerHTML = [
+      step(1, 'Personaggio e arma', `
+        <div class="bg-q-row bg-q-2">
+          <div class="bg-field"><span class="bg-label">${ICON.char}Personaggio</span><div class="bg-pick" id="pick-char"></div></div>
+          <div class="bg-field"><span class="bg-label">${ICON.weapon}Arma</span><div class="bg-pick" id="pick-weapon"></div></div>
+        </div>`),
+      step(2, 'Manufatti', `
+        <div class="bg-q-row bg-q-set">
+          <div class="bg-field"><span class="bg-label">${ICON.set}Set</span><div class="bg-pick" id="pick-set1"></div></div>
+          <div class="bg-field bg-field-pcs"><span class="bg-label">${ICON.pcs}Pezzi</span>
+            <div class="bg-seg bg-seg-lg" role="radiogroup" aria-label="Pezzi del primo set">
+              <button type="button" role="radio" data-q-pcs="2">2pz</button>
+              <button type="button" role="radio" data-q-pcs="4">4pz</button>
+            </div>
           </div>
+          <div class="bg-field"><span class="bg-label">${ICON.set}Secondo set <small class="bg-set2-note"></small></span><div class="bg-pick" id="pick-set2"></div></div>
         </div>
-        <div class="bg-field"><span class="bg-label">${ICON.set}Secondo set <small class="bg-set2-note"></small></span><div class="bg-pick" id="pick-set2"></div></div>
-      </div>
-      <div class="bg-set-info" id="q-setinfo"></div>
-      <div class="bg-field">
-        <span class="bg-label">${ICON.style}Stile di gioco</span>
+        <div class="bg-set-info" id="q-setinfo"></div>
+        <div class="bg-q-row bg-q-3" id="q-mains"></div>`),
+      step(3, 'Stile di gioco', `
         <div class="bg-styles" role="radiogroup" aria-label="Stile di gioco">
-          ${STYLES.map((s) => `<button type="button" role="radio" data-q-style="${s.k}"><span class="bg-style-ico">${s.icon}</span><span>${s.n}${s.sub ? `<small>${s.sub}</small>` : ''}</span></button>`).join('')}
+          ${STYLES.map((x) => `<button type="button" role="radio" data-q-style="${x.k}"><span class="bg-style-ico">${x.icon}</span><span>${x.n}${x.sub ? `<small>${x.sub}</small>` : ''}</span></button>`).join('')}
         </div>
-        <label class="bg-check" id="q-reso"><input type="checkbox" checked /> ${elImg('Cryo')} Risonanza Cryo in squadra (+15% Tasso di CRIT contro nemici congelati o con Cryo)</label>
-      </div>
-      <div class="bg-field">
-        <span class="bg-label">${ICON.screen}Statistiche dalla schermata <small class="bg-scale-pick"></small></span>
+        <label class="bg-check" id="q-reso"><input type="checkbox" checked /> ${elImg('Cryo')} Risonanza Cryo in squadra (+15% Tasso di CRIT contro nemici congelati o con Cryo)</label>`),
+      step(4, 'Statistiche dalla schermata', `
         <div class="bg-q-stats" id="q-stats"></div>
-      </div>
-      <details class="bg-q-more">
-        <summary>${ICON.plus}Altri bonus fissi <small>passive dell&rsquo;arma, costellazioni, talenti</small></summary>
-        <div class="bg-q-stats">
-          <label class="bg-stat"><span>${ICON.cr}Tasso di CRIT extra</span><input type="text" name="xcr" inputmode="decimal" placeholder="0" /></label>
-          <label class="bg-stat"><span>${ICON.cd}DAN da CRIT extra</span><input type="text" name="xcd" inputmode="decimal" placeholder="0" /></label>
-          <label class="bg-stat"><span>${ICON.atk}Statistica di danno extra <small>% o Maestria</small></span><input type="text" name="xsc" inputmode="decimal" placeholder="0" /></label>
-        </div>
-      </details>`;
+        <details class="bg-q-more">
+          <summary>${ICON.plus}Altri bonus fissi <small>passive dell&rsquo;arma, costellazioni, talenti</small></summary>
+          <div class="bg-q-stats">
+            <label class="bg-stat"><span>${ICON.cr}Tasso di CRIT extra</span><input type="text" name="xcr" inputmode="decimal" placeholder="0" /></label>
+            <label class="bg-stat"><span>${ICON.cd}DAN da CRIT extra</span><input type="text" name="xcd" inputmode="decimal" placeholder="0" /></label>
+            <label class="bg-stat"><span>${ICON.atk}Statistica di danno extra <small>% o Maestria</small></span><input type="text" name="xsc" inputmode="decimal" placeholder="0" /></label>
+          </div>
+        </details>`, '<small class="bg-scale-pick"></small>'),
+    ].join('');
 
     const values = { cr: '56,1', cd: '253,9', atk: '1618', hp: '', def: '', em: '237', er: '100', xcr: '', xcd: '', xsc: '' };
 
@@ -293,7 +299,7 @@
     const SCALE_PCT = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria' };
     function drawMains() {
       const sc = scale();
-      const pct = sc === 'em' ? null : ['scale', `${ICON[SCALES[sc][1]]}${SCALE_PCT[sc]}`];
+      const pct = sc === 'em' ? null : ['scale', `${ICON[{ atk: 'atkp', hp: 'hpp', def: 'defp' }[sc]]}${SCALE_PCT[sc]}`];
       const groups = [
         ['sands', 'Sabbie', 'sands', [pct, ['em', `${ICON.em}Maestria`], ['er', `${ICON.er}Ricarica`], ['altro', 'Altro']]],
         ['goblet', 'Calice', 'goblet', [['dmg', 'Bonus DAN'], pct, ['em', `${ICON.em}Maestria`], ['altro', 'Altro']]],
@@ -419,21 +425,36 @@
 
       out.className = `bg-quick-out ${bad ? 't1' : cls}`;
       out.innerHTML = `
-        <div class="bg-out-main">
-          <b>${bad ? '&ndash;' : fmt(cv)}</b>
-          <span>CV dei manufatti<strong>${bad ? 'controlla i valori' : tier}</strong></span>
-          <i class="bg-meter bg-meter-big" aria-hidden="true"><i style="width:${bad ? 0 : Math.min(Math.max(cv, 0) / 250, 1) * 100}%"></i>${[120, 150, 180, 210].map((t) => `<em style="left:${t / 2.5}%"></em>`).join('')}</i>
-          <small class="bg-out-sub">${ICON.cr}+${fmt(Math.max(artCr, 0))}% ${ICON.cd}+${fmt(Math.max(artCd, 0))}% dalle secondarie</small>
-          <div class="bg-out-rv ${bad || rvBad ? 't1' : rvCls}">
+        <div class="bg-kpis">
+          <div class="bg-kpi ${bad ? 't1' : cls}">
+            <span>${ICON.star}CV dei manufatti</span>
+            <b>${bad ? '&ndash;' : fmt(cv)}</b>
+            <strong>${bad ? 'controlla i valori' : tier}</strong>
+            <i class="bg-meter" aria-hidden="true"><i style="width:${bad ? 0 : Math.min(Math.max(cv, 0) / 250, 1) * 100}%"></i>${[120, 150, 180, 210].map((t) => `<em style="left:${t / 2.5}%"></em>`).join('')}</i>
+            <small>${ICON.cr}+${fmt(Math.max(artCr, 0))}% &middot; ${ICON.cd}+${fmt(Math.max(artCd, 0))}% dalle secondarie</small>
+          </div>
+          <div class="bg-kpi ${bad || rvBad ? 't1' : rvCls}">
+            <span>${ICON.star}Roll Value della build</span>
             <b>${bad || rvBad ? '&ndash;' : `${fmt(rolls * 100, 0)}%`}</b>
-            <span>Roll Value della build<strong>${bad || rvBad ? 'controlla le principali' : `${rvTier} &middot; &asymp; ${fmt(rolls)} roll utili su 45`}</strong></span>
+            <strong>${bad || rvBad ? 'controlla le principali' : `${rvTier} &middot; ${fmt(rolls)} roll su 45`}</strong>
+            <i class="bg-meter" aria-hidden="true"><i style="width:${bad || rvBad ? 0 : Math.min(rolls / 45, 1) * 100}%"></i></i>
             <small>${rollParts.map(([n, r]) => `${n} ${fmt(Math.max(r, 0))}`).join(' &middot; ')}</small>
           </div>
+          <div class="bg-kpi ${combatCr > 100 ? 't2' : 't3'}">
+            <span>${ICON.cr}Tasso in combattimento</span>
+            <b>${fmt(combatCr)}%</b>
+            <strong>${combatCr > 100 ? 'oltre il 100%' : 'in battaglia'}</strong>
+            <i class="bg-meter" aria-hidden="true"><i style="width:${Math.min(combatCr, 100)}%"></i></i>
+            <small>${combat.length ? combat.map((f) => `+${f[1]}% ${esc(f[0])}`).join(', ') : 'nessun bonus in combattimento'}</small>
+          </div>
+          <div class="bg-kpi ${ratio > 2.6 || ratio < 1.6 ? 't2' : 't4'}">
+            <span>${ICON.cd}DAN da CRIT</span>
+            <b>${fmt(CD)}%</b>
+            <strong>rapporto 1 : ${fmt(ratio)}</strong>
+            <i class="bg-meter" aria-hidden="true"><i style="width:${Math.min(CD / 300, 1) * 100}%"></i></i>
+            <small>obiettivo vicino all&rsquo;1 : 2</small>
+          </div>
         </div>
-        <ul class="bg-out-list bg-out-list-2">
-          <li><span>${ICON.cr}Tasso in combattimento</span><strong>${fmt(combatCr)}%</strong><small>${combat.length ? combat.map((f) => `+${f[1]}% ${esc(f[0])}`).join(', ') : 'nessun bonus in combattimento'}</small></li>
-          <li><span>${ICON.cd}DAN da CRIT</span><strong>${fmt(CD)}%</strong><small>rapporto 1 : ${fmt(ratio)}</small></li>
-        </ul>
         ${bad ? '' : `<div class="bg-corona-rec${coronaRec.change ? ' is-change' : ''}"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" /><span><small>Corona consigliata</small><strong>${coronaRec.k === 'pari' ? '' : ICON[coronaRec.k]}${coronaRec.title}</strong><em>${coronaRec.text}</em></span></div>`}
         ${guideHtml({ sc, combatCr, bad })}
         <ul class="bg-tips">${tips.map((t) => `<li>${t}</li>`).join('')}</ul>

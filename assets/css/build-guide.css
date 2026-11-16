@@ -788,3 +788,31 @@ i.bg-ava-none { display: inline-block; }
   text-overflow: ellipsis;
 }
 .bg-q-3 .bg-seg-lg button .bg-ico { margin-right: 0.2em; }
+
+/* Icone delle statistiche (lunaris.moe): maschera colorata con il colore del testo */
+.bg-sico {
+  background-color: currentColor;
+  -webkit-mask: var(--src) center / contain no-repeat;
+  mask: var(--src) center / contain no-repeat;
+}
+
+/* ---- Ordine del calcolatore semplice: passi numerati ---- */
+.bg-quick { gap: 0.9rem; }
+.bg-qstep { display: grid; gap: 0.8rem; margin: 0; padding: 0.9rem 1rem 1rem; border: 1px solid var(--guide-border); border-radius: 16px; background: rgba(255, 255, 255, 0.015); }
+.bg-qstep-title { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin: 0; font-size: 0.95rem; }
+.bg-qstep-title > span { display: grid; place-items: center; width: 1.6rem; height: 1.6rem; border-radius: 50%; background: var(--guide-gold); color: #1a1408; font-size: 0.8rem; font-weight: 800; }
+.bg-qstep-title .bg-scale-pick { margin-left: auto; font-size: 0.75rem; font-weight: 400; color: var(--guide-muted); }
+.bg-set-info { margin-top: 0; }
+.bg-q-stats { grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); }
+
+/* ---- Risultati: quattro riquadri uguali ---- */
+.bg-quick-out { grid-template-columns: minmax(0, 1fr); }
+.bg-kpis { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 0.7rem; }
+.bg-kpi { display: grid; grid-template-rows: auto auto auto auto 1fr; gap: 0.2rem; min-width: 0; padding: 0.8rem 0.9rem; border: 1px solid var(--guide-border); border-top: 3px solid var(--tier); border-radius: 14px; background: rgba(255, 255, 255, 0.03); }
+.bg-kpi > span { color: var(--guide-muted); font-size: 0.75rem; }
+.bg-kpi > b { color: var(--tier); font-size: 1.9rem; line-height: 1.1; }
+.bg-kpi > strong { font-size: 0.85rem; }
+.bg-kpi > .bg-meter { margin-top: 0.35rem; }
+.bg-kpi > small { align-self: end; margin-top: 0.35rem; color: var(--guide-muted); font-size: 0.72rem; line-height: 1.4; }
+@media (max-width: 1100px) { .bg-kpis { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 760px) { .bg-qstep { padding: 0.8rem; } }
