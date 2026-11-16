@@ -11,18 +11,21 @@ Live: [https://juan0177.github.io/JuanLab/](https://juan0177.github.io/JuanLab/)
 
 Il sito include quattro sezioni principali:
 
+- Guide (personaggi già usciti)
 - Spyral Abyss
 - Imaginarium Theater
 - Stygian Onslaught
-- Guida PG attuale
+
+In più c'è una pagina nascosta con le guide dei personaggi ancora in beta: si apre con 5 click sul logo della home.
 
 ## 🧭 Pagine principali
 
 - Home: `index.html`
+- Guide: `guide.html`
 - Spyral Abyss: `abyss.html`
 - Imaginarium Theater: `theater.html`
 - Stygian Onslaught: `stygian.html`
-- Guida PG attuale: `current-pg.html`
+- Guide beta (nascosta, 5 click sul logo): `current-pg.html`
 
 ## 🌳 Struttura del progetto
 
@@ -33,6 +36,7 @@ flowchart TD
     A --> D[theater.html]
     A --> E[stygian.html]
     A --> F[current-pg.html]
+    A --> L[guide.html]
     A --> G[assets]
     G --> H[css]
     G --> I[js]
@@ -127,13 +131,12 @@ Esempio di singola strategia:
 ]
 ```
 
-### Guida PG attuale
+### Guide
 
-1. Modifica il contenuto della pagina in `current-pg.html`
-2. Se serve un ritocco visivo, aggiorna `assets/css/current-pg.css`
-3. Se vuoi cambiare l’immagine di copertina, sostituisci il file in `assets/img/guides/` o aggiorna il path nel markup
-
-Questa sezione raccoglie la guida del personaggio attuale, con struttura statica e stili dedicati. Il nome del personaggio può cambiare senza cambiare il nome della sezione.
+- `guide.html` è la sezione pubblica, linkata dalla home: contiene solo le guide dei personaggi già usciti (tab "Guide attuali" e "Archivio").
+- `current-pg.html` è la pagina nascosta (5 click sul logo della home): contiene solo le guide dei personaggi non ancora usciti, cioè in beta.
+- Quando un personaggio esce, sposta la sua card da `current-pg.html` a `guide.html` e cambia il link "Torna a..." nella sua pagina.
+- Gli stili di entrambe sono in `assets/css/current-pg.css`.
 
 ### Stygian Onslaught
 

@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Guida PG attuale | JuanLab</title>
+  <title>Guide beta 7.3 | JuanLab</title>
+  <meta name="robots" content="noindex" />
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
@@ -17,60 +18,11 @@
       <div class="hero-brand">
         <a href="index.html" class="back-link">&larr; JuanLab</a>
         <div class="hero-divider"></div>
-        <strong class="hero-title">Guida PG attuale</strong>
+        <strong class="hero-title">Guide beta</strong>
       </div>
     </header>
 
-    <nav class="pg-tabs" role="tablist" aria-label="Sezioni della pagina guida">
-      <button type="button" class="pg-tab" role="tab" id="tab-attuale" aria-controls="panel-attuale" aria-selected="true">Guida attuale</button>
-      <button type="button" class="pg-tab" role="tab" id="tab-archivio" aria-controls="panel-archivio" aria-selected="false" tabindex="-1">Archivio</button>
-    </nav>
-
-    <div class="pg-panel" role="tabpanel" id="panel-attuale" aria-labelledby="tab-attuale">
-      <div class="pg-intro" role="group" aria-label="Filtra per versione">
-        <button type="button" class="pg-intro-chip" data-filter="all" aria-pressed="true">Tutte</button>
-        <button type="button" class="pg-intro-chip" data-filter="live" aria-pressed="false"><span class="pg-dot pg-dot-live"></span>Live: <strong>versione 7.2</strong></button>
-        <button type="button" class="pg-intro-chip" data-filter="beta" aria-pressed="false"><span class="pg-dot pg-dot-beta"></span>In beta: <strong>versione 7.3</strong></button>
-      </div>
-
-      <section class="pg-block" aria-labelledby="pg-live-title" data-group="live">
-        <header class="pg-block-head">
-          <h2 id="pg-live-title">Disponibili ora</h2>
-          <span>Banner 7.2</span>
-        </header>
-        <div class="pg-grid">
-          <article class="pg-card">
-            <div class="pg-card-top">
-              <img class="pg-av pg-av-main" src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" width="256" height="256" loading="lazy" />
-              <div>
-                <p class="pg-kicker">Electro &middot; Catalyst &middot; 5&#9733;</p>
-                <h3>Mitya</h3>
-              </div>
-            </div>
-            <p class="pg-card-text">Kit con i Gradient Beacon, rotazioni Main DPS e Sub-DPS, team consigliati e showcase Stygian Onslaught a C0.</p>
-            <div class="pg-actions">
-              <a class="pg-btn primary" href="mitya-guide.html">Guida estesa</a>
-              <a class="pg-btn" href="mitya-build.html">Build in breve</a>
-            </div>
-          </article>
-
-          <article class="pg-card">
-            <div class="pg-card-top">
-              <img class="pg-av pg-av-main" src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" width="256" height="256" loading="lazy" />
-              <div>
-                <p class="pg-kicker">Electro &middot; Sword &middot; 4&#9733;</p>
-                <h3>Valeriy</h3>
-              </div>
-            </div>
-            <p class="pg-card-text">Supercharged Shield e Quills, Constellations da C0 a C6, team con Mitya, Cyno e Nefer e showcase Stygian Onslaught.</p>
-            <div class="pg-actions">
-              <a class="pg-btn primary" href="valeriy-guide.html">Guida estesa</a>
-              <a class="pg-btn" href="valeriy-build.html">Build in breve</a>
-            </div>
-          </article>
-        </div>
-      </section>
-
+    <div class="pg-panel">
       <section class="pg-block" aria-labelledby="pg-next-title" data-group="beta">
         <header class="pg-block-head">
           <h2 id="pg-next-title">In arrivo</h2>
@@ -137,112 +89,14 @@
         </div>
       </section>
 
-      <p class="pg-archive-hint">Cerchi una guida passata? <a href="#archivio" data-open-archive>Apri l&rsquo;archivio &rarr;</a></p>
-    </div>
-
-    <div class="pg-panel" role="tabpanel" id="panel-archivio" aria-labelledby="tab-archivio" hidden>
-      <header class="archive-header">
-        <h2>Archivio guide</h2>
-        <p>Tutte le guide e le analisi pubblicate finora, dalla pi&ugrave; recente.</p>
-      </header>
-
-      <section class="archive-group" aria-labelledby="arch-73">
-        <h3 id="arch-73">Versione 7.3 &middot; beta</h3>
-        <div class="archive-grid">
-        <a class="archive-card" href="anastasya-impressions.html">
-          <img src="assets/img/characters/UI_AvatarIcon_Anastasya.webp" alt="" width="256" height="256" loading="lazy" />
-          <span class="archive-card-body">
-            <span class="archive-card-kicker">Prime impressioni</span>
-            <strong>Tsaritsa (Anastasya) C0</strong>
-            <span>Stellar-Conduct (Cryo su Electro) con Alyosha, Mitya, Yae e Nicole, pi&ugrave; calcoli di team.</span>
-          </span>
-        </a>
-        <a class="archive-card" href="danica-dps.html">
-          <img src="assets/img/characters/UI_AvatarIcon_Danica.webp" alt="" width="256" height="256" loading="lazy" />
-          <span class="archive-card-body">
-            <span class="archive-card-kicker">Prime impressioni</span>
-            <strong>Danica C0 DPS</strong>
-            <span>Calcoli di team con Yae, Qiqi e Odette o Tsaritsa.</span>
-          </span>
-        </a>
-        </div>
-      </section>
-
-      <section class="archive-group" aria-labelledby="arch-72">
-        <h3 id="arch-72">Versione 7.2</h3>
-        <div class="archive-grid">
-        <a class="archive-card" href="mitya-guide.html">
-          <img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" width="256" height="256" loading="lazy" />
-          <span class="archive-card-body">
-            <span class="archive-card-kicker">Guida estesa</span>
-            <strong>Mitya</strong>
-            <span>Kit, rotazioni, team e showcase Stygian.</span>
-          </span>
-        </a>
-        <a class="archive-card" href="mitya-build.html">
-          <img src="assets/img/characters/UI_AvatarIcon_Mitya.webp" alt="" width="256" height="256" loading="lazy" />
-          <span class="archive-card-body">
-            <span class="archive-card-kicker">Build in breve</span>
-            <strong>Mitya</strong>
-            <span>Infografica di @Laimelea_V e tabella della build.</span>
-          </span>
-        </a>
-        <a class="archive-card" href="valeriy-guide.html">
-          <img src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" width="256" height="256" loading="lazy" />
-          <span class="archive-card-body">
-            <span class="archive-card-kicker">Guida estesa</span>
-            <strong>Valeriy</strong>
-            <span>Quills, Constellations C0&ndash;C6 e team.</span>
-          </span>
-        </a>
-        <a class="archive-card" href="valeriy-build.html">
-          <img src="assets/img/characters/UI_AvatarIcon_Valeriy.webp" alt="" width="256" height="256" loading="lazy" />
-          <span class="archive-card-body">
-            <span class="archive-card-kicker">Build in breve</span>
-            <strong>Valeriy</strong>
-            <span>Infografica di @Laimelea_V e tabella della build.</span>
-          </span>
-        </a>
-        </div>
-      </section>
-
-      <section class="archive-group" aria-labelledby="arch-71">
-        <h3 id="arch-71">Versione 7.1</h3>
-        <div class="archive-grid">
-        <a class="archive-card" href="vesna-preview.html">
-          <img src="assets/img/characters/UI_AvatarIcon_Vesna.webp" alt="" width="256" height="256" loading="lazy" />
-          <span class="archive-card-body">
-            <span class="archive-card-kicker">Analisi</span>
-            <strong>Vesna vs Mizuki</strong>
-            <span>Confronto di danni e investimento tra le due Main DPS Anemo.</span>
-          </span>
-        </a>
-        <a class="archive-card" href="assets/img/guides/vesna-7.1.jpg">
-          <img src="assets/img/characters/UI_AvatarIcon_Vesna.webp" alt="" width="256" height="256" loading="lazy" />
-          <span class="archive-card-body">
-            <span class="archive-card-kicker">Infografica</span>
-            <strong>Vesna</strong>
-            <span>Guida rapida 7.1 di @Laimelea_V.</span>
-          </span>
-        </a>
-        <a class="archive-card" href="assets/img/guides/vodyanitsa-7.1.jpg">
-          <img src="assets/img/characters/UI_AvatarIcon_Vodyanitsa.webp" alt="" width="256" height="256" loading="lazy" />
-          <span class="archive-card-body">
-            <span class="archive-card-kicker">Infografica</span>
-            <strong>Vodyanitsa</strong>
-            <span>Guida rapida 7.1 di @Laimelea_V.</span>
-          </span>
-        </a>
-        </div>
-      </section>
+      <p class="pg-archive-hint">Cerchi le guide dei personaggi gi&agrave; usciti? <a href="guide.html">Vai alle Guide &rarr;</a></p>
     </div>
   </main>
 
   <footer class="container">
-    <small>JuanLab &mdash; Guida PG attuale</small>
+    <small>JuanLab &mdash; Guide beta</small>
   </footer>
 
   <script src="assets/js/main.js?v=20260923-1"></script>
-  <script src="assets/js/current-pg-tabs.js?v=20261105-3"></script>
 </body>
 </html>
