@@ -3,7 +3,7 @@
   const fmt = (n, d = 1) => n.toLocaleString('it-IT', { minimumFractionDigits: d, maximumFractionDigits: d });
 
   // Righe singole: se il testo non ci sta, scorre invece di andare a capo (cosi le colonne restano allineate).
-  const FIT_SEL = '.bg-page .section-head h2, .bg-page .section-head > span, .bg-pair figcaption, .bg-compare figcaption, .bg-relic-name, .bg-relic-txt small, .bg-relic li span';
+  const FIT_SEL = '.bg-page .section-head h2, .bg-page .section-head > span, .bg-pair figcaption, .bg-compare figcaption';
   function fit(root = document) {
     root.querySelectorAll(FIT_SEL).forEach((el) => {
       if (!el.classList.contains('bg-fit')) {

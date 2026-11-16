@@ -68,6 +68,7 @@
     dmg: SVG('<path d="M12 2l2.2 6.3L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.8-.7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>'),
     res: SVG('<path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 12h8" stroke="currentColor" stroke-width="2"/>'),
     chevron: SVG('<path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>'),
+    edit: SVG('<path d="M4 20h4L19 9l-4-4L4 16z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/><path d="M13.5 6.5l4 4" stroke="currentColor" stroke-width="2"/>'),
     circlet: '<img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" class="bg-ico-img" />',
   };
   const elImg = (el) => (el ? `<img src="assets/img/elements/${el}.webp" alt="" width="64" height="64" class="bg-ico-img" />` : '');
@@ -261,6 +262,17 @@
             <button type="button" data-pn="1" aria-label="Pezzo successivo">&rsaquo;</button>
           </div>
           <div class="bg-build bg-pieces" id="q-piece-cards"></div>
+          <dialog class="bg-piece-dlg" id="q-piece-dlg" aria-labelledby="q-dlg-title">
+            <article>
+              <header><h3 id="q-dlg-title"></h3><p class="bg-dlg-sub"></p></header>
+              <div class="bg-dlg-fields"></div>
+              <p class="bg-dlg-note" aria-live="polite"></p>
+              <footer>
+                <button type="button" class="secondary" data-dlg="cancel">Annulla</button>
+                <button type="button" data-dlg="save">Salva</button>
+              </footer>
+            </article>
+          </dialog>
           <div class="bg-q-stats"><label class="bg-stat"><span>${ICON.er}Ricarica di energia % <small>totale, facoltativa</small></span><input type="text" name="er" inputmode="decimal" placeholder="0" /></label></div>
         </div>
         <details class="bg-q-more">
@@ -296,6 +308,16 @@
       FIGHT_PROP_WATER_ADD_HURT: 'Bonus DAN da Hydro', FIGHT_PROP_GRASS_ADD_HURT: 'Bonus DAN da Dendro', FIGHT_PROP_ELEC_ADD_HURT: 'Bonus DAN da Electro',
       FIGHT_PROP_WIND_ADD_HURT: 'Bonus DAN da Anemo', FIGHT_PROP_ICE_ADD_HURT: 'Bonus DAN da Cryo', FIGHT_PROP_ROCK_ADD_HURT: 'Bonus DAN da Geo',
     };
+    // abbreviazioni nelle card (il nome completo resta nel tooltip)
+    const SHORT = {
+      FIGHT_PROP_HP: 'PS', FIGHT_PROP_HP_PERCENT: 'PS', FIGHT_PROP_ATTACK: 'ATK', FIGHT_PROP_ATTACK_PERCENT: 'ATK',
+      FIGHT_PROP_DEFENSE: 'DEF', FIGHT_PROP_DEFENSE_PERCENT: 'DEF', FIGHT_PROP_ELEMENT_MASTERY: 'EM',
+      FIGHT_PROP_CHARGE_EFFICIENCY: 'ER', FIGHT_PROP_CRITICAL: 'cRate', FIGHT_PROP_CRITICAL_HURT: 'cDMG',
+      FIGHT_PROP_HEAL_ADD: 'Cure', FIGHT_PROP_PHYSICAL_ADD_HURT: 'Phys DMG', FIGHT_PROP_FIRE_ADD_HURT: 'Pyro DMG', FIGHT_PROP_WATER_ADD_HURT: 'Hydro DMG',
+      FIGHT_PROP_GRASS_ADD_HURT: 'Dendro DMG', FIGHT_PROP_ELEC_ADD_HURT: 'Electro DMG', FIGHT_PROP_WIND_ADD_HURT: 'Anemo DMG',
+      FIGHT_PROP_ICE_ADD_HURT: 'Cryo DMG', FIGHT_PROP_ROCK_ADD_HURT: 'Geo DMG',
+    };
+    const fullName = (k, v) => `${PROP[k] || k}${FLAT.has(k) ? '' : (/_PERCENT$/.test(k) ? ' %' : '')}`;
     const FLAT = new Set(['FIGHT_PROP_HP', 'FIGHT_PROP_ATTACK', 'FIGHT_PROP_DEFENSE', 'FIGHT_PROP_ELEMENT_MASTERY']);
     // valore massimo di un roll delle secondarie, 5 e 4 stelle
     const MAXROLL = {
@@ -332,42 +354,65 @@
           if (!key) return;
           p2[key] = FLAT.has(k) ? String(v) : String(v).replace('.', ',');
           // roll esatti solo da una vetrina aggiornata e per pezzi a 5 stelle (il Roll Value usa i roll massimi a 5 stelle)
-          if (r.exact && r.rarity === 5) p2.n[key] = n;
+          if (r.exact && r.rarity === 5 && !r.subs.find((x) => x[0] === k)[3]) p2.n[key] = n;
         });
       });
+    }
+    const EL_PROP = { Pyro: 'FIRE', Hydro: 'WATER', Dendro: 'GRASS', Electro: 'ELEC', Anemo: 'WIND', Cryo: 'ICE', Geo: 'ROCK' };
+    const KEY_PROP = (k) => {
+      const sc = scale();
+      const pct = { atk: 'FIGHT_PROP_ATTACK_PERCENT', hp: 'FIGHT_PROP_HP_PERCENT', def: 'FIGHT_PROP_DEFENSE_PERCENT', em: 'FIGHT_PROP_ELEMENT_MASTERY' }[sc];
+      return { cr: 'FIGHT_PROP_CRITICAL', cd: 'FIGHT_PROP_CRITICAL_HURT', sc: pct, em: 'FIGHT_PROP_ELEMENT_MASTERY' }[k];
+    };
+    // principale (statistica, valore al +20) scelta al passo 2
+    function mainOf(i) {
+      if (i === 0) return ['FIGHT_PROP_HP', 4780];
+      if (i === 1) return ['FIGHT_PROP_ATTACK', 311];
+      const k = [null, null, state.sands, state.goblet, state.corona][i];
+      const pct = KEY_PROP('sc');
+      const pctVal = { FIGHT_PROP_ATTACK_PERCENT: 46.6, FIGHT_PROP_HP_PERCENT: 46.6, FIGHT_PROP_DEFENSE_PERCENT: 58.3, FIGHT_PROP_ELEMENT_MASTERY: 186.5 }[pct];
+      if (k === 'scale') return [pct, pctVal];
+      if (k === 'em') return ['FIGHT_PROP_ELEMENT_MASTERY', 186.5];
+      if (k === 'er') return ['FIGHT_PROP_CHARGE_EFFICIENCY', 51.8];
+      if (k === 'cr') return ['FIGHT_PROP_CRITICAL', 31.1];
+      if (k === 'cd') return ['FIGHT_PROP_CRITICAL_HURT', 62.2];
+      if (k === 'heal') return ['FIGHT_PROP_HEAL_ADD', 35.9];
+      if (k === 'dmg') return [EL_PROP[state.char.el] ? `FIGHT_PROP_${EL_PROP[state.char.el]}_ADD_HURT` : 'FIGHT_PROP_PHYSICAL_ADD_HURT', EL_PROP[state.char.el] ? 46.6 : 58.3];
+      return [null, null];
+    }
+    function manualCard(i) {
+      const sets = [state.set1, state.pcs === 2 ? state.set2 : null].filter((x) => x && x !== NONE_SET);
+      const subs = ['cr', 'cd', 'sc', 'em'].map((k) => [KEY_PROP(k), num(pieces[i][k])])
+        .filter(([k, v], j, all) => v > 0 && all.findIndex((x) => x[0] === k) === j)
+        .map(([k, v]) => [k, v, estRolls(v, MAXROLL[5][k]), true]);
+      return { icon: null, rarity: 5, level: 20, exact: false, set: sets.length ? sets.map((x) => x.n).join(' / ') : 'Set non indicato', main: mainOf(i), subs };
     }
     function relicCard(r, i) {
       const useful = rvProps();
       const slot = SLOT_INFO[i];
-      const subs = r.subs.map(([k, v, n]) => {
+      const subs = r.subs.length ? r.subs.map(([k, v, n, est]) => {
         const on = useful.has(k);
-        return `<li class="${on ? 'is-rv' : ''}"><span>${PROP[k] || k}</span><b>+${propText(k, v)}</b>${n ? `<em title="${n} roll${r.exact ? '' : ' (stima dal valore)'}" aria-label="${n} roll">${'&#9679;'.repeat(n)}</em>` : ''}</li>`;
-      }).join('');
+        const guess = est !== undefined ? est : !r.exact;
+        // come nel gioco: roll, nome della statistica, valore
+        return `<li class="${on ? 'is-rv' : ''}" title="${fullName(k)} +${propText(k, v)} · ${n} roll${guess ? ' (stima dal valore)' : ''}${on ? ' · conta nel Roll Value' : ''}"><em aria-label="${n} roll">${n || ''}</em><span aria-label="${fullName(k)}">${SHORT[k] || PROP[k] || k}</span><b>+${propText(k, v)}</b></li>`;
+      }).join('') : '<li class="is-empty">Nessuna secondaria: premi Modifica</li>';
       return `
         <article class="bg-relic r${r.rarity}" aria-label="${esc(r.set)}, ${slot[0]}">
           <div class="bg-relic-name">${esc(r.set)}</div>
           <div class="bg-relic-top">
             <div class="bg-relic-txt">
               <span class="bg-relic-type">${slot[0]}</span>
-              <small>${PROP[r.main[0]] || r.main[0]}</small>
-              <b>${propText(r.main[0], r.main[1])}</b>
+              <small${r.main[0] ? ` title="${fullName(r.main[0])}"` : ''}>${r.main[0] ? SHORT[r.main[0]] || PROP[r.main[0]] || r.main[0] : 'Altra statistica'}</small>
+              <b>${r.main[0] ? propText(r.main[0], r.main[1]) : '&ndash;'}</b>
               <span class="bg-relic-stars" aria-label="${r.rarity} stelle">${'&#9733;'.repeat(r.rarity)}</span>
             </div>
-            <img src="https://enka.network/ui/${esc(r.icon)}.png" alt="" width="256" height="256" loading="lazy" onerror="this.onerror=null;this.src='assets/img/guides/build/slot-${slot[1]}.webp'" />
+            ${r.icon ? `<img src="https://enka.network/ui/${esc(r.icon)}.png" alt="" width="256" height="256" loading="lazy" onerror="this.onerror=null;this.src='assets/img/guides/build/slot-${slot[1]}.webp'" />` : `<img src="assets/img/guides/build/slot-${slot[1]}.webp" alt="" width="96" height="96" />`}
           </div>
           <div class="bg-relic-body">
             <span class="bg-relic-lv">+${r.level}</span>
             <ul>${subs}</ul>
           </div>
         </article>`;
-    }
-    function mainText(i) {
-      const sc = scale();
-      const pctName = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria' }[sc];
-      if (i === 0) return 'PS 4.780';
-      if (i === 1) return 'ATT 311';
-      const k = [null, null, state.sands, state.goblet, state.corona][i];
-      return { scale: pctName, em: 'Maestria', er: 'Ricarica', dmg: 'Bonus DAN', cr: 'Tasso di CRIT', cd: 'DAN da CRIT', altro: 'altra statistica' }[k] || '&ndash;';
     }
     // Pezzi della modalita avanzata: stessi campi in ogni casella, cosi le righe restano allineate
     function drawPieces() {
@@ -383,23 +428,19 @@
       if (imported.length) {
         const names = ['Tasso di CRIT', 'DAN da CRIT', scName].concat(showEm ? ['Maestria'] : []);
         const exact = imported.every((r) => r.exact);
-        legend.innerHTML = `<b>Pezzi della vetrina.</b> <mark>In evidenza</mark> le secondarie che contano nel Roll Value con questo stile: ${names.join(', ')}. I pallini sono i roll di ogni secondaria (${exact ? 'esatti, da Enka' : 'stimati dal valore: la vetrina salvata non li indica'}). Sotto puoi correggere i valori.`;
+        legend.innerHTML = `<b>Pezzi della vetrina.</b> <mark>In evidenza</mark> le secondarie che contano nel Roll Value con questo stile: ${names.join(', ')}. Il numero a sinistra sono i roll di ogni secondaria (${exact ? 'esatti, da Enka' : 'stimati dal valore: la vetrina salvata non li indica'}). Con &ldquo;Modifica&rdquo; correggi i valori.`;
+      } else {
+        legend.hidden = false;
+        legend.innerHTML = `Premi <b>Modifica</b> su ogni pezzo e inserisci le secondarie che contano: ${['Tasso di CRIT', 'DAN da CRIT', scName].concat(showEm ? ['Maestria'] : []).join(', ')}. Oppure importa la vetrina con l&rsquo;UID (in alto). <mark>In evidenza</mark> le secondarie che contano nel Roll Value; il numero a sinistra sono i roll stimati dal valore.`;
       }
-      box.innerHTML = SLOT_INFO.map(([name, icon], i) => {
-        const field = (k, label, ic, off) => `<label class="${off ? 'is-off' : ''}"><span>${ICON[ic]}${label}</span><input type="text" inputmode="decimal" placeholder="0" data-p="${i}" data-k="${k}" value="${off ? '' : esc(pieces[i][k] || '')}" ${off ? 'disabled' : ''} /></label>`;
-        return `
+      box.innerHTML = SLOT_INFO.map(([name, icon], i) => `
           <fieldset class="bg-slot" data-i="${i}">
             <legend><img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" />${name}</legend>
-            ${relics[i] ? relicCard(relics[i], i) : `<div class="bg-slot-main"><small>${mainText(i)}</small></div>`}
-            ${field('cr', 'Tasso di CRIT', 'cr', i === 4 && state.corona === 'cr')}
-            ${field('cd', 'DAN da CRIT', 'cd', i === 4 && state.corona === 'cd')}
-            ${field('sc', scName, scIcon, false)}
-            ${showEm ? field('em', 'Maestria', 'em', false) : ''}
+            ${relicCard(relics[i] || manualCard(i), i)}
             <div class="bg-slot-cv"><b>0,0</b><small>CV</small><i class="bg-meter" aria-hidden="true"><i></i></i></div>
             <div class="bg-slot-tags"><p class="bg-verdict-chip"></p><span class="bg-weak-tag" hidden>pi&ugrave; debole</span></div>
-          </fieldset>`;
-      }).join('');
-      if (window.bgFit && relics.some(Boolean)) window.bgFit(box);
+            <button type="button" class="bg-slot-edit" data-edit="${i}">${ICON.edit}Modifica</button>
+          </fieldset>`).join('');
       box.scrollLeft = 0;
       requestAnimationFrame(piecesNav);
     }
@@ -913,7 +954,6 @@
     // ---- Eventi ----
     form.addEventListener('input', (e) => {
       const t = e.target;
-      if (t.dataset.p !== undefined) { const pc = pieces[+t.dataset.p]; pc[t.dataset.k] = t.value; if (pc.n) delete pc.n[t.dataset.k]; update(); return; }
       if (t.name && t.name in values) {
         values[t.name] = t.value;
         form.querySelectorAll(`input[name="${t.name}"]`).forEach((x) => { if (x !== t) x.value = t.value; });
@@ -1011,7 +1051,7 @@
           icon: f.icon, rarity, exact, level: Math.max(0, ((e.reliquary && e.reliquary.level) || 1) - 1),
           set: setOf(f.icon.split('_')[2]).n === NONE_SET.n ? 'Set sconosciuto' : setOf(f.icon.split('_')[2]).n,
           main: [f.reliquaryMainstat.mainPropId, f.reliquaryMainstat.statValue],
-          subs: (f.reliquarySubstats || []).map(({ appendPropId: k, statValue: v }) => [k, v, rollsOf(k, v)]),
+          subs: (f.reliquarySubstats || []).map(({ appendPropId: k, statValue: v }) => [k, v, rollsOf(k, v), !exact]),
         };
 
         const m = f.reliquaryMainstat.mainPropId;
@@ -1064,6 +1104,77 @@
     let pnTick = false;
     piecesBox.addEventListener('scroll', () => { if (pnTick) return; pnTick = true; requestAnimationFrame(() => { pnTick = false; piecesNav(); }); }, { passive: true });
     window.addEventListener('resize', () => requestAnimationFrame(piecesNav));
+    // ---- Modifica di un pezzo: finestra con le secondarie che contano nel calcolo ----
+    const dlg = form.querySelector('#q-piece-dlg');
+    let dlgPiece = -1;
+    function openPiece(i) {
+      dlgPiece = i;
+      const sc = scale();
+      const showEm = STYLES.find((x) => x.k === state.style).em && sc !== 'em';
+      const scIcon = { atk: 'atkp', hp: 'hpp', def: 'defp', em: 'em' }[sc];
+      const scName = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria elementale' }[sc];
+      const [name, icon] = SLOT_INFO[i];
+      dlg.querySelector('#q-dlg-title').innerHTML = `<img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" />${name}: secondarie`;
+      const main = (relics[i] || manualCard(i)).main;
+      dlg.querySelector('.bg-dlg-sub').innerHTML = `Principale: <b>${main[0] ? `${PROP[main[0]] || main[0]} ${propText(main[0], main[1])}` : 'altra statistica'}</b> (si cambia al passo 2).`;
+      const field = (k, label, ic, off) => `<label class="bg-stat${off ? ' is-off' : ''}"><span>${ICON[ic]}<b>${SHORT[KEY_PROP(k)]}</b>&nbsp;${label}${off ? ' <small>&egrave; la principale</small>' : ''}</span><input type="text" inputmode="decimal" placeholder="0" data-d="${k}" value="${off ? '' : esc(pieces[i][k] || '')}" ${off ? 'disabled' : ''} /></label>`;
+      dlg.querySelector('.bg-dlg-fields').innerHTML = [
+        field('cr', '<small>Tasso di CRIT %</small>', 'cr', i === 4 && state.corona === 'cr'),
+        field('cd', '<small>DAN da CRIT %</small>', 'cd', i === 4 && state.corona === 'cd'),
+        field('sc', `<small>${scName}</small>`, scIcon, false),
+        showEm ? field('em', '<small>Maestria elementale</small>', 'em', false) : '',
+      ].join('');
+      const note = dlg.querySelector('.bg-dlg-note');
+      note.classList.remove('is-err');
+      note.textContent = 'Le altre secondarie (PS, DEF, ER, valori fissi) non cambiano il calcolo: puoi lasciarle fuori.';
+      dlg.showModal();
+      const first = dlg.querySelector('input:not([disabled])');
+      if (first) { first.focus(); first.select(); }
+    }
+    function savePiece() {
+      const i = dlgPiece;
+      if (i < 0) return;
+      const pc = pieces[i];
+      const r = relics[i];
+      const note = dlg.querySelector('.bg-dlg-note');
+      if (r) {
+        const props = new Set(r.subs.map((x) => x[0]));
+        dlg.querySelectorAll('input[data-d]').forEach((inp) => { const pr = KEY_PROP(inp.dataset.d); if (num(inp.value) > 0) props.add(pr); else props.delete(pr); });
+        if (props.size > 4) {
+          note.innerHTML = '<b>Un pezzo ha al massimo 4 secondarie</b> e questo ne ha gi&agrave; 4: controlla il valore che hai aggiunto.';
+          note.classList.add('is-err');
+          return;
+        }
+      }
+      dlg.querySelectorAll('input[data-d]').forEach((inp) => {
+        const k = inp.dataset.d;
+        const v = inp.value.trim();
+        if (num(v) === num(pc[k] || '')) return; // non cambiato: restano i roll esatti
+        pc[k] = v;
+        if (pc.n) delete pc.n[k];
+        if (!r) return;
+        // aggiorna la card della vetrina: la secondaria cambia valore, si aggiunge o si toglie
+        const prop = KEY_PROP(k);
+        const at = r.subs.findIndex((x) => x[0] === prop);
+        const val = num(v);
+        if (val > 0) {
+          const row = [prop, val, estRolls(val, MAXROLL[r.rarity][prop]), true];
+          if (at >= 0) r.subs[at] = row; else r.subs.push(row);
+        } else if (at >= 0) r.subs.splice(at, 1);
+      });
+      dlg.close();
+      drawPieces(); update();
+      const btn = form.querySelector(`[data-edit="${i}"]`);
+      if (btn) btn.focus();
+    }
+    form.querySelector('#q-piece-cards').addEventListener('click', (e) => { const b = e.target.closest('[data-edit]'); if (b) openPiece(+b.dataset.edit); });
+    dlg.addEventListener('click', (e) => {
+      if (e.target === dlg) { dlg.close(); return; } // clic fuori dalla finestra
+      const b = e.target.closest('[data-dlg]');
+      if (!b) return;
+      if (b.dataset.dlg === 'save') savePiece(); else dlg.close();
+    });
+    dlg.addEventListener('keydown', (e) => { if (e.key === 'Enter' && e.target.matches('input')) { e.preventDefault(); savePiece(); } });
     setMode = (m) => {
       state.mode = m;
       form.querySelector('#q-screen').hidden = m === 'avanzato';
