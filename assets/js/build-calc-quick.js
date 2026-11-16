@@ -210,7 +210,17 @@
     };
 
     const step = (n, title, body, extra = '') => `<section class="bg-qstep"><h4 class="bg-qstep-title"><span>${n}</span>${title}${extra}</h4>${body}</section>`;
-    form.innerHTML = [
+    const uidBox = `
+      <section class="bg-qstep bg-uid-box">
+        <h4 class="bg-qstep-title"><span>${ICON.screen}</span>Importa dalla vetrina <small class="bg-qstep-note">facoltativo: compila tutto da solo</small></h4>
+        <div class="bg-uid-row">
+          <label class="bg-stat bg-uid-field"><span>UID del giocatore</span><input type="text" id="q-uid" inputmode="numeric" autocomplete="off" placeholder="es. 713793020" maxlength="10" /></label>
+          <button type="button" id="q-uid-go" class="bg-uid-btn">Cerca</button>
+        </div>
+        <p class="bg-uid-status" id="q-uid-status" aria-live="polite"></p>
+        <div class="bg-uid-chars" id="q-uid-chars"></div>
+      </section>`;
+    form.innerHTML = uidBox + [
       step(1, 'Personaggio e arma', `
         <div class="bg-q-row bg-q-2">
           <div class="bg-field"><span class="bg-label">${ICON.char}Personaggio</span><div class="bg-pick" id="pick-char"></div></div>
@@ -772,6 +782,95 @@
       syncSets(); drawStats(); drawMains(); drawPieces(); update();
     }));
     form.querySelectorAll('[data-q-mode]').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.qMode)));
+
+    // ---- Importa dalla vetrina (Enka.network) ----
+    // Prima le vetrine salvate nel sito (assets/data/showcase/<uid>.json), poi il proxy se configurato
+    // (data-enka-proxy sul modulo, es. https://...workers.dev/{uid}): Enka non permette richieste dirette dal browser.
+    const ENKA_PROXY = (form.dataset.enkaProxy || '').trim();
+    let enkaMap = null;
+    const uidStatus = form.querySelector('#q-uid-status');
+    const uidChars = form.querySelector('#q-uid-chars');
+    let showcase = [];
+    const ENKA_ERR = { 400: 'UID non valido.', 404: 'Questo UID non esiste.', 424: 'Enka.network &egrave; in manutenzione dopo un aggiornamento del gioco: riprova pi&ugrave; tardi.', 429: 'Troppe richieste: aspetta un minuto e riprova.', 500: 'Errore di Enka.network: riprova pi&ugrave; tardi.', 503: 'Enka.network non risponde: riprova pi&ugrave; tardi.' };
+    function setUidStatus(html, kind) { uidStatus.innerHTML = html; uidStatus.className = `bg-uid-status${kind ? ` is-${kind}` : ''}`; }
+    async function lookupUid() {
+      const uid = form.querySelector('#q-uid').value.replace(/\D/g, '');
+      uidChars.innerHTML = '';
+      if (!/^\d{9,10}$/.test(uid)) { setUidStatus('Scrivi un UID di 9 o 10 cifre.', 'err'); return; }
+      setUidStatus('Cerco la vetrina&hellip;');
+      try {
+        if (!enkaMap) enkaMap = await fetch('assets/data/enka-map.json').then((r) => r.json());
+        let data = null; let from = '';
+        const cached = await fetch(`assets/data/showcase/${uid}.json`).catch(() => null);
+        if (cached && cached.ok) { data = await cached.json(); from = `salvata nel sito il ${data.aggiornato.split('-').reverse().join('/')}`; }
+        if (!data && ENKA_PROXY) {
+          const r = await fetch(ENKA_PROXY.replace('{uid}', uid));
+          if (!r.ok) { setUidStatus(ENKA_ERR[r.status] || `Errore ${r.status} da Enka.network.`, 'err'); return; }
+          data = await r.json(); from = 'da Enka.network, aggiornata ora';
+        }
+        if (!data) { setUidStatus('Questo UID non &egrave; tra quelli salvati nel sito e la ricerca in tempo reale non &egrave; ancora attiva.', 'err'); return; }
+        const list = data.avatarInfoList || [];
+        if (!list.length) { setUidStatus('La vetrina &egrave; vuota oppure i dettagli dei personaggi sono nascosti nelle impostazioni del gioco.', 'err'); return; }
+        showcase = list.map((a) => {
+          const key = a.skillDepotId && enkaMap[`${a.avatarId}-${a.skillDepotId}`] ? `${a.avatarId}-${a.skillDepotId}` : String(a.avatarId);
+          const ch = DATA.chars.find((c) => (c.id || c.i) === enkaMap[key]);
+          return ch ? { a, ch } : null;
+        }).filter(Boolean);
+        const name = data.player && data.player.nickname ? `<b>${esc(data.player.nickname)}</b> &middot; ` : '';
+        setUidStatus(`${name}${showcase.length} personaggi in vetrina (${from}). Scegline uno:`, 'ok');
+        uidChars.innerHTML = showcase.map(({ ch }, i) => `<button type="button" data-uid-i="${i}"><img src="assets/img/characters/${ch.i}.webp" alt="" width="256" height="256" />${esc(ch.n)}</button>`).join('');
+      } catch (e) {
+        setUidStatus('Non riesco a leggere la vetrina: controlla la connessione e riprova.', 'err');
+      }
+    }
+    const pctStr = (v) => (v * 100).toFixed(1).replace('.', ',');
+    function applyShowcase(i) {
+      const { a, ch } = showcase[i];
+      state.char = ch; state.scale = null; pChar.set(ch, true); syncWeapons();
+      const items = a.equipList.map((e) => e.flat);
+      const wf = items.find((f) => f.itemType === 'ITEM_WEAPON');
+      const wpn = wf && DATA.weapons.find((w) => w.i === wf.icon);
+      if (wpn) { state.weapon = wpn; pWeapon.set(wpn, true); }
+      const relics = items.filter((f) => f.itemType === 'ITEM_RELIQUARY');
+      // set: 4 pezzi dello stesso set, oppure 2 + 2
+      const count = {};
+      relics.forEach((f) => { const id = f.icon.split('_')[2]; count[id] = (count[id] || 0) + 1; });
+      const bySet = Object.entries(count).sort((x, y) => y[1] - x[1]);
+      const setOf = (id) => SETS.find((x) => x.i && x.i.split('_')[2] === id) || NONE_SET;
+      if (bySet[0] && bySet[0][1] >= 4) { state.set1 = setOf(bySet[0][0]); state.pcs = 4; state.set2 = NONE_SET; }
+      else { state.pcs = 2; state.set1 = bySet[0] && bySet[0][1] >= 2 ? setOf(bySet[0][0]) : NONE_SET; state.set2 = bySet[1] && bySet[1][1] >= 2 ? setOf(bySet[1][0]) : NONE_SET; }
+      // principali e secondarie
+      const sc = scale();
+      const PCT = { atk: 'FIGHT_PROP_ATTACK_PERCENT', hp: 'FIGHT_PROP_HP_PERCENT', def: 'FIGHT_PROP_DEFENSE_PERCENT' }[sc];
+      const EMK = 'FIGHT_PROP_ELEMENT_MASTERY';
+      const SLOT = { EQUIP_BRACER: 0, EQUIP_NECKLACE: 1, EQUIP_SHOES: 2, EQUIP_RING: 3, EQUIP_DRESS: 4 };
+      pieces = emptyPieces();
+      state.sands = 'altro'; state.goblet = 'altro'; state.corona = 'altro';
+      relics.forEach((f) => {
+        const i2 = SLOT[f.equipType];
+        const m = f.reliquaryMainstat.mainPropId;
+        if (i2 === 2) state.sands = m === PCT ? 'scale' : m === EMK ? 'em' : m === 'FIGHT_PROP_CHARGE_EFFICIENCY' ? 'er' : 'altro';
+        if (i2 === 3) state.goblet = /_ADD_HURT$/.test(m) ? 'dmg' : m === PCT ? 'scale' : m === EMK ? 'em' : 'altro';
+        if (i2 === 4) state.corona = m === 'FIGHT_PROP_CRITICAL' ? 'cr' : m === 'FIGHT_PROP_CRITICAL_HURT' ? 'cd' : m === EMK ? 'em' : 'altro';
+        (f.reliquarySubstats || []).forEach(({ appendPropId: k, statValue: v }) => {
+          const p2 = pieces[i2];
+          if (k === 'FIGHT_PROP_CRITICAL') p2.cr = String(v).replace('.', ',');
+          else if (k === 'FIGHT_PROP_CRITICAL_HURT') p2.cd = String(v).replace('.', ',');
+          else if (sc === 'em' ? k === EMK : k === PCT) p2.sc = String(v).replace('.', ',');
+          else if (k === EMK) p2.em = String(v);
+        });
+      });
+      // statistiche della schermata
+      const fp = a.fightPropMap;
+      Object.assign(values, { cr: pctStr(fp['20']), cd: pctStr(fp['22']), hp: String(Math.round(fp['2000'])), atk: String(Math.round(fp['2001'])), def: String(Math.round(fp['2002'])), em: String(Math.round(fp['28'] || 0)), er: pctStr(fp['23']) });
+      form.querySelectorAll('input[name="er"]').forEach((x) => { x.value = values.er; });
+      uidChars.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.uidI === i)));
+      setUidStatus(`Importato <b>${esc(ch.n)}</b>: controlla lo stile di gioco (passo 3), la vetrina non lo indica.`, 'ok');
+      syncSets(); drawStats(); drawMains(); drawPieces(); update();
+    }
+    form.querySelector('#q-uid-go').addEventListener('click', lookupUid);
+    form.querySelector('#q-uid').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); lookupUid(); } });
+    uidChars.addEventListener('click', (e) => { const b = e.target.closest('[data-uid-i]'); if (b) applyShowcase(+b.dataset.uidI); });
     setMode = (m) => {
       state.mode = m;
       form.querySelector('#q-screen').hidden = m === 'avanzato';
