@@ -9,7 +9,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
   <link rel="stylesheet" href="assets/css/guide-page.css?v=20261109-1" />
-  <link rel="stylesheet" href="assets/css/build-guide.css?v=20261117-4" />
+  <link rel="stylesheet" href="assets/css/build-guide.css?v=20261117-9" />
 </head>
 <body>
   <canvas id="stars"></canvas>
@@ -32,15 +32,10 @@
     <section class="section" aria-labelledby="calcolatore">
       <div class="section-head">
         <h2 id="calcolatore">Calcolatore della build</h2>
-        <span>Dalla schermata o pezzo per pezzo</span>
+        <span>Dalla schermata o dai 5 manufatti</span>
       </div>
 
-      <div class="bg-tabs" role="tablist" aria-label="Tipo di calcolatore">
-        <button type="button" role="tab" id="tab-semplice" aria-controls="calc-semplice" aria-selected="true"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" />Semplice<small>dalla schermata del personaggio</small></button>
-        <button type="button" role="tab" id="tab-avanzato" aria-controls="calc-avanzato" aria-selected="false" tabindex="-1"><img src="assets/img/guides/build/slot-flower.webp" alt="" width="96" height="96" />Avanzato<small>i 5 manufatti uno per uno</small></button>
-      </div>
-
-      <div class="bg-tabpanel" role="tabpanel" id="calc-semplice" aria-labelledby="tab-semplice">
+      <div class="bg-tabpanel" id="calc-semplice">
         <form class="bg-quick" id="quick-calc" autocomplete="off" novalidate>
           <p class="bg-loading">Carico personaggi, armi e set&hellip;</p>
         </form>
@@ -48,34 +43,6 @@
         <p class="ref-note">Usa i valori della schermata del personaggio <strong>fuori dal combattimento</strong>. Personaggi, armi e set dai dati del gioco in italiano (genshin-db, fino alla 7.2); armi e personaggi al livello 90.</p>
       </div>
 
-      <div class="bg-tabpanel" role="tabpanel" id="calc-avanzato" aria-labelledby="tab-avanzato" hidden>
-        <div class="bg-quick">
-          <section class="bg-qstep">
-            <h4 class="bg-qstep-title"><span>1</span>Esempi e statistica per il Roll Value</h4>
-            <div class="bg-chips" aria-label="Carica un esempio">
-              <span>Esempi</span>
-              <button type="button" data-preset="mavuika"><img src="assets/img/characters/UI_AvatarIcon_Mavuika.webp" alt="" width="256" height="256" />Mavuika</button>
-              <button type="button" data-preset="nefer"><img src="assets/img/characters/UI_AvatarIcon_Nefer.webp" alt="" width="256" height="256" />Nefer</button>
-              <button type="button" data-preset="neuvillette"><img src="assets/img/characters/UI_AvatarIcon_Neuvillette.webp" alt="" width="256" height="256" />Neuvillette</button>
-              <button type="button" data-preset="vuoto" class="is-ghost">Svuota</button>
-            </div>
-            <div class="bg-chips" role="radiogroup" aria-label="Statistica del personaggio per il Roll Value">
-              <span>Roll Value con</span>
-              <button type="button" role="radio" data-profile="none" data-sicon="critrate" aria-checked="true">Solo CRIT</button>
-              <button type="button" role="radio" data-profile="atk" data-sicon="atk" aria-checked="false">ATT%</button>
-              <button type="button" role="radio" data-profile="hp" data-sicon="hp" aria-checked="false">PS%</button>
-              <button type="button" role="radio" data-profile="def" data-sicon="def" aria-checked="false">DIF%</button>
-              <button type="button" role="radio" data-profile="em" data-sicon="em" aria-checked="false">Maestria</button>
-            </div>
-          </section>
-          <section class="bg-qstep">
-            <h4 class="bg-qstep-title"><span>2</span>I 5 manufatti <small class="bg-qstep-note">secondarie CRIT di ogni pezzo</small></h4>
-            <form class="bg-build" id="build-calc" autocomplete="off" novalidate></form>
-          </section>
-        </div>
-        <output class="bg-quick-out" id="build-out" aria-live="polite"></output>
-        <p class="ref-note">Lascia vuoto quello che il pezzo non ha. Le secondarie si leggono nella schermata del manufatto; la principale della Corona si sceglie con i pulsanti.</p>
-      </div>
     </section>
   </main>
 
@@ -85,6 +52,6 @@
 
   <script src="assets/js/main.js?v=20260923-1"></script>
   <script src="assets/js/build-guide.js?v=20261117-2"></script>
-  <script src="assets/js/build-calc-quick.js?v=20261117-2"></script>
+  <script src="assets/js/build-calc-quick.js?v=20261117-4"></script>
 </body>
 </html>

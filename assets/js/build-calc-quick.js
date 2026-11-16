@@ -1,15 +1,19 @@
-// build-guide.html: schede del calcolatore e modalita "Semplice" (dalla schermata del personaggio).
+// tools.html: calcolatore della build. Modalita "Semplice" (statistiche dalla schermata) e "Avanzato" (i 5 manufatti).
 // Dati di personaggi, armi e set in assets/data/build-calc.json (genshin-db, testi italiani, livello 90).
 (function () {
   // ---- Schede Semplice / Avanzato ----
   const tabs = Array.from(document.querySelectorAll('.bg-tabs [role="tab"]'));
+  // Le due schede sono due modalita dello stesso calcolatore: cambia solo il passo 4.
+  let setMode = null;
+  let pendingMode = 'semplice';
   function selectTab(tab) {
     tabs.forEach((t) => {
       const on = t === tab;
       t.setAttribute('aria-selected', String(on));
       t.tabIndex = on ? 0 : -1;
-      document.getElementById(t.getAttribute('aria-controls')).hidden = !on;
     });
+    const m = tab.id === 'tab-avanzato' ? 'avanzato' : 'semplice';
+    if (setMode) setMode(m); else pendingMode = m;
   }
   tabs.forEach((t, i) => {
     t.addEventListener('click', () => selectTab(t));
@@ -217,8 +221,21 @@
           ${STYLES.map((x) => `<button type="button" role="radio" data-q-style="${x.k}"><span class="bg-style-ico">${x.icon}</span><span>${x.n}${x.sub ? `<small>${x.sub}</small>` : ''}</span></button>`).join('')}
         </div>
         <label class="bg-check" id="q-reso"><input type="checkbox" checked /> ${elImg('Cryo')} Risonanza Cryo in squadra (+15% Tasso di CRIT contro nemici congelati o con Cryo)</label>`),
-      step(4, 'Statistiche dalla schermata', `
-        <div class="bg-q-stats" id="q-stats"></div>
+      step(4, '<b id="q-step4-title" class="bg-qstep-name">Statistiche del personaggio</b>', `
+        <div class="bg-seg bg-seg-lg bg-mode" role="radiogroup" aria-label="Come inserire le statistiche">
+          <button type="button" role="radio" data-q-mode="semplice">${ICON.screen}<span>Dalla schermata<small>le statistiche finali del personaggio</small></span></button>
+          <button type="button" role="radio" data-q-mode="avanzato"><img src="assets/img/guides/build/slot-flower.webp" alt="" width="96" height="96" class="bg-ico-img" /><span>Dai 5 manufatti<small>le secondarie di ogni pezzo</small></span></button>
+        </div>
+        <div id="q-screen"><div class="bg-q-stats" id="q-stats"></div></div>
+        <div id="q-pieces" hidden>
+          <div class="bg-chips" aria-label="Carica un esempio">
+            <span>Esempi</span>
+            ${['Mavuika', 'Nefer', 'Neuvillette'].map((n) => `<button type="button" data-q-preset="${n}"><img src="assets/img/characters/UI_AvatarIcon_${n}.webp" alt="" width="256" height="256" />${n}</button>`).join('')}
+            <button type="button" data-q-preset="vuoto" class="is-ghost">Svuota i pezzi</button>
+          </div>
+          <div class="bg-build bg-pieces" id="q-piece-cards"></div>
+          <div class="bg-q-stats"><label class="bg-stat"><span>${ICON.er}Ricarica di energia % <small>totale, facoltativa</small></span><input type="text" name="er" inputmode="decimal" placeholder="0" /></label></div>
+        </div>
         <details class="bg-q-more">
           <summary>${ICON.plus}Altri bonus fissi <small>passive dell&rsquo;arma, costellazioni, talenti</small></summary>
           <div class="bg-q-stats">
@@ -230,11 +247,76 @@
     ].join('');
 
     const values = { cr: '56,1', cd: '253,9', atk: '1618', hp: '', def: '', em: '237', er: '100', xcr: '', xcd: '', xsc: '' };
+    let cur = values; // valori usati dal calcolo: la schermata (semplice) o ricostruiti dai pezzi (avanzato)
+    state.mode = pendingMode;
+    const emptyPieces = () => [0, 1, 2, 3, 4].map(() => ({ cr: '', cd: '', sc: '', em: '' }));
+    let pieces = emptyPieces();
+    // Build reali della vetrina (Enka.network, 16/11/2026): [Tasso, DAN, statistica di danno, Maestria] per pezzo
+    const PRESETS = {
+      Mavuika: { weapon: 'Mille soli ardenti', set: "Codice d'ossidiana", sands: 'em', goblet: 'dmg', corona: 'cd', style: 'amp', er: '100', p: [[13.6, 21.8, 4.7, 0], [3.9, 20.2, 8.7, 35], [2.7, 34.2, 0, 0], [6.2, 27.2, 0, 0], [13.6, 0, 4.1, 16]] },
+      Nefer: { weapon: 'Reliquiario della verità', set: 'Notte della rivelazione celeste', sands: 'em', goblet: 'em', corona: 'cd', style: 'lunar', er: '105,2', p: [[10.1, 28, 0, 0], [6.6, 0, 84, 0], [6.2, 26.4, 0, 0], [10.5, 21, 0, 0], [10.1, 0, 42, 0]] },
+      Neuvillette: { weapon: 'Giada sacrificale', set: 'Cacciatore della Maréchaussée', sands: 'scale', goblet: 'dmg', corona: 'cd', style: 'diretto', er: '116,8', p: [[3.9, 34.2, 0, 0], [0, 30.3, 4.1, 0], [3.5, 26.4, 0, 40], [10.1, 12.4, 9.9, 0], [3.9, 0, 20.4, 35]] },
+    };
+    const SLOT_INFO = [['Fiore', 'flower'], ['Piuma', 'plume'], ['Sabbie', 'sands'], ['Calice', 'goblet'], ['Corona', 'circlet']];
+    function mainText(i) {
+      const sc = scale();
+      const pctName = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria' }[sc];
+      if (i === 0) return 'PS 4.780';
+      if (i === 1) return 'ATT 311';
+      const k = [null, null, state.sands, state.goblet, state.corona][i];
+      return { scale: pctName, em: 'Maestria', er: 'Ricarica', dmg: 'Bonus DAN', cr: 'Tasso di CRIT', cd: 'DAN da CRIT', altro: 'altra statistica' }[k] || '&ndash;';
+    }
+    // Pezzi della modalita avanzata: stessi campi in ogni casella, cosi le righe restano allineate
+    function drawPieces() {
+      const box = form.querySelector('#q-piece-cards');
+      if (!box || state.mode !== 'avanzato') return;
+      const sc = scale();
+      const showEm = STYLES.find((x) => x.k === state.style).em && sc !== 'em';
+      const scIcon = { atk: 'atkp', hp: 'hpp', def: 'defp', em: 'em' }[sc];
+      const scName = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria' }[sc];
+      box.innerHTML = SLOT_INFO.map(([name, icon], i) => {
+        const field = (k, label, ic, off) => `<label class="${off ? 'is-off' : ''}"><span>${ICON[ic]}${label}</span><input type="text" inputmode="decimal" placeholder="0" data-p="${i}" data-k="${k}" value="${off ? '' : esc(pieces[i][k] || '')}" ${off ? 'disabled' : ''} /></label>`;
+        return `
+          <fieldset class="bg-slot" data-i="${i}">
+            <legend><img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" />${name}</legend>
+            <div class="bg-slot-main"><small>${mainText(i)}</small></div>
+            ${field('cr', 'Tasso di CRIT', 'cr', i === 4 && state.corona === 'cr')}
+            ${field('cd', 'DAN da CRIT', 'cd', i === 4 && state.corona === 'cd')}
+            ${field('sc', scName, scIcon, false)}
+            ${showEm ? field('em', 'Maestria', 'em', false) : ''}
+            <div class="bg-slot-cv"><b>0,0</b><small>CV</small><i class="bg-meter" aria-hidden="true"><i></i></i></div>
+          </fieldset>`;
+      }).join('');
+    }
+    // Statistiche totali ricostruite da personaggio, arma, set, principali e pezzi
+    function synth() {
+      const c = state.char; const w = state.weapon; const sc = scale();
+      const asc = (k) => (c.asc[0] === k ? c.asc[1] : 0);
+      const ws = (k) => (w && w.sub && w.sub[0] === k ? w.sub[1] : 0);
+      const two = [state.set1, state.pcs === 2 ? state.set2 : null].filter((x) => x && x !== NONE_SET);
+      const setSum = (k) => two.reduce((t, x) => t + (x[k] || 0), 0);
+      // la secondaria della Corona uguale alla sua principale non esiste: non si conta
+      const pv = (x, i, k) => (i === 4 && state.corona === k ? 0 : num(x[k]));
+      const sum = (k) => pieces.reduce((t, x, i) => t + pv(x, i, k), 0);
+      const o = Object.assign({}, values);
+      o.cr = (5 + asc('cr') + ws('cr') + setSum('s2') + (state.corona === 'cr' ? 31.1 : 0) + num(values.xcr) + sum('cr')).toFixed(1);
+      o.cd = (50 + asc('cd') + ws('cd') + (state.corona === 'cd' ? 62.2 : 0) + num(values.xcd) + sum('cd')).toFixed(1);
+      const MAINP = { atk: 46.6, hp: 46.6, def: 58.3 };
+      ['atk', 'hp', 'def'].forEach((k) => {
+        const base = { atk: c.atk + (w ? w.atk : 0), hp: c.hp, def: c.def }[k];
+        const pk = { atk: 'atkp', hp: 'hpp', def: 'defp' }[k];
+        const own = sc === k ? (state.sands === 'scale' ? MAINP[k] : 0) + (state.goblet === 'scale' ? MAINP[k] : 0) + num(values.xsc) + sum('sc') : 0;
+        o[k] = (base * (1 + (asc(pk) + ws(pk) + setSum(`${k}2`) + own) / 100) + { atk: 311, hp: 4780, def: 0 }[k]).toFixed(1);
+      });
+      const emMains = ['sands', 'goblet', 'corona'].filter((g) => state[g] === 'em').length * 186.5;
+      o.em = (asc('em') + ws('em') + setSum('em2') + emMains + (sc === 'em' ? num(values.xsc) + sum('sc') : sum('em'))).toFixed(1);
+      return o;
+    }
 
     const pChar = Picker(form.querySelector('#pick-char'), {
       placeholder: 'Cerca un personaggio',
       render: (c) => ({ icon: `<img src="assets/img/characters/${c.i}.webp" alt="" width="256" height="256" class="bg-ava" />${elImg(c.el)}`, name: c.n, meta: `${STAT_ICON[c.asc[0]] ? ICON[STAT_ICON[c.asc[0]]] : ''}${statText(c.asc)}` }),
-      onPick: (c) => { state.char = c; state.scale = null; syncWeapons(); drawStats(); drawMains(); update(); },
+      onPick: (c) => { state.char = c; state.scale = null; syncWeapons(); drawStats(); drawMains(); drawPieces(); update(); },
     });
     const pWeapon = Picker(form.querySelector('#pick-weapon'), {
       placeholder: 'Cerca un’arma', rarity: true,
@@ -314,7 +396,7 @@
             ${opts.filter(Boolean).map(([v, label]) => `<button type="button" role="radio" data-q-main="${key}" data-v="${v}" aria-checked="${state[key] === v}">${label}</button>`).join('')}
           </div>
         </div>`).join('');
-      form.querySelectorAll('[data-q-main]').forEach((b) => b.addEventListener('click', () => { state[b.dataset.qMain] = b.dataset.v; drawMains(); update(); }));
+      form.querySelectorAll('[data-q-main]').forEach((b) => b.addEventListener('click', () => { state[b.dataset.qMain] = b.dataset.v; drawMains(); drawPieces(); update(); }));
     }
     function drawStats() {
       const sc = scale();
@@ -327,7 +409,7 @@
         <label class="bg-stat"><span>${ICON[k]}${label}${unit ? ' %' : ''} <small>totale</small></span>
           <input type="text" name="${k}" inputmode="decimal" placeholder="0" value="${esc(values[k] || '')}" /></label>`).join('');
       form.querySelector('.bg-scale-pick').innerHTML = `scala su ${Object.entries(SCALES).map(([k, [n]]) => `<button type="button" data-q-scale="${k}" aria-pressed="${k === sc}">${ICON[SCALES[k][1]]}${n}</button>`).join('')}`;
-      form.querySelectorAll('[data-q-scale]').forEach((b) => b.addEventListener('click', () => { state.scale = b.dataset.qScale; drawStats(); drawMains(); update(); }));
+      form.querySelectorAll('[data-q-scale]').forEach((b) => b.addEventListener('click', () => { state.scale = b.dataset.qScale; drawStats(); drawMains(); drawPieces(); update(); }));
     }
 
     // ---- Calcolo ----
@@ -353,22 +435,25 @@
     function multiplier(cr, cd) { return 1 + Math.min(Math.max(cr, 0), 100) / 100 * cd / 100; }
 
     function update() {
+      cur = state.mode === 'avanzato' ? synth() : values;
       form.querySelectorAll('[data-q-style]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.qStyle === state.style)));
       form.querySelector('#q-reso').hidden = state.style !== 'freeze';
 
       const c = state.char; const w = state.weapon;
-      const CR = num(values.cr); const CD = num(values.cd);
+      const CR = num(cur.cr); const CD = num(cur.cd);
       const asc = (k) => (c.asc[0] === k ? c.asc[1] : 0);
       const wsub = (k) => (w && w.sub && w.sub[0] === k ? w.sub[1] : 0);
       const { fixed, combat, notes } = setBonuses();
       const fixedCr = fixed.reduce((t, f) => t + f[1], 0);
-      const xcr = num(values.xcr); const xcd = num(values.xcd);
+      const xcr = num(cur.xcr); const xcd = num(cur.xcd);
       const artCr = CR - 5 - asc('cr') - wsub('cr') - fixedCr - xcr - (state.corona === 'cr' ? 31.1 : 0);
       const artCd = CD - 50 - asc('cd') - wsub('cd') - xcd - (state.corona === 'cd' ? 62.2 : 0);
-      const cv = 2 * artCr + artCd;
+      const cvRaw = 2 * artCr + artCd;
+      const cv = Math.abs(cvRaw) < 0.05 ? 0 : cvRaw; // niente "-0,0" con i pezzi vuoti
       const combatCr = CR + combat.reduce((t, f) => t + f[1], 0);
       const ratio = CD / Math.max(Math.min(combatCr, 100), 1);
-      const [, tier, cls] = BUILD_TIERS.find(([min]) => cv >= min);
+      // con valori a zero un arrotondamento puo dare -0,000..1: si cade sull'ultima fascia
+      const [, tier, cls] = BUILD_TIERS.find(([min]) => cv >= min) || BUILD_TIERS[BUILD_TIERS.length - 1];
       const bad = !CR || !CD || artCr < -0.5 || artCd < -0.5;
 
       // Corona consigliata: Tasso o DAN da CRIT come principale, a parita di secondarie
@@ -402,9 +487,9 @@
       const MAIN_PCT = { atk: 46.6, hp: 46.6, def: 58.3 };
       const ROLL = { atk: 5.83, hp: 5.83, def: 7.29, em: 23.31 };
       const ASC = { atk: 'atkp', hp: 'hpp', def: 'defp', em: 'em' };
-      const xsc = num(values.xsc);
+      const xsc = num(cur.xsc);
       function subsRolls(key) {
-        const total = num(values[key]);
+        const total = num(cur[key]);
         if (!total) return null;
         if (key === 'em') {
           const fixedEm = asc('em') + wsub('em') + setSum('em2') + ['sands', 'goblet', 'corona'].filter((g) => state[g] === 'em').length * 186.5 + (sc === 'em' ? xsc : 0);
@@ -423,7 +508,7 @@
       const rvBad = rollParts.some(([, r]) => r < -0.6);
       const rolls = rollParts.reduce((t, [, r]) => t + Math.max(r, 0), 0);
       const RV_TIERS = [[30, 'top', 't5'], [25, 'ottimo', 't4'], [20, 'buono', 't3'], [15, 'discreto', 't2'], [0, 'basso', 't1']];
-      const [, rvTier, rvCls] = RV_TIERS.find(([min]) => rolls >= min);
+      const [, rvTier, rvCls] = RV_TIERS.find(([min]) => rolls >= min) || RV_TIERS[RV_TIERS.length - 1];
 
       out.className = `bg-quick-out ${bad ? 't1' : cls}`;
       out.innerHTML = `
@@ -458,9 +543,40 @@
           </div>
         </div>
         ${bad ? '' : `<div class="bg-corona-rec${coronaRec.change ? ' is-change' : ''}"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" /><span><small>Corona consigliata</small><strong>${coronaRec.k === 'pari' ? '' : ICON[coronaRec.k]}${coronaRec.title}</strong><em>${coronaRec.text}</em></span></div>`}
+        ${pieceBanner()}
         ${guideHtml({ sc, combatCr, bad })}
         <ul class="bg-tips">${tips.map((t) => `<li>${t}</li>`).join('')}</ul>
         ${combat.length ? `<p class="bg-out-foot">Bonus in combattimento contati: ${combat.map((f) => `${esc(f[0])} +${f[1]}%${f[2] ? ` (${f[2]})` : ''}`).join('; ')}.</p>` : ''}`;
+    }
+
+    // CV e Roll Value di ogni pezzo (solo modalita avanzata) e pezzo da cambiare per primo
+    function pieceBanner() {
+      if (state.mode !== 'avanzato') return '';
+      const sc = scale();
+      const showEm = STYLES.find((x) => x.k === state.style).em && sc !== 'em';
+      const ROLL = { atk: 5.83, hp: 5.83, def: 7.29, em: 23.31 };
+      const rows = pieces.map((x, i) => {
+        const cr = i === 4 && state.corona === 'cr' ? 0 : num(x.cr);
+        const cd = i === 4 && state.corona === 'cd' ? 0 : num(x.cd);
+        const cv = 2 * cr + cd;
+        const rv = (cr / 3.89 + cd / 7.77 + num(x.sc) / ROLL[sc] + (showEm ? num(x.em) / 23.31 : 0)) * 100;
+        return { i, cv, rv };
+      });
+      const cards = Array.from(form.querySelectorAll('#q-piece-cards .bg-slot'));
+      const filled = rows.filter((r) => r.rv > 0).length;
+      const weakest = filled === 5 ? rows.reduce((m, r) => (r.rv < m.rv ? r : m)) : null;
+      rows.forEach((r) => {
+        const el = cards[r.i];
+        if (!el) return;
+        const cls = ([[40, 't5'], [35, 't4'], [25, 't3'], [15, 't2']].find(([min]) => r.cv >= min) || [0, 't1'])[1];
+        el.className = `bg-slot ${cls}${weakest && r.i === weakest.i ? ' is-weakest' : ''}`;
+        el.querySelector('.bg-slot-cv b').textContent = fmt(r.cv);
+        el.querySelector('.bg-slot-cv small').textContent = `CV · ${fmt(r.rv, 0)}% RV`;
+        el.querySelector('.bg-slot-cv .bg-meter > i').style.width = `${Math.min(r.cv / 54.4, 1) * 100}%`;
+      });
+      if (!weakest) return '<p class="bg-out-foot">Compila tutti e 5 i pezzi per sapere quale cambiare per primo.</p>';
+      const [name, icon] = SLOT_INFO[weakest.i];
+      return `<div class="bg-corona-rec is-change"><img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" /><span><small>Pezzo da cambiare per primo</small><strong>${name}</strong><em>&Egrave; il pi&ugrave; debole: ${fmt(weakest.cv)} CV &middot; ${fmt(weakest.rv, 0)}% di Roll Value.</em></span></div>`;
     }
 
     // ---- Scheda del personaggio: cosa vuole e cosa manca ----
@@ -486,14 +602,14 @@
         else if (rec.includes(mine[k])) checks.push(['ok', `${img}${name} ${CODE[mine[k]][0]}: giusta.`]);
         else checks.push(['miss', `${img}${name}: meglio ${rec.slice(0, 2).map((c) => `<b>${CODE[c] ? CODE[c][0] : c}</b>`).join(' o ')} invece di ${CODE[mine[k]][0]}.`]);
       });
-      const er = num(values.er);
+      const er = num(cur.er);
       if (g.ricarica && er) {
         const [min, max] = g.ricarica;
         if (er < min - 0.5) checks.push(['miss', `${ICON.er}Ricarica ${fmt(er)}%: te ne manca circa il <b>${fmt(min - er)}%</b> (consigliata ${min}&ndash;${max}%).`]);
         else if (er > max + 15) checks.push(['info', `${ICON.er}Ricarica ${fmt(er)}%: oltre il necessario (${min}&ndash;${max}%), puoi spostare roll nel danno.`]);
         else checks.push(['ok', `${ICON.er}Ricarica ${fmt(er)}%: nell&rsquo;intervallo consigliato (${min}&ndash;${max}%).`]);
       }
-      const em = num(values.em);
+      const em = num(cur.em);
       if (g.maestria && em) {
         if (em < g.maestria - 10) checks.push(['miss', `${ICON.em}Maestria ${fmt(em, 0)}: te ne mancano circa <b>${fmt(g.maestria - em, 0)}</b> (obiettivo in schermata ${g.maestria}).`]);
         else checks.push(['ok', `${ICON.em}Maestria ${fmt(em, 0)}: obiettivo in schermata ${g.maestria} raggiunto.`]);
@@ -532,12 +648,40 @@
 
     // ---- Eventi ----
     form.addEventListener('input', (e) => {
-      if (e.target.name && e.target.name in values) { values[e.target.name] = e.target.value; update(); }
+      const t = e.target;
+      if (t.dataset.p !== undefined) { pieces[+t.dataset.p][t.dataset.k] = t.value; update(); return; }
+      if (t.name && t.name in values) {
+        values[t.name] = t.value;
+        form.querySelectorAll(`input[name="${t.name}"]`).forEach((x) => { if (x !== t) x.value = t.value; });
+        update();
+      }
     });
+    form.querySelectorAll('[data-q-preset]').forEach((b) => b.addEventListener('click', () => {
+      const name = b.dataset.qPreset;
+      if (name === 'vuoto') { pieces = emptyPieces(); drawPieces(); update(); return; }
+      const pr = PRESETS[name];
+      state.char = byName(DATA.chars, name) || state.char; state.scale = null;
+      pChar.set(state.char, true); syncWeapons();
+      state.weapon = byName(DATA.weapons, pr.weapon) || state.weapon; pWeapon.set(state.weapon, true);
+      state.set1 = byName(SETS, pr.set) || state.set1; state.pcs = 4; state.set2 = NONE_SET;
+      Object.assign(state, { sands: pr.sands, goblet: pr.goblet, corona: pr.corona, style: pr.style });
+      values.er = pr.er;
+      form.querySelectorAll('input[name="er"]').forEach((x) => { x.value = pr.er; });
+      pieces = pr.p.map(([cr, cd, sc, em]) => ({ cr: cr ? String(cr) : '', cd: cd ? String(cd) : '', sc: sc ? String(sc) : '', em: em ? String(em) : '' }));
+      syncSets(); drawStats(); drawMains(); drawPieces(); update();
+    }));
+    form.querySelectorAll('[data-q-mode]').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.qMode)));
+    setMode = (m) => {
+      state.mode = m;
+      form.querySelector('#q-screen').hidden = m === 'avanzato';
+      form.querySelector('#q-pieces').hidden = m !== 'avanzato';
+      form.querySelectorAll('[data-q-mode]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.qMode === m)));
+      drawPieces(); update();
+    };
     form.addEventListener('change', (e) => { if (e.target.closest('#q-reso')) { state.reso = e.target.checked; update(); } });
     form.addEventListener('submit', (e) => e.preventDefault());
     form.querySelectorAll('[data-q-pcs]').forEach((b) => b.addEventListener('click', () => { state.pcs = +b.dataset.qPcs; syncSets(); update(); }));
-    form.querySelectorAll('[data-q-style]').forEach((b) => b.addEventListener('click', () => { state.style = b.dataset.qStyle; drawStats(); update(); }));
+    form.querySelectorAll('[data-q-style]').forEach((b) => b.addEventListener('click', () => { state.style = b.dataset.qStyle; drawStats(); drawPieces(); update(); }));
 
     pChar.setItems(DATA.chars); pChar.set(state.char, true);
     syncWeapons();
@@ -546,6 +690,6 @@
     syncSets();
     drawStats();
     drawMains();
-    update();
+    setMode(state.mode);
   }
 })();
