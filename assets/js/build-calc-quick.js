@@ -317,8 +317,6 @@
       const artCd = CD - 50 - asc('cd') - wsub('cd') - xcd - (state.corona === 'cd' ? 62.2 : 0);
       const cv = 2 * artCr + artCd;
       const combatCr = CR + combat.reduce((t, f) => t + f[1], 0);
-      const mult = multiplier(combatCr, CD);
-      const multScreen = multiplier(CR, CD);
       const ratio = CD / Math.max(Math.min(combatCr, 100), 1);
       const [, tier, cls] = BUILD_TIERS.find(([min]) => cv >= min);
       const bad = !CR || !CD || artCr < -0.5 || artCd < -0.5;
@@ -377,14 +375,6 @@
       const RV_TIERS = [[30, 'top', 't5'], [25, 'ottimo', 't4'], [20, 'buono', 't3'], [15, 'discreto', 't2'], [0, 'basso', 't1']];
       const [, rvTier, rvCls] = RV_TIERS.find(([min]) => rolls >= min);
 
-      const baseOf = { atk: c.atk + (w ? w.atk : 0), hp: c.hp, def: c.def };
-      const scaleRows = [];
-      const k = SCALES[sc][1];
-      const val = num(values[k]);
-      if (val && baseOf[k]) scaleRows.push(`${ICON[k]}${SCALES[sc][0]} <b>${fmt(val, 0)}</b> <small>base ${fmt(baseOf[k], 0)} &rarr; +${fmt((val / baseOf[k] - 1) * 100, 0)}%</small>`);
-      else if (val) scaleRows.push(`${ICON[k]}${SCALES[sc][0]} <b>${fmt(val, 0)}</b>`);
-      if (values.em && sc !== 'em' && STYLES.find((s) => s.k === state.style).em) scaleRows.push(`${ICON.em}Maestria <b>${fmt(num(values.em), 0)}</b>`);
-
       out.className = `bg-quick-out ${bad ? 't1' : cls}`;
       out.innerHTML = `
         <div class="bg-out-main">
@@ -398,11 +388,9 @@
             <small>${rollParts.map(([n, r]) => `${n} ${fmt(Math.max(r, 0))}`).join(' &middot; ')}</small>
           </div>
         </div>
-        <ul class="bg-out-list">
+        <ul class="bg-out-list bg-out-list-2">
           <li><span>${ICON.cr}Tasso in combattimento</span><strong>${fmt(combatCr)}%</strong><small>${combat.length ? combat.map((f) => `+${f[1]}% ${esc(f[0])}`).join(', ') : 'nessun bonus in combattimento'}</small></li>
           <li><span>${ICON.cd}DAN da CRIT</span><strong>${fmt(CD)}%</strong><small>rapporto 1 : ${fmt(ratio)}</small></li>
-          <li><span>${ICON.star}Moltiplicatore CRIT</span><strong>&times;${fmt(mult, 2)}</strong><small>danno medio; in schermata &times;${fmt(multScreen, 2)}</small></li>
-          <li><span>${ICON.style}Statistiche di danno</span><strong class="bg-out-scale">${scaleRows.join('<br>') || '&ndash;'}</strong></li>
         </ul>
         ${bad ? '' : `<div class="bg-corona-rec${coronaRec.change ? ' is-change' : ''}"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" /><span><small>Corona consigliata</small><strong>${coronaRec.k === 'pari' ? '' : ICON[coronaRec.k]}${coronaRec.title}</strong><em>${coronaRec.text}</em></span></div>`}
         ${guideHtml({ sc, combatCr, bad })}

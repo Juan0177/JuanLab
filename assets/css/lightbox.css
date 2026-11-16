@@ -178,3 +178,15 @@ html.lb-lock { overflow: hidden; }
   .lb .lb-nav { width: 2.2rem; height: 2.2rem; font-size: 1.6rem; }
   .lb .lb-thumb { width: 72px; }
 }
+
+/* lightbox.js mette role="button" sulle immagini: Pico le disegnerebbe come pulsanti blu con padding */
+img.lb-trigger[role="button"],
+img.lb-trigger[role="button"]:hover,
+img.lb-trigger[role="button"]:focus,
+img.lb-trigger[role="button"]:active {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  background-color: transparent;
+  box-shadow: none;
+}
