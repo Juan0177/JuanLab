@@ -944,3 +944,22 @@ i.bg-ava-none { display: inline-block; }
 .bg-roll-table td { font-variant-numeric: tabular-nums; }
 .bg-roll-table th[scope="row"] { display: table-cell; color: var(--guide-text); font-size: 0.85rem; letter-spacing: 0; text-transform: none; }
 .bg-roll-table th[scope="row"] .bg-ico { vertical-align: -0.2em; }
+
+/* Riquadri dei risultati: cosa conta e come migliorare */
+.bg-kpi .bg-kpi-how { align-self: end; margin: 0.45rem 0 0; padding-top: 0.45rem; border-top: 1px solid var(--guide-border); color: var(--guide-text); font-size: 0.75rem; line-height: 1.45; }
+.bg-kpi .bg-kpi-how b { color: var(--guide-gold); font-weight: 700; }
+.bg-kpi .bg-kpi-how a { color: var(--guide-sky); white-space: nowrap; }
+.bg-kpi { grid-template-rows: auto auto auto auto auto 1fr; }
+.bg-kpi > small { align-self: start; }
+/* Da dove arrivano Tasso e DAN */
+.bg-critsrc { grid-column: 1 / -1; margin: 0; padding: 0.7rem 0.9rem; border: 1px solid var(--guide-border); border-radius: 14px; background: rgba(255, 255, 255, 0.02); scroll-margin-top: 1rem; }
+.bg-critsrc summary { color: var(--guide-gold); font-size: 0.9rem; font-weight: 700; cursor: pointer; }
+.bg-critsrc[open] summary { margin-bottom: 0.6rem; }
+.bg-critsrc .guide-table th[scope="row"] { color: var(--guide-text); font-size: 0.82rem; letter-spacing: 0; text-transform: none; white-space: normal; }
+.bg-critsrc .guide-table td { font-variant-numeric: tabular-nums; }
+.bg-critsrc tr.is-total th, .bg-critsrc tr.is-total td { color: var(--guide-gold); font-weight: 700; }
+/* spiegazioni dei riquadri allineate: ogni parte sulla stessa riga in tutti e 4 */
+.bg-kpi { grid-template-rows: auto auto auto auto minmax(2.9em, auto) auto 1fr; }
+.bg-kpi > small { min-height: 2.9em; }
+.bg-kpi .bg-kpi-how { align-self: start; }
+@media (max-width: 480px) { .bg-kpis { grid-template-columns: minmax(0, 1fr); } .bg-kpi > small { min-height: 0; } }
