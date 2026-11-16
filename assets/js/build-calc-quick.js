@@ -825,8 +825,8 @@
     form.querySelectorAll('[data-q-mode]').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.qMode)));
 
     // ---- Importa dalla vetrina (Enka.network) ----
-    // Prima le vetrine salvate nel sito (assets/data/showcase/<uid>.json), poi il proxy se configurato
-    // (data-enka-proxy sul modulo, es. https://...workers.dev/{uid}): Enka non permette richieste dirette dal browser.
+    // Vetrina aggiornata tramite il proxy (data-enka-proxy sul modulo: Cloudflare Worker in tools/enka-proxy/,
+    // perche Enka non permette richieste dirette dal browser); se Enka non risponde, la vetrina salvata nel sito.
     const ENKA_PROXY = (form.dataset.enkaProxy || '').trim();
     let enkaMap = null;
     const uidStatus = form.querySelector('#q-uid-status');
@@ -841,15 +841,21 @@
       setUidStatus('Cerco la vetrina&hellip;');
       try {
         if (!enkaMap) enkaMap = await fetch('assets/data/enka-map.json').then((r) => r.json());
-        let data = null; let from = '';
-        const cached = await fetch(`assets/data/showcase/${uid}.json`).catch(() => null);
-        if (cached && cached.ok) { data = await cached.json(); from = `salvata nel sito il ${data.aggiornato.split('-').reverse().join('/')}`; }
-        if (!data && ENKA_PROXY) {
-          const r = await fetch(ENKA_PROXY.replace('{uid}', uid));
-          if (!r.ok) { setUidStatus(ENKA_ERR[r.status] || `Errore ${r.status} da Enka.network.`, 'err'); return; }
-          data = await r.json(); from = 'da Enka.network, aggiornata ora';
+        let data = null; let from = ''; let liveErr = '';
+        // 1) vetrina aggiornata tramite il proxy (Cloudflare Worker), 2) se Enka non risponde, quella salvata nel sito
+        if (ENKA_PROXY) {
+          try {
+            const r = await fetch(ENKA_PROXY.replace('{uid}', uid));
+            if (r.ok) { data = await r.json(); from = 'da Enka.network, aggiornata ora'; }
+            else liveErr = ENKA_ERR[r.status] || `Errore ${r.status} da Enka.network.`;
+            if (r.status === 400 || r.status === 404) { setUidStatus(liveErr, 'err'); return; }
+          } catch (e) { liveErr = 'Enka.network non risponde.'; }
         }
-        if (!data) { setUidStatus('Per ora si possono cercare solo le vetrine salvate nel sito (per esempio <b>713793020</b>): Enka.network non permette ai siti di leggere le vetrine direttamente dal browser. La ricerca di qualsiasi UID arriva appena &egrave; attivo il collegamento a Enka.', 'err'); return; }
+        if (!data) {
+          const cached = await fetch(`assets/data/showcase/${uid}.json`).catch(() => null);
+          if (cached && cached.ok) { data = await cached.json(); from = `salvata nel sito il ${data.aggiornato.split('-').reverse().join('/')}${liveErr ? ', perch&eacute; Enka.network ora non risponde' : ''}`; }
+        }
+        if (!data) { setUidStatus(liveErr || 'Non trovo la vetrina di questo UID.', 'err'); return; }
         const list = data.avatarInfoList || [];
         if (!list.length) { setUidStatus('La vetrina &egrave; vuota oppure i dettagli dei personaggi sono nascosti nelle impostazioni del gioco.', 'err'); return; }
         showcase = list.map((a) => {
@@ -857,7 +863,8 @@
           const ch = DATA.chars.find((c) => (c.id || c.i) === enkaMap[key]);
           return ch ? { a, ch } : null;
         }).filter(Boolean);
-        const name = data.player && data.player.nickname ? `<b>${esc(data.player.nickname)}</b> &middot; ` : '';
+        const pl = data.player || data.playerInfo || {}; // vetrina salvata: player; Enka: playerInfo
+        const name = pl.nickname ? `<b>${esc(pl.nickname)}</b> &middot; ` : '';
         setUidStatus(`${name}${showcase.length} personaggi in vetrina (${from}). Scegline uno:`, 'ok');
         uidChars.innerHTML = showcase.map(({ ch }, i) => `<button type="button" data-uid-i="${i}"><img src="assets/img/characters/${ch.i}.webp" alt="" width="256" height="256" />${esc(ch.n)}</button>`).join('');
       } catch (e) {
