@@ -377,7 +377,7 @@
       box.hidden = !rows.length;
     }
     function scale() {
-      const g = GUIDE[state.char.i];
+      const g = GUIDE[state.char.id || state.char.i];
       return state.scale || (g && SCALES[g.scala] ? g.scala : state.char.s);
     }
     const SCALE_PCT = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria' };
@@ -585,7 +585,7 @@
       return `<span class="bg-code">${ic && ICON[ic] ? ICON[ic] : ''}${label}</span>`;
     };
     function guideHtml({ sc, combatCr, bad }) {
-      const g = GUIDE[state.char.i];
+      const g = GUIDE[state.char.id || state.char.i];
       if (!g) return `<div class="bg-guide is-empty"><p>Per <b>${esc(state.char.n)}</b> non c&rsquo;&egrave; ancora una scheda con le statistiche consigliate.</p></div>`;
       const pctCode = { atk: 'atkp', hp: 'hpp', def: 'defp', em: 'em' }[sc];
       const mine = {
