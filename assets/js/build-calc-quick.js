@@ -82,7 +82,7 @@
 
   const STYLES = [
     { k: 'diretto', n: 'Danno diretto', icon: ICON.sword, em: false },
-    { k: 'stellar', n: 'Stellare', sub: 'Astroconduzione', icon: ICON.star, em: true },
+    { k: 'stellar', n: 'Stellare', sub: 'Astroconduzione<br>Turbinio astrale', icon: ICON.star, em: true },
     { k: 'lunar', n: 'Lunare', sub: 'reazioni lunari', icon: ICON.moon, em: true },
     { k: 'amp', n: 'Vaporizzazione / Fusione', icon: elImg('Pyro') + elImg('Hydro'), em: true },
     { k: 'freeze', n: 'Congelamento', icon: elImg('Cryo') + elImg('Hydro'), em: false },
