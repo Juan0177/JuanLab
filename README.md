@@ -138,7 +138,7 @@ Esempio di singola strategia:
 - `current-pg.html` è la pagina nascosta (5 click sul logo della home): contiene solo le guide dei personaggi non ancora usciti, cioè in beta.
 - Quando un personaggio esce, sposta la sua card da `current-pg.html` a `guide.html` e cambia il link "Torna a..." nella sua pagina.
 - Gli stili di entrambe sono in `assets/css/current-pg.css`.
-- `build-guide.html` è la guida generale alle build, linkata in "Guide generali". Valori dei roll, profili e calcolatori sono in `assets/js/build-guide.js`, lo stile in `assets/css/build-guide.css`. La tabella "Le build della vetrina" è una foto della vetrina in gioco letta da Enka.network: per aggiornarla vanno ricalcolati CV e RV.
+- `build-guide.html` è la guida generale alle build, linkata in "Guide generali". Gli screenshot sono in `assets/img/guides/build/` (ritagliati senza UID), il calcolatore del CV è in `assets/js/build-guide.js` e lo stile in `assets/css/build-guide.css`. La tabella "Le 12 build" è una foto della vetrina letta da Enka.network: per aggiornarla vanno ricalcolati CV e RV.
 
 ### Stygian Onslaught
 
