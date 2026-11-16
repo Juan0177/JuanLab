@@ -89,7 +89,13 @@
     { k: 'freeze', n: 'Congelamento', icon: elImg('Cryo') + elImg('Hydro'), em: false },
   ];
   const SCALES = { atk: ['ATT', 'atk'], hp: ['PS', 'hp'], def: ['DIF', 'def'], em: ['Maestria', 'em'] };
-  const BUILD_TIERS = [[210, 'end game', 't5'], [180, 'ottima', 't4'], [150, 'buona', 't3'], [120, 'discreta', 't2'], [0, 'da migliorare', 't1']];
+  // CV della build come su Akasha (akasha.cv): conta anche la principale della Corona se e' Tasso o DAN da CRIT
+  // (2 x 31,1 o 62,2 = 62,2), quindi le fasce sono quelle di prima (sole secondarie) + 60
+  const BUILD_TIERS = [[270, 'end game', 't5'], [240, 'ottima', 't4'], [210, 'buona', 't3'], [180, 'discreta', 't2'], [0, 'da migliorare', 't1']];
+  // CV di un pezzo: Akasha mostra solo le secondarie, ma nel giudizio una Corona CRIT vale 7,77 in piu
+  // (non puo avere tra le secondarie la statistica della principale)
+  const CRIT_CIRCLET_CV = 7.77;
+  const CORONA_MAIN_CV = 62.2;
 
   // ---- Selettore con icone e ricerca ----
   const openPickers = new Set();
@@ -442,6 +448,8 @@
         legend.hidden = false;
         legend.innerHTML = `Premi <b>Modifica</b> su ogni pezzo e inserisci le secondarie che contano: ${['Tasso di CRIT', 'DAN da CRIT', scName].concat(showEm ? ['Maestria'] : []).join(', ')}. Oppure importa la vetrina con l&rsquo;UID (in alto). <mark>In evidenza</mark> le secondarie che contano nel Roll Value; il numero a sinistra sono i roll stimati dal valore.`;
       }
+      // CV della Corona come su Akasha
+      if (state.corona === 'cr' || state.corona === 'cd') legend.innerHTML += ` Il CV di ogni pezzo conta le secondarie; la <b>Corona ${state.corona === 'cr' ? 'Tasso' : 'DAN'} di CRIT</b>, come su Akasha, nel giudizio del pezzo vale ${fmt(CRIT_CIRCLET_CV, 2)} CV in pi&ugrave; (non pu&ograve; avere quella secondaria) e nel CV della build conta anche la sua principale (+62,2).`;
       box.innerHTML = SLOT_INFO.map(([name, icon], i) => `
           <fieldset class="bg-slot" data-i="${i}">
             <legend><img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" />${name}</legend>
@@ -614,7 +622,9 @@
       const xcr = num(cur.xcr); const xcd = num(cur.xcd);
       const artCr = CR - 5 - asc('cr') - wsub('cr') - fixedCr - xcr - (state.corona === 'cr' ? 31.1 : 0);
       const artCd = CD - 50 - asc('cd') - wsub('cd') - xcd - (state.corona === 'cd' ? 62.2 : 0);
-      const cvRaw = 2 * artCr + artCd;
+      // come su Akasha: crit dai 5 pezzi, secondarie piu la principale della Corona se e' CRIT
+      const coronaCv = state.corona === 'cr' || state.corona === 'cd' ? CORONA_MAIN_CV : 0;
+      const cvRaw = 2 * artCr + artCd + coronaCv;
       const cv = Math.abs(cvRaw) < 0.05 ? 0 : cvRaw; // niente "-0,0" con i pezzi vuoti
       const combatCr = CR + combat.reduce((t, f) => t + f[1], 0);
       const empty = !CR && !CD;
@@ -745,9 +755,9 @@
             <span>${ICON.star}CV dei manufatti</span>
             <b>${bad ? '&ndash;' : fmt(cv)}</b>
             <strong>${empty ? 'inserisci le statistiche' : bad ? 'i CRIT non tornano' : tier}</strong>
-            <i class="bg-meter" aria-hidden="true"><i style="width:${bad ? 0 : Math.min(Math.max(cv, 0) / 250, 1) * 100}%"></i>${[120, 150, 180, 210].map((t) => `<em style="left:${t / 2.5}%"></em>`).join('')}</i>
-            <small>${ICON.cr}+${fmt(Math.max(artCr, 0))}% &middot; ${ICON.cd}+${fmt(Math.max(artCd, 0))}% dalle secondarie</small>
-            <p class="bg-kpi-how"><b>Cosa conta:</b> solo i roll di Tasso e DAN da CRIT nelle secondarie dei 5 pezzi. Per alzarlo servono pezzi con pi&ugrave; CRIT (vedi i pezzi e &ldquo;Rimodella&rdquo;).</p>
+            <i class="bg-meter" aria-hidden="true"><i style="width:${bad ? 0 : Math.min(Math.max(cv, 0) / 310, 1) * 100}%"></i>${[180, 210, 240, 270].map((t) => `<em style="left:${t / 3.1}%"></em>`).join('')}</i>
+            <small>${ICON.cr}+${fmt(Math.max(artCr, 0))}% &middot; ${ICON.cd}+${fmt(Math.max(artCd, 0))}% dalle secondarie${coronaCv ? ` &middot; Corona ${state.corona === 'cr' ? 'Tasso' : 'DAN'} +${fmt(coronaCv)} CV` : ''}</small>
+            <p class="bg-kpi-how"><b>Cosa conta:</b> Tasso e DAN da CRIT dei 5 pezzi, come su Akasha: i roll nelle secondarie pi&ugrave; la principale della Corona se &egrave; Tasso o DAN da CRIT (+62,2). Per alzarlo servono pezzi con pi&ugrave; CRIT (vedi i pezzi e &ldquo;Rimodella&rdquo;).</p>
           </div>
           <div class="bg-kpi ${bad || rvBad ? 't1' : rvCls}">
             <span>${ICON.star}Roll Value della build</span>
@@ -875,12 +885,16 @@
       rows.forEach((r) => {
         const el = cards[r.i];
         if (!el) return;
-        const cls = ([[40, 't5'], [35, 't4'], [25, 't3'], [15, 't2']].find(([min]) => r.cv >= min) || [0, 't1'])[1];
+        // giudizio come su Akasha: la Corona con principale CRIT vale 7,77 CV in piu (il CV mostrato resta quello delle secondarie)
+        const critCirclet = r.i === 4 && (state.corona === 'cr' || state.corona === 'cd');
+        const evalCv = r.cv + (critCirclet ? CRIT_CIRCLET_CV : 0);
+        const cls = ([[40, 't5'], [35, 't4'], [25, 't3'], [15, 't2']].find(([min]) => evalCv >= min) || [0, 't1'])[1];
         el.className = `bg-slot ${cls}${weakest && r.i === weakest.i ? ' is-weakest' : ''}`;
         el.querySelector('.bg-weak-tag').hidden = !(weakest && r.i === weakest.i);
         el.querySelector('.bg-slot-cv b').textContent = fmt(r.cv);
-        el.querySelector('.bg-slot-cv small').textContent = `CV · ${fmt(r.rv, 0)}% RV`;
-        el.querySelector('.bg-slot-cv .bg-meter > i').style.width = `${Math.min(r.cv / 54.4, 1) * 100}%`;
+        el.querySelector('.bg-slot-cv small').textContent = `CV${critCirclet && r.cv > 0 ? ` (+${fmt(CRIT_CIRCLET_CV, 2)})` : ''} · ${fmt(r.rv, 0)}% RV`;
+        el.querySelector('.bg-slot-cv').title = critCirclet ? `Corona CRIT: come su Akasha, nel giudizio del pezzo vale ${fmt(CRIT_CIRCLET_CV, 2)} CV in più (${fmt(evalCv)}), perché non può avere tra le secondarie la statistica della principale.` : '';
+        el.querySelector('.bg-slot-cv .bg-meter > i').style.width = `${Math.min(evalCv / 54.4, 1) * 100}%`;
         const chip = el.querySelector('.bg-verdict-chip');
         const v = r.chip || r.verdict;
         chip.className = `bg-verdict-chip${v ? ` is-${v.k}` : ''}`;
