@@ -209,9 +209,9 @@
       style: 'amp', corona: 'cd', sands: 'em', goblet: 'dmg', scale: null, reso: true,
     };
 
-    const step = (n, title, body, extra = '') => `<section class="bg-qstep"><h4 class="bg-qstep-title"><span>${n}</span>${title}${extra}</h4>${body}</section>`;
+    const step = (n, title, body, extra = '') => `<section class="bg-qstep" id="q-step${n}"><h4 class="bg-qstep-title"><span>${n}</span>${title}${extra}</h4>${body}</section>`;
     const uidBox = `
-      <section class="bg-qstep bg-uid-box">
+      <section class="bg-qstep bg-uid-box" id="q-uid-box">
         <h4 class="bg-qstep-title"><span>${ICON.screen}</span>Importa dalla vetrina <small class="bg-qstep-note">facoltativo: compila tutto da solo</small></h4>
         <div class="bg-uid-row">
           <label class="bg-stat bg-uid-field"><span>UID del giocatore</span><input type="text" id="q-uid" inputmode="numeric" autocomplete="off" placeholder="es. 713793020" maxlength="10" /></label>
@@ -251,10 +251,14 @@
         </div>
         <div id="q-screen"><div class="bg-q-stats" id="q-stats"></div></div>
         <div id="q-pieces" hidden>
-          <div class="bg-chips" aria-label="Carica un esempio">
-            <span>Esempi</span>
-            ${['Mavuika', 'Nefer', 'Neuvillette'].map((n) => `<button type="button" data-q-preset="${n}"><img src="assets/img/characters/UI_AvatarIcon_${n}.webp" alt="" width="256" height="256" />${n}</button>`).join('')}
-            <button type="button" data-q-preset="vuoto" class="is-ghost">Svuota i pezzi</button>
+          <div class="bg-chips bg-pieces-tools">
+            <button type="button" data-q-clear class="is-ghost">Svuota i pezzi</button>
+          </div>
+          <p class="bg-relic-legend" id="q-relic-legend" hidden></p>
+          <div class="bg-pieces-nav" id="q-pieces-nav" hidden>
+            <button type="button" data-pn="-1" aria-label="Pezzo precedente">&lsaquo;</button>
+            <span aria-live="polite"></span>
+            <button type="button" data-pn="1" aria-label="Pezzo successivo">&rsaquo;</button>
           </div>
           <div class="bg-build bg-pieces" id="q-piece-cards"></div>
           <div class="bg-q-stats"><label class="bg-stat"><span>${ICON.er}Ricarica di energia % <small>totale, facoltativa</small></span><input type="text" name="er" inputmode="decimal" placeholder="0" /></label></div>
@@ -275,18 +279,88 @@
       ['cr', 'cd', 'atk', 'hp', 'def', 'em', 'er'].forEach((k) => { values[k] = ''; });
       form.querySelectorAll('input[name="er"]').forEach((x) => { x.value = ''; });
       pieces = emptyPieces();
+      relics = [null, null, null, null, null];
     }
     let cur = values; // valori usati dal calcolo: la schermata (semplice) o ricostruiti dai pezzi (avanzato)
     state.mode = pendingMode;
     const emptyPieces = () => [0, 1, 2, 3, 4].map(() => ({ cr: '', cd: '', sc: '', em: '' }));
     let pieces = emptyPieces();
-    // Build reali della vetrina (Enka.network, 16/11/2026): [Tasso, DAN, statistica di danno, Maestria] per pezzo
-    const PRESETS = {
-      Mavuika: { weapon: 'Mille soli ardenti', set: "Codice d'ossidiana", sands: 'em', goblet: 'dmg', corona: 'cd', style: 'amp', er: '100', p: [[13.6, 21.8, 4.7, 0], [3.9, 20.2, 8.7, 35], [2.7, 34.2, 0, 0], [6.2, 27.2, 0, 0], [13.6, 0, 4.1, 16]] },
-      Nefer: { weapon: 'Reliquiario della verità', set: 'Notte della rivelazione celeste', sands: 'em', goblet: 'em', corona: 'cd', style: 'lunar', er: '105,2', p: [[10.1, 28, 0, 0], [6.6, 0, 84, 0], [6.2, 26.4, 0, 0], [10.5, 21, 0, 0], [10.1, 0, 42, 0]] },
-      Neuvillette: { weapon: 'Giada sacrificale', set: 'Cacciatore della Maréchaussée', sands: 'scale', goblet: 'dmg', corona: 'cd', style: 'diretto', er: '116,8', p: [[3.9, 34.2, 0, 0], [0, 30.3, 4.1, 0], [3.5, 26.4, 0, 40], [10.1, 12.4, 9.9, 0], [3.9, 0, 20.4, 35]] },
-    };
     const SLOT_INFO = [['Fiore', 'flower'], ['Piuma', 'plume'], ['Sabbie', 'sands'], ['Calice', 'goblet'], ['Corona', 'circlet']];
+    // Pezzi importati dalla vetrina (Enka), mostrati come nell'inventario del gioco; null se inseriti a mano
+    let relics = [null, null, null, null, null];
+    const PROP = {
+      FIGHT_PROP_HP: 'PS', FIGHT_PROP_HP_PERCENT: 'PS', FIGHT_PROP_ATTACK: 'ATT', FIGHT_PROP_ATTACK_PERCENT: 'ATT',
+      FIGHT_PROP_DEFENSE: 'DIF', FIGHT_PROP_DEFENSE_PERCENT: 'DIF', FIGHT_PROP_ELEMENT_MASTERY: 'Maestria elementale',
+      FIGHT_PROP_CHARGE_EFFICIENCY: 'Ricarica di energia', FIGHT_PROP_CRITICAL: 'Tasso di CRIT', FIGHT_PROP_CRITICAL_HURT: 'DAN da CRIT',
+      FIGHT_PROP_HEAL_ADD: 'Bonus di guarigione', FIGHT_PROP_PHYSICAL_ADD_HURT: 'Bonus DAN fisici', FIGHT_PROP_FIRE_ADD_HURT: 'Bonus DAN da Pyro',
+      FIGHT_PROP_WATER_ADD_HURT: 'Bonus DAN da Hydro', FIGHT_PROP_GRASS_ADD_HURT: 'Bonus DAN da Dendro', FIGHT_PROP_ELEC_ADD_HURT: 'Bonus DAN da Electro',
+      FIGHT_PROP_WIND_ADD_HURT: 'Bonus DAN da Anemo', FIGHT_PROP_ICE_ADD_HURT: 'Bonus DAN da Cryo', FIGHT_PROP_ROCK_ADD_HURT: 'Bonus DAN da Geo',
+    };
+    const FLAT = new Set(['FIGHT_PROP_HP', 'FIGHT_PROP_ATTACK', 'FIGHT_PROP_DEFENSE', 'FIGHT_PROP_ELEMENT_MASTERY']);
+    // valore massimo di un roll delle secondarie, 5 e 4 stelle
+    const MAXROLL = {
+      5: { FIGHT_PROP_HP: 298.75, FIGHT_PROP_HP_PERCENT: 5.83, FIGHT_PROP_ATTACK: 19.45, FIGHT_PROP_ATTACK_PERCENT: 5.83, FIGHT_PROP_DEFENSE: 23.15, FIGHT_PROP_DEFENSE_PERCENT: 7.29, FIGHT_PROP_ELEMENT_MASTERY: 23.31, FIGHT_PROP_CHARGE_EFFICIENCY: 6.48, FIGHT_PROP_CRITICAL: 3.89, FIGHT_PROP_CRITICAL_HURT: 7.77 },
+      4: { FIGHT_PROP_HP: 239, FIGHT_PROP_HP_PERCENT: 4.66, FIGHT_PROP_ATTACK: 15.56, FIGHT_PROP_ATTACK_PERCENT: 4.66, FIGHT_PROP_DEFENSE: 18.52, FIGHT_PROP_DEFENSE_PERCENT: 5.83, FIGHT_PROP_ELEMENT_MASTERY: 18.65, FIGHT_PROP_CHARGE_EFFICIENCY: 5.18, FIGHT_PROP_CRITICAL: 3.11, FIGHT_PROP_CRITICAL_HURT: 6.22 },
+    };
+    // Enka (appendPropIdList): un id per roll, es. 501204 = 5 stelle, Tasso di CRIT (120), roll al 100%
+    const ROLL_CODE = { 102: 'FIGHT_PROP_HP', 103: 'FIGHT_PROP_HP_PERCENT', 105: 'FIGHT_PROP_ATTACK', 106: 'FIGHT_PROP_ATTACK_PERCENT', 108: 'FIGHT_PROP_DEFENSE', 109: 'FIGHT_PROP_DEFENSE_PERCENT', 120: 'FIGHT_PROP_CRITICAL', 122: 'FIGHT_PROP_CRITICAL_HURT', 123: 'FIGHT_PROP_CHARGE_EFFICIENCY', 124: 'FIGHT_PROP_ELEMENT_MASTERY' };
+    // Roll stimati dal valore: il numero minimo di roll che puo dare quel valore (ogni roll vale dal 70% al 100% del massimo)
+    const estRolls = (v, max) => (v > 0 && max ? Math.max(1, Math.ceil(v / max - 0.03)) : 0);
+    const intText = (v) => String(Math.round(v)).replace(/\B(?=(\d{3})+(?!\d))/g, '.');
+    const propText = (k, v) => (FLAT.has(k) ? intText(v) : `${fmt(v)}%`);
+    // secondarie che contano nel Roll Value, come nel calcolo dei pezzi: CRIT, statistica di danno e Maestria se lo stile la usa
+    function rvProps() {
+      const sc = scale();
+      const showEm = STYLES.find((x) => x.k === state.style).em && sc !== 'em';
+      const set = new Set(['FIGHT_PROP_CRITICAL', 'FIGHT_PROP_CRITICAL_HURT']);
+      set.add({ atk: 'FIGHT_PROP_ATTACK_PERCENT', hp: 'FIGHT_PROP_HP_PERCENT', def: 'FIGHT_PROP_DEFENSE_PERCENT', em: 'FIGHT_PROP_ELEMENT_MASTERY' }[sc]);
+      if (showEm) set.add('FIGHT_PROP_ELEMENT_MASTERY');
+      return set;
+    }
+    function fillFromRelics() {
+      if (!relics.some(Boolean)) return;
+      const sc = scale();
+      const PCT = { atk: 'FIGHT_PROP_ATTACK_PERCENT', hp: 'FIGHT_PROP_HP_PERCENT', def: 'FIGHT_PROP_DEFENSE_PERCENT', em: 'FIGHT_PROP_ELEMENT_MASTERY' }[sc];
+      const EMK = 'FIGHT_PROP_ELEMENT_MASTERY';
+      pieces = emptyPieces();
+      relics.forEach((r, i) => {
+        if (!r) return;
+        const p2 = pieces[i];
+        p2.n = {};
+        r.subs.forEach(([k, v, n]) => {
+          const key = k === 'FIGHT_PROP_CRITICAL' ? 'cr' : k === 'FIGHT_PROP_CRITICAL_HURT' ? 'cd' : k === PCT ? 'sc' : k === EMK ? 'em' : null;
+          if (!key) return;
+          p2[key] = FLAT.has(k) ? String(v) : String(v).replace('.', ',');
+          // roll esatti solo da una vetrina aggiornata e per pezzi a 5 stelle (il Roll Value usa i roll massimi a 5 stelle)
+          if (r.exact && r.rarity === 5) p2.n[key] = n;
+        });
+      });
+    }
+    function relicCard(r, i) {
+      const useful = rvProps();
+      const slot = SLOT_INFO[i];
+      const subs = r.subs.map(([k, v, n]) => {
+        const on = useful.has(k);
+        return `<li class="${on ? 'is-rv' : ''}"><span>${PROP[k] || k}</span><b>+${propText(k, v)}</b>${n ? `<em title="${n} roll${r.exact ? '' : ' (stima dal valore)'}" aria-label="${n} roll">${'&#9679;'.repeat(n)}</em>` : ''}</li>`;
+      }).join('');
+      return `
+        <article class="bg-relic r${r.rarity}" aria-label="${esc(r.set)}, ${slot[0]}">
+          <div class="bg-relic-name">${esc(r.set)}</div>
+          <div class="bg-relic-top">
+            <div class="bg-relic-txt">
+              <span class="bg-relic-type">${slot[0]}</span>
+              <small>${PROP[r.main[0]] || r.main[0]}</small>
+              <b>${propText(r.main[0], r.main[1])}</b>
+              <span class="bg-relic-stars" aria-label="${r.rarity} stelle">${'&#9733;'.repeat(r.rarity)}</span>
+            </div>
+            <img src="https://enka.network/ui/${esc(r.icon)}.png" alt="" width="256" height="256" loading="lazy" onerror="this.onerror=null;this.src='assets/img/guides/build/slot-${slot[1]}.webp'" />
+          </div>
+          <div class="bg-relic-body">
+            <span class="bg-relic-lv">+${r.level}</span>
+            <ul>${subs}</ul>
+          </div>
+        </article>`;
+    }
     function mainText(i) {
       const sc = scale();
       const pctName = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria' }[sc];
@@ -303,20 +377,31 @@
       const showEm = STYLES.find((x) => x.k === state.style).em && sc !== 'em';
       const scIcon = { atk: 'atkp', hp: 'hpp', def: 'defp', em: 'em' }[sc];
       const scName = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria' }[sc];
+      const legend = form.querySelector('#q-relic-legend');
+      const imported = relics.filter(Boolean);
+      legend.hidden = !imported.length;
+      if (imported.length) {
+        const names = ['Tasso di CRIT', 'DAN da CRIT', scName].concat(showEm ? ['Maestria'] : []);
+        const exact = imported.every((r) => r.exact);
+        legend.innerHTML = `<b>Pezzi della vetrina.</b> <mark>In evidenza</mark> le secondarie che contano nel Roll Value con questo stile: ${names.join(', ')}. I pallini sono i roll di ogni secondaria (${exact ? 'esatti, da Enka' : 'stimati dal valore: la vetrina salvata non li indica'}). Sotto puoi correggere i valori.`;
+      }
       box.innerHTML = SLOT_INFO.map(([name, icon], i) => {
         const field = (k, label, ic, off) => `<label class="${off ? 'is-off' : ''}"><span>${ICON[ic]}${label}</span><input type="text" inputmode="decimal" placeholder="0" data-p="${i}" data-k="${k}" value="${off ? '' : esc(pieces[i][k] || '')}" ${off ? 'disabled' : ''} /></label>`;
         return `
           <fieldset class="bg-slot" data-i="${i}">
             <legend><img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" />${name}</legend>
-            <div class="bg-slot-main"><small>${mainText(i)}</small></div>
+            ${relics[i] ? relicCard(relics[i], i) : `<div class="bg-slot-main"><small>${mainText(i)}</small></div>`}
             ${field('cr', 'Tasso di CRIT', 'cr', i === 4 && state.corona === 'cr')}
             ${field('cd', 'DAN da CRIT', 'cd', i === 4 && state.corona === 'cd')}
             ${field('sc', scName, scIcon, false)}
             ${showEm ? field('em', 'Maestria', 'em', false) : ''}
             <div class="bg-slot-cv"><b>0,0</b><small>CV</small><i class="bg-meter" aria-hidden="true"><i></i></i></div>
-            <p class="bg-verdict-chip"></p>
+            <div class="bg-slot-tags"><p class="bg-verdict-chip"></p><span class="bg-weak-tag" hidden>pi&ugrave; debole</span></div>
           </fieldset>`;
       }).join('');
+      if (window.bgFit && relics.some(Boolean)) window.bgFit(box);
+      box.scrollLeft = 0;
+      requestAnimationFrame(piecesNav);
     }
     // Statistiche totali ricostruite da personaggio, arma, set, principali e pezzi
     function synth() {
@@ -439,7 +524,7 @@
         <label class="bg-stat"><span>${ICON[k]}${label}${unit ? ' %' : ''} <small>totale</small></span>
           <input type="text" name="${k}" inputmode="decimal" placeholder="0" value="${esc(values[k] || '')}" /></label>`).join('');
       form.querySelector('.bg-scale-pick').innerHTML = `scala su ${Object.entries(SCALES).map(([k, [n]]) => `<button type="button" data-q-scale="${k}" aria-pressed="${k === sc}">${ICON[SCALES[k][1]]}${n}</button>`).join('')}`;
-      form.querySelectorAll('[data-q-scale]').forEach((b) => b.addEventListener('click', () => { state.scale = b.dataset.qScale; drawStats(); drawMains(); drawPieces(); update(); }));
+      form.querySelectorAll('[data-q-scale]').forEach((b) => b.addEventListener('click', () => { state.scale = b.dataset.qScale; fillFromRelics(); drawStats(); drawMains(); drawPieces(); update(); }));
     }
 
     // ---- Calcolo ----
@@ -605,7 +690,7 @@
 
       out.className = `bg-quick-out ${bad ? 't1' : cls}`;
       out.innerHTML = `
-        <div class="bg-kpis">
+        <div class="bg-kpis" id="q-kpis">
           <div class="bg-kpi ${bad ? 't1' : cls}">
             <span>${ICON.star}CV dei manufatti</span>
             <b>${bad ? '&ndash;' : fmt(cv)}</b>
@@ -640,7 +725,7 @@
           </div>
         </div>
         ${bad || empty ? '' : critSourcesHtml}
-        ${bad ? '' : `<div class="bg-corona-rec${coronaRec.change ? ' is-change' : ''}"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" /><span><small>Corona consigliata</small><strong>${coronaRec.k === 'pari' ? '' : ICON[coronaRec.k]}${coronaRec.title}</strong><em>${coronaRec.text}</em></span></div>`}
+        ${bad ? '' : `<div class="bg-corona-rec${coronaRec.change ? ' is-change' : ''}" id="q-corona"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" /><span><small>Corona consigliata</small><strong>${coronaRec.k === 'pari' ? '' : ICON[coronaRec.k]}${coronaRec.title}</strong><em>${coronaRec.text}</em></span></div>`}
         ${gainsHtml(gains)}
         ${pieceBanner()}
         ${guideHtml({ sc, combatCr, bad })}
@@ -686,7 +771,7 @@
       const style = STYLES.find((x) => x.k === state.style);
       const emNote = usesEm ? `<p class="bg-gain-note">${ICON.em}Maestria calcolata con le formule di Genshin Optimizer, senza i bonus ai DAN della reazione dei set e del team: con quei bonus ogni punto di Maestria rende un po&rsquo; meno.</p>` : '';
       return `
-        <div class="bg-gains">
+        <div class="bg-gains" id="q-gains">
           <div class="bg-guide-head"><span><small>Cosa aumentare</small><strong>Il prossimo roll che rende di pi&ugrave;</strong></span></div>
           ${erMiss ? `<p class="bg-gain-er">${ICON.er}<span><b>Prima la Ricarica di energia:</b> ti manca circa il ${fmt(erMiss)}% per arrivare al ${g.ricarica[0]}% consigliato, cio&egrave; ${Math.ceil(erMiss / (6.48 * R))} roll. Senza Tecnica suprema pronta il resto conta meno.</span></p>` : ''}
           <ol class="bg-gain-list">
@@ -714,14 +799,16 @@
         const cv = 2 * cr + cd;
         const rv = (cr / 3.89 + cd / 7.77 + num(x.sc) / ROLL[sc] + (showEm ? num(x.em) / 23.31 : 0)) * 100;
         // Rimodellare? Si guardano le 2 secondarie utili migliori: quanti potenziamenti hanno preso
-        const useful = [['Tasso di CRIT', cr / 3.89], ['DAN da CRIT', cd / 7.77], [SCALE_PCT[sc], num(x.sc) / ROLL[sc]], showEm ? ['Maestria', num(x.em) / 23.31] : null]
-          .filter((u) => u && u[1] > 0).sort((a, b) => b[1] - a[1]);
+        // [nome, valore in roll massimi, roll]: roll esatti se il pezzo viene dalla vetrina, altrimenti stimati dal valore
+        const nOf = (k, ratio) => (x.n && x.n[k] != null ? x.n[k] : estRolls(ratio, 1));
+        const useful = [['Tasso di CRIT', cr / 3.89, 'cr'], ['DAN da CRIT', cd / 7.77, 'cd'], [SCALE_PCT[sc], num(x.sc) / ROLL[sc], 'sc'], showEm ? ['Maestria', num(x.em) / 23.31, 'em'] : null]
+          .filter((u) => u && u[1] > 0).map((u) => [u[0], u[1], nOf(u[2], u[1])]).sort((a, b) => b[2] - a[2] || b[1] - a[1]);
         let verdict = null;
         if (rv > 0) {
           if (useful.length < 2) verdict = { k: 'swap', label: 'Sostituisci', text: 'ha meno di 2 secondarie utili: la Polvere dell&rsquo;illuminazione non basta, serve un pezzo nuovo (anche dal Trasmutatore con l&rsquo;Elisir santificatore).' };
           else {
             const two = useful.slice(0, 2);
-            const ups = Math.max(0, Math.round((two[0][1] + two[1][1]) / 0.85) - 2); // tolti i 2 valori iniziali
+            const ups = Math.max(0, two[0][2] + two[1][2] - 2); // roll sulle due migliori, tolti i 2 valori iniziali
             const names = `${two[0][0]} e ${two[1][0]}`;
             if (ups <= 1) verdict = { k: 'reshape', label: 'Rimodella', text: `${ups === 0 ? 'nessun potenziamento' : 'solo 1 potenziamento'} su ${names}: rimodellandolo con la Polvere dell&rsquo;illuminazione scegli queste due e ne hai almeno 2.` };
             else if (ups === 2) verdict = { k: 'maybe', label: 'Valuta', text: `circa 2 potenziamenti su ${names}: rimodellare conviene solo con il rimodellamento Avanzato (almeno 3) o Decretato (almeno 4).` };
@@ -733,23 +820,27 @@
       const cards = Array.from(form.querySelectorAll('#q-piece-cards .bg-slot'));
       const filled = rows.filter((r) => r.rv > 0).length;
       const weakest = filled === 5 ? rows.reduce((m, r) => (r.rv < m.rv ? r : m)) : null;
+      // il pezzo piu debole con i roll gia buoni non si rimodella: serve un pezzo nuovo (niente "Tieni" accanto a "piu debole")
+      if (weakest && weakest.verdict && weakest.verdict.k === 'keep') weakest.chip = { k: 'swap', label: 'Pezzo nuovo', text: `${weakest.verdict.text} Ma &egrave; il pi&ugrave; debole della build: per migliorarlo serve un pezzo nuovo con pi&ugrave; secondarie utili.` };
       rows.forEach((r) => {
         const el = cards[r.i];
         if (!el) return;
         const cls = ([[40, 't5'], [35, 't4'], [25, 't3'], [15, 't2']].find(([min]) => r.cv >= min) || [0, 't1'])[1];
         el.className = `bg-slot ${cls}${weakest && r.i === weakest.i ? ' is-weakest' : ''}`;
+        el.querySelector('.bg-weak-tag').hidden = !(weakest && r.i === weakest.i);
         el.querySelector('.bg-slot-cv b').textContent = fmt(r.cv);
         el.querySelector('.bg-slot-cv small').textContent = `CV · ${fmt(r.rv, 0)}% RV`;
         el.querySelector('.bg-slot-cv .bg-meter > i').style.width = `${Math.min(r.cv / 54.4, 1) * 100}%`;
         const chip = el.querySelector('.bg-verdict-chip');
-        chip.className = `bg-verdict-chip${r.verdict ? ` is-${r.verdict.k}` : ''}`;
-        chip.textContent = r.verdict ? r.verdict.label : '';
-        chip.title = r.verdict ? r.verdict.text.replace(/&rsquo;/g, '\u2019') : '';
+        const v = r.chip || r.verdict;
+        chip.className = `bg-verdict-chip${v ? ` is-${v.k}` : ''}`;
+        chip.textContent = v ? v.label : '';
+        chip.title = v ? v.text.replace(/&rsquo;/g, '\u2019').replace(/&egrave;/g, '\u00e8').replace(/&ugrave;/g, '\u00f9') : '';
       });
       if (!weakest) return '<p class="bg-out-foot">Compila tutti e 5 i pezzi per sapere quale cambiare per primo.</p>';
       const [name, icon] = SLOT_INFO[weakest.i];
       const others = rows.filter((r) => r.verdict && r.i !== weakest.i && (r.verdict.k === 'reshape' || r.verdict.k === 'swap'));
-      return `<div class="bg-corona-rec is-change"><img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" /><span><small>Pezzo da cambiare per primo</small><strong>${name}${weakest.verdict ? ` &middot; ${weakest.verdict.k === 'keep' ? 'cerca un pezzo migliore' : weakest.verdict.label.toLowerCase()}` : ''}</strong><em>&Egrave; il pi&ugrave; debole (${fmt(weakest.cv)} CV, ${fmt(weakest.rv, 0)}% di Roll Value)${weakest.verdict ? (weakest.verdict.k === 'keep' ? `: i suoi roll sono gi&agrave; finiti bene (${weakest.verdict.text.replace(': rimodellarlo rischia di peggiorarlo.', '')}), quindi rimodellarlo non serve. Per migliorarlo serve un pezzo nuovo con pi&ugrave; secondarie utili.` : `: ${weakest.verdict.text}`) : '.'}${others.length ? ` Da rivedere anche: ${others.map((r) => `${SLOT_INFO[r.i][0]} (${r.verdict.label.toLowerCase()})`).join(', ')}.` : ''}</em></span></div>`;
+      return `<div class="bg-corona-rec is-change" id="q-weakest"><img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" /><span><small>Pezzo da cambiare per primo</small><strong>${name}${weakest.verdict ? ` &middot; ${weakest.verdict.k === 'keep' ? 'cerca un pezzo migliore' : weakest.verdict.label.toLowerCase()}` : ''}</strong><em>&Egrave; il pi&ugrave; debole (${fmt(weakest.cv)} CV, ${fmt(weakest.rv, 0)}% di Roll Value)${weakest.verdict ? (weakest.verdict.k === 'keep' ? `: i suoi roll sono gi&agrave; finiti bene (${weakest.verdict.text.replace(': rimodellarlo rischia di peggiorarlo.', '')}), quindi rimodellarlo non serve. Per migliorarlo serve un pezzo nuovo con pi&ugrave; secondarie utili.` : `: ${weakest.verdict.text}`) : '.'}${others.length ? ` Da rivedere anche: ${others.map((r) => `${SLOT_INFO[r.i][0]} (${r.verdict.label.toLowerCase()})`).join(', ')}.` : ''}</em></span></div>`;
     }
 
     // ---- Scheda del personaggio: cosa vuole e cosa manca ----
@@ -759,7 +850,7 @@
     };
     function guideHtml({ sc, combatCr, bad }) {
       const g = GUIDE[state.char.id || state.char.i];
-      if (!g) return `<div class="bg-guide is-empty"><p>Per <b>${esc(state.char.n)}</b> non c&rsquo;&egrave; ancora una scheda con le statistiche consigliate.</p></div>`;
+      if (!g) return `<div class="bg-guide is-empty" id="q-guide"><p>Per <b>${esc(state.char.n)}</b> non c&rsquo;&egrave; ancora una scheda con le statistiche consigliate.</p></div>`;
       const pctCode = { atk: 'atkp', hp: 'hpp', def: 'defp', em: 'em' }[sc];
       const mine = {
         sabbie: { scale: pctCode, em: 'em', er: 'er' }[state.sands] || null,
@@ -797,7 +888,7 @@
       const hosts = (g.fonti || []).map((u) => { try { return [u, new URL(u).hostname.replace(/^www\./, '')]; } catch (e) { return null; } }).filter(Boolean);
       const ICONS = { ok: '&#10003;', miss: '&#10007;', info: 'i' };
       return `
-        <div class="bg-guide">
+        <div class="bg-guide" id="q-guide">
           <div class="bg-guide-card">
             <div class="bg-guide-head"><img src="assets/img/characters/${state.char.i}.webp" alt="" width="256" height="256" /><span><small>Cosa vuole</small><strong>${esc(state.char.n)}</strong><em>${(g.ruoli || []).map((r) => ROLE[r] || r).join(' &middot; ')}</em></span><b class="bg-trust is-${esc(g.affidabilita || 'media')}">affidabilit&agrave; ${esc(g.affidabilita || 'media')}</b></div>
             <dl class="bg-guide-list">
@@ -822,27 +913,14 @@
     // ---- Eventi ----
     form.addEventListener('input', (e) => {
       const t = e.target;
-      if (t.dataset.p !== undefined) { pieces[+t.dataset.p][t.dataset.k] = t.value; update(); return; }
+      if (t.dataset.p !== undefined) { const pc = pieces[+t.dataset.p]; pc[t.dataset.k] = t.value; if (pc.n) delete pc.n[t.dataset.k]; update(); return; }
       if (t.name && t.name in values) {
         values[t.name] = t.value;
         form.querySelectorAll(`input[name="${t.name}"]`).forEach((x) => { if (x !== t) x.value = t.value; });
         update();
       }
     });
-    form.querySelectorAll('[data-q-preset]').forEach((b) => b.addEventListener('click', () => {
-      const name = b.dataset.qPreset;
-      if (name === 'vuoto') { pieces = emptyPieces(); drawPieces(); update(); return; }
-      const pr = PRESETS[name];
-      state.char = byName(DATA.chars, name) || state.char; state.scale = null;
-      pChar.set(state.char, true); syncWeapons();
-      state.weapon = byName(DATA.weapons, pr.weapon) || state.weapon; pWeapon.set(state.weapon, true);
-      state.set1 = byName(SETS, pr.set) || state.set1; state.pcs = 4; state.set2 = NONE_SET;
-      Object.assign(state, { sands: pr.sands, goblet: pr.goblet, corona: pr.corona, style: pr.style });
-      values.er = pr.er;
-      form.querySelectorAll('input[name="er"]').forEach((x) => { x.value = pr.er; });
-      pieces = pr.p.map(([cr, cd, sc, em]) => ({ cr: cr ? String(cr) : '', cd: cd ? String(cd) : '', sc: sc ? String(sc) : '', em: em ? String(em) : '' }));
-      syncSets(); drawStats(); drawMains(); drawPieces(); update();
-    }));
+    form.querySelector('[data-q-clear]').addEventListener('click', () => { pieces = emptyPieces(); relics = [null, null, null, null, null]; drawPieces(); update(); });
     form.querySelectorAll('[data-q-mode]').forEach((b) => b.addEventListener('click', () => setMode(b.dataset.qMode)));
 
     // ---- Importa dalla vetrina (Enka.network) ----
@@ -900,10 +978,11 @@
       const wf = items.find((f) => f.itemType === 'ITEM_WEAPON');
       const wpn = wf && DATA.weapons.find((w) => w.i === wf.icon);
       if (wpn) { state.weapon = wpn; pWeapon.set(wpn, true); }
-      const relics = items.filter((f) => f.itemType === 'ITEM_RELIQUARY');
+      const relicEq = a.equipList.filter((e) => e.flat.itemType === 'ITEM_RELIQUARY');
+      const relicFlat = relicEq.map((e) => e.flat);
       // set: 4 pezzi dello stesso set, oppure 2 + 2
       const count = {};
-      relics.forEach((f) => { const id = f.icon.split('_')[2]; count[id] = (count[id] || 0) + 1; });
+      relicFlat.forEach((f) => { const id = f.icon.split('_')[2]; count[id] = (count[id] || 0) + 1; });
       const bySet = Object.entries(count).sort((x, y) => y[1] - x[1]);
       const setOf = (id) => SETS.find((x) => x.i && x.i.split('_')[2] === id) || NONE_SET;
       if (bySet[0] && bySet[0][1] >= 4) { state.set1 = setOf(bySet[0][0]); state.pcs = 4; state.set2 = NONE_SET; }
@@ -914,21 +993,33 @@
       const EMK = 'FIGHT_PROP_ELEMENT_MASTERY';
       const SLOT = { EQUIP_BRACER: 0, EQUIP_NECKLACE: 1, EQUIP_SHOES: 2, EQUIP_RING: 3, EQUIP_DRESS: 4 };
       pieces = emptyPieces();
+      relics = [null, null, null, null, null];
       state.sands = 'altro'; state.goblet = 'altro'; state.corona = 'altro';
-      relics.forEach((f) => {
+      relicEq.forEach((e) => {
+        const f = e.flat;
         const i2 = SLOT[f.equipType];
+        if (i2 === undefined) return;
+        // roll di ogni secondaria: esatti da appendPropIdList (vetrina aggiornata), altrimenti stimati dal valore
+        const rarity = f.rankLevel || 5;
+        const ids = (e.reliquary && e.reliquary.appendPropIdList) || [];
+        const exactN = {};
+        ids.forEach((id) => { const k = ROLL_CODE[Math.floor(id / 10) % 1000]; if (k) exactN[k] = (exactN[k] || 0) + 1; });
+        const subsIn = (f.reliquarySubstats || []).map((x) => x.appendPropId);
+        const exact = ids.length > 0 && subsIn.every((k) => exactN[k]) && Object.keys(exactN).length === subsIn.length;
+        const rollsOf = (k, v) => (exact ? exactN[k] : estRolls(v, MAXROLL[rarity][k]));
+        relics[i2] = {
+          icon: f.icon, rarity, exact, level: Math.max(0, ((e.reliquary && e.reliquary.level) || 1) - 1),
+          set: setOf(f.icon.split('_')[2]).n === NONE_SET.n ? 'Set sconosciuto' : setOf(f.icon.split('_')[2]).n,
+          main: [f.reliquaryMainstat.mainPropId, f.reliquaryMainstat.statValue],
+          subs: (f.reliquarySubstats || []).map(({ appendPropId: k, statValue: v }) => [k, v, rollsOf(k, v)]),
+        };
+
         const m = f.reliquaryMainstat.mainPropId;
         if (i2 === 2) state.sands = m === PCT ? 'scale' : m === EMK ? 'em' : m === 'FIGHT_PROP_CHARGE_EFFICIENCY' ? 'er' : 'altro';
         if (i2 === 3) state.goblet = /_ADD_HURT$/.test(m) ? 'dmg' : m === PCT ? 'scale' : m === EMK ? 'em' : 'altro';
         if (i2 === 4) state.corona = m === 'FIGHT_PROP_CRITICAL' ? 'cr' : m === 'FIGHT_PROP_CRITICAL_HURT' ? 'cd' : m === EMK ? 'em' : 'altro';
-        (f.reliquarySubstats || []).forEach(({ appendPropId: k, statValue: v }) => {
-          const p2 = pieces[i2];
-          if (k === 'FIGHT_PROP_CRITICAL') p2.cr = String(v).replace('.', ',');
-          else if (k === 'FIGHT_PROP_CRITICAL_HURT') p2.cd = String(v).replace('.', ',');
-          else if (sc === 'em' ? k === EMK : k === PCT) p2.sc = String(v).replace('.', ',');
-          else if (k === EMK) p2.em = String(v);
-        });
       });
+      fillFromRelics();
       // statistiche della schermata
       const fp = a.fightPropMap;
       Object.assign(values, { cr: pctStr(fp['20']), cd: pctStr(fp['22']), hp: String(Math.round(fp['2000'])), atk: String(Math.round(fp['2001'])), def: String(Math.round(fp['2002'])), em: String(Math.round(fp['28'] || 0)), er: pctStr(fp['23']) });
@@ -940,6 +1031,39 @@
     form.querySelector('#q-uid-go').addEventListener('click', lookupUid);
     form.querySelector('#q-uid').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); lookupUid(); } });
     uidChars.addEventListener('click', (e) => { const b = e.target.closest('[data-uid-i]'); if (b) applyShowcase(+b.dataset.uidI); });
+    // Pezzi in una riga scorrevole: se non stanno tutti (sul telefono uno alla volta) compaiono i pulsanti
+    const piecesBox = form.querySelector('#q-piece-cards');
+    const piecesNavEl = form.querySelector('#q-pieces-nav');
+    const pieceAt = () => {
+      const cards = Array.from(piecesBox.children);
+      // il primo pezzo visibile per intero
+      const idx = cards.findIndex((c) => c.offsetLeft - cards[0].offsetLeft >= piecesBox.scrollLeft - 4);
+      return idx < 0 ? cards.length - 1 : idx;
+    };
+    function piecesNav() {
+      const cards = Array.from(piecesBox.children);
+      const over = cards.length && piecesBox.scrollWidth > piecesBox.clientWidth + 2;
+      piecesNavEl.hidden = !over;
+      if (!over) return;
+      const first = pieceAt();
+      let last = first;
+      cards.forEach((c, i) => { if (c.offsetLeft - cards[0].offsetLeft + c.offsetWidth <= piecesBox.scrollLeft + piecesBox.clientWidth + 4) last = Math.max(last, i); });
+      piecesNavEl.querySelector('span').innerHTML = first === last
+        ? `<b>${SLOT_INFO[first][0]}</b> &middot; ${first + 1} di 5`
+        : `<b>${SLOT_INFO[first][0]}&ndash;${SLOT_INFO[last][0]}</b> &middot; ${first + 1}&ndash;${last + 1} di 5`;
+      piecesNavEl.querySelector('[data-pn="-1"]').disabled = first === 0;
+      piecesNavEl.querySelector('[data-pn="1"]').disabled = last >= cards.length - 1;
+    }
+    piecesNavEl.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-pn]');
+      if (!b) return;
+      const cards = Array.from(piecesBox.children);
+      const to = Math.min(Math.max(pieceAt() + Number(b.dataset.pn), 0), cards.length - 1);
+      piecesBox.scrollTo({ left: cards[to].offsetLeft - cards[0].offsetLeft, behavior: 'smooth' });
+    });
+    let pnTick = false;
+    piecesBox.addEventListener('scroll', () => { if (pnTick) return; pnTick = true; requestAnimationFrame(() => { pnTick = false; piecesNav(); }); }, { passive: true });
+    window.addEventListener('resize', () => requestAnimationFrame(piecesNav));
     setMode = (m) => {
       state.mode = m;
       form.querySelector('#q-screen').hidden = m === 'avanzato';
