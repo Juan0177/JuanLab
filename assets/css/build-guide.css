@@ -743,3 +743,25 @@ i.bg-ava-none { display: inline-block; }
 }
 .bg-pick-rar button[aria-checked="true"] { border-color: var(--guide-gold); background: var(--guide-gold); color: #1a1408; }
 .bg-pick-group { margin: 0.35rem 0 0.15rem; padding: 0 0.45rem; color: var(--guide-gold); font-size: 0.72rem; letter-spacing: 0.1em; list-style: none; }
+
+/* Set: due righe 2pz / 4pz nel menu e riquadro dei bonus attivi */
+.bg-set-line { display: block; overflow: hidden; white-space: nowrap; text-overflow: ellipsis; }
+.bg-set-line b { margin-right: 0.3rem; color: var(--guide-gold); font-weight: 700; }
+.bg-pick-pop .bg-set-line { white-space: normal; }
+.bg-pick-btn .bg-set-line + .bg-set-line { display: none; }
+.bg-set-info { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.6rem; margin-top: -0.4rem; }
+.bg-set-card { min-width: 0; padding: 0.6rem 0.8rem; border: 1px solid var(--guide-border); border-radius: 12px; background: rgba(255, 255, 255, 0.02); }
+.bg-set-head { display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.35rem; }
+.bg-set-head img { width: 28px; height: 28px; }
+.bg-set-head strong { flex: 1; min-width: 0; overflow: hidden; font-size: 0.88rem; white-space: nowrap; text-overflow: ellipsis; }
+.bg-set-head small { color: var(--guide-gold); font-weight: 700; }
+.bg-set-card > p { display: flex; align-items: baseline; gap: 0.35rem; margin: 0.2rem 0; font-size: 0.8rem; }
+.bg-set-card > p b { flex: none; color: var(--guide-gold); }
+.bg-set-card > p span { flex: 1; min-width: 0; }
+.bg-set-card > p em { flex: none; padding: 0 0.4rem; border-radius: 999px; background: rgba(143, 227, 165, 0.12); color: var(--guide-green); font-size: 0.68rem; font-style: normal; white-space: nowrap; }
+.bg-set-card > p em.is-off { background: rgba(255, 255, 255, 0.05); color: var(--guide-muted); }
+.bg-set-card details { margin-top: 0.3rem; }
+.bg-set-card summary { color: var(--guide-muted); font-size: 0.75rem; cursor: pointer; }
+.bg-set-card details p { margin: 0.3rem 0 0; color: var(--guide-muted); font-size: 0.76rem; line-height: 1.5; }
+@media (max-width: 760px) { .bg-set-info { grid-template-columns: minmax(0, 1fr); } .bg-set-card > p { flex-wrap: wrap; } }
+.bg-set-info { grid-template-columns: repeat(auto-fit, minmax(min(280px, 100%), 1fr)); }

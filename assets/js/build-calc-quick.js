@@ -55,6 +55,8 @@
     pcs: SVG('<rect x="3" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="3" width="8" height="8" rx="2" fill="currentColor"/><rect x="3" y="13" width="8" height="8" rx="2" fill="currentColor"/><rect x="13" y="13" width="8" height="8" rx="2" fill="currentColor" opacity=".45"/>'),
     screen: SVG('<rect x="2.5" y="4" width="19" height="13" rx="2" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 21h8M12 17v4" stroke="currentColor" stroke-width="2" stroke-linecap="round"/>'),
     plus: SVG('<path d="M12 5v14M5 12h14" stroke="currentColor" stroke-width="2.6" stroke-linecap="round"/>'),
+    dmg: SVG('<path d="M12 2l2.2 6.3L21 9l-5 4.6L17.4 21 12 17.3 6.6 21 8 13.6 3 9l6.8-.7z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>'),
+    res: SVG('<path d="M12 2l8 3v6c0 5-3.4 9.4-8 11-4.6-1.6-8-6-8-11V5z" fill="none" stroke="currentColor" stroke-width="2"/><path d="M8 12h8" stroke="currentColor" stroke-width="2"/>'),
     chevron: SVG('<path d="M6 9l6 6 6-6" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/>'),
     circlet: '<img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" class="bg-ico-img" />',
   };
@@ -199,6 +201,7 @@
         </div>
         <div class="bg-field"><span class="bg-label">${ICON.set}Secondo set <small class="bg-set2-note"></small></span><div class="bg-pick" id="pick-set2"></div></div>
       </div>
+      <div class="bg-set-info" id="q-setinfo"></div>
       <div class="bg-field">
         <span class="bg-label">${ICON.style}Stile di gioco</span>
         <div class="bg-styles" role="radiogroup" aria-label="Stile di gioco">
@@ -234,7 +237,7 @@
     const setRender = (s) => ({
       icon: s.i ? `<img src="assets/img/calc/sets/${s.i}.webp" alt="" width="64" height="64" class="bg-ava" />` : '<i class="bg-ava bg-ava-none"></i>',
       name: s.n,
-      meta: (s.r ? `${'&#9733;'.repeat(s.r)} · ` : '') + (s.s2 ? `${ICON.cr}2pz +${s.s2}%${s.c4 ? ` · 4pz +${s.c4}%` : ''}` : s.c4 ? `${ICON.cr}4pz fino a +${s.freeze4 || s.c4}%` : ''),
+      meta: s.b2 ? `<span class="bg-set-line"><b>2pz</b>${ICON[s.b2[1]] || ''}${esc(s.b2[0])}</span><span class="bg-set-line"><b>4pz</b>${ICON[s.b4[1]] || ''}${esc(s.b4[0])}</span>` : '',
     });
     const pSet1 = Picker(form.querySelector('#pick-set1'), {
       placeholder: 'Cerca un set', rarity: true, render: setRender,
@@ -242,7 +245,7 @@
     });
     const pSet2 = Picker(form.querySelector('#pick-set2'), {
       placeholder: 'Cerca un set', rarity: true, render: setRender,
-      onPick: (s) => { state.set2 = s; update(); },
+      onPick: (s) => { state.set2 = s; drawSetInfo(); update(); },
     });
 
     function syncWeapons() {
@@ -260,6 +263,28 @@
       pSet2.disable(locked);
       form.querySelector('.bg-set2-note').textContent = state.pcs === 4 ? 'bloccato dal 4pz' : '';
       form.querySelectorAll('[data-q-pcs]').forEach((b) => b.setAttribute('aria-checked', String(+b.dataset.qPcs === state.pcs)));
+      drawSetInfo();
+    }
+    // Bonus attivi dei set scelti, con cosa usa il calcolatore
+    function drawSetInfo() {
+      const box = form.querySelector('#q-setinfo');
+      const rows = [];
+      const add = (set, pcs) => {
+        if (!set || set === NONE_SET || !set.b2) return;
+        const used2 = [set.atk2 && 'Roll Value', set.hp2 && 'Roll Value', set.def2 && 'Roll Value', set.em2 && 'Roll Value', set.s2 && 'CV'].filter(Boolean)[0];
+        const used4 = pcs === 4 && (set.c4 ? 'Tasso in combattimento' : '');
+        rows.push(`
+          <div class="bg-set-card">
+            <div class="bg-set-head"><img src="assets/img/calc/sets/${set.i}.webp" alt="" width="64" height="64" /><strong>${esc(set.n)}</strong><small>${pcs}pz</small></div>
+            <p><b>2pz</b>${ICON[set.b2[1]] || ''}<span>${esc(set.b2[0])}</span>${used2 ? `<em>usato nel ${used2}</em>` : '<em class="is-off">solo informativo</em>'}</p>
+            ${pcs === 4 ? `<p><b>4pz</b>${ICON[set.b4[1]] || ''}<span>${esc(set.b4[0])}</span>${used4 ? `<em>usato nel ${used4}</em>` : '<em class="is-off">solo informativo</em>'}</p>` : ''}
+            <details><summary>Testo completo</summary><p>2pz: ${esc(set.t2)}</p>${pcs === 4 ? `<p>4pz: ${esc(set.t4)}</p>` : ''}</details>
+          </div>`);
+      };
+      add(state.set1, state.pcs);
+      if (state.pcs === 2) add(state.set2, 2);
+      box.innerHTML = rows.join('');
+      box.hidden = !rows.length;
     }
     function scale() {
       const g = GUIDE[state.char.i];
