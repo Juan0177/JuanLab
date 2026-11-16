@@ -1,4 +1,4 @@
-// Tab "Guida attuale" / "Archivio" della pagina current-pg.html.
+// Tab "Guide attuali" / "Archivio" della pagina guide.html.
 // L'hash #archivio apre direttamente l'archivio (linkabile).
 (function () {
   const tabs = Array.from(document.querySelectorAll('.pg-tab'));
