@@ -83,24 +83,35 @@
   document.addEventListener('click', (e) => {
     openPickers.forEach((p) => { if (!p.root.contains(e.target)) p.close(); });
   });
-  function Picker(root, { placeholder, render, onPick }) {
+  function Picker(root, { placeholder, render, onPick, rarity }) {
     root.innerHTML = `
       <button type="button" class="bg-pick-btn" aria-haspopup="listbox" aria-expanded="false"></button>
       <div class="bg-pick-pop" hidden>
         <input type="search" placeholder="${esc(placeholder)}" aria-label="${esc(placeholder)}" />
+        ${rarity ? '<div class="bg-pick-rar" role="radiogroup" aria-label="Filtra per rarit&agrave;"></div>' : ''}
         <ul role="listbox"></ul>
       </div>`;
     const btn = root.querySelector('.bg-pick-btn');
     const pop = root.querySelector('.bg-pick-pop');
     const search = pop.querySelector('input');
     const list = pop.querySelector('ul');
-    const api = { root, items: [], value: null };
+    const rarBox = pop.querySelector('.bg-pick-rar');
+    const api = { root, items: [], value: null, rar: 0 };
+    function drawRarity() {
+      if (!rarBox) return;
+      const levels = [...new Set(api.items.map((it) => it.r).filter(Boolean))].sort((a, b) => b - a);
+      if (api.rar && !levels.includes(api.rar)) api.rar = 0;
+      rarBox.innerHTML = [0].concat(levels).map((r) => `<button type="button" role="radio" data-r="${r}" aria-checked="${api.rar === r}">${r ? `${r}&#9733;` : 'Tutte'}</button>`).join('');
+    }
     function draw() {
       const q = search.value.trim().toLowerCase();
-      const items = api.items.filter((it) => !q || it.n.toLowerCase().includes(q));
-      list.innerHTML = items.slice(0, 120).map((it, i) => {
+      const items = api.items.filter((it) => (!q || it.n.toLowerCase().includes(q)) && (!api.rar || !it.r || it.r === api.rar));
+      let last = null;
+      list.innerHTML = items.slice(0, 160).map((it) => {
         const r = render(it);
-        return `<li><button type="button" role="option" data-i="${api.items.indexOf(it)}" aria-selected="${it === api.value}">${r.icon}<span>${esc(r.name)}${r.meta ? `<small>${r.meta}</small>` : ''}</span></button></li>`;
+        const head = rarity && it.r && it.r !== last ? `<li class="bg-pick-group" role="presentation">${'&#9733;'.repeat(it.r)}</li>` : '';
+        if (it.r) last = it.r;
+        return `${head}<li><button type="button" role="option" data-i="${api.items.indexOf(it)}" aria-selected="${it === api.value}">${r.icon}<span>${esc(r.name)}${r.meta ? `<small>${r.meta}</small>` : ''}</span></button></li>`;
       }).join('') || '<li class="bg-pick-empty">Nessun risultato</li>';
     }
     function paint() {
@@ -111,13 +122,19 @@
       if (btn.disabled) return;
       openPickers.forEach((p) => p !== api && p.close());
       pop.hidden = false; btn.setAttribute('aria-expanded', 'true'); openPickers.add(api);
-      search.value = ''; draw(); search.focus();
+      search.value = ''; drawRarity(); draw(); search.focus();
     };
     api.close = () => { pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); openPickers.delete(api); };
     api.set = (it, silent) => { api.value = it; paint(); if (!silent) onPick(it); };
     api.setItems = (items) => { api.items = items; if (!items.includes(api.value)) api.value = items[0] || null; paint(); };
     api.disable = (off) => { btn.disabled = off; root.classList.toggle('is-off', off); if (off) api.close(); };
     btn.addEventListener('click', () => (pop.hidden ? api.open() : api.close()));
+    if (rarBox) rarBox.addEventListener('click', (e) => {
+      e.stopPropagation(); // i pulsanti vengono ridisegnati: il clic non deve chiudere il menu
+      const b = e.target.closest('button[data-r]');
+      if (!b) return;
+      api.rar = +b.dataset.r; drawRarity(); draw(); search.focus();
+    });
     search.addEventListener('input', draw);
     search.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowDown') { e.preventDefault(); const f = list.querySelector('button'); if (f) f.focus(); }
@@ -210,21 +227,21 @@
       onPick: (c) => { state.char = c; state.scale = null; syncWeapons(); drawStats(); drawMains(); update(); },
     });
     const pWeapon = Picker(form.querySelector('#pick-weapon'), {
-      placeholder: 'Cerca un’arma',
+      placeholder: 'Cerca un’arma', rarity: true,
       render: (w) => ({ icon: `<img src="assets/img/calc/weapons/${w.i}.webp" alt="" width="64" height="64" class="bg-ava bg-r${w.r}" />`, name: w.n, meta: `${'★'.repeat(w.r)} · ATT ${w.atk} · ${w.sub && STAT_ICON[w.sub[0]] ? ICON[STAT_ICON[w.sub[0]]] : ''}${statText(w.sub)}` }),
       onPick: (w) => { state.weapon = w; update(); },
     });
     const setRender = (s) => ({
       icon: s.i ? `<img src="assets/img/calc/sets/${s.i}.webp" alt="" width="64" height="64" class="bg-ava" />` : '<i class="bg-ava bg-ava-none"></i>',
       name: s.n,
-      meta: s.s2 ? `${ICON.cr}2pz +${s.s2}%${s.c4 ? ` · 4pz +${s.c4}%` : ''}` : s.c4 ? `${ICON.cr}4pz fino a +${s.freeze4 || s.c4}%` : '',
+      meta: (s.r ? `${'&#9733;'.repeat(s.r)} · ` : '') + (s.s2 ? `${ICON.cr}2pz +${s.s2}%${s.c4 ? ` · 4pz +${s.c4}%` : ''}` : s.c4 ? `${ICON.cr}4pz fino a +${s.freeze4 || s.c4}%` : ''),
     });
     const pSet1 = Picker(form.querySelector('#pick-set1'), {
-      placeholder: 'Cerca un set', render: setRender,
+      placeholder: 'Cerca un set', rarity: true, render: setRender,
       onPick: (s) => { state.set1 = s; if (state.set2 === s) state.set2 = NONE_SET; syncSets(); update(); },
     });
     const pSet2 = Picker(form.querySelector('#pick-set2'), {
-      placeholder: 'Cerca un set', render: setRender,
+      placeholder: 'Cerca un set', rarity: true, render: setRender,
       onPick: (s) => { state.set2 = s; update(); },
     });
 
