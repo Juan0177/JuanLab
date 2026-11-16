@@ -148,13 +148,17 @@
     105,
     140
    ],
-   "maestria": 250,
-   "note": "Prima 200-300 Maestria elementale (buff inclusi), poi CRIT. Sabbie ATT% ok fuori da Quicken. Ricarica alta solo in Dendro singolo (175-220%).",
+   "maestria": null,
+   "note": "200-300 di Maestria elementale con i buff del team (KQM), poi CRIT. Sabbie ATT% fuori da Quicken.",
    "fonti": [
     "https://keqingmains.com/q/alhaitham-quickguide/",
     "https://genshin.gg/characters/alhaitham/"
    ],
-   "affidabilita": "alta"
+   "affidabilita": "alta",
+   "maestria_team": [
+    200,
+    300
+   ]
   },
   {
    "id": "UI_AvatarIcon_Aloy",
@@ -1597,13 +1601,17 @@
     "atkp"
    ],
    "ricarica": null,
-   "maestria": 200,
-   "note": "DPS Pyro (Vaporizzazione). Maestria elementale ~100 prima, poi CRIT, poi fino a 200-300. Non serve Ricarica di energia (~110% aiuta).",
+   "maestria": null,
+   "note": "Vaporizzazione: Maestria fino a ~100, poi CRIT, poi fino a 200-300; valori con i buff del team (KQM). Niente Ricarica.",
    "fonti": [
     "https://keqingmains.com/q/hu-tao-quickguide/",
-    "https://genshin.gg/characters/hutao/"
+    "https://genshin-builds.com/en/character/hu_tao"
    ],
-   "affidabilita": "media"
+   "affidabilita": "media",
+   "maestria_team": [
+    200,
+    300
+   ]
   },
   {
    "id": "UI_AvatarIcon_Iansan",
@@ -2056,13 +2064,17 @@
     150,
     200
    ],
-   "maestria": 700,
-   "note": "Driver Bloom. Maestria elementale ~700 (Nilou ~900; a C1 500-600). Ricarica di energia 150-285% secondo team e Favonius.",
+   "maestria": null,
+   "note": "Driver Bloom: ~700 di Maestria elementale (~900 con Nilou; 500-600 a C1). Le guide non dicono se con i buff. Ricarica 150-285%.",
    "fonti": [
     "https://keqingmains.com/q/kaveh-quickguide/",
-    "https://genshin.gg/characters/kaveh/"
+    "https://gamewith.net/genshin-impact/article/show/24664"
    ],
-   "affidabilita": "media"
+   "affidabilita": "media",
+   "maestria_team": [
+    700,
+    900
+   ]
   },
   {
    "id": "UI_AvatarIcon_Keqing",
@@ -2357,13 +2369,17 @@
     140,
     210
    ],
-   "maestria": 800,
-   "note": "Supporto Lunare-Bloom: Maestria elementale 800 massimizza i bonus. Ricarica di energia 105-225% secondo i Dendro e le costellazioni.",
+   "maestria": null,
+   "note": "Supporto Lunare-Bloom: 800 di Maestria elementale (in combattimento) massimizzano i suoi bonus. Ricarica 105-225% secondo il team.",
    "fonti": [
     "https://keqingmains.com/q/lauma-quickguide/",
-    "https://genshin-builds.com/en/character/lauma"
+    "https://gamewith.net/genshin-impact/article/show/69281"
    ],
-   "affidabilita": "media"
+   "affidabilita": "media",
+   "maestria_team": [
+    800,
+    800
+   ]
   },
   {
    "id": "UI_AvatarIcon_Layla",
@@ -2735,13 +2751,17 @@
     "er"
    ],
    "ricarica": null,
-   "maestria": 450,
-   "note": "Nessuna guida KQM. Fonti: Maestria elementale 400-500, Tasso di CRIT 60-70%. Ricarica a C0 non quantificata, irrilevante da C1.",
+   "maestria": null,
+   "note": "Nessuna guida KQM: genshin-builds indica 400-500 di Maestria elementale (non dice se con i buff); il bonus allo Stellar-Conduct arriva al massimo a 500.",
    "fonti": [
-    "https://genshin.gg/characters/mitya/",
-    "https://genshin-builds.com/en/character/mitya"
+    "https://genshin-builds.com/en/character/mitya",
+    "https://genshin.gg/characters/mitya/"
    ],
-   "affidabilita": "media"
+   "affidabilita": "media",
+   "maestria_team": [
+    400,
+    500
+   ]
   },
   {
    "id": "UI_AvatarIcon_Mona",
@@ -2848,13 +2868,17 @@
     100,
     140
    ],
-   "maestria": 1000,
-   "note": "1000 di Maestria elementale saturano il passivo A4 ma non sono obbligatori. On-field preferisce Calice Dendro e CRIT.",
+   "maestria": null,
+   "note": "900-1000 di Maestria elementale massimizzano i suoi passivi; il passivo A4 conta anche la Maestria data dagli alleati. Non obbligatorio.",
    "fonti": [
     "https://keqingmains.com/q/nahida-quickguide/",
     "https://genshin.gg/characters/nahida/"
    ],
-   "affidabilita": "alta"
+   "affidabilita": "alta",
+   "maestria_team": [
+    900,
+    1000
+   ]
   },
   {
    "id": "UI_AvatarIcon_Navia",
@@ -2921,13 +2945,17 @@
     100,
     105
    ],
-   "maestria": 800,
-   "note": "800 di Maestria elementale massimizzano la Benedizione lunare. DAN da CRIT in Corona se l'arma non dà DAN da CRIT.",
+   "maestria": null,
+   "note": "800 di Maestria elementale (in combattimento, buff compresi) massimizzano la Benedizione lunare. DAN da CRIT in Corona se l’arma non dà DAN da CRIT.",
    "fonti": [
     "https://keqingmains.com/q/nefer-quickguide/",
     "https://genshin.gg/characters/nefer/"
    ],
-   "affidabilita": "alta"
+   "affidabilita": "alta",
+   "maestria_team": [
+    800,
+    800
+   ]
   },
   {
    "id": "UI_AvatarIcon_Neuvillette",
@@ -4385,13 +4413,17 @@
     100,
     150
    ],
-   "maestria": 200,
-   "note": "In Aggravazione/Lunar-Charged 100-300 Maestria elementale, poi ATT%. In Iperfioritura Sabbie/Calice Maestria elementale. Ricarica 100% da C1.",
+   "maestria": null,
+   "note": "Aggravazione/Lunare: 100-300 di Maestria elementale, poi ATT%. Se innesca poche reazioni, salta la Maestria.",
    "fonti": [
     "https://keqingmains.com/q/yae-quickguide/",
-    "https://genshin.gg/characters/yaemiko/"
+    "https://genshin-builds.com/en/character/yae_miko"
    ],
-   "affidabilita": "alta"
+   "affidabilita": "media",
+   "maestria_team": [
+    100,
+    300
+   ]
   },
   {
    "id": "UI_AvatarIcon_Feiyan",
@@ -4684,5 +4716,6 @@
    ],
    "affidabilita": "alta"
   }
- ]
+ ],
+ "note_schema": "maestria = Maestria elementale consigliata nella schermata del personaggio (fuori dal combattimento), usata per il controllo; maestria_team = [min, max] indicato dalle guide in combattimento, spesso con i buff del team, solo informativo."
 }
