@@ -452,7 +452,7 @@
               <dt><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" class="bg-ico-img" />Corona</dt><dd>${(g.corona || []).map(codeChip).join('') || '&ndash;'}</dd>
               <dt>${ICON.star}Secondarie</dt><dd>${(g.secondarie || []).map(codeChip).join('<i>&rsaquo;</i>') || '&ndash;'}</dd>
               ${g.ricarica ? `<dt>${ICON.er}Ricarica</dt><dd>${g.ricarica[0]}&ndash;${g.ricarica[1]}%</dd>` : ''}
-              ${g.maestria || g.maestria_team ? `<dt>${ICON.em}Maestria</dt><dd>${g.maestria ? `${g.maestria} <small>in schermata</small>` : ''}${g.maestria && g.maestria_team ? '<i>&middot;</i>' : ''}${g.maestria_team ? `${g.maestria_team} <small>con i buff del team</small>` : ''}</dd>` : ''}
+              ${g.maestria || g.maestria_team ? `<dt>${ICON.em}Maestria</dt><dd>${g.maestria ? `${g.maestria} <small>in schermata</small>` : ''}${g.maestria && g.maestria_team ? '<i>&middot;</i>' : ''}${g.maestria_team ? `${[].concat(g.maestria_team).filter((v, i, a) => a.indexOf(v) === i).join('&ndash;')} <small>obiettivo delle guide, in combattimento con i buff</small>` : ''}</dd>` : ''}
             </dl>
             ${g.note ? `<p class="bg-guide-note">${esc(g.note)}</p>` : ''}
             ${hosts.length ? `<p class="bg-guide-src">Fonti: ${hosts.map(([u, h]) => `<a href="${esc(u)}" rel="noopener" target="_blank">${esc(h)}</a>`).join(', ')}</p>` : ''}
