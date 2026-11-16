@@ -22,13 +22,13 @@
     });
   }
 
-  // Calcolatore: CV di un artefatto da CRIT Rate e CRIT DMG
+  // Calcolatore: CV di un manufatto da Tasso di CRIT e DAN da CRIT
   const TIERS = [
     [40, 'top', 't5', 'Pezzo da tenere a vita.'],
     [35, 'ottimo', 't4', 'Difficile trovare di meglio.'],
     [25, 'buono', 't3', 'Va benissimo, cambialo solo con uno migliore.'],
-    [15, 'medio', 't2', 'Ok se ha anche ATK%, HP% o EM utili.'],
-    [0, 'scarso', 't1', 'Tienilo solo per la main stat o il set.'],
+    [15, 'medio', 't2', 'Ok se ha anche ATT%, PS% o Maestria utili.'],
+    [0, 'scarso', 't1', 'Tienilo solo per la statistica principale o il set.'],
   ];
   const form = document.getElementById('calc');
   if (form) {

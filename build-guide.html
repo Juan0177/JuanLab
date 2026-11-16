@@ -4,7 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Come buildare i personaggi: Crit Value e Roll Value | JuanLab</title>
-  <meta name="description" content="Guida rapida per buildare i personaggi di Genshin Impact con screenshot reali: leggere un artefatto, 3-liner e 4-liner, main stats, Crit Value, Roll Value, quando tenere un pezzo e calcolatore del CV." />
+  <meta name="description" content="Guida rapida per buildare i personaggi di Genshin Impact con screenshot reali: leggere un manufatto, statistiche principali e secondarie, Crit Value, Roll Value, quando tenere un pezzo e calcolatore del CV." />
   <link rel="icon" type="image/png" href="assets/img/favicon.png" />
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
   <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
@@ -24,16 +24,16 @@
     <section class="bg-hero" aria-label="Introduzione">
       <img src="assets/img/guides/build/slot-flower.webp" alt="" width="96" height="96" />
       <div>
-        <p class="eyebrow">Guida generale &middot; Artifacts</p>
+        <p class="eyebrow">Guida generale &middot; Manufatti</p>
         <h1>Come buildare i personaggi</h1>
-        <p>Leggere un artefatto, capire quanto vale e decidere se tenerlo. Clicca sugli screenshot per ingrandirli.</p>
+        <p>Leggere un manufatto, capire quanto vale e decidere se tenerlo. Clicca sugli screenshot per ingrandirli.</p>
       </div>
     </section>
 
     <nav class="bg-toc" aria-label="Indice">
-      <a href="#bg-leggere">1. Leggere un pezzo</a>
-      <a href="#bg-liner">2. 3 o 4 substats</a>
-      <a href="#bg-main">3. Main stats</a>
+      <a href="#bg-leggere">1. Leggere un manufatto</a>
+      <a href="#bg-liner">2. 3 o 4 secondarie</a>
+      <a href="#bg-main">3. Statistica principale</a>
       <a href="#bg-cv">4. Crit Value</a>
       <a href="#bg-rv">5. Roll Value</a>
       <a href="#bg-build">6. La build</a>
@@ -44,89 +44,89 @@
     <!-- 1 -->
     <section class="section" aria-labelledby="bg-leggere">
       <div class="section-head">
-        <h2 id="bg-leggere">1. Leggere un artefatto</h2>
+        <h2 id="bg-leggere">1. Leggere un manufatto</h2>
         <span>Il numero nel cerchio</span>
       </div>
       <div class="bg-pair">
         <figure class="evidence-figure">
-          <img src="assets/img/guides/build/sands-er-upgrade.webp" alt="Sands a +20 con main stat Energy Recharge: DEF 7,3%, CRIT Rate 9,7% con 2 upgrade, ATK 4,7%, CRIT DMG 21,0% con 2 upgrade" width="620" height="330" loading="lazy" />
-          <figcaption>Sands ER: 2 upgrade in CRIT Rate, 2 in CRIT DMG.</figcaption>
+          <img src="assets/img/guides/build/sands-er-upgrade.webp" alt="Sabbie del tempo a +20 con statistica principale Ricarica di energia: DIF 7,3%, Tasso di CRIT 9,7% con 2 potenziamenti, ATT 4,7%, DAN da CRIT 21,0% con 2 potenziamenti" width="620" height="330" loading="lazy" />
+          <figcaption>Sabbie Ricarica: 2 potenziamenti nel Tasso di CRIT, 2 nei DAN da CRIT.</figcaption>
         </figure>
         <figure class="evidence-figure">
-          <img src="assets/img/guides/build/flower-xenogenic.webp" alt="Flower a +20: HP 8,7% con 1 upgrade, DEF 6,6%, CRIT DMG 23,3% con 3 upgrade, CRIT Rate 6,2% con 1 upgrade" width="620" height="330" loading="lazy" />
-          <figcaption>Flower: 3 upgrade su 5 finiti in CRIT DMG.</figcaption>
+          <img src="assets/img/guides/build/flower-xenogenic.webp" alt="Fiore della vita a +20: PS 8,7% con 1 potenziamento, DIF 6,6%, DAN da CRIT 23,3% con 3 potenziamenti, Tasso di CRIT 6,2% con 1 potenziamento" width="620" height="330" loading="lazy" />
+          <figcaption>Fiore: 3 potenziamenti su 5 finiti nei DAN da CRIT.</figcaption>
         </figure>
       </div>
       <ul class="bg-points">
-        <li><strong>In alto la main stat</strong>, sotto i 4 substats.</li>
-        <li><strong>Il numero nel cerchio</strong> dice quante volte quel substat &egrave; salito. Nessun cerchio = mai.</li>
-        <li>Un 5&#9733; riceve <strong>5 upgrade</strong> (a +4, +8, +12, +16, +20): pi&ugrave; ne finiscono nelle stat giuste, meglio &egrave;.</li>
+        <li><strong>In alto la statistica principale</strong>, sotto le 4 statistiche secondarie.</li>
+        <li><strong>Il numero nel cerchio</strong> dice quante volte quella statistica &egrave; salita. Nessun cerchio = mai.</li>
+        <li>Un 5&#9733; riceve <strong>5 potenziamenti</strong> (a +4, +8, +12, +16, +20): pi&ugrave; ne finiscono nelle statistiche giuste, meglio &egrave;.</li>
       </ul>
     </section>
 
     <!-- 2 -->
     <section class="section" aria-labelledby="bg-liner">
       <div class="section-head">
-        <h2 id="bg-liner">2. 3 o 4 substats</h2>
-        <span>Il substat grigio</span>
+        <h2 id="bg-liner">2. 3 o 4 statistiche secondarie</h2>
+        <span>Quella in grigio</span>
       </div>
       <div class="bg-pair">
         <figure class="evidence-figure">
-          <img src="assets/img/guides/build/tsuba-3-liner.webp" alt="Flower a +0 con tre substats attivi e CRIT DMG 6,2% grigio, con la scritta unactivated" width="640" height="687" loading="lazy" />
-          <figcaption>Il 4&deg; substat &egrave; CRIT DMG: a +4 diventa doppio crit.</figcaption>
+          <img src="assets/img/guides/build/tsuba-3-liner.webp" alt="Fiore della vita a +0 con tre statistiche secondarie attive e DAN da CRIT 6,2% in grigio, non ancora attiva" width="640" height="687" loading="lazy" />
+          <figcaption>La 4&ordf; &egrave; DAN da CRIT: a +4 diventa doppio CRIT.</figcaption>
         </figure>
         <figure class="evidence-figure">
-          <img src="assets/img/guides/build/kabuto-3-liner.webp" alt="Circlet a +0 con main stat CRIT Rate, substats CRIT DMG, DEF%, Elemental Mastery e Energy Recharge grigio unactivated" width="640" height="735" loading="lazy" />
-          <figcaption>Circlet CRIT Rate con CRIT DMG: da potenziare.</figcaption>
+          <img src="assets/img/guides/build/kabuto-3-liner.webp" alt="Corona della ragione a +0 con Tasso di CRIT principale; secondarie DAN da CRIT, DIF%, Maestria elementale e Ricarica di energia in grigio" width="640" height="735" loading="lazy" />
+          <figcaption>Corona Tasso di CRIT con DAN da CRIT: da potenziare.</figcaption>
         </figure>
       </div>
       <div class="bg-facts">
-        <div><strong>3-liner</strong><span>3 substats + 1 grigio &ldquo;unactivated&rdquo;, che arriva a +4.</span><b>8 roll</b></div>
-        <div><strong>4-liner</strong><span>4 substats attivi da subito.</span><b>9 roll</b></div>
+        <div><strong>3 secondarie</strong><span>3 attive + 1 in grigio, che si attiva a +4.</span><b>8 roll</b></div>
+        <div><strong>4 secondarie</strong><span>Tutte e 4 attive da subito.</span><b>9 roll</b></div>
       </div>
     </section>
 
     <!-- 3 -->
     <section class="section" aria-labelledby="bg-main">
       <div class="section-head">
-        <h2 id="bg-main">3. Main stats</h2>
-        <span>Flower e Plume sono fisse</span>
+        <h2 id="bg-main">3. Statistica principale</h2>
+        <span>Fiore e Piuma sono fissi</span>
       </div>
       <div class="table-wrap">
         <table class="guide-table bg-main-table">
           <thead><tr>
             <th scope="col">Scala su</th>
-            <th scope="col"><img src="assets/img/guides/build/slot-sands.webp" alt="" width="96" height="96" />Sands</th>
-            <th scope="col"><img src="assets/img/guides/build/slot-goblet.webp" alt="" width="96" height="96" />Goblet</th>
-            <th scope="col"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" />Circlet</th>
+            <th scope="col"><img src="assets/img/guides/build/slot-sands.webp" alt="" width="96" height="96" />Sabbie del tempo</th>
+            <th scope="col"><img src="assets/img/guides/build/slot-goblet.webp" alt="" width="96" height="96" />Calice eonotemo</th>
+            <th scope="col"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" />Corona della ragione</th>
           </tr></thead>
           <tbody>
-            <tr><th scope="row">ATK</th><td>ATK%</td><td>DMG elementale</td><td>CRIT</td></tr>
-            <tr><th scope="row">HP</th><td>HP%</td><td>DMG elementale</td><td>CRIT</td></tr>
-            <tr><th scope="row">DEF</th><td>DEF%</td><td>DMG elementale</td><td>CRIT</td></tr>
-            <tr><th scope="row">EM + CRIT</th><td>EM</td><td>EM / DMG el.</td><td>CRIT</td></tr>
-            <tr><th scope="row">Support</th><td>ER / HP%</td><td>HP%</td><td>HP% / Healing</td></tr>
+            <tr><th scope="row">ATT</th><td>ATT%</td><td>Bonus DAN elementale</td><td>CRIT</td></tr>
+            <tr><th scope="row">PS</th><td>PS%</td><td>Bonus DAN elementale</td><td>CRIT</td></tr>
+            <tr><th scope="row">DIF</th><td>DIF%</td><td>Bonus DAN elementale</td><td>CRIT</td></tr>
+            <tr><th scope="row">Maestria + CRIT</th><td>Maestria</td><td>Maestria / Bonus DAN</td><td>CRIT</td></tr>
+            <tr><th scope="row">Supporto</th><td>Ricarica / PS%</td><td>PS%</td><td>PS% / Bonus guarigione</td></tr>
           </tbody>
         </table>
       </div>
-      <p class="bg-tip">Serve tanta Energy Recharge? Sands ER al posto di quella &ldquo;giusta&rdquo;, come quella nello screenshot del punto 1.</p>
+      <p class="bg-tip">Serve tanta Ricarica di energia? Sabbie con Ricarica al posto di quelle &ldquo;giuste&rdquo;, come nello screenshot del punto 1.</p>
     </section>
 
     <!-- 4 -->
     <section class="section" aria-labelledby="bg-cv">
       <div class="section-head">
         <h2 id="bg-cv">4. Crit Value (CV)</h2>
-        <span>Quanto crit c&rsquo;&egrave; nei substats</span>
+        <span>Quanto CRIT c&rsquo;&egrave; nelle secondarie</span>
       </div>
-      <div class="bg-formula">CV = 2 &times; CRIT Rate + CRIT DMG</div>
+      <div class="bg-formula">CV = 2 &times; Tasso di CRIT + DAN da CRIT</div>
       <div class="bg-pair">
         <figure class="evidence-figure">
-          <img src="assets/img/guides/build/sandrone-goblet.webp" alt="Goblet ATK% a +20: ATK +37, CRIT DMG 10,9%, Energy Recharge 4,5%, CRIT Rate 10,1%" width="800" height="584" loading="lazy" />
+          <img src="assets/img/guides/build/sandrone-goblet.webp" alt="Calice eonotemo ATT% a +20: ATT +37, DAN da CRIT 10,9%, Ricarica di energia 4,5%, Tasso di CRIT 10,1%" width="800" height="584" loading="lazy" />
           <figcaption>2 &times; 10,1 + 10,9 = <strong>31,1 CV</strong>, buono.</figcaption>
         </figure>
         <figure class="evidence-figure">
-          <img src="assets/img/guides/build/sandrone-plume.webp" alt="Plume a +20: Elemental Mastery 42, DEF 19, ATK 14,0%, CRIT DMG 12,4%" width="800" height="629" loading="lazy" />
-          <figcaption>Solo CRIT DMG: <strong>12,4 CV</strong>, scarso&hellip; ma ha 14% di ATK.</figcaption>
+          <img src="assets/img/guides/build/sandrone-plume.webp" alt="Piuma della morte a +20: Maestria elementale 42, DIF 19, ATT 14,0%, DAN da CRIT 12,4%" width="800" height="629" loading="lazy" />
+          <figcaption>Solo DAN da CRIT: <strong>12,4 CV</strong>, scarso&hellip; ma ha 14% di ATT.</figcaption>
         </figure>
       </div>
       <div class="bg-scale" aria-label="Fasce indicative del CV di un pezzo">
@@ -145,12 +145,12 @@
         <h2 id="bg-rv">5. Roll Value (RV)</h2>
         <span>Quando il CV inganna</span>
       </div>
-      <p class="bg-lead">Il CV vede solo i crit. Il <strong>Roll Value</strong> conta i roll in <em>tutte</em> le stat utili al personaggio (crit + ATK%, HP%, EM&hellip;): 100% = un roll pieno.</p>
+      <p class="bg-lead">Il CV vede solo i CRIT. Il <strong>Roll Value</strong> conta i roll in <em>tutte</em> le statistiche utili al personaggio (CRIT + ATT%, PS%, Maestria&hellip;): 100% = un roll pieno.</p>
 
       <div class="bg-compare">
         <figure class="evidence-figure">
-          <img src="assets/img/guides/build/nefer-plume-confronto.webp" alt="Confronto tra due Plume di Nefer: equipaggiata EM 47, ATK 9,9%, DEF 58, CRIT DMG 10,9%; alternativa CRIT DMG 18,7%, DEF 5,8%, HP 5,3%, CRIT Rate 9,7%" width="900" height="432" loading="lazy" />
-          <figcaption>Nefer &middot; Plume: a sinistra quella equipaggiata.</figcaption>
+          <img src="assets/img/guides/build/nefer-plume-confronto.webp" alt="Confronto tra due Piume della morte di Nefer: equipaggiata Maestria elementale 47, ATT 9,9%, DIF 58, DAN da CRIT 10,9%; alternativa DAN da CRIT 18,7%, DIF 5,8%, PS 5,3%, Tasso di CRIT 9,7%" width="900" height="432" loading="lazy" />
+          <figcaption>Nefer &middot; Piuma: a sinistra quella equipaggiata.</figcaption>
         </figure>
         <div class="bg-verdict">
           <div><small>Equipaggiata</small><span class="t1"><b>10,9</b> CV</span><span class="t2"><b>342%</b> RV</span></div>
@@ -161,28 +161,28 @@
 
       <div class="bg-compare">
         <figure class="evidence-figure">
-          <img src="assets/img/guides/build/mavuika-confronto.webp" alt="Confronto tra due Flower di Mavuika: equipaggiata CRIT DMG 14,8%, ATK 15,7%, ATK 19, CRIT Rate 7,0%; alternativa CRIT Rate 9,7%, CRIT DMG 17,9%, ATK 4,1%, Elemental Mastery 47" width="755" height="410" loading="lazy" />
-          <figcaption>Mavuika &middot; Flower: a sinistra quella equipaggiata.</figcaption>
+          <img src="assets/img/guides/build/mavuika-confronto.webp" alt="Confronto tra due Fiori della vita di Mavuika: equipaggiato DAN da CRIT 14,8%, ATT 15,7%, ATT 19, Tasso di CRIT 7,0%; alternativa Tasso di CRIT 9,7%, DAN da CRIT 17,9%, ATT 4,1%, Maestria elementale 47" width="755" height="410" loading="lazy" />
+          <figcaption>Mavuika &middot; Fiore: a sinistra quello equipaggiato.</figcaption>
         </figure>
         <div class="bg-verdict">
-          <div><small>Equipaggiata</small><span class="t3"><b>28,8</b> CV</span><span class="t5"><b>640%</b> RV</span></div>
+          <div><small>Equipaggiato</small><span class="t3"><b>28,8</b> CV</span><span class="t5"><b>640%</b> RV</span></div>
           <div><small>Alternativa</small><span class="t4"><b>37,3</b> CV</span><span class="t3"><b>550%</b> RV</span></div>
-          <p class="warn">Dubbio: pi&ugrave; CV, ma 2 roll di ATK% in meno. Tieni quella che ti lascia pi&ugrave; vicino all&rsquo;1:2.</p>
+          <p class="warn">Dubbio: pi&ugrave; CV, ma 2 roll di ATT% in meno. Tieni quello che ti lascia pi&ugrave; vicino all&rsquo;1:2.</p>
         </div>
       </div>
 
       <div class="bg-compare">
         <figure class="evidence-figure">
-          <img src="assets/img/guides/build/nefer-flower-confronto.webp" alt="Confronto tra due Flower di Nefer: equipaggiata DEF 5,1%, Elemental Mastery 77, CRIT DMG 7,0%, CRIT Rate 6,6%; alternativa Elemental Mastery 40, CRIT DMG 13,2%, CRIT Rate 6,6%, DEF 13,9%" width="900" height="498" loading="lazy" />
-          <figcaption>Nefer &middot; Flower: a sinistra quella equipaggiata.</figcaption>
+          <img src="assets/img/guides/build/nefer-flower-confronto.webp" alt="Confronto tra due Fiori della vita di Nefer: equipaggiato DIF 5,1%, Maestria elementale 77, DAN da CRIT 7,0%, Tasso di CRIT 6,6%; alternativa Maestria elementale 40, DAN da CRIT 13,2%, Tasso di CRIT 6,6%, DIF 13,9%" width="900" height="498" loading="lazy" />
+          <figcaption>Nefer &middot; Fiore: a sinistra quello equipaggiato.</figcaption>
         </figure>
         <div class="bg-verdict">
-          <div><small>Equipaggiata</small><span class="t2"><b>20,2</b> CV</span><span class="t4"><b>590%</b> RV</span></div>
+          <div><small>Equipaggiato</small><span class="t2"><b>20,2</b> CV</span><span class="t4"><b>590%</b> RV</span></div>
           <div><small>Alternativa</small><span class="t3"><b>26,4</b> CV</span><span class="t3"><b>511%</b> RV</span></div>
-          <p class="ok">Tieni: 3 roll di EM, che per Nefer valgono.</p>
+          <p class="ok">Tieni: 3 roll di Maestria, che per Nefer valgono.</p>
         </div>
       </div>
-      <p class="ref-note">Pezzo singolo: 300% discreto, 450% buono, 600%+ ottimo. Stat utili usate: CRIT + ATK% per Mavuika, CRIT + EM per Nefer.</p>
+      <p class="ref-note">Pezzo singolo: 300% discreto, 450% buono, 600%+ ottimo. Statistiche utili usate: CRIT + ATT% per Mavuika, CRIT + Maestria elementale per Nefer.</p>
     </section>
 
     <!-- 6 -->
@@ -197,17 +197,17 @@
           <figcaption><strong>DPS</strong>: 72% / 165,6% = 1 : 2,3, vicino all&rsquo;1:2.</figcaption>
         </figure>
         <figure class="evidence-figure">
-          <img src="assets/img/guides/build/qiqi-stats.webp" alt="Statistiche di Qiqi: CRIT Rate 14,3%, CRIT DMG 88,9%, Healing Bonus 11,1%, Energy Recharge 158,3%" width="1200" height="642" loading="lazy" />
-          <figcaption><strong>Healer</strong> (Qiqi): i crit non contano, conta l&rsquo;ER (158%).</figcaption>
+          <img src="assets/img/guides/build/qiqi-stats.webp" alt="Statistiche di Qiqi: Tasso di CRIT 14,3%, DAN da CRIT 88,9%, Bonus di guarigione 11,1%, Ricarica di energia 158,3%" width="1200" height="642" loading="lazy" />
+          <figcaption><strong>Guaritrice</strong> (Qiqi): i CRIT non contano, conta la Ricarica (158%).</figcaption>
         </figure>
       </div>
       <div class="bg-targets">
-        <div class="kpi"><strong>Rapporto</strong><span>1 : 2</span><small>CRIT Rate : DMG</small></div>
-        <div class="kpi"><strong>CRIT Rate</strong><span>60&ndash;80%</span><small>meno se il set lo d&agrave;</small></div>
-        <div class="kpi"><strong>CRIT DMG</strong><span>140%+</span><small>pi&ugrave; &egrave; meglio</small></div>
-        <div class="kpi"><strong>ER</strong><span>quanto basta</span><small>Burst sempre pronto</small></div>
+        <div class="kpi"><strong>Rapporto</strong><span>1 : 2</span><small>Tasso : DAN da CRIT</small></div>
+        <div class="kpi"><strong>Tasso di CRIT</strong><span>60&ndash;80%</span><small>meno se il set lo d&agrave;</small></div>
+        <div class="kpi"><strong>DAN da CRIT</strong><span>140%+</span><small>pi&ugrave; &egrave; meglio</small></div>
+        <div class="kpi"><strong>Ricarica</strong><span>quanto basta</span><small>Tecnica suprema sempre pronta</small></div>
       </div>
-      <p class="bg-tip">Set come Marechaussee Hunter o Obsidian Codex danno CRIT Rate solo in combattimento: in schermata il rapporto sembra sbilanciato, ma va bene.</p>
+      <p class="bg-tip">Set come Cacciatore della Mar&eacute;chauss&eacute;e o Codice d&rsquo;ossidiana danno Tasso di CRIT solo in combattimento: in schermata il rapporto sembra sbilanciato, ma va bene.</p>
     </section>
 
     <!-- 7 -->
@@ -218,13 +218,13 @@
       </div>
       <div class="split">
         <figure class="evidence-figure">
-          <img src="assets/img/guides/build/sandrone-flower-0.webp" alt="Flower a +0 con ATK 5,3%, DEF 16, CRIT Rate 3,9% ed Elemental Mastery 16" width="550" height="480" loading="lazy" />
-          <figcaption>4-liner con CRIT Rate e ATK%: vale un tentativo fino a +8.</figcaption>
+          <img src="assets/img/guides/build/sandrone-flower-0.webp" alt="Fiore della vita a +0 con ATT 5,3%, DIF 16, Tasso di CRIT 3,9% e Maestria elementale 16" width="550" height="480" loading="lazy" />
+          <figcaption>4 secondarie con Tasso di CRIT e ATT%: vale un tentativo fino a +8.</figcaption>
         </figure>
         <ol class="bg-checks">
-          <li><span>1</span><div><strong>Main stat giusta?</strong><small>Su Sands, Goblet e Circlet: se no, fodder.</small></div></li>
-          <li><span>2</span><div><strong>Almeno un crit + una stat utile?</strong><small>Conta anche il substat grigio del 3-liner.</small></div></li>
-          <li><span>3</span><div><strong>Porta a +4, poi a +8</strong><small>Due upgrade in stat inutili? Fermati.</small></div></li>
+          <li><span>1</span><div><strong>Statistica principale giusta?</strong><small>Su Sabbie, Calice e Corona: se no, usalo per potenziare gli altri.</small></div></li>
+          <li><span>2</span><div><strong>Almeno un CRIT + una statistica utile?</strong><small>Conta anche quella in grigio.</small></div></li>
+          <li><span>3</span><div><strong>Porta a +4, poi a +8</strong><small>Due potenziamenti in statistiche inutili? Fermati.</small></div></li>
           <li><span>4</span><div><strong>Batte il pezzo equipaggiato?</strong><small>Confronta CV e RV, come al punto 5.</small></div></li>
         </ol>
       </div>
@@ -234,36 +234,36 @@
     <section class="section" aria-labelledby="bg-calc">
       <div class="section-head">
         <h2 id="bg-calc">8. Calcolatore</h2>
-        <span>CV di un artefatto</span>
+        <span>CV di un manufatto</span>
       </div>
       <form class="bg-calc" id="calc" autocomplete="off">
-        <label>CRIT Rate % &times; 2<input type="number" name="cr" step="0.1" min="0" max="60" value="10.1" inputmode="decimal" /></label>
+        <label>Tasso di CRIT % &times; 2<input type="number" name="cr" step="0.1" min="0" max="60" value="10.1" inputmode="decimal" /></label>
         <span class="bg-calc-op" aria-hidden="true">+</span>
-        <label>CRIT DMG %<input type="number" name="cd" step="0.1" min="0" max="60" value="10.9" inputmode="decimal" /></label>
+        <label>DAN da CRIT %<input type="number" name="cd" step="0.1" min="0" max="60" value="10.9" inputmode="decimal" /></label>
         <output class="bg-calc-result" id="calc-out" aria-live="polite"></output>
       </form>
-      <p class="ref-note">Scrivi i due substat crit del pezzo (0 se non c&rsquo;&egrave;). Non contare la main stat del Circlet.</p>
+      <p class="ref-note">Scrivi le due secondarie CRIT del pezzo (0 se manca). Non contare la statistica principale della Corona.</p>
     </section>
 
     <details class="section bg-more">
       <summary><span>Le 12 build del mio ex account</span><small>CV e RV di ogni personaggio</small></summary>
-      <p>Dati della vetrina del <a href="https://akasha.cv/profile/713793020" rel="noopener">mio ex account</a> letti da Enka.network il 16/11/2026, solo substats. Clicca le intestazioni per ordinare.</p>
+      <p>Dati della vetrina del <a href="https://akasha.cv/profile/713793020" rel="noopener">mio ex account</a> letti da Enka.network il 16/11/2026, solo statistiche secondarie. Clicca le intestazioni per ordinare.</p>
       <div class="table-wrap">
         <table class="guide-table sortable bg-builds">
           <thead><tr>
             <th scope="col">Personaggio</th>
             <th scope="col">Profilo</th>
             <th scope="col">Set</th>
-            <th scope="col" data-type="num">CRIT Rate / DMG</th>
-            <th scope="col" data-type="num">ER</th>
+            <th scope="col" data-type="num">Tasso / DAN CRIT</th>
+            <th scope="col" data-type="num">Ricarica</th>
             <th scope="col" data-type="num">CV</th>
             <th scope="col" data-type="num">RV</th>
           </tr></thead>
           <tbody>
             <tr>
               <td data-sort="Skirk"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_SkirkNew.webp" alt="" width="256" height="256" loading="lazy" />Skirk</span></td>
-              <td data-sort="atk">ATK + CRIT</td>
-              <td>4pz Finale of the Deep Galleries</td>
+              <td data-sort="atk">ATT + CRIT</td>
+              <td>4pz Finale delle gallerie profonde</td>
               <td data-sort="75.7">75,7% / 237,6%<small>1 : 3,1</small></td>
               <td data-sort="104.5">104,5%</td>
               <td data-sort="184.2"><strong>184,2</strong></td>
@@ -271,8 +271,8 @@
             </tr>
             <tr>
               <td data-sort="Mavuika"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Mavuika.webp" alt="" width="256" height="256" loading="lazy" />Mavuika</span></td>
-              <td data-sort="atk">ATK + CRIT</td>
-              <td>4pz Obsidian Codex</td>
+              <td data-sort="atk">ATT + CRIT</td>
+              <td>4pz Codice d&rsquo;ossidiana</td>
               <td data-sort="56.1">56,1% / 253,9%<small>1 : 4,5</small></td>
               <td data-sort="100.0">100,0%</td>
               <td data-sort="183.4"><strong>183,4</strong></td>
@@ -280,8 +280,8 @@
             </tr>
             <tr>
               <td data-sort="Ineffa"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Ineffa.webp" alt="" width="256" height="256" loading="lazy" />Ineffa</span></td>
-              <td data-sort="atk">ATK + CRIT</td>
-              <td>2pz Gladiator&rsquo;s Finale + 2pz Wanderer&rsquo;s Troupe</td>
+              <td data-sort="atk">ATT + CRIT</td>
+              <td>2pz Ultimo atto del gladiatore + 2pz Compagnia del vagabondo</td>
               <td data-sort="66.2">66,2% / 275,5%<small>1 : 4,2</small></td>
               <td data-sort="100.0">100,0%</td>
               <td data-sort="181.2"><strong>181,2</strong></td>
@@ -289,8 +289,8 @@
             </tr>
             <tr>
               <td data-sort="Nefer"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Nefer.webp" alt="" width="256" height="256" loading="lazy" />Nefer</span></td>
-              <td data-sort="emcrit">EM + CRIT</td>
-              <td>4pz Night of the Sky&rsquo;s Unveiling</td>
+              <td data-sort="emcrit">Maestria + CRIT</td>
+              <td>4pz Notte della rivelazione celeste</td>
               <td data-sort="56.6">56,6% / 314,2%<small>1 : 5,6</small></td>
               <td data-sort="105.2">105,2%</td>
               <td data-sort="162.4"><strong>162,4</strong></td>
@@ -298,8 +298,8 @@
             </tr>
             <tr>
               <td data-sort="Flins"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Flins.webp" alt="" width="256" height="256" loading="lazy" />Flins</span></td>
-              <td data-sort="atk">ATK + CRIT</td>
-              <td>4pz Night of the Sky&rsquo;s Unveiling</td>
+              <td data-sort="atk">ATT + CRIT</td>
+              <td>4pz Notte della rivelazione celeste</td>
               <td data-sort="63.3">63,3% / 252,5%<small>1 : 4,0</small></td>
               <td data-sort="114.9">114,9%</td>
               <td data-sort="152.2"><strong>152,2</strong></td>
@@ -307,8 +307,8 @@
             </tr>
             <tr>
               <td data-sort="Neuvillette"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Neuvillette.webp" alt="" width="256" height="256" loading="lazy" />Neuvillette</span></td>
-              <td data-sort="hp">HP + CRIT</td>
-              <td>4pz Marechaussee Hunter</td>
+              <td data-sort="hp">PS + CRIT</td>
+              <td>4pz Cacciatore della Mar&eacute;chauss&eacute;e</td>
               <td data-sort="63.1">63,1% / 254,0%<small>1 : 4,0</small></td>
               <td data-sort="116.8">116,8%</td>
               <td data-sort="146.1"><strong>146,1</strong></td>
@@ -316,8 +316,8 @@
             </tr>
             <tr>
               <td data-sort="Escoffier"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Escoffier.webp" alt="" width="256" height="256" loading="lazy" />Escoffier</span></td>
-              <td data-sort="atk-er">ATK + CRIT + ER</td>
-              <td>4pz Noblesse Oblige</td>
+              <td data-sort="atk-er">ATT + CRIT + Ricarica</td>
+              <td>4pz Noblesse oblige</td>
               <td data-sort="55.3">55,3% / 193,1%<small>1 : 3,5</small></td>
               <td data-sort="207.5">207,5%</td>
               <td data-sort="138.8"><strong>138,8</strong></td>
@@ -325,8 +325,8 @@
             </tr>
             <tr>
               <td data-sort="Columbina"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Columbina.webp" alt="" width="256" height="256" loading="lazy" />Columbina</span></td>
-              <td data-sort="hp">HP + CRIT</td>
-              <td>4pz Aubade of Morningstar and Moon</td>
+              <td data-sort="hp">PS + CRIT</td>
+              <td>4pz Aubade della stella del mattino e della luna</td>
               <td data-sort="79.0">79,0% / 225,2%<small>1 : 2,9</small></td>
               <td data-sort="122.0">122,0%</td>
               <td data-sort="134.4"><strong>134,4</strong></td>
@@ -334,8 +334,8 @@
             </tr>
             <tr>
               <td data-sort="Furina"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Furina.webp" alt="" width="256" height="256" loading="lazy" />Furina</span></td>
-              <td data-sort="hp-er">HP + CRIT + ER</td>
-              <td>4pz Tenacity of the Millelith</td>
+              <td data-sort="hp-er">PS + CRIT + Ricarica</td>
+              <td>4pz Perseveranza dei Milleliti</td>
               <td data-sort="52.2">52,2% / 95,9%<small>1 : 1,8</small></td>
               <td data-sort="280.4">280,4%</td>
               <td data-sort="101.8"><strong>101,8</strong></td>
@@ -343,8 +343,8 @@
             </tr>
             <tr>
               <td data-sort="Lauma"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Lauma.webp" alt="" width="256" height="256" loading="lazy" />Lauma</span></td>
-              <td data-sort="sup-em">Support EM</td>
-              <td>4pz Silken Moon&rsquo;s Serenade</td>
+              <td data-sort="sup-em">Supporto Maestria</td>
+              <td>4pz Serenata della luna di seta</td>
               <td data-sort="26.0">26,0% / 69,4%<small>1 : 2,7</small></td>
               <td data-sort="232.0">232,0%</td>
               <td data-sort="61.4"><strong>61,4</strong></td>
@@ -352,8 +352,8 @@
             </tr>
             <tr>
               <td data-sort="Xilonen"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Xilonen.webp" alt="" width="256" height="256" loading="lazy" />Xilonen</span></td>
-              <td data-sort="sup-def">Support DEF</td>
-              <td>4pz Instructor <small>alcuni pezzi a +16</small></td>
+              <td data-sort="sup-def">Supporto DIF</td>
+              <td>4pz Istruttore <small>alcuni pezzi a +16</small></td>
               <td data-sort="18.6">18,6% / 65,5%<small>1 : 3,5</small></td>
               <td data-sort="129.0">129,0%</td>
               <td data-sort="42.7"><strong>42,7</strong></td>
@@ -361,8 +361,8 @@
             </tr>
             <tr>
               <td data-sort="Citlali"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Citlali.webp" alt="" width="256" height="256" loading="lazy" />Citlali</span></td>
-              <td data-sort="sup-em">Support EM</td>
-              <td>4pz Scroll of the Hero of Cinder City</td>
+              <td data-sort="sup-em">Supporto Maestria</td>
+              <td>4pz Rotolo dell&rsquo;Eroe della Citt&agrave; di cenere</td>
               <td data-sort="17.0">17,0% / 64,0%<small>1 : 3,8</small></td>
               <td data-sort="204.3">204,3%</td>
               <td data-sort="38.0"><strong>38,0</strong></td>
@@ -371,7 +371,7 @@
           </tbody>
         </table>
       </div>
-      <p class="ref-note">Escoffier ha poco CV ma il Roll Value pi&ugrave; alto: i suoi roll sono in ER, che le serve. Citlali, Lauma e Xilonen sono Support: per loro il CV non conta.</p>
+      <p class="ref-note">Escoffier ha poco CV ma il Roll Value pi&ugrave; alto: i suoi roll sono in Ricarica di energia, che le serve. Citlali, Lauma e Xilonen sono di supporto: per loro il CV non conta.</p>
     </details>
 
     <p class="source-note">Valori dei roll da <a href="https://keqingmains.com/misc/artifacts/" rel="noopener">KeqingMains</a>. Screenshot dal gioco; build della vetrina da <a href="https://enka.network/" rel="noopener">Enka.network</a>. Fasce di CV e RV indicative.</p>
