@@ -1,0 +1,562 @@
+<!doctype html>
+<html lang="it" data-theme="dark">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Come buildare i personaggi: Crit Value e Roll Value | JuanLab</title>
+  <meta name="description" content="Guida quasi universale per buildare i personaggi di Genshin Impact: main stats per slot, substats e valori dei roll, Crit Value per artefatto e per build, Roll Value, quando tenere o buttare un pezzo e calcolatore." />
+  <link rel="icon" type="image/png" href="assets/img/favicon.png" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@picocss/pico@2/css/pico.min.css" />
+  <link rel="stylesheet" href="assets/css/style.css?v=20260923-1" />
+  <link rel="stylesheet" href="assets/css/guide-page.css?v=20261109-1" />
+  <link rel="stylesheet" href="assets/css/build-guide.css?v=20261116-1" />
+</head>
+<body>
+  <canvas id="stars"></canvas>
+
+  <main class="container guide-page bg-page">
+    <header class="guide-header">
+      <a href="guide.html">&larr; Torna alle Guide</a>
+      <a href="#bg-calc">Vai al calcolatore &rarr;</a>
+    </header>
+
+    <section class="bg-hero" aria-label="Introduzione">
+      <img src="assets/img/artifacts/Noblesse_Oblige.png" alt="" width="128" height="128" />
+      <div>
+        <p class="eyebrow">Guida generale &middot; Artifacts</p>
+        <h1>Come buildare (quasi) tutti i personaggi</h1>
+        <p>Main stats, substats, <strong>Crit Value</strong> e <strong>Roll Value</strong> spiegati da zero, con le regole pratiche per capire se un artefatto &egrave; da tenere, da potenziare o da dare in pasto. Alla fine c&rsquo;&egrave; un <a href="#bg-calc">calcolatore</a>.</p>
+      </div>
+    </section>
+
+    <nav class="bg-toc" aria-label="Indice">
+      <a href="#bg-universale">1. Universale?</a>
+      <a href="#bg-main">2. Main stats</a>
+      <a href="#bg-sub">3. Substats e roll</a>
+      <a href="#bg-cv">4. Crit Value</a>
+      <a href="#bg-rv">5. Roll Value</a>
+      <a href="#bg-casi">Le build della vetrina</a>
+      <a href="#bg-template">6. Build tipo</a>
+      <a href="#bg-tenere">7. Tenere o buttare</a>
+      <a href="#bg-calc">8. Calcolatore</a>
+      <a href="#bg-glossario">9. Glossario</a>
+    </nav>
+
+    <!-- 1 -->
+    <section class="section" aria-labelledby="bg-universale">
+      <div class="section-head">
+        <h2 id="bg-universale">1. Cosa vuol dire &ldquo;universale&rdquo;</h2>
+        <span>Il modello e i suoi limiti</span>
+      </div>
+      <p>La maggior parte dei personaggi che fanno danno segue lo stesso schema: <strong>una stat di scaling</strong> (di solito ATK, a volte HP, DEF o Elemental Mastery), <strong>un bonus al danno</strong> sul Goblet e <strong>CRIT Rate e CRIT DMG</strong> il pi&ugrave; alti possibile, con l&rsquo;Energy Recharge che basta per avere il Burst pronto a ogni rotazione.</p>
+      <div class="decision-grid">
+        <div class="decision-box ok">
+          <h3>Funziona bene per</h3>
+          <ul>
+            <li>DPS e Sub-DPS che fanno danno diretto (ATK, HP o DEF).</li>
+            <li>Personaggi delle reazioni che possono critare (Lunar, Stellar-Conduct): EM + CRIT.</li>
+            <li>Confrontare in fretta due artefatti dello stesso slot.</li>
+          </ul>
+        </div>
+        <div class="decision-box warning">
+          <h3>Da adattare per</h3>
+          <ul>
+            <li>Support puri (healer, scudi, buffer): contano ER, HP% o la stat che scala il buff.</li>
+            <li>Reazioni trasformative classiche (Swirl, Bloom, Overloaded&hellip;): non critano, conta l&rsquo;EM.</li>
+            <li>Personaggi con soglie particolari: per quelli guarda la loro guida.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 2 -->
+    <section class="section" aria-labelledby="bg-main">
+      <div class="section-head">
+        <h2 id="bg-main">2. Main stats per slot</h2>
+        <span>Valori a +20 (5&#9733;)</span>
+      </div>
+      <p>Flower e Plume hanno la main stat fissa. Sands, Goblet e Circlet sono i pezzi che decidono la build: <strong>prima si sceglie la main stat giusta, poi si guardano i substats</strong>. Un Goblet con la main stat sbagliata non lo salvano neanche quattro substats perfetti.</p>
+      <div class="table-wrap">
+        <table class="guide-table bg-wrap-table">
+          <thead><tr><th scope="col">Slot</th><th scope="col">Main stat possibili (a +20)</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">Flower</th><td>HP 4.780</td></tr>
+            <tr><th scope="row">Plume</th><td>ATK 311</td></tr>
+            <tr><th scope="row">Sands</th><td>ATK% 46,6% &middot; HP% 46,6% &middot; DEF% 58,3% &middot; Elemental Mastery 186,5 &middot; Energy Recharge 51,8%</td></tr>
+            <tr><th scope="row">Goblet</th><td>Bonus DMG elementale 46,6% &middot; Physical DMG 58,3% &middot; ATK% / HP% 46,6% &middot; DEF% 58,3% &middot; Elemental Mastery 186,5</td></tr>
+            <tr><th scope="row">Circlet</th><td>CRIT Rate 31,1% &middot; CRIT DMG 62,2% &middot; Healing Bonus 35,9% &middot; ATK% / HP% 46,6% &middot; DEF% 58,3% &middot; Elemental Mastery 186,5</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <h3 class="bg-sub-title">La scelta di base per tipo di personaggio</h3>
+      <div class="table-wrap">
+        <table class="guide-table bg-wrap-table">
+          <thead><tr><th scope="col">Scala su</th><th scope="col">Sands</th><th scope="col">Goblet</th><th scope="col">Circlet</th></tr></thead>
+          <tbody>
+            <tr><th scope="row">ATK</th><td>ATK% <small>ER se ne serve molta</small></td><td>DMG elementale</td><td>CRIT Rate / CRIT DMG</td></tr>
+            <tr><th scope="row">HP</th><td>HP% <small>ER se ne serve molta</small></td><td>DMG elementale <small>a volte HP%</small></td><td>CRIT Rate / CRIT DMG</td></tr>
+            <tr><th scope="row">DEF</th><td>DEF%</td><td>DMG elementale <small>a volte DEF%</small></td><td>CRIT Rate / CRIT DMG</td></tr>
+            <tr><th scope="row">EM + CRIT <small>Lunar, Stellar-Conduct</small></th><td>Elemental Mastery</td><td>Elemental Mastery <small>o DMG elementale</small></td><td>CRIT Rate / CRIT DMG</td></tr>
+            <tr><th scope="row">EM puro <small>Swirl, Bloom&hellip;</small></th><td>Elemental Mastery</td><td>Elemental Mastery</td><td>Elemental Mastery</td></tr>
+            <tr><th scope="row">Support / healer</th><td>ER o HP%</td><td>HP%</td><td>HP% o Healing Bonus</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="bg-tip"><strong>CRIT Rate o CRIT DMG sul Circlet?</strong> Quella che ti avvicina al rapporto 1:2 (vedi sotto). Le due main stat valgono lo stesso Crit Value: 2 &times; 31,1 = 62,2.</p>
+    </section>
+
+    <!-- 3 -->
+    <section class="section" aria-labelledby="bg-sub">
+      <div class="section-head">
+        <h2 id="bg-sub">3. Substats e roll</h2>
+        <span>Da dove vengono i numeri</span>
+      </div>
+      <div class="split">
+        <div class="split-copy">
+          <h3>Come cresce un artefatto 5&#9733;</h3>
+          <ul>
+            <li>Nasce con <strong>3 o 4 substats</strong> (i &ldquo;3-liner&rdquo; e i &ldquo;4-liner&rdquo;). Un substat non pu&ograve; essere uguale alla main stat.</li>
+            <li>Si potenzia fino a +20 e riceve <strong>5 upgrade</strong>, a +4, +8, +12, +16 e +20.</li>
+            <li>Su un 3-liner il primo upgrade (+4) aggiunge il 4&deg; substat; gli altri 4 aumentano un substat a caso.</li>
+            <li>Quindi a +20 un 4-liner ha <strong>9 roll</strong> in tutto, un 3-liner <strong>8</strong>.</li>
+            <li>Ogni roll vale uno di <strong>4 tier</strong>: 70%, 80%, 90% o 100% del valore massimo. In media un roll vale l&rsquo;85%.</li>
+          </ul>
+        </div>
+        <div class="split-copy">
+          <h3>Perch&eacute; le stat &ldquo;flat&rdquo; valgono poco</h3>
+          <p>Un roll di ATK flat (max 19) su un personaggio con circa 900 di ATK base (personaggio + arma) vale poco pi&ugrave; del <strong>2% di ATK</strong>, contro il 5,8% di un roll di ATK%. Per questo ATK, HP e DEF flat sono quasi sempre roll &ldquo;persi&rdquo;.</p>
+          <p>Lo stesso vale per i substats che il tuo personaggio non usa: DEF% su un DPS ad ATK, EM su un personaggio senza reazioni, ecc.</p>
+        </div>
+      </div>
+
+      <h3 class="bg-sub-title">Valore di un roll per ogni substat (5&#9733;)</h3>
+      <div class="table-wrap">
+        <table class="guide-table">
+          <thead><tr><th scope="col">Substat</th><th scope="col">70%</th><th scope="col">80%</th><th scope="col">90%</th><th scope="col">100% (max)</th><th scope="col">Crit Value</th></tr></thead>
+          <tbody id="bg-roll-table"></tbody>
+        </table>
+      </div>
+      <p class="ref-note">Il gioco mostra i valori arrotondati a una cifra decimale. Per contare i roll basta dividere il valore del substat per il roll massimo: 10,5% di CRIT Rate / 3,89 &asymp; 2,7, cio&egrave; 3 roll di valore medio-alto.</p>
+    </section>
+
+    <!-- 4 -->
+    <section class="section" aria-labelledby="bg-cv">
+      <div class="section-head">
+        <h2 id="bg-cv">4. Crit Value (CV)</h2>
+        <span>Il numero pi&ugrave; usato dalla community</span>
+      </div>
+      <div class="bg-formula">CV = 2 &times; CRIT Rate + CRIT DMG</div>
+      <p>Il CRIT Rate conta doppio perch&eacute; un suo roll vale la met&agrave; di un roll di CRIT DMG (3,89% contro 7,77%). Cos&igrave; <strong>ogni roll crit vale lo stesso CV</strong>, circa 7,8 al massimo, e il numero dice in fretta quanti roll sono finiti nelle stat crit.</p>
+
+      <div class="split">
+        <div class="split-copy">
+          <h3>CV di un artefatto</h3>
+          <p>Si sommano solo i <strong>substats</strong> crit del pezzo. Esempio: CRIT Rate 10,5% e CRIT DMG 21,0% &rarr; 2 &times; 10,5 + 21,0 = <strong>42,0 CV</strong>.</p>
+          <p>Il massimo teorico &egrave; <strong>54,4</strong>: un 4-liner con entrambi i crit e tutti e 5 gli upgrade al 100% in crit (7 roll da 7,77). Su un Circlet con main stat crit il massimo scende a 46,6, perch&eacute; uno dei due crit non pu&ograve; essere un substat.</p>
+          <div class="bg-scale" aria-label="Fasce indicative del CV di un pezzo">
+            <span class="t1">&lt; 15<small>scarso</small></span>
+            <span class="t2">15&ndash;25<small>nella media</small></span>
+            <span class="t3">25&ndash;35<small>buono</small></span>
+            <span class="t4">35&ndash;40<small>ottimo</small></span>
+            <span class="t5">40+<small>eccezionale</small></span>
+          </div>
+        </div>
+        <div class="split-copy">
+          <h3>CV della build</h3>
+          <p>&Egrave; la somma del CV dei substats dei 5 pezzi. Dalla schermata del personaggio si ricava cos&igrave;:</p>
+          <ol class="bg-steps">
+            <li>Prendi CRIT Rate e CRIT DMG totali.</li>
+            <li>Togli la base del personaggio: <strong>5%</strong> e <strong>50%</strong>.</li>
+            <li>Togli le stat crit di arma, Ascension, Circlet (main stat) e bonus dei set.</li>
+            <li>Applica la formula a quello che resta.</li>
+          </ol>
+          <div class="bg-scale" aria-label="Fasce indicative del CV di una build">
+            <span class="t1">&lt; 120<small>da migliorare</small></span>
+            <span class="t2">120&ndash;150<small>discreta</small></span>
+            <span class="t3">150&ndash;180<small>buona</small></span>
+            <span class="t4">180&ndash;210<small>ottima</small></span>
+            <span class="t5">210+<small>end game</small></span>
+          </div>
+          <p class="ref-note">Molti siti (per esempio Akasha) contano anche la main stat del Circlet crit: in quel caso aggiungi 62,2 a tutte le soglie.</p>
+        </div>
+      </div>
+
+      <h3 class="bg-sub-title">Quattro pezzi veri</h3>
+      <p>Presi dalla vetrina del <a href="https://akasha.cv/profile/713793020" rel="noopener">mio ex account</a>. Le card calcolano da sole CV e Roll Value con il profilo del personaggio che li indossa.</p>
+      <div class="bg-examples">
+        <figure class="bg-shot">
+          <div class="art-card" data-profile="atk">
+            <div class="art-head">
+              <img src="assets/img/guides/build/obsidian-codex-flower.webp" alt="" width="128" height="128" loading="lazy" />
+              <div><span class="art-slot">Flower of Life &middot; +20</span><strong>HP 4.780</strong><small>Obsidian Codex</small></div>
+            </div>
+            <ul class="art-subs">
+              <li data-stat="cr" data-value="13.6"></li>
+              <li data-stat="cd" data-value="21.8"></li>
+              <li data-stat="atkp" data-value="4.7"></li>
+              <li data-stat="def" data-value="23"></li>
+            </ul>
+            <div class="art-score"></div>
+          </div>
+          <figcaption><strong>Mavuika</strong> &middot; eccezionale: 7 roll su 9 nei crit, uno in ATK%.</figcaption>
+        </figure>
+        <figure class="bg-shot">
+          <div class="art-card" data-profile="atk">
+            <div class="art-head">
+              <img src="assets/img/guides/build/finale-deep-galleries-goblet.webp" alt="" width="128" height="128" loading="lazy" />
+              <div><span class="art-slot">Goblet of Eonothem &middot; +20</span><strong>Cryo DMG Bonus 46,6%</strong><small>Finale of the Deep Galleries</small></div>
+            </div>
+            <ul class="art-subs">
+              <li data-stat="cr" data-value="11.7"></li>
+              <li data-stat="cd" data-value="12.4"></li>
+              <li data-stat="def" data-value="23"></li>
+              <li data-stat="hpp" data-value="4.1"></li>
+            </ul>
+            <div class="art-score"></div>
+          </div>
+          <figcaption><strong>Skirk</strong> &middot; ottimo: main stat rara e doppio crit.</figcaption>
+        </figure>
+        <figure class="bg-shot">
+          <div class="art-card" data-profile="emcrit">
+            <div class="art-head">
+              <img src="assets/img/guides/build/night-sky-unveiling-plume.webp" alt="" width="128" height="128" loading="lazy" />
+              <div><span class="art-slot">Plume of Death &middot; +20</span><strong>ATK 311</strong><small>Night of the Sky&rsquo;s Unveiling</small></div>
+            </div>
+            <ul class="art-subs">
+              <li data-stat="hp" data-value="448"></li>
+              <li data-stat="defp" data-value="5.8"></li>
+              <li data-stat="cr" data-value="6.6"></li>
+              <li data-stat="em" data-value="84"></li>
+            </ul>
+            <div class="art-score"></div>
+          </div>
+          <figcaption><strong>Nefer</strong> &middot; CV basso, ma per lei l&rsquo;EM conta: il Roll Value &egrave; buono.</figcaption>
+        </figure>
+        <figure class="bg-shot">
+          <div class="art-card" data-profile="atk">
+            <div class="art-head">
+              <img src="assets/img/guides/build/night-sky-unveiling-circlet.webp" alt="" width="128" height="128" loading="lazy" />
+              <div><span class="art-slot">Circlet of Logos &middot; +20</span><strong>CRIT Rate 31,1%</strong><small>Night of the Sky&rsquo;s Unveiling</small></div>
+            </div>
+            <ul class="art-subs">
+              <li data-stat="cd" data-value="14.8"></li>
+              <li data-stat="def" data-value="56"></li>
+              <li data-stat="er" data-value="9.7"></li>
+              <li data-stat="defp" data-value="5.8"></li>
+            </ul>
+            <div class="art-score"></div>
+          </div>
+          <figcaption><strong>Flins</strong> &middot; scarso, ma un Circlet crit del set giusto &egrave; difficile da sostituire.</figcaption>
+        </figure>
+      </div>
+
+      <div class="decision-grid bg-gap">
+        <div class="decision-box ok">
+          <h3>A cosa serve</h3>
+          <ul>
+            <li>Confrontare in un attimo due pezzi dello stesso slot.</li>
+            <li>Capire quanto &egrave; &ldquo;fortunata&rdquo; una build.</li>
+          </ul>
+        </div>
+        <div class="decision-box warning">
+          <h3>Cosa non dice</h3>
+          <ul>
+            <li>Ignora ATK%, HP%, EM ed ER: un pezzo con 30 CV e 3 roll di ATK% pu&ograve; valere pi&ugrave; di uno con 35 CV e 3 roll di DEF.</li>
+            <li>Non misura il danno: un rapporto sbilanciato (es. 90% CRIT Rate e 120% CRIT DMG) rende meno a parit&agrave; di CV.</li>
+            <li>Non serve a niente per support e personaggi EM puri.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5 -->
+    <section class="section" aria-labelledby="bg-rv">
+      <div class="section-head">
+        <h2 id="bg-rv">5. Roll Value (RV)</h2>
+        <span>Quanti roll sono finiti nelle stat giuste</span>
+      </div>
+      <div class="bg-formula">RV = somma di (valore del substat &divide; roll massimo) &times; 100%, solo per le stat utili</div>
+      <p>Il Roll Value conta <strong>quanti roll &ldquo;pieni&rdquo;</strong> sono finiti nelle stat che servono <em>a quel personaggio</em>. 100% = un roll al massimo; un 4-liner ne ha 9, quindi il massimo &egrave; <strong>900%</strong> (800% per un 3-liner). Dividendo l&rsquo;RV per 85% (il valore medio di un roll) ottieni pi&ugrave; o meno il numero di roll utili.</p>
+      <div class="split">
+        <div class="split-copy">
+          <h3>Stat utili per tipo di personaggio</h3>
+          <div class="table-wrap">
+            <table class="guide-table bg-wrap-table">
+              <thead><tr><th scope="col">Profilo</th><th scope="col">Stat che contano</th></tr></thead>
+              <tbody id="bg-profile-table"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="split-copy">
+          <h3>CV o RV?</h3>
+          <ul>
+            <li>Il <strong>CV</strong> guarda solo i crit: veloce, ma cieco sul resto.</li>
+            <li>L&rsquo;<strong>RV</strong> si adatta al personaggio: un pezzo con 3 roll di ATK% per un DPS ad ATK sale, per un DPS ad HP no.</li>
+            <li>Lo stesso artefatto pu&ograve; avere RV diverso su due personaggi: &egrave; giusto cos&igrave;.</li>
+            <li>Indicativamente su un pezzo: <strong>&lt; 300%</strong> scarso, <strong>300&ndash;450%</strong> discreto, <strong>450&ndash;600%</strong> buono, <strong>600%+</strong> ottimo.</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <!-- 5b -->
+    <section class="section" aria-labelledby="bg-casi">
+      <div class="section-head">
+        <h2 id="bg-casi">Le build della vetrina</h2>
+        <span>12 personaggi veri, dati di Enka.network al 16/11/2026</span>
+      </div>
+      <p>Tutte le build del <a href="https://akasha.cv/profile/713793020" rel="noopener">mio ex account</a> con CV e Roll Value calcolati sui soli substats. Il Roll Value usa le stat utili del profilo indicato (vedi la tabella sopra). Clicca sulle intestazioni per ordinare.</p>
+      <div class="table-wrap">
+        <table class="guide-table sortable bg-builds">
+          <thead><tr>
+            <th scope="col">Personaggio</th>
+            <th scope="col">Profilo</th>
+            <th scope="col">Set</th>
+            <th scope="col" data-type="num">CRIT Rate / DMG</th>
+            <th scope="col" data-type="num">ER</th>
+            <th scope="col" data-type="num">CV</th>
+            <th scope="col" data-type="num">RV</th>
+          </tr></thead>
+          <tbody>
+            <tr>
+              <td data-sort="Skirk"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_SkirkNew.webp" alt="" width="256" height="256" loading="lazy" />Skirk</span></td>
+              <td data-sort="atk">ATK + CRIT</td>
+              <td>4pz Finale of the Deep Galleries</td>
+              <td data-sort="75.7">75,7% / 237,6%<small>1 : 3,1</small></td>
+              <td data-sort="104.5">104,5%</td>
+              <td data-sort="184.2"><strong>184,2</strong></td>
+              <td data-sort="2450">2450%<small>&asymp; 24,5 roll pieni</small></td>
+            </tr>
+            <tr>
+              <td data-sort="Mavuika"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Mavuika.webp" alt="" width="256" height="256" loading="lazy" />Mavuika</span></td>
+              <td data-sort="atk">ATK + CRIT</td>
+              <td>4pz Obsidian Codex</td>
+              <td data-sort="56.1">56,1% / 253,9%<small>1 : 4,5</small></td>
+              <td data-sort="100.0">100,0%</td>
+              <td data-sort="183.4"><strong>183,4</strong></td>
+              <td data-sort="2659">2659%<small>&asymp; 26,6 roll pieni</small></td>
+            </tr>
+            <tr>
+              <td data-sort="Ineffa"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Ineffa.webp" alt="" width="256" height="256" loading="lazy" />Ineffa</span></td>
+              <td data-sort="atk">ATK + CRIT</td>
+              <td>2pz Gladiator&rsquo;s Finale + 2pz Wanderer&rsquo;s Troupe</td>
+              <td data-sort="66.2">66,2% / 275,5%<small>1 : 4,2</small></td>
+              <td data-sort="100.0">100,0%</td>
+              <td data-sort="181.2"><strong>181,2</strong></td>
+              <td data-sort="2480">2480%<small>&asymp; 24,8 roll pieni</small></td>
+            </tr>
+            <tr>
+              <td data-sort="Nefer"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Nefer.webp" alt="" width="256" height="256" loading="lazy" />Nefer</span></td>
+              <td data-sort="emcrit">EM + CRIT</td>
+              <td>4pz Night of the Sky&rsquo;s Unveiling</td>
+              <td data-sort="56.6">56,6% / 314,2%<small>1 : 5,6</small></td>
+              <td data-sort="105.2">105,2%</td>
+              <td data-sort="162.4"><strong>162,4</strong></td>
+              <td data-sort="2629">2629%<small>&asymp; 26,3 roll pieni</small></td>
+            </tr>
+            <tr>
+              <td data-sort="Flins"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Flins.webp" alt="" width="256" height="256" loading="lazy" />Flins</span></td>
+              <td data-sort="atk">ATK + CRIT</td>
+              <td>4pz Night of the Sky&rsquo;s Unveiling</td>
+              <td data-sort="63.3">63,3% / 252,5%<small>1 : 4,0</small></td>
+              <td data-sort="114.9">114,9%</td>
+              <td data-sort="152.2"><strong>152,2</strong></td>
+              <td data-sort="2028">2028%<small>&asymp; 20,3 roll pieni</small></td>
+            </tr>
+            <tr>
+              <td data-sort="Neuvillette"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Neuvillette.webp" alt="" width="256" height="256" loading="lazy" />Neuvillette</span></td>
+              <td data-sort="hp">HP + CRIT</td>
+              <td>4pz Marechaussee Hunter</td>
+              <td data-sort="63.1">63,1% / 254,0%<small>1 : 4,0</small></td>
+              <td data-sort="116.8">116,8%</td>
+              <td data-sort="146.1"><strong>146,1</strong></td>
+              <td data-sort="2470">2470%<small>&asymp; 24,7 roll pieni</small></td>
+            </tr>
+            <tr>
+              <td data-sort="Escoffier"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Escoffier.webp" alt="" width="256" height="256" loading="lazy" />Escoffier</span></td>
+              <td data-sort="atk-er">ATK + CRIT + ER</td>
+              <td>4pz Noblesse Oblige</td>
+              <td data-sort="55.3">55,3% / 193,1%<small>1 : 3,5</small></td>
+              <td data-sort="207.5">207,5%</td>
+              <td data-sort="138.8"><strong>138,8</strong></td>
+              <td data-sort="2815">2815%<small>&asymp; 28,1 roll pieni</small></td>
+            </tr>
+            <tr>
+              <td data-sort="Columbina"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Columbina.webp" alt="" width="256" height="256" loading="lazy" />Columbina</span></td>
+              <td data-sort="hp">HP + CRIT</td>
+              <td>4pz Aubade of Morningstar and Moon</td>
+              <td data-sort="79.0">79,0% / 225,2%<small>1 : 2,9</small></td>
+              <td data-sort="122.0">122,0%</td>
+              <td data-sort="134.4"><strong>134,4</strong></td>
+              <td data-sort="2058">2058%<small>&asymp; 20,6 roll pieni</small></td>
+            </tr>
+            <tr>
+              <td data-sort="Furina"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Furina.webp" alt="" width="256" height="256" loading="lazy" />Furina</span></td>
+              <td data-sort="hp-er">HP + CRIT + ER</td>
+              <td>4pz Tenacity of the Millelith</td>
+              <td data-sort="52.2">52,2% / 95,9%<small>1 : 1,8</small></td>
+              <td data-sort="280.4">280,4%</td>
+              <td data-sort="101.8"><strong>101,8</strong></td>
+              <td data-sort="2529">2529%<small>&asymp; 25,3 roll pieni</small></td>
+            </tr>
+            <tr>
+              <td data-sort="Lauma"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Lauma.webp" alt="" width="256" height="256" loading="lazy" />Lauma</span></td>
+              <td data-sort="sup-em">Support EM</td>
+              <td>4pz Silken Moon&rsquo;s Serenade</td>
+              <td data-sort="26.0">26,0% / 69,4%<small>1 : 2,7</small></td>
+              <td data-sort="232.0">232,0%</td>
+              <td data-sort="61.4"><strong>61,4</strong></td>
+              <td data-sort="1350">1350%<small>&asymp; 13,5 roll pieni</small></td>
+            </tr>
+            <tr>
+              <td data-sort="Xilonen"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Xilonen.webp" alt="" width="256" height="256" loading="lazy" />Xilonen</span></td>
+              <td data-sort="sup-def">Support DEF</td>
+              <td>4pz Instructor <small>alcuni pezzi a +16</small></td>
+              <td data-sort="18.6">18,6% / 65,5%<small>1 : 3,5</small></td>
+              <td data-sort="129.0">129,0%</td>
+              <td data-sort="42.7"><strong>42,7</strong></td>
+              <td data-sort="759">759%<small>&asymp; 7,6 roll pieni</small></td>
+            </tr>
+            <tr>
+              <td data-sort="Citlali"><span class="bg-char"><img src="assets/img/characters/UI_AvatarIcon_Citlali.webp" alt="" width="256" height="256" loading="lazy" />Citlali</span></td>
+              <td data-sort="sup-em">Support EM</td>
+              <td>4pz Scroll of the Hero of Cinder City</td>
+              <td data-sort="17.0">17,0% / 64,0%<small>1 : 3,8</small></td>
+              <td data-sort="204.3">204,3%</td>
+              <td data-sort="38.0"><strong>38,0</strong></td>
+              <td data-sort="1282">1282%<small>&asymp; 12,8 roll pieni</small></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <ul class="bg-gap">
+        <li><strong>Skirk, Mavuika e Ineffa</strong> stanno sopra i 180 di CV: build ottime per un DPS.</li>
+        <li><strong>Escoffier</strong> ha &ldquo;solo&rdquo; 138,8 di CV ma il Roll Value pi&ugrave; alto della vetrina: tanti roll sono finiti in ER, che a lei serve. &Egrave; l&rsquo;esempio perfetto di perch&eacute; il CV non basta.</li>
+        <li><strong>Citlali, Lauma e Xilonen</strong> hanno CV bassissimi, ed &egrave; giusto cos&igrave;: sono Support e i loro roll devono andare in EM, ER o DEF%. Per loro il CV non ha senso.</li>
+        <li>I rapporti crit sono quasi tutti tra 1:3 e 1:5. Molti set e kit danno <strong>CRIT Rate solo in combattimento</strong> (per esempio Marechaussee Hunter fino a +36%, Obsidian Codex +40%), quindi la schermata del personaggio non mostra il rapporto vero.</li>
+      </ul>
+    </section>
+
+    <!-- 6 -->
+    <section class="section" aria-labelledby="bg-template">
+      <div class="section-head">
+        <h2 id="bg-template">6. La build &ldquo;quasi universale&rdquo;</h2>
+        <span>Obiettivi di riferimento per un DPS</span>
+      </div>
+      <div class="bg-targets">
+        <div class="kpi"><strong>Rapporto crit</strong><span>1 : 2</span><small>CRIT Rate : CRIT DMG, sui valori totali</small></div>
+        <div class="kpi"><strong>CRIT Rate</strong><span>60&ndash;80%</span><small>meno se il team o il set danno CRIT Rate</small></div>
+        <div class="kpi"><strong>CRIT DMG</strong><span>140&ndash;220%</span><small>pi&ugrave; ne hai, meglio &egrave;</small></div>
+        <div class="kpi"><strong>Energy Recharge</strong><span>quanto basta</span><small>di solito 100&ndash;140% per un DPS</small></div>
+      </div>
+      <div class="split">
+        <div class="split-copy">
+          <h3>Priorit&agrave; dei substats</h3>
+          <ol class="bg-steps">
+            <li><strong>CRIT Rate = CRIT DMG</strong>, scegliendo quella che ti avvicina all&rsquo;1:2.</li>
+            <li><strong>Stat di scaling in %</strong> (ATK%, HP% o DEF%) oppure EM per chi fa reazioni.</li>
+            <li><strong>Energy Recharge</strong> fino alla soglia del personaggio, poi non serve pi&ugrave;.</li>
+            <li><strong>Stat flat</strong> e stat che il personaggio non usa: ultime.</li>
+          </ol>
+        </div>
+        <div class="split-copy">
+          <h3>Perch&eacute; proprio 1:2</h3>
+          <p>Il danno medio di un colpo cresce con <em>(1 + CRIT Rate &times; CRIT DMG)</em>. Siccome un roll di CRIT DMG vale il doppio di uno di CRIT Rate, a parit&agrave; di roll il prodotto &egrave; massimo quando il CRIT DMG &egrave; circa il doppio del CRIT Rate.</p>
+          <p>&Egrave; una regola pratica, non una legge: se il team, il set o il kit danno molto CRIT Rate in combattimento, conviene spingere di pi&ugrave; sul CRIT DMG e il rapporto &ldquo;da schermata&rdquo; esce sbilanciato (vedi <a href="#bg-casi">le build della vetrina</a>). Conta il rapporto <em>durante</em> il danno, e oltre il 100% di CRIT Rate il resto &egrave; sprecato.</p>
+        </div>
+      </div>
+      <p class="bg-tip"><strong>L&rsquo;ER prima di tutto.</strong> Una build con 220 di CV che non ha il Burst pronto rende meno di una con 180 che lo ha sempre. Usa la soglia di ER della guida del personaggio, poi metti tutto il resto nel danno.</p>
+    </section>
+
+    <!-- 7 -->
+    <section class="section" aria-labelledby="bg-tenere">
+      <div class="section-head">
+        <h2 id="bg-tenere">7. Tenere, potenziare o buttare</h2>
+        <span>Regole pratiche per non sprecare resina ed EXP</span>
+      </div>
+      <div class="bg-flow">
+        <div class="bg-step"><span>1</span><div><strong>Main stat giusta?</strong><small>Sands, Goblet e Circlet: se no, &egrave; fodder. Goblet elementali e Circlet crit sono rari: sono quelli da guardare con pi&ugrave; attenzione.</small></div></div>
+        <div class="bg-step"><span>2</span><div><strong>Almeno 2 substats utili?</strong><small>Meglio se uno &egrave; un crit. Un 3-liner senza crit si butta quasi sempre.</small></div></div>
+        <div class="bg-step"><span>3</span><div><strong>Porta a +4 e guarda</strong><small>Se il roll &egrave; andato in una stat utile, continua. Se &egrave; andato in una stat inutile e ne hai solo 2 buone, puoi fermarti.</small></div></div>
+        <div class="bg-step"><span>4</span><div><strong>Controlla a +8 e +12</strong><small>Due roll &ldquo;persi&rdquo; di fila su un pezzo medio? Fermati e usalo come fodder: i 4-liner a +0 danno pi&ugrave; EXP di quanta ne serve per provarci.</small></div></div>
+        <div class="bg-step"><span>5</span><div><strong>Confronta con quello equipaggiato</strong><small>Il CV o l&rsquo;RV del nuovo pezzo devono superare quelli del vecchio senza farti scendere sotto la soglia di ER.</small></div></div>
+      </div>
+      <ul class="bg-gap">
+        <li><strong>Flower e Plume</strong> hanno la main stat fissa: tienili solo con <strong>doppio crit</strong> o crit + stat di scaling.</li>
+        <li>Un buon <strong>pezzo off-set</strong> nello slot pi&ugrave; difficile (di solito il Goblet) spesso vale pi&ugrave; del 4&deg; pezzo del set: con 4 pezzi del set + 1 off-set va benissimo.</li>
+        <li>I pezzi con buone stat ma set &ldquo;sbagliato&rdquo; non buttarli: possono servire come off-set o per un altro personaggio.</li>
+      </ul>
+    </section>
+
+    <!-- 8 -->
+    <section class="section" aria-labelledby="bg-calc">
+      <div class="section-head">
+        <h2 id="bg-calc">8. Calcolatore</h2>
+        <span>CV e RV di un pezzo e della build</span>
+      </div>
+
+      <div class="bg-calc-grid">
+        <form class="bg-calc" id="calc-piece" autocomplete="off">
+          <h3>Un artefatto</h3>
+          <label>Profilo del personaggio
+            <select name="profile" id="calc-profile"></select>
+          </label>
+          <div class="bg-calc-rows" id="calc-rows"></div>
+          <output class="bg-calc-out" id="calc-piece-out" aria-live="polite"></output>
+        </form>
+
+        <form class="bg-calc" id="calc-build" autocomplete="off">
+          <h3>La build (dalla schermata del personaggio)</h3>
+          <div class="bg-calc-pair">
+            <label>CRIT Rate totale (%)<input type="number" step="0.1" min="0" name="cr" value="70.4" inputmode="decimal" /></label>
+            <label>CRIT DMG totale (%)<input type="number" step="0.1" min="0" name="cd" value="181.2" inputmode="decimal" /></label>
+          </div>
+          <div class="bg-calc-pair">
+            <label>CRIT Rate da arma, Ascension e set (%)<input type="number" step="0.1" min="0" name="crx" value="0" inputmode="decimal" /></label>
+            <label>CRIT DMG da arma, Ascension e set (%)<input type="number" step="0.1" min="0" name="cdx" value="38.4" inputmode="decimal" /></label>
+          </div>
+          <label>Main stat del Circlet
+            <select name="circlet">
+              <option value="cr">CRIT Rate (31,1%)</option>
+              <option value="cd">CRIT DMG (62,2%)</option>
+              <option value="none">Nessuna stat crit</option>
+            </select>
+          </label>
+          <output class="bg-calc-out" id="calc-build-out" aria-live="polite"></output>
+        </form>
+      </div>
+      <p class="ref-note">Valori d&rsquo;esempio gi&agrave; inseriti: un DPS con arma a CRIT DMG (38,4%) e Circlet a CRIT Rate. I bonus temporanei (buff del team, effetti attivi) non vanno contati: guarda le stat fuori dal combattimento.</p>
+    </section>
+
+    <!-- 9 -->
+    <section class="section" aria-labelledby="bg-glossario">
+      <div class="section-head">
+        <h2 id="bg-glossario">9. Glossario</h2>
+        <span>I termini della community</span>
+      </div>
+      <dl class="bg-glossary">
+        <dt>3-liner / 4-liner</dt><dd>Artefatto nato con 3 o 4 substats.</dd>
+        <dt>Roll</dt><dd>Ogni volta che un substat viene aggiunto o aumentato.</dd>
+        <dt>Double crit</dt><dd>Pezzo con sia CRIT Rate sia CRIT DMG nei substats.</dd>
+        <dt>Off-set / off-piece</dt><dd>Il pezzo di un altro set usato al posto di uno del set principale.</dd>
+        <dt>Fodder</dt><dd>Artefatto da usare come EXP per potenziarne un altro.</dd>
+        <dt>Flat</dt><dd>Stat in numero fisso (ATK 19) invece che in percentuale (ATK 5,8%).</dd>
+        <dt>CV</dt><dd>Crit Value: 2 &times; CRIT Rate + CRIT DMG.</dd>
+        <dt>RV</dt><dd>Roll Value: quanti roll pieni sono finiti nelle stat utili, in %.</dd>
+        <dt>Soglia di ER</dt><dd>L&rsquo;Energy Recharge minima per avere il Burst pronto a ogni rotazione.</dd>
+      </dl>
+    </section>
+
+    <p class="source-note">Valori dei roll e delle main stats da <a href="https://keqingmains.com/misc/artifacts/" rel="noopener">KeqingMains</a>. Build ed esempi dalla vetrina in gioco, letta tramite <a href="https://enka.network/" rel="noopener">Enka.network</a>; icone dei pezzi da Enka.network. Le fasce di CV e RV sono indicative: servono per orientarsi, non sono soglie ufficiali.</p>
+  </main>
+
+  <footer class="container">
+    <small>JuanLab &mdash; Come buildare i personaggi</small>
+  </footer>
+
+  <script src="assets/js/main.js?v=20260923-1"></script>
+  <script src="assets/js/sortable-table.js"></script>
+  <script src="assets/js/build-guide.js?v=20261116-1"></script>
+</body>
+</html>
