@@ -430,8 +430,8 @@
       }
       const em = num(values.em);
       if (g.maestria && em) {
-        if (em < g.maestria - 10) checks.push(['miss', `${ICON.em}Maestria ${fmt(em, 0)}: te ne mancano circa <b>${fmt(g.maestria - em, 0)}</b> (obiettivo ${g.maestria}).`]);
-        else checks.push(['ok', `${ICON.em}Maestria ${fmt(em, 0)}: obiettivo ${g.maestria} raggiunto.`]);
+        if (em < g.maestria - 10) checks.push(['miss', `${ICON.em}Maestria ${fmt(em, 0)}: te ne mancano circa <b>${fmt(g.maestria - em, 0)}</b> (obiettivo in schermata ${g.maestria}).`]);
+        else checks.push(['ok', `${ICON.em}Maestria ${fmt(em, 0)}: obiettivo in schermata ${g.maestria} raggiunto.`]);
       }
       if (g.crit === false) checks.push(['info', `${ICON.cr}Per questo personaggio i CRIT non sono la priorit&agrave;: CV e consigli sui CRIT contano poco.`]);
       // Prossimi roll: priorita della scheda, tolte le statistiche gia a posto
@@ -452,7 +452,7 @@
               <dt><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" class="bg-ico-img" />Corona</dt><dd>${(g.corona || []).map(codeChip).join('') || '&ndash;'}</dd>
               <dt>${ICON.star}Secondarie</dt><dd>${(g.secondarie || []).map(codeChip).join('<i>&rsaquo;</i>') || '&ndash;'}</dd>
               ${g.ricarica ? `<dt>${ICON.er}Ricarica</dt><dd>${g.ricarica[0]}&ndash;${g.ricarica[1]}%</dd>` : ''}
-              ${g.maestria ? `<dt>${ICON.em}Maestria</dt><dd>${g.maestria}</dd>` : ''}
+              ${g.maestria || g.maestria_team ? `<dt>${ICON.em}Maestria</dt><dd>${g.maestria ? `${g.maestria} <small>in schermata</small>` : ''}${g.maestria && g.maestria_team ? '<i>&middot;</i>' : ''}${g.maestria_team ? `${g.maestria_team} <small>con i buff del team</small>` : ''}</dd>` : ''}
             </dl>
             ${g.note ? `<p class="bg-guide-note">${esc(g.note)}</p>` : ''}
             ${hosts.length ? `<p class="bg-guide-src">Fonti: ${hosts.map(([u, h]) => `<a href="${esc(u)}" rel="noopener" target="_blank">${esc(h)}</a>`).join(', ')}</p>` : ''}
