@@ -481,6 +481,42 @@
       const cvRaw = 2 * artCr + artCd;
       const cv = Math.abs(cvRaw) < 0.05 ? 0 : cvRaw; // niente "-0,0" con i pezzi vuoti
       const combatCr = CR + combat.reduce((t, f) => t + f[1], 0);
+      // Riquadri 3 e 4: giudizio, cosa fare e da dove arrivano Tasso e DAN
+      const cdTarget = 2 * Math.min(combatCr, 100);
+      const critState = combatCr > 100
+        ? { cls: 't2', label: `${fmt(combatCr - 100)}% sprecato`, title: 'Per non sprecarlo', how: state.corona === 'cr' ? 'oltre il 100% il Tasso non serve: usa una Corona DAN da CRIT invece che Tasso (&minus;31,1% di Tasso, +62,2% di DAN).' : 'oltre il 100% il Tasso non serve: cerca pezzi con meno Tasso e pi&ugrave; DAN da CRIT nelle secondarie (ogni roll spostato: &minus;3,3% di Tasso, +6,6% di DAN).' }
+        : combatCr < 50 ? { cls: 't1', label: 'troppo basso', title: 'Per alzarlo', how: `Corona Tasso CRIT (+31,1%), ogni roll di Tasso +3,3%, un&rsquo;arma con Tasso secondario o un set che lo d&agrave; in combattimento.` }
+          : combatCr < 65 ? { cls: 't2', label: 'un po&rsquo; basso', title: 'Per alzarlo', how: `ogni roll di Tasso nelle secondarie d&agrave; circa +3,3%; ${state.corona === 'cr' ? 'la Corona Tasso c&rsquo;&egrave; gi&agrave;' : 'una Corona Tasso CRIT d&agrave; +31,1%'}.` }
+            : { cls: 't4', label: 'buono', title: 'Va bene', how: 'i prossimi roll mettili nel DAN da CRIT o nella statistica di danno.' };
+      const cdMiss = cdTarget - CD;
+      const cdState = cdMiss > 40
+        ? { cls: 't2', label: `ti mancano ${fmt(cdMiss, 0)}%`, title: 'Per alzarlo', how: `ogni roll di DAN da CRIT d&agrave; circa +6,6%; ${state.corona === 'cd' ? 'la Corona DAN c&rsquo;&egrave; gi&agrave;' : 'una Corona DAN da CRIT d&agrave; +62,2%'}; anche un&rsquo;arma con DAN secondario aiuta.` }
+        : cdMiss < -60 && combatCr < 85 ? { cls: 't2', label: 'alto rispetto al Tasso', title: 'Cosa fare', how: 'il DAN c&rsquo;&egrave;, manca il Tasso: guarda il riquadro del Tasso in combattimento e metti i prossimi roll l&igrave;.' }
+          : cdMiss < -40 ? { cls: 't4', label: 'ottimo', title: 'Va bene', how: 'il Tasso &egrave; gi&agrave; quasi al massimo, quindi altro DAN da CRIT &egrave; proprio quello che serve.' }
+          : { cls: 't4', label: 'bilanciato col Tasso', title: 'Va bene', how: 'Tasso e DAN sono vicini all&rsquo;1:2: per salire servono roll in entrambi.' };
+      const critRows = [
+        ['Base del personaggio', 5, 50],
+        ['Ascensione', asc('cr'), asc('cd')],
+        [`Arma${w ? ` (${esc(w.n)})` : ''}`, wsub('cr'), wsub('cd')],
+        ['Set (bonus fissi)', fixedCr, 0],
+        ['Corona (principale)', state.corona === 'cr' ? 31.1 : 0, state.corona === 'cd' ? 62.2 : 0],
+        ['Secondarie dei 5 pezzi', Math.max(artCr, 0), Math.max(artCd, 0)],
+        ['Altri bonus fissi', xcr, xcd],
+      ].filter(([, a2, b2]) => a2 || b2);
+      const critSourcesHtml = `
+        <details class="bg-critsrc" id="q-critsrc" open>
+          <summary>Da dove arrivano Tasso e DAN da CRIT</summary>
+          <div class="table-wrap"><table class="guide-table">
+            <thead><tr><th scope="col">Fonte</th><th scope="col">${ICON.cr}Tasso</th><th scope="col">${ICON.cd}DAN</th></tr></thead>
+            <tbody>
+              ${critRows.map(([n, a2, b2]) => `<tr><th scope="row">${n}</th><td>${a2 ? `+${fmt(a2)}%` : '&ndash;'}</td><td>${b2 ? `+${fmt(b2)}%` : '&ndash;'}</td></tr>`).join('')}
+              <tr class="is-total"><th scope="row">In schermata</th><td>${fmt(CR)}%</td><td>${fmt(CD)}%</td></tr>
+              ${combat.map((f) => `<tr><th scope="row">In combattimento: ${esc(f[0])}</th><td>+${fmt(f[1])}%</td><td>&ndash;</td></tr>`).join('')}
+              ${combat.length ? `<tr class="is-total"><th scope="row">In combattimento</th><td>${fmt(combatCr)}%</td><td>${fmt(CD)}%</td></tr>` : ''}
+            </tbody>
+          </table></div>
+          <p class="bg-gain-note">Le righe che puoi cambiare sono la Corona, le secondarie dei pezzi, l&rsquo;arma e il set. Base e ascensione sono fisse.</p>
+        </details>`;
       const ratio = CD / Math.max(Math.min(combatCr, 100), 1);
       // con valori a zero un arrotondamento puo dare -0,000..1: si cade sull'ultima fascia
       const [, tier, cls] = BUILD_TIERS.find(([min]) => cv >= min) || BUILD_TIERS[BUILD_TIERS.length - 1];
@@ -560,6 +596,7 @@
             <strong>${empty ? 'inserisci le statistiche' : bad ? 'i CRIT non tornano' : tier}</strong>
             <i class="bg-meter" aria-hidden="true"><i style="width:${bad ? 0 : Math.min(Math.max(cv, 0) / 250, 1) * 100}%"></i>${[120, 150, 180, 210].map((t) => `<em style="left:${t / 2.5}%"></em>`).join('')}</i>
             <small>${ICON.cr}+${fmt(Math.max(artCr, 0))}% &middot; ${ICON.cd}+${fmt(Math.max(artCd, 0))}% dalle secondarie</small>
+            <p class="bg-kpi-how"><b>Cosa conta:</b> solo i roll di Tasso e DAN da CRIT nelle secondarie dei 5 pezzi. Per alzarlo servono pezzi con pi&ugrave; CRIT (vedi i pezzi e &ldquo;Rimodella&rdquo;).</p>
           </div>
           <div class="bg-kpi ${bad || rvBad ? 't1' : rvCls}">
             <span>${ICON.star}Roll Value della build</span>
@@ -567,22 +604,26 @@
             <strong>${empty ? 'inserisci le statistiche' : bad || rvBad ? 'i conti non tornano' : `${rvTier} &middot; ${fmt(rolls)} roll su 45`}</strong>
             <i class="bg-meter" aria-hidden="true"><i style="width:${bad || rvBad ? 0 : Math.min(rolls / 45, 1) * 100}%"></i></i>
             <small>${rollParts.map(([n, r]) => `${n} ${fmt(Math.max(r, 0))}`).join(' &middot; ')}</small>
+            <p class="bg-kpi-how"><b>Cosa conta:</b> i roll nelle secondarie utili a questo personaggio (CRIT, ${SCALE_PCT[sc]}${rollParts.some(([n]) => n === 'Maestria') && sc !== 'em' ? ', Maestria' : ''}). Per alzarlo guarda &ldquo;Cosa aumentare&rdquo;.</p>
           </div>
-          <div class="bg-kpi ${combatCr > 100 ? 't2' : 't3'}">
+          <div class="bg-kpi ${critState.cls}">
             <span>${ICON.cr}Tasso in combattimento</span>
             <b>${fmt(combatCr)}%</b>
-            <strong>${combatCr > 100 ? 'oltre il 100%' : 'in battaglia'}</strong>
-            <i class="bg-meter" aria-hidden="true"><i style="width:${Math.min(combatCr, 100)}%"></i></i>
-            <small>${combat.length ? combat.map((f) => `+${f[1]}% ${esc(f[0])}`).join(', ') : 'nessun bonus in combattimento'}</small>
+            <strong>${critState.label}</strong>
+            <i class="bg-meter" aria-hidden="true"><i style="width:${Math.min(combatCr, 100)}%"></i>${[50, 65].map((t) => `<em style="left:${t}%"></em>`).join('')}</i>
+            <small>obiettivo 65&ndash;100% in combattimento</small>
+            <p class="bg-kpi-how"><b>${critState.title}:</b> ${critState.how} <a href="#q-critsrc">Da dove arriva &darr;</a></p>
           </div>
-          <div class="bg-kpi ${ratio > 2.6 || ratio < 1.6 ? 't2' : 't4'}">
+          <div class="bg-kpi ${cdState.cls}">
             <span>${ICON.cd}DAN da CRIT</span>
             <b>${fmt(CD)}%</b>
-            <strong>rapporto 1 : ${fmt(ratio)}</strong>
-            <i class="bg-meter" aria-hidden="true"><i style="width:${Math.min(CD / 300, 1) * 100}%"></i></i>
-            <small>obiettivo vicino all&rsquo;1 : 2</small>
+            <strong>${cdState.label}</strong>
+            <i class="bg-meter" aria-hidden="true"><i style="width:${Math.min(CD / Math.max(cdTarget * 1.25, 1), 1) * 100}%"></i><em style="left:80%"></em></i>
+            <small>obiettivo &asymp; 2 &times; Tasso = ${fmt(cdTarget, 0)}% (rapporto 1 : ${fmt(ratio)})</small>
+            <p class="bg-kpi-how"><b>${cdState.title}:</b> ${cdState.how} <a href="#q-critsrc">Da dove arriva &darr;</a></p>
           </div>
         </div>
+        ${bad || empty ? '' : critSourcesHtml}
         ${bad ? '' : `<div class="bg-corona-rec${coronaRec.change ? ' is-change' : ''}"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" /><span><small>Corona consigliata</small><strong>${coronaRec.k === 'pari' ? '' : ICON[coronaRec.k]}${coronaRec.title}</strong><em>${coronaRec.text}</em></span></div>`}
         ${gainsHtml({ bad, empty, combatCr, CD })}
         ${pieceBanner()}
