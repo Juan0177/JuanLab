@@ -215,11 +215,18 @@
       <section class="bg-qstep bg-uid-box" id="q-uid-box">
         <h4 class="bg-qstep-title"><span>${ICON.screen}</span>Importa dalla vetrina <small class="bg-qstep-note">facoltativo: compila tutto da solo</small></h4>
         <div class="bg-uid-row">
+          <div class="bg-field bg-uid-src"><span class="bg-label">Fonte</span>
+            <div class="bg-seg bg-seg-lg" role="radiogroup" aria-label="Da dove importare">
+              <button type="button" role="radio" data-uid-src="enka" aria-checked="true"><span>Enka<small>vetrina attuale</small></span></button>
+              <button type="button" role="radio" data-uid-src="akasha" aria-checked="false"><span>Akasha<small>build salvate</small></span></button>
+            </div>
+          </div>
           <label class="bg-stat bg-uid-field"><span>UID del giocatore</span><input type="text" id="q-uid" inputmode="numeric" autocomplete="off" placeholder="es. 713793020" maxlength="10" /></label>
           <button type="button" id="q-uid-go" class="bg-uid-btn">Cerca</button>
         </div>
         <p class="bg-uid-status" id="q-uid-status" aria-live="polite"></p>
         <div class="bg-uid-chars" id="q-uid-chars"></div>
+        <div class="bg-uid-builds" id="q-uid-builds"></div>
       </section>`;
     form.innerHTML = uidBox + [
       step(1, 'Personaggio e arma', `
@@ -300,6 +307,7 @@
     const SLOT_INFO = [['Fiore', 'flower'], ['Piuma', 'plume'], ['Sabbie', 'sands'], ['Calice', 'goblet'], ['Corona', 'circlet']];
     // Pezzi importati dalla vetrina (Enka), mostrati come nell'inventario del gioco; null se inseriti a mano
     let relics = [null, null, null, null, null];
+    let relicFrom = 'enka'; // da dove arrivano i pezzi importati: 'enka' (vetrina) o 'akasha' (build salvata)
     const PROP = {
       FIGHT_PROP_HP: 'PS', FIGHT_PROP_HP_PERCENT: 'PS', FIGHT_PROP_ATTACK: 'ATT', FIGHT_PROP_ATTACK_PERCENT: 'ATT',
       FIGHT_PROP_DEFENSE: 'DIF', FIGHT_PROP_DEFENSE_PERCENT: 'DIF', FIGHT_PROP_ELEMENT_MASTERY: 'Maestria elementale',
@@ -428,7 +436,8 @@
       if (imported.length) {
         const names = ['Tasso di CRIT', 'DAN da CRIT', scName].concat(showEm ? ['Maestria'] : []);
         const exact = imported.every((r) => r.exact);
-        legend.innerHTML = `<b>Pezzi della vetrina.</b> <mark>In evidenza</mark> le secondarie che contano nel Roll Value con questo stile: ${names.join(', ')}. Il numero a sinistra sono i roll di ogni secondaria (${exact ? 'esatti, da Enka' : 'stimati dal valore: la vetrina salvata non li indica'}). Con &ldquo;Modifica&rdquo; correggi i valori.`;
+        const ak = relicFrom === 'akasha';
+        legend.innerHTML = `<b>${ak ? 'Pezzi della build di Akasha' : 'Pezzi della vetrina'}.</b> <mark>In evidenza</mark> le secondarie che contano nel Roll Value con questo stile: ${names.join(', ')}. Il numero a sinistra sono i roll di ogni secondaria (${exact ? `esatti, da ${ak ? 'Akasha' : 'Enka'}` : `stimati dal valore: ${ak ? 'Akasha non li indica' : 'la vetrina salvata non li indica'}`}). Con &ldquo;Modifica&rdquo; correggi i valori.`;
       } else {
         legend.hidden = false;
         legend.innerHTML = `Premi <b>Modifica</b> su ogni pezzo e inserisci le secondarie che contano: ${['Tasso di CRIT', 'DAN da CRIT', scName].concat(showEm ? ['Maestria'] : []).join(', ')}. Oppure importa la vetrina con l&rsquo;UID (in alto). <mark>In evidenza</mark> le secondarie che contano nel Roll Value; il numero a sinistra sono i roll stimati dal valore.`;
@@ -972,12 +981,36 @@
     const uidChars = form.querySelector('#q-uid-chars');
     let showcase = [];
     const ENKA_ERR = { 400: 'UID non valido.', 404: 'Questo UID non esiste.', 424: 'Enka.network &egrave; in manutenzione dopo un aggiornamento del gioco: riprova pi&ugrave; tardi.', 429: 'Troppe richieste: aspetta un minuto e riprova.', 500: 'Errore di Enka.network: riprova pi&ugrave; tardi.', 503: 'Enka.network non risponde: riprova pi&ugrave; tardi.' };
+    const uidBuilds = form.querySelector('#q-uid-builds');
     function setUidStatus(html, kind) { uidStatus.innerHTML = html; uidStatus.className = `bg-uid-status${kind ? ` is-${kind}` : ''}`; }
-    async function lookupUid() {
+    // Fonte dell'import: Enka (vetrina attuale) o Akasha (build salvate); la scelta resta nel browser
+    const SRC_KEY = 'juanlab-uid-source';
+    let uidSource = 'enka';
+    try { if (localStorage.getItem(SRC_KEY) === 'akasha') uidSource = 'akasha'; } catch (e) { /* archiviazione non disponibile */ }
+    let uidRun = 0; // ogni ricerca annulla le risposte di quelle precedenti
+    function paintSource() {
+      form.querySelectorAll('[data-uid-src]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.uidSrc === uidSource)));
+    }
+    form.querySelectorAll('[data-uid-src]').forEach((b) => b.addEventListener('click', () => {
+      if (b.dataset.uidSrc === uidSource) return;
+      uidSource = b.dataset.uidSrc;
+      try { localStorage.setItem(SRC_KEY, uidSource); } catch (e) { /* archiviazione non disponibile */ }
+      uidRun++;
+      paintSource();
+      uidChars.innerHTML = ''; uidBuilds.innerHTML = ''; setUidStatus('');
+    }));
+    paintSource();
+    function lookupUid() {
+      uidRun++;
+      uidBuilds.innerHTML = '';
+      return uidSource === 'akasha' ? lookupAkasha() : lookupEnka();
+    }
+    async function lookupEnka() {
       const uid = form.querySelector('#q-uid').value.replace(/\D/g, '');
       uidChars.innerHTML = '';
       if (!/^\d{9,10}$/.test(uid)) { setUidStatus('Scrivi un UID di 9 o 10 cifre.', 'err'); return; }
       setUidStatus('Cerco la vetrina&hellip;');
+      const run = uidRun;
       try {
         if (!enkaMap) enkaMap = await fetch('assets/data/enka-map.json').then((r) => r.json());
         let data = null; let from = ''; let liveErr = '';
@@ -987,13 +1020,14 @@
             const r = await fetch(ENKA_PROXY.replace('{uid}', uid));
             if (r.ok) { data = await r.json(); from = 'da Enka.network, aggiornata ora'; }
             else liveErr = ENKA_ERR[r.status] || `Errore ${r.status} da Enka.network.`;
-            if (r.status === 400 || r.status === 404) { setUidStatus(liveErr, 'err'); return; }
+            if (r.status === 400 || r.status === 404) { if (run === uidRun) setUidStatus(liveErr, 'err'); return; }
           } catch (e) { liveErr = 'Enka.network non risponde.'; }
         }
         if (!data) {
           const cached = await fetch(`assets/data/showcase/${uid}.json`).catch(() => null);
           if (cached && cached.ok) { data = await cached.json(); from = `salvata nel sito il ${data.aggiornato.split('-').reverse().join('/')}${liveErr ? ', perch&eacute; Enka.network ora non risponde' : ''}`; }
         }
+        if (run !== uidRun) return; // nel frattempo hai cambiato fonte o rifatto la ricerca
         if (!data) { setUidStatus(liveErr || 'Non trovo la vetrina di questo UID.', 'err'); return; }
         const list = data.avatarInfoList || [];
         if (!list.length) { setUidStatus('La vetrina &egrave; vuota oppure i dettagli dei personaggi sono nascosti nelle impostazioni del gioco.', 'err'); return; }
@@ -1007,12 +1041,19 @@
         setUidStatus(`${name}${showcase.length} personaggi in vetrina (${from}). Scegline uno:`, 'ok');
         uidChars.innerHTML = showcase.map(({ ch }, i) => `<button type="button" data-uid-i="${i}"><img src="assets/img/characters/${ch.i}.webp" alt="" width="256" height="256" />${esc(ch.n)}</button>`).join('');
       } catch (e) {
-        setUidStatus('Non riesco a leggere la vetrina: controlla la connessione e riprova.', 'err');
+        if (run === uidRun) setUidStatus('Non riesco a leggere la vetrina: controlla la connessione e riprova.', 'err');
       }
     }
     const pctStr = (v) => (v * 100).toFixed(1).replace('.', ',');
     function applyShowcase(i) {
       const { a, ch } = showcase[i];
+      applyAvatar(a, ch, { from: 'enka', label: `Importato <b>${esc(ch.n)}</b>` });
+      uidChars.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.uidI === i)));
+    }
+    // Riempie il calcolatore da un personaggio nel formato di Enka (avatarInfoList); le build di Akasha
+    // vengono prima convertite in questo formato (akashaAvatar), cosi le due fonti seguono la stessa strada
+    function applyAvatar(a, ch, { from, label }) {
+      relicFrom = from;
       state.char = ch; state.scale = null; pChar.set(ch, true); syncWeapons();
       const items = a.equipList.map((e) => e.flat);
       const wf = items.find((f) => f.itemType === 'ITEM_WEAPON');
@@ -1060,11 +1101,11 @@
         if (i2 === 4) state.corona = m === 'FIGHT_PROP_CRITICAL' ? 'cr' : m === 'FIGHT_PROP_CRITICAL_HURT' ? 'cd' : m === EMK ? 'em' : 'altro';
       });
       fillFromRelics();
-      // statistiche della schermata
+      // statistiche della schermata (una build di Akasha senza statistiche le ricava dai pezzi, piu sotto)
       const fp = a.fightPropMap;
-      Object.assign(values, { cr: pctStr(fp['20']), cd: pctStr(fp['22']), hp: String(Math.round(fp['2000'])), atk: String(Math.round(fp['2001'])), def: String(Math.round(fp['2002'])), em: String(Math.round(fp['28'] || 0)), er: pctStr(fp['23']) });
+      if (fp) Object.assign(values, { cr: pctStr(fp['20']), cd: pctStr(fp['22']), hp: String(Math.round(fp['2000'])), atk: String(Math.round(fp['2001'])), def: String(Math.round(fp['2002'])), em: String(Math.round(fp['28'] || 0)), er: fp['23'] ? pctStr(fp['23']) : '' });
+      else values.er = '';
       form.querySelectorAll('input[name="er"]').forEach((x) => { x.value = values.er; });
-      uidChars.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.uidI === i)));
       // Bonus fissi non visibili nei pezzi (passive dell'arma, costellazioni, talenti): la differenza tra la schermata
       // e il totale ricostruito da base, ascensione, arma, set, principali e secondarie. Cosi le due viste coincidono.
       // Stile di gioco: se il 4pz vale solo con uno stile (Lunare, Stellare) si usa quello, altrimenti quello scelto da te
@@ -1072,6 +1113,7 @@
       state.style = style4 || state.styleUser;
       values.xcr = ''; values.xcd = ''; values.xsc = '';
       const rebuilt = synth();
+      if (!fp) ['cr', 'cd', 'atk', 'hp', 'def', 'em'].forEach((k) => { values[k] = String(rebuilt[k]).replace('.', ','); });
       const extra = (d) => (d >= 0.3 ? d.toFixed(1).replace('.', ',') : '');
       values.xcr = extra(num(values.cr) - num(rebuilt.cr));
       values.xcd = extra(num(values.cd) - num(rebuilt.cd));
@@ -1082,12 +1124,237 @@
       ['xcr', 'xcd', 'xsc'].forEach((k) => form.querySelectorAll(`input[name="${k}"]`).forEach((x) => { x.value = values[k]; }));
       const SCN = { atk: 'ATT', hp: 'PS', def: 'DIF', em: 'Maestria' }[sc];
       const extraTxt = [values.xcr ? `Tasso di CRIT +${values.xcr}%` : '', values.xcd ? `DAN da CRIT +${values.xcd}%` : '', values.xsc ? `${SCN} +${values.xsc}${sc === 'em' ? '' : '%'}` : ''].filter(Boolean).join(', ');
-      setUidStatus(`Importato <b>${esc(ch.n)}</b>: ${style4 ? `stile ${style4 === 'lunar' ? 'Lunare' : 'Stellare'} scelto dal 4pz di ${esc(state.set1.n)}, controllalo al passo 3` : 'controlla lo stile di gioco (passo 3), la vetrina non lo indica'}.${extraTxt ? ` Ricavati dalla schermata e messi in &ldquo;Altri bonus fissi&rdquo; (passive, costellazioni, talenti${values.xsc && sc !== 'em' ? ', secondarie fisse' : ''}): ${extraTxt}.` : ''}`, 'ok');
+      setUidStatus(`${label}: ${style4 ? `stile ${style4 === 'lunar' ? 'Lunare' : 'Stellare'} scelto dal 4pz di ${esc(state.set1.n)}, controllalo al passo 3` : `controlla lo stile di gioco (passo 3), ${from === 'akasha' ? 'la build' : 'la vetrina'} non lo indica`}.${extraTxt ? ` Ricavati dalla schermata e messi in &ldquo;Altri bonus fissi&rdquo; (passive, costellazioni, talenti${values.xsc && sc !== 'em' ? ', secondarie fisse' : ''}): ${extraTxt}.` : ''}`, 'ok');
       syncSets(); drawStats(); drawMains(); drawPieces(); update();
     }
     form.querySelector('#q-uid-go').addEventListener('click', lookupUid);
     form.querySelector('#q-uid').addEventListener('keydown', (e) => { if (e.key === 'Enter') { e.preventDefault(); lookupUid(); } });
-    uidChars.addEventListener('click', (e) => { const b = e.target.closest('[data-uid-i]'); if (b) applyShowcase(+b.dataset.uidI); });
+    uidChars.addEventListener('click', (e) => {
+      const b = e.target.closest('[data-uid-i]');
+      if (b) applyShowcase(+b.dataset.uidI);
+      const c = e.target.closest('[data-ak-c]');
+      if (c) pickAkashaChar(+c.dataset.akC);
+    });
+
+    // ---- Importa da Akasha (akasha.cv): tutte le build salvate di un UID, piu di una per personaggio ----
+    // Stesso Worker di Enka: /akasha/builds/<uid>?page=<n> e /akasha/artifacts/<uid>/<md5>
+    const AKASHA_BASE = ENKA_PROXY ? ENKA_PROXY.replace(/\{uid\}.*$/, '').replace(/\/?$/, '/') : '';
+    const AKASHA_ERR = {
+      400: 'UID non valido.',
+      404: 'Akasha non ha dati per questo UID.',
+      429: 'Troppe richieste ad Akasha: aspetta un minuto e riprova.',
+      502: 'Akasha ora non risponde con i dati (verifica anti-bot di Cloudflare): riprova tra qualche minuto, oppure usa Enka.',
+    };
+    const akErr = (status) => AKASHA_ERR[status] || `Errore ${status} da Akasha: riprova pi&ugrave; tardi.`;
+    let akasha = null; // { uid, chars: [{ ch, builds }] }
+    let akChar = -1;
+    const akArtifacts = {}; // manufatti gia scaricati, per md5
+    // Nomi delle statistiche di Akasha -> codici di Enka (gli stessi di PROP)
+    const AK_STAT = {
+      flathp: 'FIGHT_PROP_HP', hp: 'FIGHT_PROP_HP', 'hp%': 'FIGHT_PROP_HP_PERCENT',
+      flatatk: 'FIGHT_PROP_ATTACK', atk: 'FIGHT_PROP_ATTACK', 'atk%': 'FIGHT_PROP_ATTACK_PERCENT',
+      flatdef: 'FIGHT_PROP_DEFENSE', def: 'FIGHT_PROP_DEFENSE', 'def%': 'FIGHT_PROP_DEFENSE_PERCENT',
+      elementalmastery: 'FIGHT_PROP_ELEMENT_MASTERY', energyrecharge: 'FIGHT_PROP_CHARGE_EFFICIENCY',
+      critrate: 'FIGHT_PROP_CRITICAL', critdmg: 'FIGHT_PROP_CRITICAL_HURT', healingbonus: 'FIGHT_PROP_HEAL_ADD',
+      physicaldmgbonus: 'FIGHT_PROP_PHYSICAL_ADD_HURT',
+    };
+    Object.entries(EL_PROP).forEach(([el, p]) => { AK_STAT[`${el.toLowerCase()}dmgbonus`] = `FIGHT_PROP_${p}_ADD_HURT`; });
+    const akStat = (name) => (/^FIGHT_PROP_/.test(name) ? name : AK_STAT[String(name || '').toLowerCase().replace(/[\s_]/g, '')] || null);
+    // valori come li mostra il gioco (e come li da Enka): percentuali con un decimale, valori fissi interi
+    const akVal = (k, v) => {
+      let x = Number(v) || 0;
+      if (FLAT.has(k)) return Math.round(x);
+      if (x > 0 && x < 1) x *= 100; // per sicurezza: una percentuale data come frazione
+      return Math.round(x * 10) / 10;
+    };
+    const iconName = (url) => String(url || '').split('/').pop().replace(/\.png$/i, '');
+    const setIdOf = (icon) => (String(icon).match(/UI_RelicIcon_(\d+)_/) || [])[1] || '';
+    const SLOT_ICON = { EQUIP_BRACER: 4, EQUIP_NECKLACE: 2, EQUIP_SHOES: 5, EQUIP_RING: 1, EQUIP_DRESS: 3 };
+    const sv = (o) => (o && typeof o === 'object' ? (o.val !== undefined ? o.val : o.value) : o); // { val } o { value }
+    const akRefine = (b) => {
+      const r = b.weapon && b.weapon.weaponInfo ? sv(b.weapon.weaponInfo.refinementLevel) : 0;
+      return Math.min(5, Math.max(1, (Number(r) || 0) + 1)); // Akasha conta da 0 (0 = R1)
+    };
+    const akWeaponIcon = (b) => {
+      const w = b.weapon || {};
+      return (w.flat && sv(w.flat.icon)) || iconName(w.icon).replace(/_Awaken$/, '');
+    };
+    const akTalents = (b) => ['normalAttacks', 'elementalSkill', 'elementalBurst'].map((k) => (b.talentsLevelMap && b.talentsLevelMap[k]) || null);
+    const akDate = (b) => {
+      const t = Number(b.lastBuildUpdate);
+      return t >= 1e12 ? new Date(t).toLocaleDateString('it-IT', { day: '2-digit', month: '2-digit', year: 'numeric' }) : '';
+    };
+    // Una build di Akasha (con i suoi manufatti) nel formato di un personaggio di Enka
+    function akashaAvatar(b, arts) {
+      const SUB = ['20', '22', '23', '28', '2000', '2001', '2002'];
+      const st = b.stats || {};
+      const raw = {
+        20: sv(st.critRate), 22: sv(st.critDamage), 23: sv(st.energyRecharge), 28: sv(st.elementalMastery),
+        2000: sv(st.maxHp), 2001: sv(st.atk), 2002: sv(st.def),
+      };
+      let fightPropMap = null;
+      if (Number.isFinite(Number(raw[20])) && Number.isFinite(Number(raw[22])) && Number(raw[22]) > 0) {
+        const pts = Number(raw[22]) > 10; // percentuali in punti invece che in frazioni
+        fightPropMap = {};
+        SUB.forEach((k) => {
+          const v = Number(raw[k]) || 0;
+          fightPropMap[k] = pts && ['20', '22', '23'].includes(k) ? v / 100 : v;
+        });
+      }
+      const setIcon = {};
+      Object.entries(b.artifactSets || {}).forEach(([n, s]) => { setIcon[n] = setIdOf(iconName(s && s.icon)); });
+      const equipList = (arts || []).map((r) => {
+        const main = akStat(r.mainStatKey);
+        const id = setIdOf(iconName(r.icon)) || setIcon[r.setName] || '';
+        const subs = Object.entries(r.substats || {}).map(([n, v]) => [akStat(n), v]).filter(([k]) => k);
+        return {
+          flat: {
+            icon: iconName(r.icon) || (id ? `UI_RelicIcon_${id}_${SLOT_ICON[r.equipType] || 4}` : ''),
+            itemType: 'ITEM_RELIQUARY', equipType: r.equipType, rankLevel: Number(r.stars) || 5,
+            reliquaryMainstat: { mainPropId: main, statValue: main ? akVal(main, r.mainStatValue) : 0 },
+            reliquarySubstats: subs.map(([k, v]) => ({ appendPropId: k, statValue: akVal(k, v) })),
+          },
+          reliquary: { level: Number(r.level) || 1, appendPropIdList: Array.isArray(r.substatsIdList) ? r.substatsIdList.map(Number) : [] },
+        };
+      }).filter((e) => SLOT_ICON[e.flat.equipType] && e.flat.reliquaryMainstat.mainPropId);
+      const w = b.weapon || {};
+      const wi = w.weaponInfo || {};
+      equipList.push({
+        flat: { icon: akWeaponIcon(b), itemType: 'ITEM_WEAPON' },
+        weapon: { level: Number(wi.level) || 1, promoteLevel: Number(wi.promoteLevel) || 0, affixMap: w.weaponId ? { [`1${w.weaponId}`]: akRefine(b) - 1 } : {} },
+      });
+      const pm = b.propMap || {};
+      const skillLevelMap = {};
+      akTalents(b).forEach((t) => { if (t && t.id) skillLevelMap[t.id] = Number(t.rawLevel || t.level) || 1; });
+      return {
+        avatarId: Number(b.characterId), skillDepotId: Number(b.skillDepotId) || undefined,
+        propMap: { 4001: { type: 4001, val: String(sv(pm.level) || '') }, 1002: { type: 1002, val: String(sv(pm.ascension) || '') } },
+        skillLevelMap, fightPropMap, equipList,
+      };
+    }
+    // Personaggio del sito per una build (Viaggiatore: l'elemento dallo skillDepotId)
+    const akChOf = (b) => {
+      const key = b.skillDepotId && enkaMap[`${b.characterId}-${b.skillDepotId}`] ? `${b.characterId}-${b.skillDepotId}` : String(b.characterId);
+      return DATA.chars.find((c) => (c.id || c.i) === enkaMap[key]) || null;
+    };
+    const akName = (b) => (String(b.type || '').trim() || 'senza nome');
+    function akSummary(b) {
+      const t = akTalents(b).map((x) => (x ? x.level : '?')).join('/');
+      const lv = sv((b.propMap || {}).level);
+      const wpn = DATA.weapons.find((w) => w.i === akWeaponIcon(b));
+      const wName = wpn ? wpn.n : (b.weapon && b.weapon.name) || '';
+      return [lv ? `Lv. ${lv}` : '', `C${Number(b.constellation) || 0}`, `talenti ${t}`, wName ? `${esc(wName)} R${akRefine(b)}` : ''].filter(Boolean).join(' &middot; ');
+    }
+    function akSets(b) {
+      return Object.entries(b.artifactSets || {}).filter(([, s]) => s && s.count >= 2).sort((x, y) => y[1].count - x[1].count).map(([n, s]) => {
+        const id = setIdOf(iconName(s.icon));
+        const set = id && SETS.find((x) => x.i && x.i.split('_')[2] === id);
+        return `${Math.min(s.count, 4) >= 4 ? 4 : 2}pz ${esc(set ? set.n : n)}`;
+      }).join(' + ');
+    }
+    async function lookupAkasha() {
+      const uid = form.querySelector('#q-uid').value.replace(/\D/g, '');
+      uidChars.innerHTML = '';
+      akasha = null; akChar = -1;
+      if (!/^\d{9,10}$/.test(uid)) { setUidStatus('Scrivi un UID di 9 o 10 cifre.', 'err'); return; }
+      if (!AKASHA_BASE) { setUidStatus('Import da Akasha non disponibile.', 'err'); return; }
+      const run = uidRun;
+      setUidStatus('Cerco le build salvate su Akasha&hellip;');
+      try {
+        if (!enkaMap) enkaMap = await fetch('assets/data/enka-map.json').then((r) => r.json());
+        // pagine da 1 finche ne arrivano di piene e con build nuove (al massimo 20)
+        const all = []; const seen = new Set();
+        let firstLen = 0; let partial = '';
+        for (let p = 1; p <= 20; p++) {
+          let r;
+          try { r = await fetch(`${AKASHA_BASE}akasha/builds/${uid}?page=${p}`); } catch (e) {
+            if (p === 1) { if (run === uidRun) setUidStatus('Akasha non risponde: controlla la connessione e riprova.', 'err'); return; }
+            partial = 'Akasha non ha risposto'; break;
+          }
+          if (run !== uidRun) return;
+          if (!r.ok) {
+            if (p === 1) { setUidStatus(akErr(r.status), 'err'); return; }
+            partial = akErr(r.status).replace(/\.$/, ''); break;
+          }
+          let j;
+          try { j = await r.json(); } catch (e) { if (p === 1) { setUidStatus(akErr(502), 'err'); return; } break; }
+          if (run !== uidRun) return;
+          const rows = Array.isArray(j && j.data) ? j.data : [];
+          if (!rows.length) break;
+          let fresh = 0;
+          rows.forEach((b) => { const k = b.md5 || b._id; if (k && !seen.has(k)) { seen.add(k); all.push(b); fresh++; } });
+          if (p === 1) firstLen = rows.length;
+          if (!fresh || rows.length < firstLen) break;
+        }
+        if (!all.length) { setUidStatus('Su Akasha non ci sono build salvate per questo UID. Aprilo una volta su akasha.cv per salvarle, oppure usa Enka.', 'err'); return; }
+        // build raggruppate per personaggio, nell'ordine in cui arrivano (le piu recenti prima)
+        const groups = new Map();
+        all.forEach((b) => {
+          const ch = akChOf(b);
+          if (!ch) return;
+          if (!groups.has(ch)) groups.set(ch, []);
+          groups.get(ch).push(b);
+        });
+        const order = (b) => { const t = Number(b.lastBuildUpdate); return b.type === 'current' ? 2e13 : t >= 1e12 ? t : 0; };
+        akasha = { uid, chars: Array.from(groups, ([ch, builds]) => ({ ch, builds: builds.map((b, i) => [b, i]).sort((x, y) => order(y[0]) - order(x[0]) || x[1] - y[1]).map((x) => x[0]) })) };
+        if (!akasha.chars.length) { setUidStatus('Nessuna delle build salvate su Akasha &egrave; di un personaggio che il calcolatore conosce.', 'err'); return; }
+        const owner = all[0].owner && all[0].owner.nickname ? `<b>${esc(all[0].owner.nickname)}</b> &middot; ` : '';
+        const nb = akasha.chars.reduce((t, c) => t + c.builds.length, 0);
+        setUidStatus(`${owner}${nb} build salvate su Akasha per ${akasha.chars.length} personaggi${partial ? ` (lista incompleta: ${partial})` : ''}. Scegli un personaggio:`, 'ok');
+        uidChars.innerHTML = akasha.chars.map(({ ch, builds }, i) => `<button type="button" data-ak-c="${i}" aria-pressed="false"><img src="assets/img/characters/${ch.i}.webp" alt="" width="256" height="256" />${esc(ch.n)}<small class="bg-uid-count" aria-label="${builds.length} build">${builds.length}</small></button>`).join('');
+      } catch (e) {
+        if (run === uidRun) setUidStatus('Non riesco a leggere le build di Akasha: controlla la connessione e riprova.', 'err');
+      }
+    }
+    function pickAkashaChar(i) {
+      if (!akasha || !akasha.chars[i]) return;
+      akChar = i;
+      const { ch, builds } = akasha.chars[i];
+      uidChars.querySelectorAll('[data-ak-c]').forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.akC === i)));
+      uidBuilds.innerHTML = `
+        <p class="bg-uid-builds-title">Build di <b>${esc(ch.n)}</b> salvate su Akasha</p>
+        <div class="bg-uid-build-list">${builds.map((b, j) => {
+          const date = akDate(b);
+          const sets = akSets(b);
+          const cv = Number(b.critValue);
+          return `<button type="button" data-ak-b="${j}" aria-pressed="false">
+            <strong>${esc(akName(b))}${b.type === 'current' ? ' <em>in vetrina</em>' : ''}</strong>
+            <small>${akSummary(b)}</small>
+            ${sets ? `<small>${sets}</small>` : ''}
+            <small>${cv > 0 ? `CV ${fmt(cv)}` : ''}${cv > 0 && date ? ' &middot; ' : ''}${date ? `aggiornata il ${date}` : ''}</small>
+          </button>`;
+        }).join('')}</div>`;
+      if (builds.length === 1) pickAkashaBuild(0);
+    }
+    async function pickAkashaBuild(j) {
+      if (!akasha || akChar < 0) return;
+      const { ch, builds } = akasha.chars[akChar];
+      const b = builds[j];
+      if (!b) return;
+      uidBuilds.querySelectorAll('[data-ak-b]').forEach((x) => x.setAttribute('aria-pressed', String(+x.dataset.akB === j)));
+      const run = ++uidRun;
+      let arts = akArtifacts[b.md5];
+      if (!arts) {
+        setUidStatus(`Carico i manufatti della build <b>${esc(akName(b))}</b>&hellip;`);
+        try {
+          const r = await fetch(`${AKASHA_BASE}akasha/artifacts/${akasha.uid}/${b.md5}`);
+          if (run !== uidRun) return;
+          if (!r.ok) { setUidStatus(`Manufatti della build non disponibili: ${akErr(r.status)}`, 'err'); return; }
+          const j2 = await r.json();
+          if (run !== uidRun) return;
+          arts = Array.isArray(j2) ? j2 : Array.isArray(j2 && j2.data) ? j2.data : [];
+          if (!arts.length) { setUidStatus('Akasha non ha i manufatti di questa build: aggiorna il profilo su akasha.cv e riprova.', 'err'); return; }
+          akArtifacts[b.md5] = arts;
+        } catch (e) {
+          if (run === uidRun) setUidStatus('Non riesco a leggere i manufatti della build: controlla la connessione e riprova.', 'err');
+          return;
+        }
+      }
+      const a = akashaAvatar(b, arts);
+      const n = a.equipList.filter((e) => e.flat.itemType === 'ITEM_RELIQUARY').length;
+      applyAvatar(a, ch, { from: 'akasha', label: `Importata la build <b>${esc(akName(b))}</b> di <b>${esc(ch.n)}</b> (${akSummary(b)}${n < 5 ? `; ${n} manufatti su 5` : ''})` });
+    }
+    uidBuilds.addEventListener('click', (e) => { const b = e.target.closest('[data-ak-b]'); if (b) pickAkashaBuild(+b.dataset.akB); });
     // Pezzi in una riga scorrevole: se non stanno tutti (sul telefono uno alla volta) compaiono i pulsanti
     const piecesBox = form.querySelector('#q-piece-cards');
     const piecesNavEl = form.querySelector('#q-pieces-nav');

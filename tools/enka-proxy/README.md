@@ -6,12 +6,12 @@ Senza il Worker la ricerca funziona solo per gli UID salvati in `assets/data/sho
 
 ## Akasha
 
-Lo stesso Worker serve anche l'import da [Akasha](https://akasha.cv/) di Juan-optimizer (tutte le build salvate di un UID, più build per personaggio). Due percorsi in sola lettura:
+Lo stesso Worker serve anche l'import da [Akasha](https://akasha.cv/) di Juan-optimizer e del calcolatore di `tools.html` (fonte "Akasha": tutte le build salvate di un UID, più build per personaggio). Due percorsi in sola lettura:
 
 - `/akasha/builds/<uid>?page=<n>`: le build salvate (`akasha.cv/api/builds/?uid=`, 100 per pagina, al massimo 20 pagine);
 - `/akasha/artifacts/<uid>/<md5>`: i 5 manufatti di una build (`akasha.cv/api/artifacts/<uid>/<md5>`).
 
-Le risposte restano in cache 5 minuti. Se Akasha risponde con una pagina invece che con dei dati (per esempio la verifica anti-bot di Cloudflare), il Worker restituisce 502 e Juan-optimizer lo spiega. Dopo aver cambiato `worker.js` va ripubblicato (punto 3 qui sotto).
+Le risposte restano in cache 5 minuti. Se Akasha risponde con una pagina invece che con dei dati (per esempio la verifica anti-bot di Cloudflare), il Worker restituisce 502 e Juan-optimizer e `tools.html` lo spiegano. Dopo aver cambiato `worker.js` va ripubblicato (punto 3 qui sotto).
 
 ## Come pubblicarlo (gratis)
 
