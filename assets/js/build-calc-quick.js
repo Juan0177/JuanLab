@@ -589,24 +589,30 @@
       const S = num(cur[k]); const EM = num(cur.em);
       if (!S) return '';
       const base = { atk: c.atk + (w ? w.atk : 0), hp: c.hp, def: c.def }[k];
-      const amp = state.style === 'amp' && sc !== 'em';
-      const ampF = (em) => 1 + 2.78 * em / (em + 1400);
-      const D = (s, cr, cd, em) => s * (1 + Math.min(Math.max(cr, 0), 100) / 100 * cd / 100) * (amp ? ampF(em) : 1);
+      // Bonus della Maestria come in Genshin Optimizer (libs/gi/wr/src/formula.ts e reaction/special.ts):
+      // amplificative 1 + 25/9 * M/(M+1400); Lunari e Stellari 1 + 6 * M/(M+2000) (bonus dei set esclusi)
+      const amp = state.style === 'amp';
+      const lunarLike = state.style === 'lunar' || state.style === 'stellar';
+      const emF = amp ? (em) => 1 + 25 / 9 * em / (em + 1400) : lunarLike ? (em) => 1 + 6 * em / (em + 2000) : () => 1;
+      const usesEm = amp || lunarLike;
+      // Chi scala sulla Maestria: la Maestria e' insieme statistica di danno e bonus della reazione
+      const D = (s, cr, cd, em) => s * (1 + Math.min(Math.max(cr, 0), 100) / 100 * cd / 100) * emF(sc === 'em' ? s : em);
       const R = 0.85;
       const d0 = D(S, combatCr, CD, EM);
       const items = [];
       items.push(['cr', 'Tasso di CRIT', D(S, combatCr + 3.89 * R, CD, EM) / d0 - 1, combatCr >= 100 ? 'gi&agrave; al 100% in combattimento' : '']);
       items.push(['cd', 'DAN da CRIT', D(S, combatCr, CD + 7.77 * R, EM) / d0 - 1, '']);
-      if (sc === 'em') items.push(['em', 'Maestria', D(S + 23.31 * R, combatCr, CD, EM) / d0 - 1, 'stima: danno proporzionale alla Maestria']);
+      const emWhy = amp ? 'se tutti i colpi fanno Vaporizzazione o Fusione' : lunarLike ? `bonus alle reazioni ${state.style === 'lunar' ? 'Lunari' : 'Stellari'}: 6 &times; M / (M + 2000)` : '';
+      if (sc === 'em') items.push(['em', 'Maestria', D(S + 23.31 * R, combatCr, CD, EM) / d0 - 1, usesEm ? `statistica di danno e ${emWhy}` : 'statistica di danno']);
       else items.push([{ atk: 'atkp', hp: 'hpp', def: 'defp' }[sc], SCALE_PCT[sc], D(S + base * (sc === 'def' ? 7.29 : 5.83) * R / 100, combatCr, CD, EM) / d0 - 1, '']);
-      if (amp) items.push(['em', 'Maestria', D(S, combatCr, CD, EM + 23.31 * R) / d0 - 1, 'se tutti i colpi fanno Vaporizzazione o Fusione']);
+      if (usesEm && sc !== 'em') items.push(['em', 'Maestria', D(S, combatCr, CD, EM + 23.31 * R) / d0 - 1, EM ? emWhy : `${emWhy} &middot; inserisci la Maestria per un valore preciso`]);
       items.sort((a, b) => b[2] - a[2]);
       const top = Math.max(...items.map((x) => x[2]), 0.0001);
       const g = GUIDE[c.id || c.i];
       const er = num(cur.er);
       const erMiss = g && g.ricarica && er && er < g.ricarica[0] - 0.5 ? g.ricarica[0] - er : 0;
       const style = STYLES.find((x) => x.k === state.style);
-      const emNote = style.em && sc !== 'em' && !amp ? `<p class="bg-gain-note">${ICON.em}Con lo stile ${style.n} la Maestria conta, ma il suo effetto qui non &egrave; calcolato: segui la scheda del personaggio.</p>` : '';
+      const emNote = usesEm ? `<p class="bg-gain-note">${ICON.em}Maestria calcolata con le formule di Genshin Optimizer, senza i bonus ai DAN della reazione dei set e del team: con quei bonus ogni punto di Maestria rende un po&rsquo; meno.</p>` : '';
       return `
         <div class="bg-gains">
           <div class="bg-guide-head"><span><small>Cosa aumentare</small><strong>Il prossimo roll che rende di pi&ugrave;</strong></span></div>
