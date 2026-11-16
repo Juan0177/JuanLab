@@ -849,7 +849,7 @@
           if (!r.ok) { setUidStatus(ENKA_ERR[r.status] || `Errore ${r.status} da Enka.network.`, 'err'); return; }
           data = await r.json(); from = 'da Enka.network, aggiornata ora';
         }
-        if (!data) { setUidStatus('Questo UID non &egrave; tra quelli salvati nel sito e la ricerca in tempo reale non &egrave; ancora attiva.', 'err'); return; }
+        if (!data) { setUidStatus('Per ora si possono cercare solo le vetrine salvate nel sito (per esempio <b>713793020</b>): Enka.network non permette ai siti di leggere le vetrine direttamente dal browser. La ricerca di qualsiasi UID arriva appena &egrave; attivo il collegamento a Enka.', 'err'); return; }
         const list = data.avatarInfoList || [];
         if (!list.length) { setUidStatus('La vetrina &egrave; vuota oppure i dettagli dei personaggi sono nascosti nelle impostazioni del gioco.', 'err'); return; }
         showcase = list.map((a) => {
