@@ -207,7 +207,7 @@
     const state = {
       char: byName(DATA.chars, 'Mavuika') || DATA.chars[0],
       weapon: null, set1: byName(SETS, 'Codice d’ossidiana') || byName(SETS, "Codice d'ossidiana") || SETS[1], pcs: 4, set2: NONE_SET,
-      style: 'amp', corona: 'cd', sands: 'em', goblet: 'dmg', scale: null, reso: true,
+      style: 'amp', styleUser: 'amp', corona: 'cd', sands: 'em', goblet: 'dmg', scale: null, reso: true,
     };
 
     const step = (n, title, body, extra = '') => `<section class="bg-qstep" id="q-step${n}"><h4 class="bg-qstep-title"><span>${n}</span>${title}${extra}</h4>${body}</section>`;
@@ -288,8 +288,8 @@
     const values = { cr: '56,1', cd: '253,9', atk: '1618', hp: '', def: '', em: '237', er: '100', xcr: '', xcd: '', xsc: '' };
     // Cambiando personaggio i valori del precedente non hanno piu senso: si svuotano
     function clearStats() {
-      ['cr', 'cd', 'atk', 'hp', 'def', 'em', 'er'].forEach((k) => { values[k] = ''; });
-      form.querySelectorAll('input[name="er"]').forEach((x) => { x.value = ''; });
+      ['cr', 'cd', 'atk', 'hp', 'def', 'em', 'er', 'xcr', 'xcd', 'xsc'].forEach((k) => { values[k] = ''; });
+      ['er', 'xcr', 'xcd', 'xsc'].forEach((k) => form.querySelectorAll(`input[name="${k}"]`).forEach((x) => { x.value = ''; }));
       pieces = emptyPieces();
       relics = [null, null, null, null, null];
     }
@@ -1065,7 +1065,24 @@
       Object.assign(values, { cr: pctStr(fp['20']), cd: pctStr(fp['22']), hp: String(Math.round(fp['2000'])), atk: String(Math.round(fp['2001'])), def: String(Math.round(fp['2002'])), em: String(Math.round(fp['28'] || 0)), er: pctStr(fp['23']) });
       form.querySelectorAll('input[name="er"]').forEach((x) => { x.value = values.er; });
       uidChars.querySelectorAll('button').forEach((b) => b.setAttribute('aria-pressed', String(+b.dataset.uidI === i)));
-      setUidStatus(`Importato <b>${esc(ch.n)}</b>: controlla lo stile di gioco (passo 3), la vetrina non lo indica.`, 'ok');
+      // Bonus fissi non visibili nei pezzi (passive dell'arma, costellazioni, talenti): la differenza tra la schermata
+      // e il totale ricostruito da base, ascensione, arma, set, principali e secondarie. Cosi le due viste coincidono.
+      // Stile di gioco: se il 4pz vale solo con uno stile (Lunare, Stellare) si usa quello, altrimenti quello scelto da te
+      const style4 = state.pcs === 4 && state.set1 && state.set1.style4;
+      state.style = style4 || state.styleUser;
+      values.xcr = ''; values.xcd = ''; values.xsc = '';
+      const rebuilt = synth();
+      const extra = (d) => (d >= 0.3 ? d.toFixed(1).replace('.', ',') : '');
+      values.xcr = extra(num(values.cr) - num(rebuilt.cr));
+      values.xcd = extra(num(values.cd) - num(rebuilt.cd));
+      // statistica di danno: la parte della schermata che non viene da base, arma, set, principali e secondarie %
+      // (passive, costellazioni, talenti e secondarie fisse), cosi anche il Roll Value dalla schermata coincide con quello dei pezzi
+      const BASE = { atk: ch.atk + (state.weapon ? state.weapon.atk : 0), hp: ch.hp, def: ch.def }[sc];
+      values.xsc = extra(sc === 'em' ? num(values.em) - num(rebuilt.em) : (num(values[sc]) - num(rebuilt[sc])) / BASE * 100);
+      ['xcr', 'xcd', 'xsc'].forEach((k) => form.querySelectorAll(`input[name="${k}"]`).forEach((x) => { x.value = values[k]; }));
+      const SCN = { atk: 'ATT', hp: 'PS', def: 'DIF', em: 'Maestria' }[sc];
+      const extraTxt = [values.xcr ? `Tasso di CRIT +${values.xcr}%` : '', values.xcd ? `DAN da CRIT +${values.xcd}%` : '', values.xsc ? `${SCN} +${values.xsc}${sc === 'em' ? '' : '%'}` : ''].filter(Boolean).join(', ');
+      setUidStatus(`Importato <b>${esc(ch.n)}</b>: ${style4 ? `stile ${style4 === 'lunar' ? 'Lunare' : 'Stellare'} scelto dal 4pz di ${esc(state.set1.n)}, controllalo al passo 3` : 'controlla lo stile di gioco (passo 3), la vetrina non lo indica'}.${extraTxt ? ` Ricavati dalla schermata e messi in &ldquo;Altri bonus fissi&rdquo; (passive, costellazioni, talenti${values.xsc && sc !== 'em' ? ', secondarie fisse' : ''}): ${extraTxt}.` : ''}`, 'ok');
       syncSets(); drawStats(); drawMains(); drawPieces(); update();
     }
     form.querySelector('#q-uid-go').addEventListener('click', lookupUid);
@@ -1185,7 +1202,7 @@
     form.addEventListener('change', (e) => { if (e.target.closest('#q-reso')) { state.reso = e.target.checked; update(); } });
     form.addEventListener('submit', (e) => e.preventDefault());
     form.querySelectorAll('[data-q-pcs]').forEach((b) => b.addEventListener('click', () => { state.pcs = +b.dataset.qPcs; syncSets(); update(); }));
-    form.querySelectorAll('[data-q-style]').forEach((b) => b.addEventListener('click', () => { state.style = b.dataset.qStyle; drawStats(); drawPieces(); update(); }));
+    form.querySelectorAll('[data-q-style]').forEach((b) => b.addEventListener('click', () => { state.style = b.dataset.qStyle; state.styleUser = state.style; drawStats(); drawPieces(); update(); }));
 
     pChar.setItems(DATA.chars); pChar.set(state.char, true);
     syncWeapons();
