@@ -937,6 +937,27 @@ i.bg-ava-none { display: inline-block; }
 .bg-uid-chars button img { width: 28px; height: 28px; border-radius: 50%; background: rgba(5, 10, 20, 0.9); }
 .bg-uid-chars button:hover { border-color: var(--guide-gold); }
 .bg-uid-chars button[aria-pressed="true"] { border-color: var(--guide-gold); background: rgba(245, 215, 135, 0.18); }
+/* Fonte dell'import: Enka (vetrina attuale) o Akasha (build salvate) */
+.bg-uid-src { flex: 0 1 17rem; }
+.bg-uid-src .bg-seg-lg { height: 2.6rem; }
+.bg-uid-src .bg-seg button { border-radius: 12px; line-height: 1.15; }
+.bg-uid-src .bg-seg button > span { display: grid; min-width: 0; text-align: center; }
+.bg-uid-src .bg-seg button small { color: var(--guide-muted); font-size: 0.68rem; font-weight: 400; }
+.bg-uid-src .bg-seg button[aria-checked="true"] small { color: rgba(26, 20, 8, 0.75); }
+@media (max-width: 480px) { .bg-uid-src { flex-basis: 100%; } }
+.bg-uid-count { min-width: 1.3rem; padding: 0 0.35rem; border-radius: 999px; background: rgba(245, 215, 135, 0.18); color: var(--guide-gold); font-size: 0.72rem; text-align: center; }
+/* Build di Akasha del personaggio scelto */
+.bg-uid-builds { display: grid; gap: 0.4rem; }
+.bg-uid-builds:empty { display: none; }
+.bg-uid-builds-title { margin: 0; color: var(--guide-muted); font-size: 0.82rem; }
+.bg-uid-build-list { display: grid; grid-template-columns: repeat(auto-fill, minmax(min(100%, 16rem), 1fr)); gap: 0.45rem; }
+.bg-uid-build-list button { display: grid; align-content: start; gap: 0.15rem; width: 100%; min-width: 0; margin: 0; padding: 0.5rem 0.7rem; border: 1px solid var(--guide-border); border-radius: 12px; background: var(--guide-panel-soft); color: var(--guide-text); text-align: left; box-shadow: none; }
+.bg-uid-build-list button:hover { border-color: var(--guide-gold); }
+.bg-uid-build-list button[aria-pressed="true"] { border-color: var(--guide-gold); background: rgba(245, 215, 135, 0.18); }
+.bg-uid-build-list strong { font-size: 0.88rem; overflow-wrap: anywhere; }
+.bg-uid-build-list strong em { margin-left: 0.3rem; padding: 0 0.4rem; border-radius: 999px; background: rgba(143, 227, 165, 0.14); color: var(--guide-green); font-size: 0.68rem; font-style: normal; font-weight: 700; }
+.bg-uid-build-list small { color: var(--guide-muted); font-size: 0.74rem; line-height: 1.35; overflow-wrap: anywhere; }
+.bg-uid-build-list small:empty { display: none; }
 
 /* Tabella dei roll nella guida */
 .bg-roll-table th[scope="row"] { display: flex; align-items: center; gap: 0.1rem; white-space: nowrap; }
