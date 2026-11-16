@@ -671,3 +671,22 @@ i.bg-ava-none { display: inline-block; }
 .bg-tool-link span { display: grid; flex: 1; min-width: 0; }
 .bg-tool-link small { color: var(--guide-muted); }
 .bg-tool-link b { color: var(--guide-gold); white-space: nowrap; }
+
+/* Roll Value della build (modalita semplice) */
+.bg-q-2 { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+.bg-out-rv {
+  grid-column: 1 / -1;
+  display: grid;
+  grid-template-columns: auto 1fr;
+  column-gap: 0.8rem;
+  align-items: center;
+  margin-top: 0.9rem;
+  padding-top: 0.8rem;
+  border-top: 1px solid var(--guide-border);
+}
+.bg-out-rv > b { color: var(--tier); font-size: 1.7rem; line-height: 1; }
+.bg-out-rv > span { color: var(--guide-muted); font-size: 0.8rem; }
+.bg-out-rv strong { display: block; color: var(--guide-text); font-size: 0.95rem; }
+.bg-out-rv > small { grid-column: 1 / -1; margin-top: 0.3rem; color: var(--guide-muted); font-size: 0.75rem; }
+.bg-q-3 .bg-seg-lg button { padding: 0.2rem 0.25rem; font-size: 0.78rem; }
+@media (max-width: 760px) { .bg-q-2 { grid-template-columns: minmax(0, 1fr); } }

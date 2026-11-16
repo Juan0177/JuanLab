@@ -152,21 +152,15 @@
     const state = {
       char: byName(DATA.chars, 'Mavuika') || DATA.chars[0],
       weapon: null, set1: byName(SETS, 'Codice d’ossidiana') || byName(SETS, "Codice d'ossidiana") || SETS[1], pcs: 4, set2: NONE_SET,
-      style: 'amp', corona: 'cd', scale: null, reso: true,
+      style: 'amp', corona: 'cd', sands: 'em', goblet: 'dmg', scale: null, reso: true,
     };
 
     form.innerHTML = `
-      <div class="bg-q-row bg-q-3">
+      <div class="bg-q-row bg-q-2">
         <div class="bg-field"><span class="bg-label">${ICON.char}Personaggio</span><div class="bg-pick" id="pick-char"></div></div>
         <div class="bg-field"><span class="bg-label">${ICON.weapon}Arma</span><div class="bg-pick" id="pick-weapon"></div></div>
-        <div class="bg-field"><span class="bg-label">${ICON.circlet}Principale della Corona</span>
-          <div class="bg-seg bg-seg-lg" role="radiogroup" aria-label="Statistica principale della Corona">
-            <button type="button" role="radio" data-q-corona="cr">${ICON.cr}Tasso</button>
-            <button type="button" role="radio" data-q-corona="cd">${ICON.cd}DAN</button>
-            <button type="button" role="radio" data-q-corona="altro">Altro</button>
-          </div>
-        </div>
       </div>
+      <div class="bg-q-row bg-q-3" id="q-mains"></div>
       <div class="bg-q-row bg-q-set">
         <div class="bg-field"><span class="bg-label">${ICON.set}Set</span><div class="bg-pick" id="pick-set1"></div></div>
         <div class="bg-field bg-field-pcs"><span class="bg-label">${ICON.pcs}Pezzi</span>
@@ -193,15 +187,16 @@
         <div class="bg-q-stats">
           <label class="bg-stat"><span>${ICON.cr}Tasso di CRIT extra</span><input type="text" name="xcr" inputmode="decimal" placeholder="0" /></label>
           <label class="bg-stat"><span>${ICON.cd}DAN da CRIT extra</span><input type="text" name="xcd" inputmode="decimal" placeholder="0" /></label>
+          <label class="bg-stat"><span>${ICON.atk}Statistica di danno extra <small>% o Maestria</small></span><input type="text" name="xsc" inputmode="decimal" placeholder="0" /></label>
         </div>
       </details>`;
 
-    const values = { cr: '56,1', cd: '253,9', atk: '1618', hp: '', def: '', em: '237', xcr: '', xcd: '' };
+    const values = { cr: '56,1', cd: '253,9', atk: '1618', hp: '', def: '', em: '237', xcr: '', xcd: '', xsc: '' };
 
     const pChar = Picker(form.querySelector('#pick-char'), {
       placeholder: 'Cerca un personaggio',
       render: (c) => ({ icon: `<img src="assets/img/characters/${c.i}.webp" alt="" width="256" height="256" class="bg-ava" />${elImg(c.el)}`, name: c.n, meta: `${STAT_ICON[c.asc[0]] ? ICON[STAT_ICON[c.asc[0]]] : ''}${statText(c.asc)}` }),
-      onPick: (c) => { state.char = c; state.scale = null; syncWeapons(); drawStats(); update(); },
+      onPick: (c) => { state.char = c; state.scale = null; syncWeapons(); drawStats(); drawMains(); update(); },
     });
     const pWeapon = Picker(form.querySelector('#pick-weapon'), {
       placeholder: 'Cerca un’arma',
@@ -239,6 +234,24 @@
       form.querySelectorAll('[data-q-pcs]').forEach((b) => b.setAttribute('aria-checked', String(+b.dataset.qPcs === state.pcs)));
     }
     function scale() { return state.scale || state.char.s; }
+    const SCALE_PCT = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria' };
+    function drawMains() {
+      const sc = scale();
+      const pct = sc === 'em' ? null : ['scale', `${ICON[SCALES[sc][1]]}${SCALE_PCT[sc]}`];
+      const groups = [
+        ['sands', 'Sabbie', 'sands', [pct, ['em', `${ICON.em}Maestria`], ['er', `${ICON.er}Ricarica`], ['altro', 'Altro']]],
+        ['goblet', 'Calice', 'goblet', [['dmg', 'Bonus DAN'], pct, ['em', `${ICON.em}Maestria`], ['altro', 'Altro']]],
+        ['corona', 'Corona', 'circlet', [['cr', `${ICON.cr}Tasso`], ['cd', `${ICON.cd}DAN`], ['em', `${ICON.em}Maestria`], ['altro', 'Altro']]],
+      ];
+      groups.forEach(([key, , , opts]) => { if (!opts.some((o) => o && o[0] === state[key])) state[key] = opts.find(Boolean)[0]; });
+      form.querySelector('#q-mains').innerHTML = groups.map(([key, name, icon, opts]) => `
+        <div class="bg-field"><span class="bg-label"><img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" class="bg-ico-img" />Principale ${name === 'Sabbie' ? 'delle' : 'del' + (name === 'Corona' ? 'la' : '')} ${name}</span>
+          <div class="bg-seg bg-seg-lg" role="radiogroup" aria-label="Statistica principale: ${name}">
+            ${opts.filter(Boolean).map(([v, label]) => `<button type="button" role="radio" data-q-main="${key}" data-v="${v}" aria-checked="${state[key] === v}">${label}</button>`).join('')}
+          </div>
+        </div>`).join('');
+      form.querySelectorAll('[data-q-main]').forEach((b) => b.addEventListener('click', () => { state[b.dataset.qMain] = b.dataset.v; drawMains(); update(); }));
+    }
     function drawStats() {
       const sc = scale();
       const style = STYLES.find((s) => s.k === state.style);
@@ -249,7 +262,7 @@
         <label class="bg-stat"><span>${ICON[k]}${label}${unit ? ' %' : ''} <small>totale</small></span>
           <input type="text" name="${k}" inputmode="decimal" placeholder="0" value="${esc(values[k] || '')}" /></label>`).join('');
       form.querySelector('.bg-scale-pick').innerHTML = `scala su ${Object.entries(SCALES).map(([k, [n]]) => `<button type="button" data-q-scale="${k}" aria-pressed="${k === sc}">${ICON[SCALES[k][1]]}${n}</button>`).join('')}`;
-      form.querySelectorAll('[data-q-scale]').forEach((b) => b.addEventListener('click', () => { state.scale = b.dataset.qScale; drawStats(); update(); }));
+      form.querySelectorAll('[data-q-scale]').forEach((b) => b.addEventListener('click', () => { state.scale = b.dataset.qScale; drawStats(); drawMains(); update(); }));
     }
 
     // ---- Calcolo ----
@@ -275,7 +288,6 @@
     function multiplier(cr, cd) { return 1 + Math.min(Math.max(cr, 0), 100) / 100 * cd / 100; }
 
     function update() {
-      form.querySelectorAll('[data-q-corona]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.qCorona === state.corona)));
       form.querySelectorAll('[data-q-style]').forEach((b) => b.setAttribute('aria-checked', String(b.dataset.qStyle === state.style)));
       form.querySelector('#q-reso').hidden = state.style !== 'freeze';
 
@@ -307,7 +319,7 @@
       let coronaRec;
       if (diff < 1) coronaRec = { k: 'pari', title: 'Tasso o DAN da CRIT', text: `Quasi uguali (${fmt(diff)}% di differenza): tieni la Corona con le secondarie migliori.` };
       else if (state.corona === best) coronaRec = { k: best, title: BEST_NAME[best], text: `&Egrave; gi&agrave; la scelta giusta: con ${best === 'cr' ? 'DAN da CRIT' : 'Tasso di CRIT'} faresti circa il <b>${fmt((1 - Math.min(mWithCr, mWithCd) / Math.max(mWithCr, mWithCd)) * 100)}%</b> di danno medio in meno.` };
-      else if (state.corona === 'altro') coronaRec = { k: best, title: BEST_NAME[best], text: `Tra le due Corone CRIT &egrave; la migliore: <b>+${fmt(diff)}%</b> di danno medio rispetto all&rsquo;altra. Tieni la Corona attuale solo se &egrave; un supporto (guarigione, PS%, Maestria&hellip;).` };
+      else if (state.corona === 'altro' || state.corona === 'em') coronaRec = { k: best, title: BEST_NAME[best], text: `Tra le due Corone CRIT &egrave; la migliore: <b>+${fmt(diff)}%</b> di danno medio rispetto all&rsquo;altra. Tieni la Corona attuale solo se il personaggio non fa danno con i CRIT (supporto, guaritore, reazioni senza CRIT).` };
       else coronaRec = { k: best, title: BEST_NAME[best], text: `Cambiala: con ${BEST_NAME[best]} il danno medio sale di circa il <b>${fmt(diff)}%</b>.`, change: true };
       if (combatCr - (state.corona === 'cr' ? 31.1 : 0) + 31.1 > 100 && best === 'cd' && diff >= 1) coronaRec.text += ' Con il Tasso andresti oltre il 100% in combattimento.';
 
@@ -320,7 +332,36 @@
       else tips.push(`Rapporto in combattimento 1 : ${fmt(ratio)}: vicino all&rsquo;1:2, bene.`);
       notes.forEach((n) => tips.push(n));
 
+      // Roll Value della build: roll pieni nelle statistiche utili, ricavati dalla schermata
       const sc = scale();
+      const twoSets = [state.set1, state.pcs === 2 ? state.set2 : null].filter((x) => x && x !== NONE_SET);
+      const setSum = (key) => twoSets.reduce((t, x) => t + (x[key] || 0), 0);
+      const MAIN_PCT = { atk: 46.6, hp: 46.6, def: 58.3 };
+      const ROLL = { atk: 5.83, hp: 5.83, def: 7.29, em: 23.31 };
+      const ASC = { atk: 'atkp', hp: 'hpp', def: 'defp', em: 'em' };
+      const xsc = num(values.xsc);
+      function subsRolls(key) {
+        const total = num(values[key]);
+        if (!total) return null;
+        if (key === 'em') {
+          const fixedEm = asc('em') + wsub('em') + setSum('em2') + ['sands', 'goblet', 'corona'].filter((g) => state[g] === 'em').length * 186.5 + (sc === 'em' ? xsc : 0);
+          return (total - fixedEm) / ROLL.em;
+        }
+        const base = { atk: c.atk + (w ? w.atk : 0), hp: c.hp, def: c.def }[key];
+        const pct = asc(ASC[key]) + wsub(ASC[key]) + setSum(`${key}2`) + (state.sands === 'scale' ? MAIN_PCT[key] : 0) + (state.goblet === 'scale' ? MAIN_PCT[key] : 0) + xsc;
+        const flat = { atk: 311, hp: 4780, def: 0 }[key];
+        return ((total - base * (1 + pct / 100) - flat) / base * 100) / ROLL[key];
+      }
+      const rollParts = [['CRIT', Math.max(artCr, 0) / 3.89 + Math.max(artCd, 0) / 7.77]];
+      const scRolls = subsRolls(SCALES[sc][1]);
+      if (scRolls !== null) rollParts.push([SCALE_PCT[sc], scRolls]);
+      const style = STYLES.find((x) => x.k === state.style);
+      if (style.em && sc !== 'em') { const e = subsRolls('em'); if (e !== null) rollParts.push(['Maestria', e]); }
+      const rvBad = rollParts.some(([, r]) => r < -0.6);
+      const rolls = rollParts.reduce((t, [, r]) => t + Math.max(r, 0), 0);
+      const RV_TIERS = [[30, 'top', 't5'], [25, 'ottimo', 't4'], [20, 'buono', 't3'], [15, 'discreto', 't2'], [0, 'basso', 't1']];
+      const [, rvTier, rvCls] = RV_TIERS.find(([min]) => rolls >= min);
+
       const baseOf = { atk: c.atk + (w ? w.atk : 0), hp: c.hp, def: c.def };
       const scaleRows = [];
       const k = SCALES[sc][1];
@@ -336,6 +377,11 @@
           <span>CV dei manufatti<strong>${bad ? 'controlla i valori' : tier}</strong></span>
           <i class="bg-meter bg-meter-big" aria-hidden="true"><i style="width:${bad ? 0 : Math.min(Math.max(cv, 0) / 250, 1) * 100}%"></i>${[120, 150, 180, 210].map((t) => `<em style="left:${t / 2.5}%"></em>`).join('')}</i>
           <small class="bg-out-sub">${ICON.cr}+${fmt(Math.max(artCr, 0))}% ${ICON.cd}+${fmt(Math.max(artCd, 0))}% dalle secondarie</small>
+          <div class="bg-out-rv ${bad || rvBad ? 't1' : rvCls}">
+            <b>${bad || rvBad ? '&ndash;' : `${fmt(rolls * 100, 0)}%`}</b>
+            <span>Roll Value della build<strong>${bad || rvBad ? 'controlla le principali' : `${rvTier} &middot; &asymp; ${fmt(rolls)} roll utili su 45`}</strong></span>
+            <small>${rollParts.map(([n, r]) => `${n} ${fmt(Math.max(r, 0))}`).join(' &middot; ')}</small>
+          </div>
         </div>
         <ul class="bg-out-list">
           <li><span>${ICON.cr}Tasso in combattimento</span><strong>${fmt(combatCr)}%</strong><small>${combat.length ? combat.map((f) => `+${f[1]}% ${esc(f[0])}`).join(', ') : 'nessun bonus in combattimento'}</small></li>
@@ -354,7 +400,6 @@
     });
     form.addEventListener('change', (e) => { if (e.target.closest('#q-reso')) { state.reso = e.target.checked; update(); } });
     form.addEventListener('submit', (e) => e.preventDefault());
-    form.querySelectorAll('[data-q-corona]').forEach((b) => b.addEventListener('click', () => { state.corona = b.dataset.qCorona; update(); }));
     form.querySelectorAll('[data-q-pcs]').forEach((b) => b.addEventListener('click', () => { state.pcs = +b.dataset.qPcs; syncSets(); update(); }));
     form.querySelectorAll('[data-q-style]').forEach((b) => b.addEventListener('click', () => { state.style = b.dataset.qStyle; drawStats(); update(); }));
 
@@ -364,6 +409,7 @@
     pWeapon.set(state.weapon, true);
     syncSets();
     drawStats();
+    drawMains();
     update();
   }
 })();
