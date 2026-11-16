@@ -4,48 +4,6 @@
  "fonti": "KeqingMains (keqingmains.com) e almeno un’altra guida per personaggio (genshin.gg, Game8, Icy Veins, genshin-builds.com)",
  "personaggi": [
   {
-   "id": "UI_AvatarIcon_PlayerBoy",
-   "en": "Aether",
-   "ruoli": [
-    "support",
-    "subdps"
-   ],
-   "scala": "atk",
-   "crit": true,
-   "sabbie": [
-    "er",
-    "em",
-    "atkp"
-   ],
-   "calice": [
-    "dmg",
-    "em"
-   ],
-   "corona": [
-    "cr",
-    "cd",
-    "em"
-   ],
-   "secondarie": [
-    "er",
-    "em",
-    "cr",
-    "cd",
-    "atkp"
-   ],
-   "ricarica": [
-    160,
-    250
-   ],
-   "maestria": null,
-   "note": "Dipende dall'elemento: qui build Dendro (Ricarica di energia, Calice Dendro, Corona CRIT). In Bloom puro tutto Maestria elementale.",
-   "fonti": [
-    "https://keqingmains.com/q/dendro-traveler-quickguide/",
-    "https://www.icy-veins.com/genshin-impact/dendro-traveler-guide-best-builds"
-   ],
-   "affidabilita": "media"
-  },
-  {
    "id": "UI_AvatarIcon_Aino",
    "en": "Aino",
    "ruoli": [
@@ -2540,45 +2498,6 @@
    "affidabilita": "media"
   },
   {
-   "id": "UI_AvatarIcon_PlayerGirl",
-   "en": "Lumine",
-   "ruoli": [
-    "subdps"
-   ],
-   "scala": "atk",
-   "crit": true,
-   "sabbie": [
-    "er",
-    "em",
-    "atkp"
-   ],
-   "calice": [
-    "dmg"
-   ],
-   "corona": [
-    "cr",
-    "cd"
-   ],
-   "secondarie": [
-    "er",
-    "cr",
-    "cd",
-    "atkp",
-    "em"
-   ],
-   "ricarica": [
-    160,
-    250
-   ],
-   "maestria": null,
-   "note": "Dipende dall'elemento: qui la build Dendro (la più diffusa). Ricarica di energia alta (160-300%) per la Tecnica suprema.",
-   "fonti": [
-    "https://keqingmains.com/q/dendro-traveler-quickguide/",
-    "https://genshin.gg/characters/traveler/"
-   ],
-   "affidabilita": "media"
-  },
-  {
    "id": "UI_AvatarIcon_Linette",
    "en": "Lynette",
    "ruoli": [
@@ -3852,6 +3771,296 @@
    "fonti": [
     "https://keqingmains.com/q/tighnari-quickguide/",
     "https://genshin.gg/characters/tighnari/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "Traveler_Anemo",
+   "en": "Traveler (Anemo)",
+   "ruoli": [
+    "subdps",
+    "support"
+   ],
+   "scala": "em",
+   "crit": false,
+   "sabbie": [
+    "em",
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "em",
+    "dmg"
+   ],
+   "corona": [
+    "em",
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "em",
+    "atkp",
+    "cr",
+    "cd"
+   ],
+   "ricarica": [
+    160,
+    180
+   ],
+   "maestria": null,
+   "maestria_team": null,
+   "note": "KQM (v3.0): tripla Maestria elementale, 60-80% del danno da Turbine; Ricarica di energia 160-180%. genshin.gg propone invece ATT/Bonus DAN Anemo/CRIT.",
+   "fonti": [
+    "https://keqingmains.com/anemo-traveler/",
+    "https://genshin-builds.com/character/traveler_anemo",
+    "https://genshin.gg/builds/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "Traveler_Cryo",
+   "en": "Traveler (Cryo)",
+   "ruoli": [
+    "dps",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "cd",
+    "cr"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    125,
+    145
+   ],
+   "maestria": null,
+   "maestria_team": null,
+   "note": "Nessuna guida KQM (solo meccaniche: passiva dà Maestria pari all'8% dell'ATT, max 160). Build da siti terzi: Calice ATT, ~2000+ ATT, Tasso di CRIT ~70%.",
+   "fonti": [
+    "https://library.keqingmains.com/characters/cryo/traveler-cryo",
+    "https://genshin-builds.com/character/traveler_cryo",
+    "https://allthings.how/genshin-impact-best-cryo-traveler-build-weapons-and-artifacts/",
+    "https://genshin.gg/builds/"
+   ],
+   "affidabilita": "bassa"
+  },
+  {
+   "id": "Traveler_Dendro",
+   "en": "Traveler (Dendro)",
+   "ruoli": [
+    "support",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "em",
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "em",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    160,
+    250
+   ],
+   "maestria": null,
+   "maestria_team": null,
+   "note": "Ricarica di energia per 2 Abilità elementali: 160-250% secondo il team (250-300% con una sola). In Bloom puro Calice e Corona Maestria elementale.",
+   "fonti": [
+    "https://keqingmains.com/q/dendro-traveler-quickguide/",
+    "https://genshin-builds.com/character/traveler_dendro",
+    "https://genshin.gg/builds/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "Traveler_Electro",
+   "en": "Traveler (Electro)",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er"
+   ],
+   "calice": [
+    "dmg",
+    "em"
+   ],
+   "corona": [
+    "cr",
+    "cd",
+    "em"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "em",
+    "atkp"
+   ],
+   "ricarica": [
+    170,
+    200
+   ],
+   "maestria": null,
+   "maestria_team": null,
+   "note": "Batteria: 170-200% con risonanza Electro senza amuleti raccolti, 100-130% se se ne raccolgono 3. Tasso di CRIT 50%+ con Spada di Favonius. KQM v2.8.",
+   "fonti": [
+    "https://keqingmains.com/electro-traveler/",
+    "https://genshin-builds.com/character/traveler_electro",
+    "https://genshin.gg/builds/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "Traveler_Geo",
+   "en": "Traveler (Geo)",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "er"
+   ],
+   "ricarica": [
+    130,
+    130
+   ],
+   "maestria": null,
+   "maestria_team": null,
+   "note": "DPS a scambio rapido: Ricarica di energia ~130%. Come support/batteria serve ~200% e Sabbie Ricarica. Guida KQM ferma alla v3.0.",
+   "fonti": [
+    "https://keqingmains.com/geo-traveler/",
+    "https://genshin-builds.com/character/traveler_geo",
+    "https://genshin.gg/builds/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "Traveler_Hydro",
+   "en": "Traveler (Hydro)",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em",
+    "hpp",
+    "er"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "maestria_team": null,
+   "note": "KQM: danno personale con Abilità elementale caricata, ignora la Ricarica; Maestria elementale in Vaporizzazione. genshin-builds: support con Sabbie Ricarica.",
+   "fonti": [
+    "https://keqingmains.com/q/hydro-traveler-quickguide/",
+    "https://genshin-builds.com/character/traveler_hydro",
+    "https://genshin.gg/builds/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "Traveler_Pyro",
+   "en": "Traveler (Pyro)",
+   "ruoli": [
+    "support",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg",
+    "atkp",
+    "em"
+   ],
+   "corona": [
+    "cr",
+    "cd",
+    "em"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    210,
+    280
+   ],
+   "maestria": null,
+   "maestria_team": null,
+   "note": "Support fuori campo con 4pz Rotolo: Ricarica 255-280% (210-220% con Spada di Favonius), fino a 300% senza Rotolo. Maestria elementale per Burgeon/Sovraccarico.",
+   "fonti": [
+    "https://keqingmains.com/q/pyro-traveler-quickguide/",
+    "https://genshin-builds.com/character/traveler_pyro",
+    "https://genshin.gg/builds/"
    ],
    "affidabilita": "alta"
   },

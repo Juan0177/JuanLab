@@ -247,6 +247,12 @@
     ].join('');
 
     const values = { cr: '56,1', cd: '253,9', atk: '1618', hp: '', def: '', em: '237', er: '100', xcr: '', xcd: '', xsc: '' };
+    // Cambiando personaggio i valori del precedente non hanno piu senso: si svuotano
+    function clearStats() {
+      ['cr', 'cd', 'atk', 'hp', 'def', 'em', 'er'].forEach((k) => { values[k] = ''; });
+      form.querySelectorAll('input[name="er"]').forEach((x) => { x.value = ''; });
+      pieces = emptyPieces();
+    }
     let cur = values; // valori usati dal calcolo: la schermata (semplice) o ricostruiti dai pezzi (avanzato)
     state.mode = pendingMode;
     const emptyPieces = () => [0, 1, 2, 3, 4].map(() => ({ cr: '', cd: '', sc: '', em: '' }));
@@ -309,14 +315,14 @@
         o[k] = (base * (1 + (asc(pk) + ws(pk) + setSum(`${k}2`) + own) / 100) + { atk: 311, hp: 4780, def: 0 }[k]).toFixed(1);
       });
       const emMains = ['sands', 'goblet', 'corona'].filter((g) => state[g] === 'em').length * 186.5;
-      o.em = (asc('em') + ws('em') + setSum('em2') + emMains + (sc === 'em' ? num(values.xsc) + sum('sc') : sum('em'))).toFixed(1);
+      o.em = ((c.em0 || 0) + asc('em') + ws('em') + setSum('em2') + emMains + (sc === 'em' ? num(values.xsc) + sum('sc') : sum('em'))).toFixed(1);
       return o;
     }
 
     const pChar = Picker(form.querySelector('#pick-char'), {
       placeholder: 'Cerca un personaggio',
       render: (c) => ({ icon: `<img src="assets/img/characters/${c.i}.webp" alt="" width="256" height="256" class="bg-ava" />${elImg(c.el)}`, name: c.n, meta: `${STAT_ICON[c.asc[0]] ? ICON[STAT_ICON[c.asc[0]]] : ''}${statText(c.asc)}` }),
-      onPick: (c) => { state.char = c; state.scale = null; syncWeapons(); drawStats(); drawMains(); drawPieces(); update(); },
+      onPick: (c) => { state.char = c; state.scale = null; clearStats(); syncWeapons(); drawStats(); drawMains(); drawPieces(); update(); },
     });
     const pWeapon = Picker(form.querySelector('#pick-weapon'), {
       placeholder: 'Cerca un’arma', rarity: true,
@@ -377,7 +383,7 @@
       box.hidden = !rows.length;
     }
     function scale() {
-      const g = GUIDE[state.char.i];
+      const g = GUIDE[state.char.id || state.char.i];
       return state.scale || (g && SCALES[g.scala] ? g.scala : state.char.s);
     }
     const SCALE_PCT = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria' };
@@ -454,6 +460,7 @@
       const ratio = CD / Math.max(Math.min(combatCr, 100), 1);
       // con valori a zero un arrotondamento puo dare -0,000..1: si cade sull'ultima fascia
       const [, tier, cls] = BUILD_TIERS.find(([min]) => cv >= min) || BUILD_TIERS[BUILD_TIERS.length - 1];
+      const empty = !CR && !CD;
       const bad = !CR || !CD || artCr < -0.5 || artCd < -0.5;
 
       // Corona consigliata: Tasso o DAN da CRIT come principale, a parita di secondarie
@@ -472,7 +479,8 @@
       if (combatCr - (state.corona === 'cr' ? 31.1 : 0) + 31.1 > 100 && best === 'cd' && diff >= 1) coronaRec.text += ' Con il Tasso andresti oltre il 100% in combattimento.';
 
       const tips = [];
-      if (bad) tips.push('I valori non tornano: controlla Tasso e DAN da CRIT della schermata, la Corona e gli eventuali bonus fissi.');
+      if (empty) tips.push('Inserisci le statistiche della schermata del personaggio (passo 4), oppure scegli &ldquo;Dai 5 manufatti&rdquo;.');
+      else if (bad) tips.push('I CRIT non tornano: controlla Tasso e DAN da CRIT della schermata, la Corona, l&rsquo;arma e gli eventuali bonus fissi.');
       if (combatCr > 100) tips.push(`In combattimento il Tasso di CRIT arriva a <b>${fmt(combatCr)}%</b>: il <b>${fmt(combatCr - 100)}%</b> oltre il 100% &egrave; sprecato. Punta ai DAN da CRIT.`);
       else if (combatCr >= 85) tips.push(`In combattimento il Tasso di CRIT &egrave; gi&agrave; al <b>${fmt(combatCr)}%</b>: i prossimi roll mettili nei <b>DAN da CRIT</b>.`);
       else if (ratio > 2.6) tips.push(`Rapporto in combattimento 1 : ${fmt(ratio)}: ti serve pi&ugrave; <b>Tasso di CRIT</b>.`);
@@ -488,17 +496,22 @@
       const ROLL = { atk: 5.83, hp: 5.83, def: 7.29, em: 23.31 };
       const ASC = { atk: 'atkp', hp: 'hpp', def: 'defp', em: 'em' };
       const xsc = num(cur.xsc);
+      const fixedInfo = {}; // parte fissa di ogni statistica, per spiegare quando i conti non tornano
       function subsRolls(key) {
         const total = num(cur[key]);
         if (!total) return null;
         if (key === 'em') {
-          const fixedEm = asc('em') + wsub('em') + setSum('em2') + ['sands', 'goblet', 'corona'].filter((g) => state[g] === 'em').length * 186.5 + (sc === 'em' ? xsc : 0);
+          const parts = [['principali', ['sands', 'goblet', 'corona'].filter((g) => state[g] === 'em').length * 186.5], ['set', setSum('em2')], ['arma', wsub('em')], ['ascensione', asc('em')], ['base del personaggio', c.em0 || 0], ['bonus extra', sc === 'em' ? xsc : 0]].filter(([, v]) => v);
+          const fixedEm = parts.reduce((t, [, v]) => t + v, 0);
+          fixedInfo.em = { total, fixed: fixedEm, parts };
           return (total - fixedEm) / ROLL.em;
         }
         const base = { atk: c.atk + (w ? w.atk : 0), hp: c.hp, def: c.def }[key];
         const pct = asc(ASC[key]) + wsub(ASC[key]) + setSum(`${key}2`) + (state.sands === 'scale' ? MAIN_PCT[key] : 0) + (state.goblet === 'scale' ? MAIN_PCT[key] : 0) + xsc;
         const flat = { atk: 311, hp: 4780, def: 0 }[key];
-        return ((total - base * (1 + pct / 100) - flat) / base * 100) / ROLL[key];
+        const fixed = base * (1 + pct / 100) + flat;
+        fixedInfo[key] = { total, fixed, parts: [['base', base], ['bonus fissi', base * pct / 100], [key === 'atk' ? 'Piuma' : 'Fiore', flat]].filter(([, v]) => v) };
+        return ((total - fixed) / base * 100) / ROLL[key];
       }
       const rollParts = [['CRIT', Math.max(artCr, 0) / 3.89 + Math.max(artCd, 0) / 7.77]];
       const scRolls = subsRolls(SCALES[sc][1]);
@@ -506,6 +519,10 @@
       const style = STYLES.find((x) => x.k === state.style);
       if (style.em && sc !== 'em') { const e = subsRolls('em'); if (e !== null) rollParts.push(['Maestria', e]); }
       const rvBad = rollParts.some(([, r]) => r < -0.6);
+      const STAT_NAME_SCREEN = { atk: 'ATT', hp: 'PS', def: 'DIF', em: 'Maestria' };
+      const rvWhy = Object.entries(fixedInfo).filter(([, x]) => x.total < x.fixed - 1).map(([k, x]) =>
+        `${STAT_NAME_SCREEN[k]} ${state.mode === 'avanzato' ? 'calcolata' : 'in schermata'} <b>${fmt(x.total, 0)}</b>, ma la parte fissa &egrave; gi&agrave; <b>${fmt(x.fixed, 0)}</b> (${x.parts.map(([n, v]) => `${n} ${fmt(v, 0)}`).join(' + ')}): controlla il valore, le principali e i set.`);
+      if (rvWhy.length) tips.unshift(...rvWhy);
       const rolls = rollParts.reduce((t, [, r]) => t + Math.max(r, 0), 0);
       const RV_TIERS = [[30, 'top', 't5'], [25, 'ottimo', 't4'], [20, 'buono', 't3'], [15, 'discreto', 't2'], [0, 'basso', 't1']];
       const [, rvTier, rvCls] = RV_TIERS.find(([min]) => rolls >= min) || RV_TIERS[RV_TIERS.length - 1];
@@ -516,14 +533,14 @@
           <div class="bg-kpi ${bad ? 't1' : cls}">
             <span>${ICON.star}CV dei manufatti</span>
             <b>${bad ? '&ndash;' : fmt(cv)}</b>
-            <strong>${bad ? 'controlla i valori' : tier}</strong>
+            <strong>${empty ? 'inserisci le statistiche' : bad ? 'i CRIT non tornano' : tier}</strong>
             <i class="bg-meter" aria-hidden="true"><i style="width:${bad ? 0 : Math.min(Math.max(cv, 0) / 250, 1) * 100}%"></i>${[120, 150, 180, 210].map((t) => `<em style="left:${t / 2.5}%"></em>`).join('')}</i>
             <small>${ICON.cr}+${fmt(Math.max(artCr, 0))}% &middot; ${ICON.cd}+${fmt(Math.max(artCd, 0))}% dalle secondarie</small>
           </div>
           <div class="bg-kpi ${bad || rvBad ? 't1' : rvCls}">
             <span>${ICON.star}Roll Value della build</span>
             <b>${bad || rvBad ? '&ndash;' : `${fmt(rolls * 100, 0)}%`}</b>
-            <strong>${bad || rvBad ? 'controlla le principali' : `${rvTier} &middot; ${fmt(rolls)} roll su 45`}</strong>
+            <strong>${empty ? 'inserisci le statistiche' : bad || rvBad ? 'i conti non tornano' : `${rvTier} &middot; ${fmt(rolls)} roll su 45`}</strong>
             <i class="bg-meter" aria-hidden="true"><i style="width:${bad || rvBad ? 0 : Math.min(rolls / 45, 1) * 100}%"></i></i>
             <small>${rollParts.map(([n, r]) => `${n} ${fmt(Math.max(r, 0))}`).join(' &middot; ')}</small>
           </div>
@@ -585,7 +602,7 @@
       return `<span class="bg-code">${ic && ICON[ic] ? ICON[ic] : ''}${label}</span>`;
     };
     function guideHtml({ sc, combatCr, bad }) {
-      const g = GUIDE[state.char.i];
+      const g = GUIDE[state.char.id || state.char.i];
       if (!g) return `<div class="bg-guide is-empty"><p>Per <b>${esc(state.char.n)}</b> non c&rsquo;&egrave; ancora una scheda con le statistiche consigliate.</p></div>`;
       const pctCode = { atk: 'atkp', hp: 'hpp', def: 'defp', em: 'em' }[sc];
       const mine = {
