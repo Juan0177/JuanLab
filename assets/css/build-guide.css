@@ -920,3 +920,27 @@ i.bg-ava-none { display: inline-block; }
 /* la barra generica occupa tutta la riga: qui deve stare nella sua colonna */
 .bg-gain-list .bg-meter { grid-column: auto; }
 @media (max-width: 480px) { .bg-gain-list .bg-meter { grid-column: 1 / -1; grid-row: 2; } }
+
+/* Importa dalla vetrina (UID) */
+.bg-uid-box .bg-qstep-title > span { background: rgba(245, 215, 135, 0.18); color: var(--guide-gold); }
+.bg-uid-box .bg-qstep-title > span .bg-ico { width: 1em; height: 1em; margin: 0; }
+.bg-uid-row { display: flex; flex-wrap: wrap; align-items: end; gap: 0.6rem; }
+.bg-uid-field { flex: 1 1 14rem; max-width: 22rem; }
+.bg-uid-btn { width: auto; height: 2.6rem; margin: 0; padding: 0 1.4rem; border: 0; border-radius: 12px; background: var(--guide-gold); color: #1a1408; font-weight: 700; box-shadow: none; }
+.bg-uid-status { margin: 0; color: var(--guide-muted); font-size: 0.85rem; }
+.bg-uid-status:empty { display: none; }
+.bg-uid-status.is-ok { color: var(--guide-text); }
+.bg-uid-status.is-err { color: var(--guide-red); }
+.bg-uid-chars { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.bg-uid-chars:empty { display: none; }
+.bg-uid-chars button { display: inline-flex; align-items: center; gap: 0.4rem; width: auto; margin: 0; padding: 0.25rem 0.7rem 0.25rem 0.3rem; border: 1px solid var(--guide-border); border-radius: 999px; background: var(--guide-panel-soft); color: var(--guide-text); font-size: 0.82rem; font-weight: 600; box-shadow: none; }
+.bg-uid-chars button img { width: 28px; height: 28px; border-radius: 50%; background: rgba(5, 10, 20, 0.9); }
+.bg-uid-chars button:hover { border-color: var(--guide-gold); }
+.bg-uid-chars button[aria-pressed="true"] { border-color: var(--guide-gold); background: rgba(245, 215, 135, 0.18); }
+
+/* Tabella dei roll nella guida */
+.bg-roll-table th[scope="row"] { display: flex; align-items: center; gap: 0.1rem; white-space: nowrap; }
+.bg-roll-table th[scope="row"] small { margin-left: 0.3rem; color: var(--guide-muted); font-size: 0.7rem; font-weight: 400; }
+.bg-roll-table td { font-variant-numeric: tabular-nums; }
+.bg-roll-table th[scope="row"] { display: table-cell; color: var(--guide-text); font-size: 0.85rem; letter-spacing: 0; text-transform: none; }
+.bg-roll-table th[scope="row"] .bg-ico { vertical-align: -0.2em; }
