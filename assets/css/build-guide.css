@@ -690,3 +690,36 @@ i.bg-ava-none { display: inline-block; }
 .bg-out-rv > small { grid-column: 1 / -1; margin-top: 0.3rem; color: var(--guide-muted); font-size: 0.75rem; }
 .bg-q-3 .bg-seg-lg button { padding: 0.2rem 0.25rem; font-size: 0.78rem; }
 @media (max-width: 760px) { .bg-q-2 { grid-template-columns: minmax(0, 1fr); } }
+
+/* Scheda del personaggio nel calcolatore */
+.bg-guide { grid-column: 1 / -1; display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.8rem; }
+.bg-guide.is-empty { display: block; color: var(--guide-muted); font-size: 0.86rem; }
+.bg-guide.is-empty p { margin: 0; }
+.bg-guide-card { min-width: 0; padding: 0.8rem 0.9rem; border: 1px solid var(--guide-border); border-radius: 14px; background: rgba(255, 255, 255, 0.02); }
+.bg-guide-head { display: flex; align-items: center; gap: 0.6rem; margin-bottom: 0.6rem; }
+.bg-guide-head img { width: 40px; height: 40px; border-radius: 50%; background: rgba(5, 10, 20, 0.9); }
+.bg-guide-head span { display: grid; flex: 1; min-width: 0; }
+.bg-guide-head small { color: var(--guide-muted); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+.bg-guide-head strong { font-size: 1rem; }
+.bg-guide-head em { color: var(--guide-gold); font-size: 0.78rem; font-style: normal; }
+.bg-trust { padding: 0.1rem 0.5rem; border-radius: 999px; font-size: 0.68rem; font-weight: 700; white-space: nowrap; }
+.bg-trust.is-alta { background: rgba(143, 227, 165, 0.14); color: var(--guide-green); }
+.bg-trust.is-media { background: rgba(245, 215, 135, 0.14); color: var(--guide-gold); }
+.bg-trust.is-bassa { background: rgba(255, 125, 125, 0.14); color: var(--guide-red); }
+.bg-guide-list { display: grid; grid-template-columns: max-content 1fr; gap: 0.4rem 0.7rem; align-items: center; margin: 0; }
+.bg-guide-list dt { color: var(--guide-muted); font-size: 0.78rem; font-weight: 600; white-space: nowrap; }
+.bg-guide-list dd { display: flex; flex-wrap: wrap; align-items: center; gap: 0.25rem; margin: 0; font-size: 0.82rem; }
+.bg-guide-list dd i { color: var(--guide-muted); font-style: normal; }
+.bg-code { display: inline-flex; align-items: center; padding: 0.1rem 0.45rem; border: 1px solid var(--guide-border); border-radius: 999px; background: rgba(255, 255, 255, 0.04); font-size: 0.76rem; white-space: nowrap; }
+.bg-guide-note { margin: 0.6rem 0 0; color: var(--guide-text); font-size: 0.82rem; }
+.bg-guide-src { margin: 0.4rem 0 0; color: var(--guide-muted); font-size: 0.72rem; }
+.bg-guide-src a { color: var(--guide-sky); }
+.bg-checks-list { display: grid; gap: 0.35rem; margin: 0; padding: 0; list-style: none; }
+.bg-checks-list li { display: flex; gap: 0.5rem; align-items: flex-start; margin: 0; font-size: 0.84rem; list-style: none; }
+.bg-checks-list li > span { display: grid; place-items: center; flex: none; width: 1.3rem; height: 1.3rem; border-radius: 50%; font-size: 0.75rem; font-weight: 800; }
+.bg-checks-list li.is-ok > span { background: rgba(143, 227, 165, 0.18); color: var(--guide-green); }
+.bg-checks-list li.is-miss > span { background: rgba(255, 125, 125, 0.18); color: var(--guide-red); }
+.bg-checks-list li.is-info > span { background: rgba(133, 203, 255, 0.18); color: var(--guide-sky); font-style: italic; }
+.bg-next { display: flex; flex-wrap: wrap; align-items: center; gap: 0.3rem; margin: 0.7rem 0 0; }
+.bg-next small { width: 100%; color: var(--guide-muted); font-size: 0.7rem; letter-spacing: 0.08em; text-transform: uppercase; }
+@media (max-width: 1100px) { .bg-guide { grid-template-columns: minmax(0, 1fr); } }

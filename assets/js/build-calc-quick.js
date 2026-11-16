@@ -140,12 +140,23 @@
     return api;
   }
 
-  fetch('assets/data/build-calc.json')
-    .then((r) => r.json())
-    .then(init)
+  Promise.all([
+    fetch('assets/data/build-calc.json').then((r) => r.json()),
+    fetch('assets/data/character-builds.json').then((r) => (r.ok ? r.json() : { personaggi: [] })).catch(() => ({ personaggi: [] })),
+  ])
+    .then(([data, builds]) => init(data, builds))
     .catch(() => { form.innerHTML = '<p class="bg-warn">Non riesco a caricare i dati del calcolatore. Ricarica la pagina.</p>'; });
 
-  function init(DATA) {
+  // Codici delle statistiche usati nelle schede dei personaggi
+  const CODE = {
+    atkp: ['ATT%', 'atk'], hpp: ['PS%', 'hp'], defp: ['DIF%', 'def'], em: ['Maestria', 'em'], er: ['Ricarica', 'er'],
+    cr: ['Tasso di CRIT', 'cr'], cd: ['DAN da CRIT', 'cd'], heal: ['Bonus di guarigione', 'heal'], dmg: ['Bonus DAN elementale', null], phys: ['Bonus DAN fisici', null],
+  };
+  const ROLE = { dps: 'DPS', subdps: 'Sub-DPS', support: 'Supporto', healer: 'Guaritore', shield: 'Scudo' };
+
+  function init(DATA, BUILDS) {
+    const GUIDE = {};
+    (BUILDS.personaggi || []).forEach((b) => { GUIDE[b.id] = b; });
     const NONE_SET = { n: 'Nessun set', i: null };
     const SETS = [NONE_SET].concat(DATA.sets);
     const byName = (list, n) => list.find((x) => x.n === n);
@@ -191,7 +202,7 @@
         </div>
       </details>`;
 
-    const values = { cr: '56,1', cd: '253,9', atk: '1618', hp: '', def: '', em: '237', xcr: '', xcd: '', xsc: '' };
+    const values = { cr: '56,1', cd: '253,9', atk: '1618', hp: '', def: '', em: '237', er: '100', xcr: '', xcd: '', xsc: '' };
 
     const pChar = Picker(form.querySelector('#pick-char'), {
       placeholder: 'Cerca un personaggio',
@@ -233,7 +244,10 @@
       form.querySelector('.bg-set2-note').textContent = state.pcs === 4 ? 'bloccato dal 4pz' : '';
       form.querySelectorAll('[data-q-pcs]').forEach((b) => b.setAttribute('aria-checked', String(+b.dataset.qPcs === state.pcs)));
     }
-    function scale() { return state.scale || state.char.s; }
+    function scale() {
+      const g = GUIDE[state.char.i];
+      return state.scale || (g && SCALES[g.scala] ? g.scala : state.char.s);
+    }
     const SCALE_PCT = { atk: 'ATT%', hp: 'PS%', def: 'DIF%', em: 'Maestria' };
     function drawMains() {
       const sc = scale();
@@ -257,6 +271,7 @@
       const style = STYLES.find((s) => s.k === state.style);
       const fields = [['cr', 'Tasso di CRIT', '%'], ['cd', 'DAN da CRIT', '%'], [SCALES[sc][1], { atk: 'ATT', hp: 'PS max', def: 'DIF', em: 'Maestria elementale' }[sc], '']];
       if (style.em && sc !== 'em') fields.push(['em', 'Maestria elementale', '']);
+      fields.push(['er', 'Ricarica di energia', '%']);
       const box = form.querySelector('#q-stats');
       box.innerHTML = fields.map(([k, label, unit]) => `
         <label class="bg-stat"><span>${ICON[k]}${label}${unit ? ' %' : ''} <small>totale</small></span>
@@ -390,8 +405,76 @@
           <li><span>${ICON.style}Statistiche di danno</span><strong class="bg-out-scale">${scaleRows.join('<br>') || '&ndash;'}</strong></li>
         </ul>
         ${bad ? '' : `<div class="bg-corona-rec${coronaRec.change ? ' is-change' : ''}"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" /><span><small>Corona consigliata</small><strong>${coronaRec.k === 'pari' ? '' : ICON[coronaRec.k]}${coronaRec.title}</strong><em>${coronaRec.text}</em></span></div>`}
+        ${guideHtml({ sc, combatCr, bad })}
         <ul class="bg-tips">${tips.map((t) => `<li>${t}</li>`).join('')}</ul>
         ${combat.length ? `<p class="bg-out-foot">Bonus in combattimento contati: ${combat.map((f) => `${esc(f[0])} +${f[1]}%${f[2] ? ` (${f[2]})` : ''}`).join('; ')}.</p>` : ''}`;
+    }
+
+    // ---- Scheda del personaggio: cosa vuole e cosa manca ----
+    const codeChip = (code) => {
+      const [label, ic] = CODE[code] || [code, null];
+      return `<span class="bg-code">${ic && ICON[ic] ? ICON[ic] : ''}${label}</span>`;
+    };
+    function guideHtml({ sc, combatCr, bad }) {
+      const g = GUIDE[state.char.i];
+      if (!g) return `<div class="bg-guide is-empty"><p>Per <b>${esc(state.char.n)}</b> non c&rsquo;&egrave; ancora una scheda con le statistiche consigliate.</p></div>`;
+      const pctCode = { atk: 'atkp', hp: 'hpp', def: 'defp', em: 'em' }[sc];
+      const mine = {
+        sabbie: { scale: pctCode, em: 'em', er: 'er' }[state.sands] || null,
+        calice: { dmg: 'dmg', scale: pctCode, em: 'em' }[state.goblet] || null,
+        corona: { cr: 'cr', cd: 'cd', em: 'em' }[state.corona] || null,
+      };
+      const checks = [];
+      [['sabbie', 'Sabbie', 'sands'], ['calice', 'Calice', 'goblet'], ['corona', 'Corona', 'circlet']].forEach(([k, name, icon]) => {
+        const rec = g[k] || [];
+        if (!rec.length) return;
+        const img = `<img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" class="bg-ico-img" />`;
+        if (!mine[k]) checks.push(['info', `${img}${name}: controlla che sia ${rec.map((c) => CODE[c] ? CODE[c][0] : c).join(' o ')}.`]);
+        else if (rec.includes(mine[k])) checks.push(['ok', `${img}${name} ${CODE[mine[k]][0]}: giusta.`]);
+        else checks.push(['miss', `${img}${name}: meglio ${rec.slice(0, 2).map((c) => `<b>${CODE[c] ? CODE[c][0] : c}</b>`).join(' o ')} invece di ${CODE[mine[k]][0]}.`]);
+      });
+      const er = num(values.er);
+      if (g.ricarica && er) {
+        const [min, max] = g.ricarica;
+        if (er < min - 0.5) checks.push(['miss', `${ICON.er}Ricarica ${fmt(er)}%: te ne manca circa il <b>${fmt(min - er)}%</b> (consigliata ${min}&ndash;${max}%).`]);
+        else if (er > max + 15) checks.push(['info', `${ICON.er}Ricarica ${fmt(er)}%: oltre il necessario (${min}&ndash;${max}%), puoi spostare roll nel danno.`]);
+        else checks.push(['ok', `${ICON.er}Ricarica ${fmt(er)}%: nell&rsquo;intervallo consigliato (${min}&ndash;${max}%).`]);
+      }
+      const em = num(values.em);
+      if (g.maestria && em) {
+        if (em < g.maestria - 10) checks.push(['miss', `${ICON.em}Maestria ${fmt(em, 0)}: te ne mancano circa <b>${fmt(g.maestria - em, 0)}</b> (obiettivo ${g.maestria}).`]);
+        else checks.push(['ok', `${ICON.em}Maestria ${fmt(em, 0)}: obiettivo ${g.maestria} raggiunto.`]);
+      }
+      if (g.crit === false) checks.push(['info', `${ICON.cr}Per questo personaggio i CRIT non sono la priorit&agrave;: CV e consigli sui CRIT contano poco.`]);
+      // Prossimi roll: priorita della scheda, tolte le statistiche gia a posto
+      const done = new Set();
+      if (g.ricarica && er >= g.ricarica[0]) done.add('er');
+      if (g.maestria && em >= g.maestria - 10) done.add('em');
+      if (!bad && combatCr >= 95) done.add('cr');
+      const next = (g.secondarie || []).filter((c) => !done.has(c)).slice(0, 3);
+      const hosts = (g.fonti || []).map((u) => { try { return [u, new URL(u).hostname.replace(/^www\./, '')]; } catch (e) { return null; } }).filter(Boolean);
+      const ICONS = { ok: '&#10003;', miss: '&#10007;', info: 'i' };
+      return `
+        <div class="bg-guide">
+          <div class="bg-guide-card">
+            <div class="bg-guide-head"><img src="assets/img/characters/${state.char.i}.webp" alt="" width="256" height="256" /><span><small>Cosa vuole</small><strong>${esc(state.char.n)}</strong><em>${(g.ruoli || []).map((r) => ROLE[r] || r).join(' &middot; ')}</em></span><b class="bg-trust is-${esc(g.affidabilita || 'media')}">affidabilit&agrave; ${esc(g.affidabilita || 'media')}</b></div>
+            <dl class="bg-guide-list">
+              <dt><img src="assets/img/guides/build/slot-sands.webp" alt="" width="96" height="96" class="bg-ico-img" />Sabbie</dt><dd>${(g.sabbie || []).map(codeChip).join('') || '&ndash;'}</dd>
+              <dt><img src="assets/img/guides/build/slot-goblet.webp" alt="" width="96" height="96" class="bg-ico-img" />Calice</dt><dd>${(g.calice || []).map(codeChip).join('') || '&ndash;'}</dd>
+              <dt><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" class="bg-ico-img" />Corona</dt><dd>${(g.corona || []).map(codeChip).join('') || '&ndash;'}</dd>
+              <dt>${ICON.star}Secondarie</dt><dd>${(g.secondarie || []).map(codeChip).join('<i>&rsaquo;</i>') || '&ndash;'}</dd>
+              ${g.ricarica ? `<dt>${ICON.er}Ricarica</dt><dd>${g.ricarica[0]}&ndash;${g.ricarica[1]}%</dd>` : ''}
+              ${g.maestria ? `<dt>${ICON.em}Maestria</dt><dd>${g.maestria}</dd>` : ''}
+            </dl>
+            ${g.note ? `<p class="bg-guide-note">${esc(g.note)}</p>` : ''}
+            ${hosts.length ? `<p class="bg-guide-src">Fonti: ${hosts.map(([u, h]) => `<a href="${esc(u)}" rel="noopener" target="_blank">${esc(h)}</a>`).join(', ')}</p>` : ''}
+          </div>
+          <div class="bg-guide-card">
+            <div class="bg-guide-head"><span><small>La tua build</small><strong>Cosa manca e cosa migliorare</strong></span></div>
+            <ul class="bg-checks-list">${checks.map(([k, t]) => `<li class="is-${k}"><span>${ICONS[k]}</span><div>${t}</div></li>`).join('')}</ul>
+            ${next.length ? `<p class="bg-next"><small>Prossimi roll da cercare</small>${next.map(codeChip).join('')}</p>` : ''}
+          </div>
+        </div>`;
     }
 
     // ---- Eventi ----
