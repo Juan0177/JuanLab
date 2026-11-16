@@ -888,3 +888,35 @@ i.bg-ava-none { display: inline-block; }
   .bg-styles button { height: auto; min-height: 2.8rem; }
   .bg-mode { grid-template-columns: minmax(0, 1fr); }
 }
+
+/* Cosa aumentare */
+.bg-gains { grid-column: 1 / -1; padding: 0.8rem 0.9rem; border: 1px solid var(--guide-border); border-radius: 14px; background: rgba(255, 255, 255, 0.02); }
+.bg-gain-list { display: grid; gap: 0.45rem; margin: 0; padding: 0; list-style: none; }
+.bg-gain-list li { display: grid; grid-template-columns: minmax(8rem, 12rem) minmax(0, 1fr) 4.2rem; align-items: center; gap: 0.2rem 0.7rem; margin: 0; padding: 0.35rem 0.5rem; border-radius: 10px; list-style: none; }
+.bg-gain-list li.is-best { background: rgba(143, 227, 165, 0.08); }
+.bg-gain-list li.is-best .bg-meter > i { background: var(--guide-green); }
+.bg-gain-list .bg-meter { margin: 0; }
+.bg-gain-list .bg-meter > i { background: var(--guide-gold); }
+.bg-gain-name { display: flex; align-items: center; font-size: 0.86rem; font-weight: 600; }
+.bg-gain-list b { text-align: right; font-size: 0.9rem; }
+.bg-gain-list li.is-best b { color: var(--guide-green); }
+.bg-gain-list small { grid-column: 1 / -1; color: var(--guide-muted); font-size: 0.72rem; }
+.bg-gain-er { display: flex; gap: 0.5rem; align-items: flex-start; margin: 0 0 0.6rem; padding: 0.55rem 0.7rem; border-radius: 10px; background: rgba(255, 125, 125, 0.08); font-size: 0.85rem; }
+.bg-gain-note { margin: 0.5rem 0 0; color: var(--guide-muted); font-size: 0.74rem; }
+@media (max-width: 480px) { .bg-gain-list li { grid-template-columns: minmax(0, 1fr) 4rem; } .bg-gain-list .bg-meter { grid-column: 1 / -1; grid-row: 2; } }
+
+/* Verdetto per pezzo: tieni / valuta / rimodella / sostituisci */
+.bg-verdict-chip { justify-self: start; margin: 0.15rem 0 0; padding: 0.05rem 0.5rem; border-radius: 999px; font-size: 0.7rem; font-weight: 700; }
+.bg-verdict-chip:empty { display: none; }
+.bg-verdict-chip.is-keep { background: rgba(143, 227, 165, 0.14); color: var(--guide-green); }
+.bg-verdict-chip.is-maybe { background: rgba(245, 215, 135, 0.14); color: var(--guide-gold); }
+.bg-verdict-chip.is-reshape { background: rgba(133, 203, 255, 0.14); color: var(--guide-sky); }
+.bg-verdict-chip.is-swap { background: rgba(255, 125, 125, 0.14); color: var(--guide-red); }
+/* Filtro per elemento nel menu dei personaggi */
+.bg-pick-el { flex-wrap: wrap; }
+.bg-pick-el button { display: grid; place-items: center; flex: 1 0 2.2rem; min-height: 2rem; padding: 0.15rem; }
+.bg-pick-el button img { width: 1.35rem; height: 1.35rem; }
+.bg-pick-el button[aria-checked="true"] { background: rgba(245, 215, 135, 0.25); border-color: var(--guide-gold); }
+/* la barra generica occupa tutta la riga: qui deve stare nella sua colonna */
+.bg-gain-list .bg-meter { grid-column: auto; }
+@media (max-width: 480px) { .bg-gain-list .bg-meter { grid-column: 1 / -1; grid-row: 2; } }

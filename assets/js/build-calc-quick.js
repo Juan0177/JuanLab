@@ -95,20 +95,27 @@
   document.addEventListener('click', (e) => {
     openPickers.forEach((p) => { if (!p.root.contains(e.target)) p.close(); });
   });
-  function Picker(root, { placeholder, render, onPick, rarity }) {
+  function Picker(root, { placeholder, render, onPick, rarity, element }) {
     root.innerHTML = `
       <button type="button" class="bg-pick-btn" aria-haspopup="listbox" aria-expanded="false"></button>
       <div class="bg-pick-pop" hidden>
         <input type="search" placeholder="${esc(placeholder)}" aria-label="${esc(placeholder)}" />
         ${rarity ? '<div class="bg-pick-rar" role="radiogroup" aria-label="Filtra per rarit&agrave;"></div>' : ''}
+        ${element ? '<div class="bg-pick-rar bg-pick-el" role="radiogroup" aria-label="Filtra per elemento"></div>' : ''}
         <ul role="listbox"></ul>
       </div>`;
     const btn = root.querySelector('.bg-pick-btn');
     const pop = root.querySelector('.bg-pick-pop');
     const search = pop.querySelector('input');
     const list = pop.querySelector('ul');
-    const rarBox = pop.querySelector('.bg-pick-rar');
-    const api = { root, items: [], value: null, rar: 0 };
+    const rarBox = pop.querySelector('.bg-pick-rar:not(.bg-pick-el)');
+    const elBox = pop.querySelector('.bg-pick-el');
+    const api = { root, items: [], value: null, rar: 0, el: '' };
+    const ELEMENTS = ['Pyro', 'Hydro', 'Anemo', 'Electro', 'Dendro', 'Cryo', 'Geo'];
+    function drawElements() {
+      if (!elBox) return;
+      elBox.innerHTML = [''].concat(ELEMENTS).map((e) => `<button type="button" role="radio" data-el="${e}" aria-checked="${api.el === e}" ${e ? `title="${e}" aria-label="${e}"` : ''}>${e ? `<img src="assets/img/elements/${e}.webp" alt="" width="64" height="64" />` : 'Tutti'}</button>`).join('');
+    }
     function drawRarity() {
       if (!rarBox) return;
       const levels = [...new Set(api.items.map((it) => it.r).filter(Boolean))].sort((a, b) => b - a);
@@ -117,7 +124,7 @@
     }
     function draw() {
       const q = search.value.trim().toLowerCase();
-      const items = api.items.filter((it) => (!q || it.n.toLowerCase().includes(q)) && (!api.rar || !it.r || it.r === api.rar));
+      const items = api.items.filter((it) => (!q || it.n.toLowerCase().includes(q)) && (!api.rar || !it.r || it.r === api.rar) && (!api.el || it.el === api.el));
       let last = null;
       list.innerHTML = items.slice(0, 160).map((it) => {
         const r = render(it);
@@ -135,13 +142,19 @@
       if (btn.disabled) return;
       openPickers.forEach((p) => p !== api && p.close());
       pop.hidden = false; btn.setAttribute('aria-expanded', 'true'); openPickers.add(api);
-      search.value = ''; drawRarity(); draw(); search.focus();
+      search.value = ''; drawRarity(); drawElements(); draw(); search.focus();
     };
     api.close = () => { pop.hidden = true; btn.setAttribute('aria-expanded', 'false'); openPickers.delete(api); };
     api.set = (it, silent) => { api.value = it; paint(); if (!silent) onPick(it); };
     api.setItems = (items) => { api.items = items; if (!items.includes(api.value)) api.value = items[0] || null; paint(); };
     api.disable = (off) => { btn.disabled = off; root.classList.toggle('is-off', off); if (off) api.close(); };
     btn.addEventListener('click', () => (pop.hidden ? api.open() : api.close()));
+    if (elBox) elBox.addEventListener('click', (e) => {
+      e.stopPropagation(); // i pulsanti vengono ridisegnati: il clic non deve chiudere il menu
+      const b = e.target.closest('button[data-el]');
+      if (!b) return;
+      api.el = b.dataset.el; drawElements(); draw(); search.focus();
+    });
     if (rarBox) rarBox.addEventListener('click', (e) => {
       e.stopPropagation(); // i pulsanti vengono ridisegnati: il clic non deve chiudere il menu
       const b = e.target.closest('button[data-r]');
@@ -291,6 +304,7 @@
             ${field('sc', scName, scIcon, false)}
             ${showEm ? field('em', 'Maestria', 'em', false) : ''}
             <div class="bg-slot-cv"><b>0,0</b><small>CV</small><i class="bg-meter" aria-hidden="true"><i></i></i></div>
+            <p class="bg-verdict-chip"></p>
           </fieldset>`;
       }).join('');
     }
@@ -320,7 +334,7 @@
     }
 
     const pChar = Picker(form.querySelector('#pick-char'), {
-      placeholder: 'Cerca un personaggio',
+      placeholder: 'Cerca un personaggio', element: true,
       render: (c) => ({ icon: `<img src="assets/img/characters/${c.i}.webp" alt="" width="256" height="256" class="bg-ava" />${elImg(c.el)}`, name: c.n, meta: `${STAT_ICON[c.asc[0]] ? ICON[STAT_ICON[c.asc[0]]] : ''}${statText(c.asc)}` }),
       onPick: (c) => { state.char = c; state.scale = null; clearStats(); syncWeapons(); drawStats(); drawMains(); drawPieces(); update(); },
     });
@@ -393,7 +407,7 @@
       const groups = [
         ['sands', 'Sabbie', 'sands', [pct, ['em', `${ICON.em}Maestria`], ['er', `${ICON.er}Ricarica`], ['altro', 'Altro']]],
         ['goblet', 'Calice', 'goblet', [['dmg', 'Bonus DAN'], pct, ['em', `${ICON.em}Maestria`], ['altro', 'Altro']]],
-        ['corona', 'Corona', 'circlet', [['cr', `${ICON.cr}Tasso`], ['cd', `${ICON.cd}DAN`], ['em', `${ICON.em}Maestria`], ['altro', 'Altro']]],
+        ['corona', 'Corona', 'circlet', [['cr', `${ICON.cr}Tasso CRIT`], ['cd', `${ICON.cd}DAN CRIT`], ['em', `${ICON.em}Maestria`], ['altro', 'Altro']]],
       ];
       groups.forEach(([key, , , opts]) => { if (!opts.some((o) => o && o[0] === state[key])) state[key] = opts.find(Boolean)[0]; });
       form.querySelector('#q-mains').innerHTML = groups.map(([key, name, icon, opts]) => `
@@ -560,6 +574,7 @@
           </div>
         </div>
         ${bad ? '' : `<div class="bg-corona-rec${coronaRec.change ? ' is-change' : ''}"><img src="assets/img/guides/build/slot-circlet.webp" alt="" width="96" height="96" /><span><small>Corona consigliata</small><strong>${coronaRec.k === 'pari' ? '' : ICON[coronaRec.k]}${coronaRec.title}</strong><em>${coronaRec.text}</em></span></div>`}
+        ${gainsHtml({ bad, empty, combatCr, CD })}
         ${pieceBanner()}
         ${guideHtml({ sc, combatCr, bad })}
         <ul class="bg-tips">${tips.map((t) => `<li>${t}</li>`).join('')}</ul>
@@ -567,6 +582,49 @@
     }
 
     // CV e Roll Value di ogni pezzo (solo modalita avanzata) e pezzo da cambiare per primo
+    // Cosa aumentare: quanto sale il danno medio con un roll medio (85% del massimo) di ogni statistica
+    function gainsHtml({ bad, empty, combatCr, CD }) {
+      if (bad || empty) return '';
+      const c = state.char; const w = state.weapon; const sc = scale(); const k = SCALES[sc][1];
+      const S = num(cur[k]); const EM = num(cur.em);
+      if (!S) return '';
+      const base = { atk: c.atk + (w ? w.atk : 0), hp: c.hp, def: c.def }[k];
+      const amp = state.style === 'amp' && sc !== 'em';
+      const ampF = (em) => 1 + 2.78 * em / (em + 1400);
+      const D = (s, cr, cd, em) => s * (1 + Math.min(Math.max(cr, 0), 100) / 100 * cd / 100) * (amp ? ampF(em) : 1);
+      const R = 0.85;
+      const d0 = D(S, combatCr, CD, EM);
+      const items = [];
+      items.push(['cr', 'Tasso di CRIT', D(S, combatCr + 3.89 * R, CD, EM) / d0 - 1, combatCr >= 100 ? 'gi&agrave; al 100% in combattimento' : '']);
+      items.push(['cd', 'DAN da CRIT', D(S, combatCr, CD + 7.77 * R, EM) / d0 - 1, '']);
+      if (sc === 'em') items.push(['em', 'Maestria', D(S + 23.31 * R, combatCr, CD, EM) / d0 - 1, 'stima: danno proporzionale alla Maestria']);
+      else items.push([{ atk: 'atkp', hp: 'hpp', def: 'defp' }[sc], SCALE_PCT[sc], D(S + base * (sc === 'def' ? 7.29 : 5.83) * R / 100, combatCr, CD, EM) / d0 - 1, '']);
+      if (amp) items.push(['em', 'Maestria', D(S, combatCr, CD, EM + 23.31 * R) / d0 - 1, 'se tutti i colpi fanno Vaporizzazione o Fusione']);
+      items.sort((a, b) => b[2] - a[2]);
+      const top = Math.max(...items.map((x) => x[2]), 0.0001);
+      const g = GUIDE[c.id || c.i];
+      const er = num(cur.er);
+      const erMiss = g && g.ricarica && er && er < g.ricarica[0] - 0.5 ? g.ricarica[0] - er : 0;
+      const style = STYLES.find((x) => x.k === state.style);
+      const emNote = style.em && sc !== 'em' && !amp ? `<p class="bg-gain-note">${ICON.em}Con lo stile ${style.n} la Maestria conta, ma il suo effetto qui non &egrave; calcolato: segui la scheda del personaggio.</p>` : '';
+      return `
+        <div class="bg-gains">
+          <div class="bg-guide-head"><span><small>Cosa aumentare</small><strong>Il prossimo roll che rende di pi&ugrave;</strong></span></div>
+          ${erMiss ? `<p class="bg-gain-er">${ICON.er}<span><b>Prima la Ricarica di energia:</b> ti manca circa il ${fmt(erMiss)}% per arrivare al ${g.ricarica[0]}% consigliato, cio&egrave; ${Math.ceil(erMiss / (6.48 * R))} roll. Senza Tecnica suprema pronta il resto conta meno.</span></p>` : ''}
+          <ol class="bg-gain-list">
+            ${items.map(([ic, name, v, note], i) => `
+              <li class="${i === 0 && v > 0 ? 'is-best' : ''}">
+                <span class="bg-gain-name">${ICON[ic]}${name}</span>
+                <i class="bg-meter" aria-hidden="true"><i style="width:${Math.max(v, 0) / top * 100}%"></i></i>
+                <b>${v > 0 ? `+${fmt(v * 100)}%` : '0%'}</b>
+                ${note ? `<small>${note}</small>` : ''}
+              </li>`).join('')}
+          </ol>
+          <p class="bg-gain-note">Aumento del danno medio con un roll medio (85% del massimo) in ciascuna statistica, a parit&agrave; di tutto il resto.</p>
+          ${emNote}
+        </div>`;
+    }
+
     function pieceBanner() {
       if (state.mode !== 'avanzato') return '';
       const sc = scale();
@@ -577,7 +635,22 @@
         const cd = i === 4 && state.corona === 'cd' ? 0 : num(x.cd);
         const cv = 2 * cr + cd;
         const rv = (cr / 3.89 + cd / 7.77 + num(x.sc) / ROLL[sc] + (showEm ? num(x.em) / 23.31 : 0)) * 100;
-        return { i, cv, rv };
+        // Rimodellare? Si guardano le 2 secondarie utili migliori: quanti potenziamenti hanno preso
+        const useful = [['Tasso di CRIT', cr / 3.89], ['DAN da CRIT', cd / 7.77], [SCALE_PCT[sc], num(x.sc) / ROLL[sc]], showEm ? ['Maestria', num(x.em) / 23.31] : null]
+          .filter((u) => u && u[1] > 0).sort((a, b) => b[1] - a[1]);
+        let verdict = null;
+        if (rv > 0) {
+          if (useful.length < 2) verdict = { k: 'swap', label: 'Sostituisci', text: 'ha meno di 2 secondarie utili: la Polvere dell&rsquo;illuminazione non basta, serve un pezzo nuovo (anche dal Trasmutatore con l&rsquo;Elisir santificatore).' };
+          else {
+            const two = useful.slice(0, 2);
+            const ups = Math.max(0, Math.round((two[0][1] + two[1][1]) / 0.85) - 2); // tolti i 2 valori iniziali
+            const names = `${two[0][0]} e ${two[1][0]}`;
+            if (ups <= 1) verdict = { k: 'reshape', label: 'Rimodella', text: `${ups === 0 ? 'nessun potenziamento' : 'solo 1 potenziamento'} su ${names}: rimodellandolo con la Polvere dell&rsquo;illuminazione scegli queste due e ne hai almeno 2.` };
+            else if (ups === 2) verdict = { k: 'maybe', label: 'Valuta', text: `circa 2 potenziamenti su ${names}: rimodellare conviene solo con il rimodellamento Avanzato (almeno 3) o Decretato (almeno 4).` };
+            else verdict = { k: 'keep', label: 'Tieni', text: `circa ${ups} potenziamenti su ${names}: rimodellarlo rischia di peggiorarlo.` };
+          }
+        }
+        return { i, cv, rv, verdict };
       });
       const cards = Array.from(form.querySelectorAll('#q-piece-cards .bg-slot'));
       const filled = rows.filter((r) => r.rv > 0).length;
@@ -590,10 +663,15 @@
         el.querySelector('.bg-slot-cv b').textContent = fmt(r.cv);
         el.querySelector('.bg-slot-cv small').textContent = `CV · ${fmt(r.rv, 0)}% RV`;
         el.querySelector('.bg-slot-cv .bg-meter > i').style.width = `${Math.min(r.cv / 54.4, 1) * 100}%`;
+        const chip = el.querySelector('.bg-verdict-chip');
+        chip.className = `bg-verdict-chip${r.verdict ? ` is-${r.verdict.k}` : ''}`;
+        chip.textContent = r.verdict ? r.verdict.label : '';
+        chip.title = r.verdict ? r.verdict.text.replace(/&rsquo;/g, '\u2019') : '';
       });
       if (!weakest) return '<p class="bg-out-foot">Compila tutti e 5 i pezzi per sapere quale cambiare per primo.</p>';
       const [name, icon] = SLOT_INFO[weakest.i];
-      return `<div class="bg-corona-rec is-change"><img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" /><span><small>Pezzo da cambiare per primo</small><strong>${name}</strong><em>&Egrave; il pi&ugrave; debole: ${fmt(weakest.cv)} CV &middot; ${fmt(weakest.rv, 0)}% di Roll Value.</em></span></div>`;
+      const others = rows.filter((r) => r.verdict && r.i !== weakest.i && (r.verdict.k === 'reshape' || r.verdict.k === 'swap'));
+      return `<div class="bg-corona-rec is-change"><img src="assets/img/guides/build/slot-${icon}.webp" alt="" width="96" height="96" /><span><small>Pezzo da cambiare per primo</small><strong>${name}${weakest.verdict ? ` &middot; ${weakest.verdict.k === 'keep' ? 'cerca un pezzo migliore' : weakest.verdict.label.toLowerCase()}` : ''}</strong><em>&Egrave; il pi&ugrave; debole (${fmt(weakest.cv)} CV, ${fmt(weakest.rv, 0)}% di Roll Value)${weakest.verdict ? (weakest.verdict.k === 'keep' ? `: i suoi roll sono gi&agrave; finiti bene (${weakest.verdict.text.replace(': rimodellarlo rischia di peggiorarlo.', '')}), quindi rimodellarlo non serve. Per migliorarlo serve un pezzo nuovo con pi&ugrave; secondarie utili.` : `: ${weakest.verdict.text}`) : '.'}${others.length ? ` Da rivedere anche: ${others.map((r) => `${SLOT_INFO[r.i][0]} (${r.verdict.label.toLowerCase()})`).join(', ')}.` : ''}</em></span></div>`;
     }
 
     // ---- Scheda del personaggio: cosa vuole e cosa manca ----
@@ -658,7 +736,7 @@
           <div class="bg-guide-card">
             <div class="bg-guide-head"><span><small>La tua build</small><strong>Cosa manca e cosa migliorare</strong></span></div>
             <ul class="bg-checks-list">${checks.map(([k, t]) => `<li class="is-${k}"><span>${ICONS[k]}</span><div>${t}</div></li>`).join('')}</ul>
-            ${next.length ? `<p class="bg-next"><small>Prossimi roll da cercare</small>${next.map(codeChip).join('')}</p>` : ''}
+            ${next.length ? `<p class="bg-next"><small>Priorit&agrave; secondo le guide</small>${next.map(codeChip).join('')}</p>` : ''}
           </div>
         </div>`;
     }
