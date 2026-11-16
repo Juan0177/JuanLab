@@ -1,0 +1,4688 @@
+{
+ "aggiornato": "2026-11-16",
+ "versione": "7.2",
+ "fonti": "KeqingMains (keqingmains.com) e almeno un’altra guida per personaggio (genshin.gg, Game8, Icy Veins, genshin-builds.com)",
+ "personaggi": [
+  {
+   "id": "UI_AvatarIcon_PlayerBoy",
+   "en": "Aether",
+   "ruoli": [
+    "support",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "em",
+    "atkp"
+   ],
+   "calice": [
+    "dmg",
+    "em"
+   ],
+   "corona": [
+    "cr",
+    "cd",
+    "em"
+   ],
+   "secondarie": [
+    "er",
+    "em",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    160,
+    250
+   ],
+   "maestria": null,
+   "note": "Dipende dall'elemento: qui build Dendro (Ricarica di energia, Calice Dendro, Corona CRIT). In Bloom puro tutto Maestria elementale.",
+   "fonti": [
+    "https://keqingmains.com/q/dendro-traveler-quickguide/",
+    "https://www.icy-veins.com/genshin-impact/dendro-traveler-guide-best-builds"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Aino",
+   "en": "Aino",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "em",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "em"
+   ],
+   "calice": [
+    "em",
+    "dmg"
+   ],
+   "corona": [
+    "em",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "em",
+    "atkp"
+   ],
+   "ricarica": [
+    155,
+    250
+   ],
+   "maestria": null,
+   "note": "Supporto Idro fuori campo. Ricarica di energia prima di tutto (molto alta a C0); Tasso di CRIT per Favonius. Bloom: tutto Maestria elementale.",
+   "fonti": [
+    "https://keqingmains.com/q/aino-quickguide/",
+    "https://genshin-builds.com/en/character/aino"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Albedo",
+   "en": "Albedo",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "def",
+   "crit": true,
+   "sabbie": [
+    "defp"
+   ],
+   "calice": [
+    "dmg",
+    "defp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "defp",
+    "er",
+    "atkp"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "Ricarica di energia solo se usa la Tecnica suprema ogni rotazione (120-140%). Punta a circa 3000 DIF per il passivo Hexerei.",
+   "fonti": [
+    "https://keqingmains.com/q/albedo-quickguide/",
+    "https://genshin.gg/characters/albedo/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Alhatham",
+   "en": "Alhaitham",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "em",
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "em",
+    "atkp",
+    "er"
+   ],
+   "ricarica": [
+    105,
+    140
+   ],
+   "maestria": 250,
+   "note": "Prima 200-300 Maestria elementale (buff inclusi), poi CRIT. Sabbie ATT% ok fuori da Quicken. Ricarica alta solo in Dendro singolo (175-220%).",
+   "fonti": [
+    "https://keqingmains.com/q/alhaitham-quickguide/",
+    "https://genshin.gg/characters/alhaitham/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Aloy",
+   "en": "Aloy",
+   "ruoli": [
+    "dps",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em",
+    "er"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    165
+   ],
+   "maestria": null,
+   "note": "Sabbie Maestria elementale in Fusione inversa con Bennett; Ricarica di energia ~140-165% in solo Cryo, 100-125% in doppio Cryo.",
+   "fonti": [
+    "https://keqingmains.com/q/aloy-quickguide/",
+    "https://genshin.gg/characters/aloy/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Alyosha",
+   "en": "Alyosha",
+   "ruoli": [
+    "support",
+    "healer"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "atkp"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "heal",
+    "atkp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "atkp",
+    "cd"
+   ],
+   "ricarica": [
+    130,
+    225
+   ],
+   "maestria": null,
+   "note": "Supporto Elettro: tutto scala su ATT. Ricarica di energia altissima con 0 Elettro (fino a 280%), molto meno con altri Elettro. Tasso di CRIT per Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/alyosha-quickguide/",
+    "https://genshin-builds.com/en/character/alyosha"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Ambor",
+   "en": "Amber",
+   "ruoli": [
+    "dps",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "em",
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "em",
+    "atkp"
+   ],
+   "ricarica": [
+    100,
+    120
+   ],
+   "maestria": null,
+   "note": "Build KQM: Fusione con Colpo caricato. In Germoglio va full Maestria elementale; genshin.gg suggerisce Sabbie Ricarica di energia.",
+   "fonti": [
+    "https://keqingmains.com/q/amber-quickguide/",
+    "https://genshin.gg/characters/amber/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Itto",
+   "en": "Arataki Itto",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "def",
+   "crit": true,
+   "sabbie": [
+    "defp"
+   ],
+   "calice": [
+    "dmg",
+    "defp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "defp",
+    "er",
+    "atkp"
+   ],
+   "ricarica": [
+    120,
+    150
+   ],
+   "maestria": null,
+   "note": "Calice DIF% solo con molti bonus DAN (Xilonen+Furina). Ricarica 100-160% secondo il team Geo.",
+   "fonti": [
+    "https://keqingmains.com/q/itto-quickguide/",
+    "https://genshin.gg/characters/itto/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Arlecchino",
+   "en": "Arlecchino",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "Non costruire PS. Ricarica di energia inutile se la Tecnica suprema non si usa ogni rotazione; Maestria elementale solo in Vaporizzazione/Fusione.",
+   "fonti": [
+    "https://keqingmains.com/q/arlecchino-quickguide/",
+    "https://genshin.gg/characters/arlecchino/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Baizhuer",
+   "en": "Baizhu",
+   "ruoli": [
+    "healer",
+    "support",
+    "shield"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "hpp"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "hpp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "hpp",
+    "cr"
+   ],
+   "ricarica": [
+    140,
+    200
+   ],
+   "maestria": null,
+   "note": "Guaritore/scudo fuori campo. PS fino a ~50.000. Tecnica suprema costa 80: Ricarica di energia molto variabile col team. Tasso di CRIT solo con Codice Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/baizhu-quickguide/",
+    "https://genshin.gg/characters/baizhu/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Barbara",
+   "en": "Barbara",
+   "ruoli": [
+    "healer"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "hpp"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "heal"
+   ],
+   "secondarie": [
+    "hpp"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "Build da guaritrice pura: tutto su PS. KQM cita anche una build DPS Vaporizzazione (Maestria elementale/ATT, Calice Hydro, Corona CRIT).",
+   "fonti": [
+    "https://keqingmains.com/q/barbara-quickguide/",
+    "https://genshin.gg/characters/barbara/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Beidou",
+   "en": "Beidou",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    130,
+    185
+   ],
+   "maestria": null,
+   "note": "Ricarica molto variabile: Electro singolo 185-250%, con Fischl C6 110-130%. Sabbie Ricarica se non la raggiungi con le secondarie.",
+   "fonti": [
+    "https://keqingmains.com/q/beidou-quickguide/",
+    "https://genshin.gg/characters/beidou/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Bennett",
+   "en": "Bennett",
+   "ruoli": [
+    "support",
+    "healer"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "hpp"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "heal",
+    "hpp"
+   ],
+   "secondarie": [
+    "er",
+    "hpp",
+    "atkp",
+    "em",
+    "cr"
+   ],
+   "ricarica": [
+    160,
+    220
+   ],
+   "maestria": null,
+   "note": "Build guaritore (KQM). Alternativa support/DPS con ATT%/Ricarica, Calice Pyro e CRIT (indicata da genshin.gg). Il buff usa l'ATT base dell'arma.",
+   "fonti": [
+    "https://keqingmains.com/q/bennett-quickguide/",
+    "https://genshin.gg/characters/bennett/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Candace",
+   "en": "Candace",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "hpp",
+    "er"
+   ],
+   "calice": [
+    "hpp",
+    "dmg"
+   ],
+   "corona": [
+    "hpp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "hpp",
+    "cd"
+   ],
+   "ricarica": [
+    180,
+    250
+   ],
+   "maestria": null,
+   "note": "Supporto per attacchi normali con infusione Idro. Ricarica di energia alta (180-280% secondo i Idro). Variante Bloom: tutto Maestria elementale.",
+   "fonti": [
+    "https://keqingmains.com/q/candace-quickguide/",
+    "https://genshin.gg/characters/candace/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Charlotte",
+   "en": "Charlotte",
+   "ruoli": [
+    "healer",
+    "support"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "atkp"
+   ],
+   "calice": [
+    "atkp",
+    "dmg"
+   ],
+   "corona": [
+    "heal",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "atkp",
+    "cr",
+    "cd"
+   ],
+   "ricarica": [
+    150,
+    230
+   ],
+   "maestria": null,
+   "note": "Cura legata alla Tecnica suprema: Ricarica di energia prima di tutto. Corona Tasso di CRIT solo con Codice Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/charlotte-quickguide/",
+    "https://genshin.gg/characters/charlotte/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Chasca",
+   "en": "Chasca",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "atkp",
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    110
+   ],
+   "maestria": null,
+   "note": "Calice ATT% preferito (DAN elementali casuali); Maestria elementale peggiore di ATT% anche in Vaporizzazione. Tecnica suprema solo quando disponibile.",
+   "fonti": [
+    "https://keqingmains.com/q/chasca-quickguide/",
+    "https://genshin.gg/characters/chasca/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Chevreuse",
+   "en": "Chevreuse",
+   "ruoli": [
+    "support",
+    "healer"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "hpp"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "hpp",
+    "heal"
+   ],
+   "secondarie": [
+    "er",
+    "hpp",
+    "cr"
+   ],
+   "ricarica": [
+    100,
+    205
+   ],
+   "maestria": null,
+   "note": "Obiettivo 40.000 PS. Ricarica di energia 100% se Tecnica suprema quando disponibile, 175-205% se ogni rotazione. Esiste build DPS rapida.",
+   "fonti": [
+    "https://keqingmains.com/q/chevreuse-quickguide/",
+    "https://genshin.gg/characters/chevreuse/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Chiori",
+   "en": "Chiori",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "def",
+   "crit": true,
+   "sabbie": [
+    "defp"
+   ],
+   "calice": [
+    "defp",
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "defp",
+    "atkp"
+   ],
+   "ricarica": [
+    120,
+    170
+   ],
+   "maestria": null,
+   "note": "DPS Geo fuori campo tramite le bambole dell'Abilità elementale. Non forzare la Ricarica di energia: usa la Tecnica suprema quando è pronta.",
+   "fonti": [
+    "https://keqingmains.com/q/chiori-quickguide/",
+    "https://genshin.gg/characters/chiori/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Chongyun",
+   "en": "Chongyun",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em",
+    "er"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    100,
+    175
+   ],
+   "maestria": null,
+   "note": "DPS di Tecnica suprema in quickswap. Maestria elementale solo se fonde la Tecnica suprema; Ricarica 150-175% se unico Cryo.",
+   "fonti": [
+    "https://keqingmains.com/q/chongyun-quickguide/",
+    "https://genshin.gg/characters/chongyun/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Citlali",
+   "en": "Citlali",
+   "ruoli": [
+    "support",
+    "shield"
+   ],
+   "scala": "em",
+   "crit": false,
+   "sabbie": [
+    "em",
+    "er"
+   ],
+   "calice": [
+    "em",
+    "dmg"
+   ],
+   "corona": [
+    "em",
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "em",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    145,
+    185
+   ],
+   "maestria": null,
+   "note": "Build full Maestria elementale. Ricarica C0 170-195% in Cryo singolo, 125-150% con Neuvillette, meno a C4 o con Favonius Codex.",
+   "fonti": [
+    "https://keqingmains.com/q/citlali-quickguide/",
+    "https://genshin.gg/characters/citlali/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Clorinde",
+   "en": "Clorinde",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cd",
+    "cr"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    140
+   ],
+   "maestria": null,
+   "note": "Sabbie Maestria elementale valide in Quickbloom/Quickburn prima di C2; Ricarica di energia 100-140% in doppio Electro.",
+   "fonti": [
+    "https://keqingmains.com/q/clorinde-quickguide/",
+    "https://genshin.gg/characters/clorinde/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Collei",
+   "en": "Collei",
+   "ruoli": [
+    "support",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "em",
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "em",
+    "atkp"
+   ],
+   "ricarica": [
+    160,
+    200
+   ],
+   "maestria": null,
+   "note": "Applicatrice Dendro fuori campo. Ricarica di energia ~200% (meno con Favonius o C1). Bloom puro: Sabbie/Calice/Corona Maestria elementale.",
+   "fonti": [
+    "https://keqingmains.com/q/collei-quickguide/",
+    "https://genshin.gg/characters/collei/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Columbina",
+   "en": "Columbina",
+   "ruoli": [
+    "support",
+    "subdps"
+   ],
+   "scala": "hp",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "hpp"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "cr",
+    "cd",
+    "hpp"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "hpp",
+    "em"
+   ],
+   "ricarica": [
+    140,
+    240
+   ],
+   "maestria": null,
+   "note": "Sabbie Ricarica di energia se usa la Tecnica suprema ogni rotazione. Mai tre pezzi PS%. Ricarica varia molto col team (115-300%).",
+   "fonti": [
+    "https://keqingmains.com/q/columbina-quickguide/",
+    "https://genshin.gg/characters/columbina/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Cyno",
+   "en": "Cyno",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "em",
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "dmg",
+    "em"
+   ],
+   "corona": [
+    "cr",
+    "cd",
+    "em"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "em",
+    "atkp",
+    "er"
+   ],
+   "ricarica": [
+    120,
+    160
+   ],
+   "maestria": null,
+   "note": "Sabbie Ricarica se Electro singolo senza 4pz Furia del tuono. Ricarica 100-140% con altro Electro e 4pz Furia del tuono.",
+   "fonti": [
+    "https://keqingmains.com/q/cyno-quickguide/",
+    "https://genshin.gg/characters/cyno/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Dahlia",
+   "en": "Dahlia",
+   "ruoli": [
+    "support",
+    "shield"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "hpp",
+    "er"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "hpp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "hpp",
+    "cr"
+   ],
+   "ricarica": [
+    170,
+    230
+   ],
+   "maestria": null,
+   "note": "Circa 40.000 PS massimizzano il bonus Vel. ATT dell'A4. Tasso di CRIT solo per Spada di Favonius. Solo Hydro: 240-270% di Ricarica.",
+   "fonti": [
+    "https://keqingmains.com/q/dahlia-quickguide/",
+    "https://genshin.gg/characters/dahlia/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Dehya",
+   "en": "Dehya",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "em",
+    "hpp"
+   ],
+   "calice": [
+    "em",
+    "hpp"
+   ],
+   "corona": [
+    "cr",
+    "em",
+    "hpp"
+   ],
+   "secondarie": [
+    "cr",
+    "em",
+    "hpp"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "Supporto fuori campo (mitigazione danni, Burgeon) senza usare la Tecnica suprema. Variante DPS: Pyro/CRIT con Ricarica di energia 150-225%.",
+   "fonti": [
+    "https://keqingmains.com/q/dehya-quickguide/",
+    "https://genshin.gg/characters/dehya/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Diluc",
+   "en": "Diluc",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    100,
+    130
+   ],
+   "maestria": null,
+   "note": "Sabbie Maestria elementale solo in Vaporizzazione/Fusione; in Mono Pyro bastano ATT e CRIT (rapporto 1:2).",
+   "fonti": [
+    "https://keqingmains.com/q/diluc-quickguide/",
+    "https://genshin.gg/characters/diluc/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Diona",
+   "en": "Diona",
+   "ruoli": [
+    "support",
+    "healer",
+    "shield"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "hpp",
+    "er"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "hpp",
+    "heal",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "hpp",
+    "cr"
+   ],
+   "ricarica": [
+    145,
+    175
+   ],
+   "maestria": null,
+   "note": "Scudo e cure scalano su PS. Corona Tasso di CRIT con Arco Favonius. Ricarica a C1+ con altro arco 145-175%, meno con Arco sacrificale.",
+   "fonti": [
+    "https://keqingmains.com/q/diona-quickguide/",
+    "https://genshin.gg/characters/diona/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Dori",
+   "en": "Dori",
+   "ruoli": [
+    "support",
+    "healer"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "hpp",
+    "em"
+   ],
+   "calice": [
+    "hpp",
+    "em"
+   ],
+   "corona": [
+    "heal",
+    "hpp",
+    "em"
+   ],
+   "secondarie": [
+    "er",
+    "hpp",
+    "em",
+    "cr"
+   ],
+   "ricarica": [
+    140,
+    180
+   ],
+   "maestria": null,
+   "note": "Build batteria/guaritore comune; KQM preferisce Maestria elementale (Hyperbloom) o Aggravare con CRIT e sconsiglia il guaritore puro.",
+   "fonti": [
+    "https://keqingmains.com/q/dori-quickguide/",
+    "https://genshin.gg/characters/dori/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Durin",
+   "en": "Durin",
+   "ruoli": [
+    "support",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    100,
+    150
+   ],
+   "maestria": null,
+   "note": "Supporto fuori campo (forma bianca) o DPS Melt/Vaporizzazione (forma scura). Calice Pyro o ATT% quasi equivalenti; Sabbie Ricarica se serve >150%.",
+   "fonti": [
+    "https://keqingmains.com/q/durin-quickguide/",
+    "https://genshin-builds.com/en/character/durin"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Emilie",
+   "en": "Emilie",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    120
+   ],
+   "maestria": null,
+   "note": "Niente Maestria elementale. Ricarica utile solo per la Tecnica suprema ogni rotazione (180-255%), di solito si usa a rotazioni alterne.",
+   "fonti": [
+    "https://keqingmains.com/q/emilie-quickguide/",
+    "https://genshin.gg/characters/emilie/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Escoffier",
+   "en": "Escoffier",
+   "ruoli": [
+    "subdps",
+    "healer",
+    "support"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    130,
+    165
+   ],
+   "maestria": null,
+   "note": "Ricarica C0 120-195% secondo i Cryo nel team (meno a C4). Se le cure non servono può saltare la Tecnica suprema e puntare al danno.",
+   "fonti": [
+    "https://keqingmains.com/q/escoffier-quickguide/",
+    "https://genshin.gg/characters/escoffier/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Eula",
+   "en": "Eula",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "phys"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "er"
+   ],
+   "ricarica": [
+    110,
+    160
+   ],
+   "maestria": null,
+   "note": "Ricarica di energia 140-160% in doppio Cryo, 110-125% in triplo Cryo. Sabbie Ricarica solo se non si raggiunge il requisito.",
+   "fonti": [
+    "https://keqingmains.com/q/eula-quickguide/",
+    "https://genshin.gg/characters/eula/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Faruzan",
+   "en": "Faruzan",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "er"
+   ],
+   "calice": [
+    "er",
+    "dmg"
+   ],
+   "corona": [
+    "er",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    190,
+    240
+   ],
+   "maestria": null,
+   "note": "Supporto Anemo: Ricarica di energia altissima, anche su Calice/Corona prima di C6. A C6 Calice Anemo e Corona CRIT diventano validi.",
+   "fonti": [
+    "https://keqingmains.com/q/faruzan-quickguide/",
+    "https://genshin.gg/characters/faruzan/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Fischl",
+   "en": "Fischl",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg",
+    "phys"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    100,
+    140
+   ],
+   "maestria": null,
+   "note": "Sabbie Maestria elementale valida in Aggravamento. Calice Bonus DAN fisici solo per build on-field con C1.",
+   "fonti": [
+    "https://keqingmains.com/q/fischl-quickguide/",
+    "https://genshin.gg/characters/fischl/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Flins",
+   "en": "Flins",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "atkp",
+    "em"
+   ],
+   "corona": [
+    "cd",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    110,
+    135
+   ],
+   "maestria": null,
+   "note": "Evita Calice DAN Electro: il danno è quasi tutto Lunar-Charged. Rapporto CRIT 1:2. Ricarica 100-145% secondo il compagno Electro.",
+   "fonti": [
+    "https://keqingmains.com/q/flins-quickguide/",
+    "https://genshin.gg/characters/flins/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Freminet",
+   "en": "Freminet",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em",
+    "er"
+   ],
+   "calice": [
+    "dmg",
+    "phys",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "er",
+    "em"
+   ],
+   "ricarica": [
+    110,
+    170
+   ],
+   "maestria": null,
+   "note": "Calice Cryo (DPS Abilità elementale Cryo) o Fisico (build fisica, preferita da genshin.gg). C2 abbassa molto la Ricarica di energia.",
+   "fonti": [
+    "https://keqingmains.com/q/freminet-quickguide/",
+    "https://genshin.gg/characters/freminet/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Furina",
+   "en": "Furina",
+   "ruoli": [
+    "subdps",
+    "support"
+   ],
+   "scala": "hp",
+   "crit": true,
+   "sabbie": [
+    "hpp",
+    "er"
+   ],
+   "calice": [
+    "hpp",
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "hpp"
+   ],
+   "ricarica": [
+    130,
+    210
+   ],
+   "maestria": null,
+   "note": "DPS/supporto fuori campo. Ricarica di energia 130-210% in base ai personaggi Idro (200%+ se unica Idro). Poi Tasso di CRIT/DAN da CRIT e PS%.",
+   "fonti": [
+    "https://keqingmains.com/q/furina-quickguide/",
+    "https://genshin.gg/characters/furina/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Gaming",
+   "en": "Gaming",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "em",
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "em",
+    "atkp"
+   ],
+   "ricarica": [
+    115,
+    180
+   ],
+   "maestria": null,
+   "note": "Deve usare la Tecnica suprema ogni rotazione. Sabbie Ricarica di energia solo prima della C4; Maestria elementale per Fusione/Vaporizzazione.",
+   "fonti": [
+    "https://keqingmains.com/q/gaming-quickguide/",
+    "https://genshin.gg/characters/gaming/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Ganyu",
+   "en": "Ganyu",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cd",
+    "cr",
+    "atkp"
+   ],
+   "secondarie": [
+    "cd",
+    "atkp",
+    "cr",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    110,
+    130
+   ],
+   "maestria": null,
+   "note": "Build Freeze: Tasso di CRIT dal set, punta su DAN da CRIT. Build Fusione: Sabbie Maestria elementale ed EM > CRIT, niente Ricarica.",
+   "fonti": [
+    "https://keqingmains.com/q/ganyu-quickguide/",
+    "https://genshin.gg/characters/ganyu/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Gorou",
+   "en": "Gorou",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "def",
+   "crit": false,
+   "sabbie": [
+    "er"
+   ],
+   "calice": [
+    "dmg",
+    "defp"
+   ],
+   "corona": [
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "defp"
+   ],
+   "ricarica": [
+    140,
+    250
+   ],
+   "maestria": null,
+   "note": "Tasso di CRIT per l'Arco di Favonius. Tecnica suprema ogni rotazione: fino a 220% con Favonius, 250% senza; ogni 2 rotazioni <=140%.",
+   "fonti": [
+    "https://keqingmains.com/q/gorou-quickguide/",
+    "https://genshin.gg/characters/gorou/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Hutao",
+   "en": "Hu Tao",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "hp",
+   "crit": true,
+   "sabbie": [
+    "em",
+    "hpp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "em",
+    "cr",
+    "cd",
+    "hpp",
+    "atkp"
+   ],
+   "ricarica": null,
+   "maestria": 200,
+   "note": "DPS Pyro (Vaporizzazione). Maestria elementale ~100 prima, poi CRIT, poi fino a 200-300. Non serve Ricarica di energia (~110% aiuta).",
+   "fonti": [
+    "https://keqingmains.com/q/hu-tao-quickguide/",
+    "https://genshin.gg/characters/hutao/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Iansan",
+   "en": "Iansan",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "atkp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "atkp",
+    "cr"
+   ],
+   "ricarica": [
+    100,
+    210
+   ],
+   "maestria": null,
+   "note": "Buff legato alla Tecnica suprema: prima la Ricarica, poi ATT. Corona Tasso di CRIT solo con Lancia Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/iansan-quickguide/",
+    "https://genshin.gg/characters/iansan/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Ifa",
+   "en": "Ifa",
+   "ruoli": [
+    "subdps",
+    "healer"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    130,
+    150
+   ],
+   "maestria": null,
+   "note": "Costruisci Ricarica per la Tecnica suprema ogni rotazione solo se servono meno di 150%; altrimenti usala a rotazioni alterne.",
+   "fonti": [
+    "https://keqingmains.com/q/ifa-quickguide/",
+    "https://genshin.gg/characters/ifa/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Illuga",
+   "en": "Illuga",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "em",
+   "crit": false,
+   "sabbie": [
+    "em",
+    "er"
+   ],
+   "calice": [
+    "em"
+   ],
+   "corona": [
+    "em",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "em",
+    "cr",
+    "defp"
+   ],
+   "ricarica": [
+    130,
+    185
+   ],
+   "maestria": null,
+   "note": "Ricarica di energia molto dipendente dal DPS Geo (es. 160-185% doppio Geo C0). Tasso di CRIT per Lancia di Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/illuga-quickguide/",
+    "https://genshin.gg/characters/illuga/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Ineffa",
+   "en": "Ineffa",
+   "ruoli": [
+    "subdps",
+    "support",
+    "shield"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em",
+    "er"
+   ],
+   "calice": [
+    "atkp",
+    "em",
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "er",
+    "em"
+   ],
+   "ricarica": [
+    100,
+    160
+   ],
+   "maestria": null,
+   "note": "DPS Lunare-Elettrocaricato fuori campo con scudo. ATT ~2000 massimizza i bonus. Ricarica di energia 100-205% secondo team e uso della Tecnica suprema.",
+   "fonti": [
+    "https://keqingmains.com/q/ineffa-quickguide/",
+    "https://genshin-builds.com/en/character/ineffa"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Jahoda",
+   "en": "Jahoda",
+   "ruoli": [
+    "healer",
+    "support"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "atkp"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "heal",
+    "atkp"
+   ],
+   "secondarie": [
+    "er",
+    "atkp",
+    "cr",
+    "em"
+   ],
+   "ricarica": [
+    170,
+    220
+   ],
+   "maestria": null,
+   "note": "Build da guaritrice su ATT e Ricarica; Tasso di CRIT solo con Arco Favonius. Ricarica senza Favonius più alta (200-330%).",
+   "fonti": [
+    "https://keqingmains.com/q/jahoda-quickguide/",
+    "https://genshin.gg/characters/jahoda/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Qin",
+   "en": "Jean",
+   "ruoli": [
+    "support",
+    "healer"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    140,
+    200
+   ],
+   "maestria": null,
+   "note": "Ricarica 160-200% Anemo singolo, 140-160% con altro Anemo; trascurabile con Spada Favonius. Variante Sunfire: full Maestria elementale.",
+   "fonti": [
+    "https://keqingmains.com/q/jean-quickguide/",
+    "https://genshin.gg/characters/jean/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Kachina",
+   "en": "Kachina",
+   "ruoli": [
+    "subdps",
+    "support"
+   ],
+   "scala": "def",
+   "crit": true,
+   "sabbie": [
+    "defp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "defp",
+    "cr",
+    "cd"
+   ],
+   "ricarica": [
+    140,
+    200
+   ],
+   "maestria": null,
+   "note": "La Tecnica suprema non serve per il set Pergamena: la Ricarica extra spesso non conviene. Valori variano molto con Favonius e costellazioni.",
+   "fonti": [
+    "https://keqingmains.com/q/kachina-quickguide/",
+    "https://genshin.gg/characters/kachina/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Kazuha",
+   "en": "Kaedehara Kazuha",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "em",
+   "crit": false,
+   "sabbie": [
+    "em",
+    "er"
+   ],
+   "calice": [
+    "em"
+   ],
+   "corona": [
+    "em"
+   ],
+   "secondarie": [
+    "er",
+    "em",
+    "atkp",
+    "cr"
+   ],
+   "ricarica": [
+    130,
+    180
+   ],
+   "maestria": null,
+   "note": "Supporto Anemo: tutto Maestria elementale dopo aver raggiunto la Ricarica di energia (115-280% secondo team/arma). Variante DPS Fulmine furioso di nicchia.",
+   "fonti": [
+    "https://keqingmains.com/q/kazuha-quickguide/",
+    "https://genshin.gg/characters/kazuha/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Kaeya",
+   "en": "Kaeya",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    135,
+    210
+   ],
+   "maestria": null,
+   "note": "Sabbie Maestria elementale se fonde la Tecnica suprema. Ricarica molto variabile per numero di Abilità elementali e Cryo nel team.",
+   "fonti": [
+    "https://keqingmains.com/q/kaeya-quickguide/",
+    "https://genshin.gg/characters/kaeya/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Ayaka",
+   "en": "Kamisato Ayaka",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    120,
+    150
+   ],
+   "maestria": null,
+   "note": "Build Freeze classica. Calice ATT% valido con molti bonus DAN (Furina/Mona), DAN Cryo sempre meglio con Shenhe.",
+   "fonti": [
+    "https://keqingmains.com/q/ayaka-quickguide/",
+    "https://genshin.gg/characters/ayaka/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Ayato",
+   "en": "Kamisato Ayato",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "er",
+    "hpp"
+   ],
+   "ricarica": [
+    120,
+    160
+   ],
+   "maestria": null,
+   "note": "Ricarica di energia ~135-140% nella maggior parte dei team; PS% utile ma meno di CRIT e ATT%.",
+   "fonti": [
+    "https://keqingmains.com/q/ayato-quickguide/",
+    "https://genshin.gg/characters/ayato/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Kaveh",
+   "en": "Kaveh",
+   "ruoli": [
+    "dps",
+    "healer"
+   ],
+   "scala": "em",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "em"
+   ],
+   "calice": [
+    "em"
+   ],
+   "corona": [
+    "em",
+    "cr",
+    "heal"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "em",
+    "atkp"
+   ],
+   "ricarica": [
+    150,
+    200
+   ],
+   "maestria": 700,
+   "note": "Driver Bloom. Maestria elementale ~700 (Nilou ~900; a C1 500-600). Ricarica di energia 150-285% secondo team e Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/kaveh-quickguide/",
+    "https://genshin.gg/characters/kaveh/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Keqing",
+   "en": "Keqing",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "Ricarica di energia praticamente irrilevante. Sabbie Maestria elementale competitiva solo in Aggravamento.",
+   "fonti": [
+    "https://keqingmains.com/q/keqing-quickguide/",
+    "https://genshin.gg/characters/keqing/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Kinich",
+   "en": "Kinich",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    120
+   ],
+   "maestria": null,
+   "note": "Ricarica opzionale: Tecnica suprema a rotazioni alterne (100-120%); ogni rotazione richiederebbe 175-245%.",
+   "fonti": [
+    "https://keqingmains.com/q/kinich-quickguide/",
+    "https://genshin.gg/characters/kinich/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Momoka",
+   "en": "Kirara",
+   "ruoli": [
+    "shield",
+    "support"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "hpp",
+    "er"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "hpp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "hpp",
+    "cr"
+   ],
+   "ricarica": [
+    100,
+    160
+   ],
+   "maestria": null,
+   "note": "Tasso di CRIT solo con Spada di Favonius. Ricarica di energia ~160% in solo Dendro, 100-120% in doppio Dendro.",
+   "fonti": [
+    "https://keqingmains.com/q/kirara-quickguide/",
+    "https://genshin.gg/characters/kirara/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Klee",
+   "en": "Klee",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    115,
+    140
+   ],
+   "maestria": null,
+   "note": "DPS Pyro in campo. Ricarica di energia 115-160% secondo i Pyro in squadra; C6 la riduce. Calice ATT% in team con molti Bonus DAN (es. Furina).",
+   "fonti": [
+    "https://keqingmains.com/q/klee-quickguide/",
+    "https://genshin.gg/characters/klee/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Sara",
+   "en": "Kujou Sara",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "atkp"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    140,
+    200
+   ],
+   "maestria": null,
+   "note": "Il buff dipende dall'ATT base; CRIT utile soprattutto con C6. Ricarica ~140-160% con altri Electro, ~180% con Raiden.",
+   "fonti": [
+    "https://keqingmains.com/q/sara-quickguide/",
+    "https://genshin.gg/characters/kujousara/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Shinobu",
+   "en": "Kuki Shinobu",
+   "ruoli": [
+    "healer",
+    "subdps"
+   ],
+   "scala": "em",
+   "crit": false,
+   "sabbie": [
+    "em"
+   ],
+   "calice": [
+    "em",
+    "dmg"
+   ],
+   "corona": [
+    "em",
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "em",
+    "cr",
+    "cd",
+    "hpp"
+   ],
+   "ricarica": [
+    120,
+    170
+   ],
+   "maestria": null,
+   "note": "Build full Maestria elementale per Iperfioritura (genshin.gg). In Aggravazione KQM preferisce Calice DAN Electro e Corona CRIT. Ricarica 100-170%.",
+   "fonti": [
+    "https://keqingmains.com/q/shinobu-quickguide/",
+    "https://genshin.gg/characters/kukishinobu/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Lanyan",
+   "en": "Lan Yan",
+   "ruoli": [
+    "shield",
+    "support"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "atkp",
+    "er",
+    "em"
+   ],
+   "calice": [
+    "atkp",
+    "dmg"
+   ],
+   "corona": [
+    "atkp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "atkp",
+    "cr",
+    "cd",
+    "em"
+   ],
+   "ricarica": [
+    140,
+    200
+   ],
+   "maestria": null,
+   "note": "ATT% per lo scudo. Build alternativa in campo con tutto Maestria elementale. Ricarica dimezzata se Tecnica suprema ogni 2 rotazioni.",
+   "fonti": [
+    "https://keqingmains.com/q/lan-yan-quickguide/",
+    "https://genshin.gg/characters/lanyan/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Lauma",
+   "en": "Lauma",
+   "ruoli": [
+    "support",
+    "subdps"
+   ],
+   "scala": "em",
+   "crit": false,
+   "sabbie": [
+    "em",
+    "er"
+   ],
+   "calice": [
+    "em"
+   ],
+   "corona": [
+    "em",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "em",
+    "cr",
+    "cd"
+   ],
+   "ricarica": [
+    140,
+    210
+   ],
+   "maestria": 800,
+   "note": "Supporto Lunare-Bloom: Maestria elementale 800 massimizza i bonus. Ricarica di energia 105-225% secondo i Dendro e le costellazioni.",
+   "fonti": [
+    "https://keqingmains.com/q/lauma-quickguide/",
+    "https://genshin-builds.com/en/character/lauma"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Layla",
+   "en": "Layla",
+   "ruoli": [
+    "shield",
+    "support"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "hpp",
+    "er"
+   ],
+   "calice": [
+    "hpp",
+    "dmg"
+   ],
+   "corona": [
+    "hpp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "hpp",
+    "cr",
+    "cd"
+   ],
+   "ricarica": [
+    120,
+    200
+   ],
+   "maestria": null,
+   "note": "Scudo e danni scalano coi PS. Calice Cryo e Corona CRIT solo per una build più offensiva. Ricarica 220%+ da unica Cryo pre-C2.",
+   "fonti": [
+    "https://keqingmains.com/q/layla-quickguide/",
+    "https://genshin.gg/characters/layla/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Linnea",
+   "en": "Linnea",
+   "ruoli": [
+    "subdps",
+    "support",
+    "healer"
+   ],
+   "scala": "def",
+   "crit": true,
+   "sabbie": [
+    "defp"
+   ],
+   "calice": [
+    "defp"
+   ],
+   "corona": [
+    "cr",
+    "cd",
+    "defp"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "defp",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    100
+   ],
+   "maestria": null,
+   "note": "Punta ad almeno 2000 DIF. Calice DIF% molto meglio di DAN Geo. Tecnica suprema ogni rotazione (170-185%) solo se servono le cure.",
+   "fonti": [
+    "https://keqingmains.com/q/linnea-quickguide/",
+    "https://genshin.gg/characters/linnea/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Lisa",
+   "en": "Lisa",
+   "ruoli": [
+    "subdps",
+    "support"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    130,
+    200
+   ],
+   "maestria": null,
+   "note": "Fuori campo: Ricarica di energia prima. In campo Sabbie ATT%/Maestria elementale. Maestria elementale utile solo in team Quicken.",
+   "fonti": [
+    "https://keqingmains.com/q/lisa-quickguide/",
+    "https://genshin.gg/characters/lisa/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Lohen",
+   "en": "Lohen",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cd",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    100,
+    190
+   ],
+   "maestria": null,
+   "note": "DPS/enabler Melt Criogeno in campo. Maestria elementale utile in Burnmelt/Reverse Melt. Ricarica di energia non prioritaria: Tecnica suprema quando pronta.",
+   "fonti": [
+    "https://keqingmains.com/q/lohen-quickguide/",
+    "https://genshin-builds.com/en/character/lohen"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_PlayerGirl",
+   "en": "Lumine",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "em",
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    160,
+    250
+   ],
+   "maestria": null,
+   "note": "Dipende dall'elemento: qui la build Dendro (la più diffusa). Ricarica di energia alta (160-300%) per la Tecnica suprema.",
+   "fonti": [
+    "https://keqingmains.com/q/dendro-traveler-quickguide/",
+    "https://genshin.gg/characters/traveler/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Linette",
+   "en": "Lynette",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "atkp"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    140,
+    175
+   ],
+   "maestria": null,
+   "note": "Ricarica molto variabile (100-240%) secondo team e arma. In team a reazioni (Iperfioritura) build Maestria elementale/Ricarica.",
+   "fonti": [
+    "https://keqingmains.com/q/lynette-quickguide/",
+    "https://genshin.gg/characters/lynette/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Liney",
+   "en": "Lyney",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cd",
+    "cr"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    150
+   ],
+   "maestria": null,
+   "note": "Corona DAN da CRIT con 4pz Cacciatore della Maréchaussée. Ricarica 125-150% solo se Tecnica suprema ogni rotazione. Niente Maestria.",
+   "fonti": [
+    "https://keqingmains.com/q/lyney-quickguide/",
+    "https://genshin.gg/characters/lyney/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Mavuika",
+   "en": "Mavuika",
+   "ruoli": [
+    "dps",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "em",
+    "atkp"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "La Tecnica suprema usa Spirito combattivo: niente Ricarica di energia. Sabbie Maestria elementale se fa Vaporizzazione/Melt. Fuori campo: set Cinder City.",
+   "fonti": [
+    "https://keqingmains.com/q/mavuika-quickguide/",
+    "https://genshin.gg/characters/mavuika/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Mika",
+   "en": "Mika",
+   "ruoli": [
+    "support",
+    "healer"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "hpp"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "heal",
+    "hpp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "hpp"
+   ],
+   "ricarica": [
+    160,
+    230
+   ],
+   "maestria": null,
+   "note": "Investimento minimo: Ricarica, PS/Bonus di guarigione e Tasso di CRIT solo con Lancia Favonius. Senza Tecnica suprema la Ricarica è inutile.",
+   "fonti": [
+    "https://keqingmains.com/q/mika-quickguide/",
+    "https://genshin.gg/characters/mika/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Mitya",
+   "en": "Mitya",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "em",
+   "crit": true,
+   "sabbie": [
+    "em"
+   ],
+   "calice": [
+    "em"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cd",
+    "cr",
+    "em",
+    "er"
+   ],
+   "ricarica": null,
+   "maestria": 450,
+   "note": "Nessuna guida KQM. Fonti: Maestria elementale 400-500, Tasso di CRIT 60-70%. Ricarica a C0 non quantificata, irrilevante da C1.",
+   "fonti": [
+    "https://genshin.gg/characters/mitya/",
+    "https://genshin-builds.com/en/character/mitya"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Mona",
+   "en": "Mona",
+   "ruoli": [
+    "support",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    180,
+    270
+   ],
+   "maestria": null,
+   "note": "Ricarica di energia altissima senza altri Hydro (fino a 350%); Codice di Favonius o Ambra prototipo la riducono molto.",
+   "fonti": [
+    "https://keqingmains.com/q/mona-quickguide/",
+    "https://genshin.gg/characters/mona/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Mualani",
+   "en": "Mualani",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "hp",
+   "crit": true,
+   "sabbie": [
+    "hpp",
+    "em"
+   ],
+   "calice": [
+    "dmg",
+    "hpp"
+   ],
+   "corona": [
+    "cd",
+    "hpp"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "hpp",
+    "em"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "DPS Idro in campo (Vaporizzazione). Con Codex di ossidiana il Tasso di CRIT si satura: Corona DAN da CRIT o PS%. Non sacrificare stat per la Ricarica.",
+   "fonti": [
+    "https://keqingmains.com/q/mualani-quickguide/",
+    "https://genshin.gg/characters/mualani/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Nahida",
+   "en": "Nahida",
+   "ruoli": [
+    "subdps",
+    "support"
+   ],
+   "scala": "em",
+   "crit": true,
+   "sabbie": [
+    "em"
+   ],
+   "calice": [
+    "em",
+    "dmg"
+   ],
+   "corona": [
+    "em",
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "em",
+    "cr",
+    "cd"
+   ],
+   "ricarica": [
+    100,
+    140
+   ],
+   "maestria": 1000,
+   "note": "1000 di Maestria elementale saturano il passivo A4 ma non sono obbligatori. On-field preferisce Calice Dendro e CRIT.",
+   "fonti": [
+    "https://keqingmains.com/q/nahida-quickguide/",
+    "https://genshin.gg/characters/nahida/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Navia",
+   "en": "Navia",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    100,
+    150
+   ],
+   "maestria": null,
+   "note": "Build DPS standard. Ricarica 100-130% con Xilonen/Viaggiatore Geo, 130-150% con Chiori/Zhongli; Sabbie Ricarica se non basta.",
+   "fonti": [
+    "https://keqingmains.com/q/navia-quickguide/",
+    "https://genshin.gg/characters/navia/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Nefer",
+   "en": "Nefer",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "em",
+   "crit": true,
+   "sabbie": [
+    "em"
+   ],
+   "calice": [
+    "em"
+   ],
+   "corona": [
+    "cd",
+    "cr"
+   ],
+   "secondarie": [
+    "cd",
+    "cr",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    105
+   ],
+   "maestria": 800,
+   "note": "800 di Maestria elementale massimizzano la Benedizione lunare. DAN da CRIT in Corona se l'arma non dà DAN da CRIT.",
+   "fonti": [
+    "https://keqingmains.com/q/nefer-quickguide/",
+    "https://genshin.gg/characters/nefer/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Neuvillette",
+   "en": "Neuvillette",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "hp",
+   "crit": true,
+   "sabbie": [
+    "hpp"
+   ],
+   "calice": [
+    "dmg",
+    "hpp"
+   ],
+   "corona": [
+    "cr",
+    "cd",
+    "hpp"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "hpp"
+   ],
+   "ricarica": [
+    100,
+    135
+   ],
+   "maestria": null,
+   "note": "DPS Idro con attacchi caricati. Ricarica di energia bassa (100-135%), più bassa con Furina. Poi Tasso di CRIT/DAN da CRIT e PS%.",
+   "fonti": [
+    "https://keqingmains.com/q/neuvillette-quickguide/",
+    "https://genshin.gg/characters/neuvillette/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Nicole",
+   "en": "Nicole",
+   "ruoli": [
+    "support",
+    "shield"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "atkp"
+   ],
+   "secondarie": [
+    "er",
+    "atkp"
+   ],
+   "ricarica": [
+    100,
+    180
+   ],
+   "maestria": null,
+   "note": "Punta a 4000 ATT per il buff dell'Abilità elementale. Spesso basta la Tecnica suprema a rotazioni alterne, senza Ricarica.",
+   "fonti": [
+    "https://keqingmains.com/q/nicole-quickguide/",
+    "https://genshin.gg/characters/nicole/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Nilou",
+   "en": "Nilou",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "hpp"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "hpp"
+   ],
+   "secondarie": [
+    "hpp",
+    "em",
+    "er"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "Full PS% per Fioritura abbondante; Maestria elementale utile se attiva Fioritura. Non serve Ricarica. Nei team Lunar-Bloom le statistiche contano poco.",
+   "fonti": [
+    "https://keqingmains.com/q/nilou-quickguide/",
+    "https://genshin.gg/characters/nilou/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Ningguang",
+   "en": "Ningguang",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    140
+   ],
+   "maestria": null,
+   "note": "Calice ATT% in alcuni team con Furina/Yelan. Ricarica di energia 100-140% a seconda della rotazione e degli altri Geo.",
+   "fonti": [
+    "https://keqingmains.com/q/ningguang-quickguide/",
+    "https://genshin.gg/characters/ningguang/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Noel",
+   "en": "Noelle",
+   "ruoli": [
+    "dps",
+    "shield",
+    "healer"
+   ],
+   "scala": "def",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "defp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "defp"
+   ],
+   "ricarica": [
+    120,
+    160
+   ],
+   "maestria": null,
+   "note": "DPS Geo in campo. Sabbie ATT% fino a C5, DIF% a C6 o Tecnica suprema liv.10+. Ricarica di energia 115-200% secondo gli altri Geo.",
+   "fonti": [
+    "https://keqingmains.com/q/noelle-quickguide/",
+    "https://genshin.gg/characters/noelle/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Odette",
+   "en": "Odette",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    145,
+    195
+   ],
+   "maestria": null,
+   "note": "Il Bonus DAN Cryo non aumenta lo Stellar Glimmer: Calice ATT. Ricarica ~100-145% con l'arma firma.",
+   "fonti": [
+    "https://keqingmains.com/q/odette-quickguide/",
+    "https://genshin.gg/characters/odette/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Olorun",
+   "en": "Ororon",
+   "ruoli": [
+    "subdps",
+    "support"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    100,
+    160
+   ],
+   "maestria": null,
+   "note": "Ricarica 160-195% Electro singolo con 1 Abilità per Tecnica suprema, 100-120% in Electro doppio. Maestria elementale utile con Ineffa.",
+   "fonti": [
+    "https://keqingmains.com/q/ororon-quickguide/",
+    "https://genshin.gg/characters/ororon/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Prune",
+   "en": "Prune",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "atkp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "atkp",
+    "cr",
+    "cd"
+   ],
+   "ricarica": [
+    185,
+    205
+   ],
+   "maestria": null,
+   "note": "Valori C0 doppio Anemo; solo Anemo 245-285%. Occhio del giuramento o Codice di Favonius riducono la Ricarica di energia di 30-50%.",
+   "fonti": [
+    "https://keqingmains.com/q/prune-quickguide/",
+    "https://genshin.gg/characters/prune/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Qiqi",
+   "en": "Qiqi",
+   "ruoli": [
+    "healer",
+    "support"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "atkp",
+    "heal"
+   ],
+   "secondarie": [
+    "er",
+    "atkp",
+    "cr"
+   ],
+   "ricarica": [
+    150,
+    250
+   ],
+   "maestria": null,
+   "note": "Guaritrice su ATT, supporto Stellar-Conduct con Sandrone. Ricarica di energia fino a 285% a C0, molto meno a C1. Tasso di CRIT con Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/qiqi-quickguide/",
+    "https://genshin.gg/characters/qiqi/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Shougun",
+   "en": "Raiden Shogun",
+   "ruoli": [
+    "dps",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "er",
+    "em"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    130,
+    220
+   ],
+   "maestria": null,
+   "note": "Build DPS di Tecnica suprema. Per Iperbloom/Sovraccarico KQM consiglia invece tre pezzi Maestria elementale.",
+   "fonti": [
+    "https://keqingmains.com/q/raiden-quickguide/",
+    "https://genshin.gg/characters/raiden/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Razor",
+   "en": "Razor",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "phys",
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    100,
+    140
+   ],
+   "maestria": null,
+   "note": "Build fisica di KQM (genshin.gg: Calice DAN Electro per Aggravazione). Variante reazioni con Maestria elementale. Ricarica fino a 180% in Electro singolo.",
+   "fonti": [
+    "https://keqingmains.com/q/razor-quickguide/",
+    "https://genshin.gg/characters/razor/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Rosaria",
+   "en": "Rosaria",
+   "ruoli": [
+    "subdps",
+    "support"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "er",
+    "em"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    150,
+    200
+   ],
+   "maestria": null,
+   "note": "Sabbie Maestria elementale in Fusione inversa. C4 abbassa la Ricarica di energia. genshin.gg: ATT%/Cryo/DAN da CRIT.",
+   "fonti": [
+    "https://keqingmains.com/q/rosaria-quickguide/",
+    "https://genshin.gg/characters/rosaria/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_MarionetteNew",
+   "en": "Sandrone",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    120,
+    165
+   ],
+   "maestria": null,
+   "note": "DPS Stellar-Conduct (attacchi caricati). Calice ATT%: il Bonus DAN Criogeno non conta. Oltre 140% di Ricarica meglio puntare su altre statistiche.",
+   "fonti": [
+    "https://keqingmains.com/q/sandrone-quickguide/",
+    "https://genshin-builds.com/en/character/sandrone"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Kokomi",
+   "en": "Sangonomiya Kokomi",
+   "ruoli": [
+    "healer",
+    "support"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "hpp",
+    "er"
+   ],
+   "calice": [
+    "dmg",
+    "hpp"
+   ],
+   "corona": [
+    "heal"
+   ],
+   "secondarie": [
+    "er",
+    "hpp"
+   ],
+   "ricarica": [
+    135,
+    220
+   ],
+   "maestria": null,
+   "note": "Non usa il CRIT. Off-field con sola Abilità elementale può ignorare la Ricarica; Calice PS% se resta off-field.",
+   "fonti": [
+    "https://keqingmains.com/q/kokomi-quickguide/",
+    "https://genshin.gg/characters/kokomi/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Sayu",
+   "en": "Sayu",
+   "ruoli": [
+    "support",
+    "healer"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "atkp",
+    "em"
+   ],
+   "corona": [
+    "heal",
+    "atkp",
+    "em"
+   ],
+   "secondarie": [
+    "er",
+    "atkp",
+    "em",
+    "cr"
+   ],
+   "ricarica": [
+    150,
+    200
+   ],
+   "maestria": null,
+   "note": "Ricarica alta: >200% per Tecnica suprema ogni rotazione, 150-170% a rotazioni alterne. Cure su ATT, Turbine su Maestria elementale.",
+   "fonti": [
+    "https://keqingmains.com/q/sayu-quickguide/",
+    "https://genshin.gg/characters/sayu/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Sethos",
+   "en": "Sethos",
+   "ruoli": [
+    "dps",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "em",
+    "er"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "em",
+    "atkp"
+   ],
+   "ricarica": [
+    100,
+    160
+   ],
+   "maestria": null,
+   "note": "Ricarica dipende molto dallo stile (Attacco normale vs Attacco caricato) e dal team: 100% con Fischl, più alta senza.",
+   "fonti": [
+    "https://keqingmains.com/q/sethos-quickguide/",
+    "https://genshin.gg/characters/sethos/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Shenhe",
+   "en": "Shenhe",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "atkp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "atkp",
+    "cr"
+   ],
+   "ricarica": [
+    145,
+    200
+   ],
+   "maestria": null,
+   "note": "Supporto Criogeno: tutto ATT%. Ricarica di energia 145-200% (meno con Lancia Favonius e più Criogeni). Tasso di CRIT solo per Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/shenhe-quickguide/",
+    "https://genshin.gg/characters/shenhe/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Heizo",
+   "en": "Shikanoin Heizou",
+   "ruoli": [
+    "dps",
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em",
+    "er"
+   ],
+   "calice": [
+    "dmg",
+    "em"
+   ],
+   "corona": [
+    "cr",
+    "cd",
+    "em"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    120,
+    180
+   ],
+   "maestria": null,
+   "note": "KQM preferisce la build ATT/CRIT; genshin.gg e KQM (driver Iperbloom/Elettrocarica) propongono tre pezzi Maestria elementale.",
+   "fonti": [
+    "https://keqingmains.com/q/heizou-quickguide/",
+    "https://genshin.gg/characters/heizou/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Sigewinne",
+   "en": "Sigewinne",
+   "ruoli": [
+    "healer",
+    "support"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "hpp",
+    "er"
+   ],
+   "calice": [
+    "hpp",
+    "dmg"
+   ],
+   "corona": [
+    "hpp",
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "hpp",
+    "cr",
+    "cd"
+   ],
+   "ricarica": [
+    125,
+    180
+   ],
+   "maestria": null,
+   "note": "Ricarica 115-225% secondo team e chi raccoglie le particelle. Corona Bonus di guarigione possibile ma non necessaria.",
+   "fonti": [
+    "https://keqingmains.com/q/sigewinne-quickguide/",
+    "https://genshin.gg/characters/sigewinne/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_SkirkNew",
+   "en": "Skirk",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "Non usa Energia tradizionale: Ricarica di energia inutile. Calice ATT% solo con molti altri Bonus DAN nel team.",
+   "fonti": [
+    "https://keqingmains.com/q/skirk-quickguide/",
+    "https://genshin.gg/characters/skirk/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Sucrose",
+   "en": "Sucrose",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "em",
+   "crit": false,
+   "sabbie": [
+    "em"
+   ],
+   "calice": [
+    "em"
+   ],
+   "corona": [
+    "em"
+   ],
+   "secondarie": [
+    "em",
+    "er",
+    "cr"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "Supporto/driver Anemo: Maestria elementale su tutti i pezzi. In genere non serve usare la Tecnica suprema. Tasso di CRIT solo con Codice Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/sucrose-quickguide/",
+    "https://genshin.gg/characters/sucrose/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Tartaglia",
+   "en": "Tartaglia",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    130
+   ],
+   "maestria": null,
+   "note": "Ricarica di energia 100-130% per la Tecnica suprema a distanza ogni rotazione.",
+   "fonti": [
+    "https://keqingmains.com/q/tartaglia-quickguide/",
+    "https://genshin.gg/characters/childe/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Tohma",
+   "en": "Thoma",
+   "ruoli": [
+    "shield",
+    "support"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "hpp"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "hpp",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "hpp",
+    "cr"
+   ],
+   "ricarica": [
+    170,
+    220
+   ],
+   "maestria": null,
+   "note": "Ricarica circa 210-220% a C0-C3 in Pyro doppio (170% da C4), +25% se unico Pyro. Tasso di CRIT solo con Lancia Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/thoma-quickguide/",
+    "https://genshin.gg/characters/thoma/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Tighnari",
+   "en": "Tighnari",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "em",
+    "atkp",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    140
+   ],
+   "maestria": null,
+   "note": "Con Sentiero del cacciatore meglio Sabbie Maestria elementale. Ricarica 100-110% con 2 Abilità elementali per Tecnica suprema.",
+   "fonti": [
+    "https://keqingmains.com/q/tighnari-quickguide/",
+    "https://genshin.gg/characters/tighnari/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Valeriy",
+   "en": "Valeriy",
+   "ruoli": [
+    "support",
+    "shield"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "atkp",
+    "er"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "atkp"
+   ],
+   "secondarie": [
+    "atkp",
+    "er",
+    "cr"
+   ],
+   "ricarica": [
+    160,
+    180
+   ],
+   "maestria": null,
+   "note": "Supporto Elettro per team Stellar-Conduct (es. Mitya). Ricarica 160-180% solo se usa la Tecnica suprema ogni rotazione. Nessuna guida KQM, dati scarsi.",
+   "fonti": [
+    "https://genshin-builds.com/en/character/valeriy",
+    "https://www.u7buy.com/blog/genshin-impact-valeriy-build/"
+   ],
+   "affidabilita": "bassa"
+  },
+  {
+   "id": "UI_AvatarIcon_Varesa",
+   "en": "Varesa",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    100,
+    145
+   ],
+   "maestria": null,
+   "note": "Non serve molta Ricarica. Calice ATT valido se ha molti Bonus DAN dal team. Facile superare il Tasso di CRIT con Codex.",
+   "fonti": [
+    "https://keqingmains.com/q/varesa-quickguide/",
+    "https://genshin.gg/characters/varesa/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Varka",
+   "en": "Varka",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "atkp",
+    "dmg"
+   ],
+   "corona": [
+    "cd",
+    "cr"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "Non costruire Ricarica. KQM: Calice DAN Pyro/Hydro/Electro/Cryo o ATT% meglio di DAN Anemo (prima di C2), secondo il team.",
+   "fonti": [
+    "https://keqingmains.com/q/varka-quickguide/",
+    "https://genshin.gg/characters/varka/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Venti",
+   "en": "Venti",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "em",
+   "crit": false,
+   "sabbie": [
+    "em",
+    "er",
+    "atkp"
+   ],
+   "calice": [
+    "em",
+    "dmg"
+   ],
+   "corona": [
+    "em",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "em",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    115,
+    210
+   ],
+   "maestria": null,
+   "note": "Build support Maestria elementale (KQM). genshin.gg propone build DPS ATT%/Anemo/CRIT. Ricarica base alta (132% da asceso).",
+   "fonti": [
+    "https://keqingmains.com/q/venti-quickguide/",
+    "https://genshin.gg/characters/venti/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Vesna",
+   "en": "Vesna",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cd",
+    "cr",
+    "atkp",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    135
+   ],
+   "maestria": null,
+   "note": "DPS Stellar-Swirl: Calice ATT% preferito al Bonus DAN Anemo. Ricarica di energia ~120%. Nessuna guida KQM trovata.",
+   "fonti": [
+    "https://genshin-builds.com/en/character/vesna",
+    "https://allthings.how/vesna-build-guide-best-weapons-artifacts-and-teams-in-genshin-impact/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Vodyanitsa",
+   "en": "Vodyanitsa",
+   "ruoli": [
+    "support",
+    "healer"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "hpp"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "hpp",
+    "heal"
+   ],
+   "secondarie": [
+    "hpp",
+    "er",
+    "cr",
+    "cd"
+   ],
+   "ricarica": [
+    145,
+    220
+   ],
+   "maestria": null,
+   "note": "Massimizza i PS (60-65k) per A4 e C1. Ricarica e CRIT solo se usa la Tecnica suprema ogni rotazione (team Hydro).",
+   "fonti": [
+    "https://keqingmains.com/q/vodyanitsa-quickguide/",
+    "https://genshin.gg/characters/vodyanitsa/",
+    "https://www.icy-veins.com/genshin-impact/vodyanitsa-guide-best-builds"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Wanderer",
+   "en": "Wanderer",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    115
+   ],
+   "maestria": null,
+   "note": "Build DPS standard, rapporto CRIT 1:2. A C0-C1 niente Ricarica (Tecnica suprema a rotazioni alterne); da C2 serve per usarla ogni rotazione.",
+   "fonti": [
+    "https://keqingmains.com/q/wanderer-quickguide/",
+    "https://genshin.gg/characters/wanderer/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Wriothesley",
+   "en": "Wriothesley",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cd",
+    "cr"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    100,
+    125
+   ],
+   "maestria": null,
+   "note": "In team Stellar-Conduct Calice ATT% o Maestria (non Cryo) e niente Ricarica. Mai due principali Maestria elementale.",
+   "fonti": [
+    "https://keqingmains.com/q/wriothesley-quickguide/",
+    "https://genshin.gg/characters/wriothesley/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Xiangling",
+   "en": "Xiangling",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "em",
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    180,
+    250
+   ],
+   "maestria": null,
+   "note": "DPS Pyro fuori campo (Tecnica suprema). Ricarica di energia tipica 220-280% con Bennett e armi comuni; molto meno con Lancia Favonius o Kitain.",
+   "fonti": [
+    "https://keqingmains.com/q/xiangling-quickguide/",
+    "https://genshin.gg/characters/xiangling/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Liuyun",
+   "en": "Xianyun",
+   "ruoli": [
+    "support",
+    "healer"
+   ],
+   "scala": "atk",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "atkp"
+   ],
+   "calice": [
+    "atkp"
+   ],
+   "corona": [
+    "atkp",
+    "heal",
+    "cr"
+   ],
+   "secondarie": [
+    "er",
+    "atkp",
+    "em"
+   ],
+   "ricarica": [
+    140,
+    220
+   ],
+   "maestria": null,
+   "note": "Deve usare la Tecnica suprema ogni rotazione. Il buff agli Attacchi in caduta si satura a 4500 ATT (buff inclusi).",
+   "fonti": [
+    "https://keqingmains.com/q/xianyun-quickguide/",
+    "https://genshin.gg/characters/xianyun/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Xiao",
+   "en": "Xiao",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp"
+   ],
+   "calice": [
+    "dmg",
+    "atkp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    110,
+    140
+   ],
+   "maestria": null,
+   "note": "Ricarica dalle secondarie per la Tecnica suprema ogni rotazione: 100% con Faruzan C6, 120-160% secondo i compagni.",
+   "fonti": [
+    "https://keqingmains.com/q/xiao-quickguide/",
+    "https://genshin.gg/characters/xiao/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Xilonen",
+   "en": "Xilonen",
+   "ruoli": [
+    "support",
+    "healer"
+   ],
+   "scala": "def",
+   "crit": false,
+   "sabbie": [
+    "defp",
+    "er"
+   ],
+   "calice": [
+    "defp"
+   ],
+   "corona": [
+    "defp",
+    "cr",
+    "heal"
+   ],
+   "secondarie": [
+    "er",
+    "defp",
+    "cr"
+   ],
+   "ricarica": [
+    115,
+    190
+   ],
+   "maestria": null,
+   "note": "DIF% fino a 3200 DIF con Canto della pattuglia della vetta. Tasso di CRIT solo con Spada di Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/xilonen-quickguide/",
+    "https://genshin.gg/characters/xilonen/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Xingqiu",
+   "en": "Xingqiu",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "er",
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp"
+   ],
+   "ricarica": [
+    130,
+    200
+   ],
+   "maestria": null,
+   "note": "DPS Idro fuori campo e applicatore. Ricarica di energia 130-260% secondo l'arma (Sacrificale/Favonius più bassi). Rapporto CRIT 1:2.",
+   "fonti": [
+    "https://keqingmains.com/q/xingqiu-quickguide/",
+    "https://genshin.gg/characters/xingqiu/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Xinyan",
+   "en": "Xinyan",
+   "ruoli": [
+    "dps",
+    "shield"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "er",
+    "defp"
+   ],
+   "calice": [
+    "phys",
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "cd",
+    "atkp",
+    "defp"
+   ],
+   "ricarica": [
+    130,
+    190
+   ],
+   "maestria": null,
+   "note": "Calice Bonus DAN fisici per build fisica, Pyro per build Pyro. Sabbie DIF% sensata solo dalla C6. Guida KQM datata.",
+   "fonti": [
+    "https://keqingmains.com/xinyan/",
+    "https://genshin.gg/characters/xinyan/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Yae",
+   "en": "Yae Miko",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg",
+    "em"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    150
+   ],
+   "maestria": 200,
+   "note": "In Aggravazione/Lunar-Charged 100-300 Maestria elementale, poi ATT%. In Iperfioritura Sabbie/Calice Maestria elementale. Ricarica 100% da C1.",
+   "fonti": [
+    "https://keqingmains.com/q/yae-quickguide/",
+    "https://genshin.gg/characters/yaemiko/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Feiyan",
+   "en": "Yanfei",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "em",
+    "atkp"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "em",
+    "atkp",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    130
+   ],
+   "maestria": null,
+   "note": "Sabbie Maestria elementale spesso migliori in Vaporizzazione con Bennett. Varianti: tutto Maestria (Sovraccarico) o scudo PS a C4.",
+   "fonti": [
+    "https://keqingmains.com/q/yanfei-quickguide/",
+    "https://genshin.gg/characters/yanfei/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Yaoyao",
+   "en": "Yaoyao",
+   "ruoli": [
+    "healer",
+    "support"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "er",
+    "hpp"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "hpp",
+    "heal"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "hpp"
+   ],
+   "ricarica": [
+    130,
+    150
+   ],
+   "maestria": null,
+   "note": "Guaritrice Dendro: di solito usa la Tecnica suprema ogni 2 rotazioni (~150% max). Variante reazioni: Maestria elementale/Dendro/CRIT.",
+   "fonti": [
+    "https://keqingmains.com/q/yaoyao-quickguide/",
+    "https://genshin.gg/characters/yaoyao/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Yelan",
+   "en": "Yelan",
+   "ruoli": [
+    "subdps"
+   ],
+   "scala": "hp",
+   "crit": true,
+   "sabbie": [
+    "hpp",
+    "er"
+   ],
+   "calice": [
+    "dmg",
+    "hpp"
+   ],
+   "corona": [
+    "cr",
+    "cd",
+    "hpp"
+   ],
+   "secondarie": [
+    "er",
+    "hpp",
+    "cr",
+    "cd"
+   ],
+   "ricarica": [
+    150,
+    200
+   ],
+   "maestria": null,
+   "note": "Prima la Ricarica (Tecnica suprema ogni rotazione), poi PS fino a ~30000, poi CRIT 1:2.",
+   "fonti": [
+    "https://keqingmains.com/q/yelan-quickguide/",
+    "https://genshin.gg/characters/yelan/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Yoimiya",
+   "en": "Yoimiya",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "atk",
+   "crit": true,
+   "sabbie": [
+    "atkp",
+    "em"
+   ],
+   "calice": [
+    "dmg"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "atkp",
+    "em"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "Non serve Ricarica: Tecnica suprema solo quando disponibile. Sabbie Maestria elementale se fa Vaporizzazione/Fusione con buff ATT esterni.",
+   "fonti": [
+    "https://keqingmains.com/q/yoimiya-quickguide/",
+    "https://genshin.gg/characters/yoimiya/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Mizuki",
+   "en": "Yumemizuki Mizuki",
+   "ruoli": [
+    "support",
+    "subdps"
+   ],
+   "scala": "em",
+   "crit": true,
+   "sabbie": [
+    "em",
+    "er"
+   ],
+   "calice": [
+    "em"
+   ],
+   "corona": [
+    "cr",
+    "cd",
+    "em"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    130
+   ],
+   "maestria": null,
+   "note": "Corona CRIT nei team SSW prima di C6 (KQM); fuori da questi tripla Maestria elementale (anche genshin.gg). A C6 cap a 1000 di Maestria.",
+   "fonti": [
+    "https://keqingmains.com/q/mizuki-quickguide/",
+    "https://genshin.gg/characters/yumemizukimizuki/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Yunjin",
+   "en": "Yun Jin",
+   "ruoli": [
+    "support"
+   ],
+   "scala": "def",
+   "crit": false,
+   "sabbie": [
+    "defp",
+    "er"
+   ],
+   "calice": [
+    "defp"
+   ],
+   "corona": [
+    "defp"
+   ],
+   "secondarie": [
+    "er",
+    "cr",
+    "defp"
+   ],
+   "ricarica": [
+    160,
+    230
+   ],
+   "maestria": null,
+   "note": "Supporto per attacchi normali che scala su DIF. Ricarica di energia alta (160-270% secondo i Geo). Tasso di CRIT solo con Lancia Favonius.",
+   "fonti": [
+    "https://keqingmains.com/q/yunjin-quickguide/",
+    "https://genshin.gg/characters/yunjin/"
+   ],
+   "affidabilita": "media"
+  },
+  {
+   "id": "UI_AvatarIcon_Zhongli",
+   "en": "Zhongli",
+   "ruoli": [
+    "shield",
+    "support"
+   ],
+   "scala": "hp",
+   "crit": false,
+   "sabbie": [
+    "hpp"
+   ],
+   "calice": [
+    "hpp"
+   ],
+   "corona": [
+    "hpp",
+    "cr"
+   ],
+   "secondarie": [
+    "hpp",
+    "cr"
+   ],
+   "ricarica": null,
+   "maestria": null,
+   "note": "Build da scudo: solo PS. Tasso di CRIT (~30%) solo con Lancia Favonius. Ricarica rilevante solo se usa la Tecnica suprema.",
+   "fonti": [
+    "https://keqingmains.com/q/zhongli-quickguide/",
+    "https://genshin.gg/characters/zhongli/"
+   ],
+   "affidabilita": "alta"
+  },
+  {
+   "id": "UI_AvatarIcon_Zibai",
+   "en": "Zibai",
+   "ruoli": [
+    "dps"
+   ],
+   "scala": "def",
+   "crit": true,
+   "sabbie": [
+    "defp"
+   ],
+   "calice": [
+    "defp"
+   ],
+   "corona": [
+    "cr",
+    "cd"
+   ],
+   "secondarie": [
+    "cr",
+    "cd",
+    "defp",
+    "em",
+    "er"
+   ],
+   "ricarica": [
+    100,
+    100
+   ],
+   "maestria": null,
+   "note": "Calice DIF% molto meglio di DAN Geo. Tecnica suprema quando disponibile; Ricarica 105-125% solo con Linnea in Geo triplo.",
+   "fonti": [
+    "https://keqingmains.com/q/zibai-quickguide/",
+    "https://genshin.gg/characters/zibai/"
+   ],
+   "affidabilita": "alta"
+  }
+ ]
+}
