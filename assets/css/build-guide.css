@@ -1140,4 +1140,3 @@ i.bg-ava-none { display: inline-block; }
 .bg-piece-dlg footer button { width: auto; margin: 0; }
 @media (max-width: 480px) { .bg-dlg-fields { grid-template-columns: minmax(0, 1fr); } }
 .bg-dlg-note.is-err { color: var(--guide-red); }
-.bg-relic li[title] { cursor: help; }
