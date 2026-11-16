@@ -29,6 +29,32 @@
 
   const fmt = (n, d = 1) => n.toLocaleString('it-IT', { minimumFractionDigits: d, maximumFractionDigits: d });
 
+  // Righe singole: se il testo non ci sta, scorre (niente a capo che disallinea le card).
+  const FIT_SEL = [
+    '.bg-page .section-head h2', '.bg-page .section-head > span',
+    '.art-slot', '.art-head > div > strong', '.art-head > div > small', '.art-prof',
+    '.art-score > span > small', '.bg-calc label:not(.visually-hidden) > .lbl',
+    '.bg-targets .kpi > span',
+  ].join(',');
+  function fit(root = document) {
+    root.querySelectorAll(FIT_SEL).forEach((el) => {
+      if (!el.classList.contains('bg-fit')) {
+        const inner = document.createElement('span');
+        inner.className = 'fit-in';
+        while (el.firstChild) inner.appendChild(el.firstChild);
+        el.appendChild(inner);
+        el.classList.add('bg-fit');
+      }
+      const inner = el.firstElementChild;
+      const over = inner.scrollWidth - el.clientWidth;
+      const scrolling = over > 1;
+      el.classList.toggle('is-scrolling', scrolling);
+      el.style.setProperty('--shift', `${-(over + 14)}px`);
+      el.style.setProperty('--dur', `${Math.max(4, (over + 14) / 18)}s`);
+      if (scrolling) el.title = inner.textContent.trim(); else el.removeAttribute('title');
+    });
+  }
+
   function cvTier(cv) {
     if (cv >= 40) return ['eccezionale', 't5'];
     if (cv >= 35) return ['ottimo', 't4'];
@@ -60,8 +86,8 @@
   function scoreHtml({ cv, rv }) {
     const [cl, cc] = cvTier(cv);
     const [rl, rc] = rvTier(rv);
-    return `<span class="${cc}"><b>${fmt(cv)}</b> CV<small>${cl}</small></span>`
-      + `<span class="${rc}"><b>${fmt(rv, 0)}%</b> RV<small>${rl} &middot; &asymp; ${fmt(rv / 100)} roll pieni</small></span>`;
+    return `<span class="${cc}"><b>${fmt(cv)}</b> CV<small>${cl}</small><small>&asymp; ${fmt(cv / 7.77)} roll crit</small></span>`
+      + `<span class="${rc}"><b>${fmt(rv, 0)}%</b> RV<small>${rl}</small><small>&asymp; ${fmt(rv / 100)} roll</small></span>`;
   }
 
   // Tabella dei roll
@@ -133,6 +159,7 @@
       const dup = subs.some((s) => s.value > 0 && (seen.has(s.stat) || !seen.add(s.stat)));
       outPiece.innerHTML = scoreHtml(score(subs, profSel.value))
         + (dup ? '<p class="bg-warn">Hai lo stesso substat due volte: un artefatto non pu&ograve; averlo.</p>' : '');
+      fit(outPiece);
     };
     pieceForm.addEventListener('input', updatePiece);
     pieceForm.addEventListener('submit', (e) => e.preventDefault());
@@ -159,9 +186,25 @@
         : `<span class="${cls}"><b>${fmt(cv)}</b> CV dei substats<small>${tier} &middot; ${fmt(cr)}% CRIT Rate e ${fmt(cd)}% CRIT DMG dagli artefatti</small></span>`
           + `<span class="t2"><b>${fmt(total)}</b> CV con il Circlet<small>come lo contano Akasha e altri siti</small></span>`
           + `<span class="t2"><b>1 : ${fmt(ratio)}</b> rapporto in schermata<small>${ratio < 1.7 ? 'pi&ugrave; CRIT DMG ti farebbe comodo' : ratio > 2.5 ? 'spingi sul CRIT Rate (se il set o il team non lo danno gi&agrave;)' : 'vicino all&rsquo;1:2'}</small></span>`;
+      fit(outBuild);
     };
     buildForm.addEventListener('input', updateBuild);
     buildForm.addEventListener('submit', (e) => e.preventDefault());
     updateBuild();
   }
+
+  // Etichette del calcolatore: il testo in uno span, così resta su una riga
+  document.querySelectorAll('.bg-calc label').forEach((label) => {
+    const text = Array.from(label.childNodes).find((n) => n.nodeType === 3 && n.textContent.trim());
+    if (!text) return;
+    const span = document.createElement('span');
+    span.className = 'lbl';
+    span.textContent = text.textContent.trim();
+    label.replaceChild(span, text);
+  });
+
+  fit();
+  let resizeTimer;
+  window.addEventListener('resize', () => { clearTimeout(resizeTimer); resizeTimer = setTimeout(() => fit(), 150); });
+  if (document.fonts && document.fonts.ready) document.fonts.ready.then(() => fit());
 })();

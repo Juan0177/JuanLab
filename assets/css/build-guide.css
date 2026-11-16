@@ -192,7 +192,7 @@
 }
 .bg-targets .kpi { padding: 1rem; border-radius: 16px; border: 1px solid rgba(255, 255, 255, 0.1); background: var(--guide-panel-soft); }
 .bg-targets .kpi strong { display: block; margin-bottom: 0.3rem; color: var(--guide-gold); font-size: 0.7rem; letter-spacing: 0.12em; text-transform: uppercase; }
-.bg-targets .kpi span { font-size: 1.5rem; font-weight: 800; }
+.bg-targets .kpi > span { font-size: 1.5rem; font-weight: 800; }
 .bg-targets .kpi small { display: block; margin-top: 0.2rem; color: var(--guide-muted); font-size: 0.8rem; }
 
 /* Tenere o buttare */
@@ -251,4 +251,70 @@
   .bg-scale { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .bg-glossary { grid-template-columns: minmax(0, 1fr); }
   .bg-glossary dd { margin-bottom: 0.4rem; }
+}
+
+/* ---- Allineamento: righe singole che scorrono se il testo non ci sta ---- */
+.bg-fit {
+  display: block;
+  min-width: 0;
+  max-width: 100%;
+  overflow: hidden;
+  white-space: nowrap;
+}
+.bg-fit > .fit-in { display: inline-block; }
+.bg-fit.is-scrolling {
+  -webkit-mask-image: linear-gradient(90deg, #000 calc(100% - 14px), transparent);
+  mask-image: linear-gradient(90deg, #000 calc(100% - 14px), transparent);
+}
+.bg-fit.is-scrolling > .fit-in { animation: bg-marquee var(--dur, 6s) ease-in-out infinite alternate; }
+@keyframes bg-marquee {
+  0%, 18% { transform: translateX(0); }
+  82%, 100% { transform: translateX(var(--shift, 0)); }
+}
+@media (prefers-reduced-motion: reduce) {
+  .bg-fit.is-scrolling > .fit-in { animation: none; }
+  .bg-fit.is-scrolling { text-overflow: ellipsis; }
+}
+
+/* Card con le parti alla stessa altezza */
+.art-card { display: flex; flex-direction: column; }
+.art-head { min-height: 64px; }
+.art-head div { flex: 1; }
+.art-score { margin-top: auto; }
+.art-subs { margin-bottom: 0.8rem; }
+
+/* Indice su una riga, scorrevole */
+.bg-toc {
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  overflow-x: auto;
+  padding-bottom: 0.3rem;
+  scrollbar-width: thin;
+}
+.bg-toc a { flex: none; white-space: nowrap; }
+
+/* Intestazioni delle sezioni: titolo e sottotitolo sempre su una riga */
+.bg-page .section-head { align-items: baseline; }
+.bg-page .section-head h2 { flex: 0 1 auto; min-width: 0; }
+.bg-page .section-head > span { flex: 0 1 auto; min-width: 4rem; }
+
+/* Calcolatore: etichette su una riga */
+.bg-calc label > .bg-fit { margin-bottom: 0.1rem; }
+.bg-calc-pair { align-items: end; }
+
+/* Esempi: card e didascalie sulla stessa griglia */
+@supports (grid-template-rows: subgrid) {
+  .bg-examples { grid-auto-rows: auto auto; row-gap: 0; }
+  .bg-shot { display: grid; grid-template-rows: subgrid; grid-row: span 2; gap: 0.5rem; margin-bottom: 1rem; }
+}
+.bg-page .section-head > * { max-width: 100%; }
+
+/* Le righe che scorrono non devono allargare griglie e card */
+.bg-examples { grid-template-columns: repeat(auto-fit, minmax(min(240px, 100%), 1fr)); }
+.bg-shot, .art-card, .art-head, .art-head div, .art-score > span, .bg-calc, .bg-calc label, .bg-targets .kpi, .bg-page .section-head { min-width: 0; }
+.art-head { gap: 0.6rem; min-height: 52px; }
+.art-head img { width: 52px; height: 52px; }
+@media (max-width: 760px) {
+  .bg-targets .kpi { padding: 0.8rem; }
+  .bg-targets .kpi > span { font-size: 1.15rem; }
 }
