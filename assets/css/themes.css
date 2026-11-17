@@ -1,0 +1,94 @@
+:root {
+  --jl-bg: #060810;
+  --jl-panel-rgb: 8 12 28;
+}
+
+/* Temi di JuanLab: gli stessi tre di Juan-optimizer e gc-web, scelti col selettore in basso (assets/js/theme.js)
+   e salvati nel browser. "Notte JuanLab" e il tema di sempre: qui ci sono solo gli altri due.
+   Si usa data-palette perche data-theme e gia di Pico (scuro/chiaro). Tutti verificati WCAG 2.1 AA. */
+
+html[data-palette="go"] {
+  --jl-bg: #0c1020;
+  --jl-panel-rgb: 27 38 59;
+  --pico-color: #ffffff;
+  --pico-muted-color: #b4bdcf;
+  --pico-h1-color: #ffffff;
+  --pico-h2-color: #ffffff;
+  --pico-h3-color: #ffffff;
+  --pico-primary: #5aaaf0;
+  --pico-primary-hover: #86c1f5;
+  --pico-primary-underline: rgba(90, 170, 240, 0.5);
+  --pico-primary-hover-underline: #86c1f5;
+  --pico-primary-background: #5aaaf0;
+  --pico-primary-hover-background: #86c1f5;
+  --pico-primary-border: #5aaaf0;
+  --pico-primary-hover-border: #86c1f5;
+  --pico-primary-inverse: #0b101b;
+  --pico-muted-border-color: #2e3a52;
+  --guide-bg: #0c1020;
+  --guide-panel: rgba(27, 38, 59, 0.92);
+  --guide-panel-soft: rgba(42, 54, 77, 0.78);
+  --guide-gold: #86c1f5;
+  --guide-sky: #4fc3d9;
+  --guide-text: #ffffff;
+  --guide-muted: rgba(255, 255, 255, 0.76);
+}
+
+html[data-palette="stellar"] {
+  --jl-bg: #08080a;
+  --jl-panel-rgb: 25 25 28;
+  --pico-color: #ece5d8;
+  --pico-muted-color: #a9a397;
+  --pico-h1-color: #ece5d8;
+  --pico-h2-color: #ece5d8;
+  --pico-h3-color: #ece5d8;
+  --pico-primary: #d3bc8e;
+  --pico-primary-hover: #e6d5b1;
+  --pico-primary-underline: rgba(211, 188, 142, 0.5);
+  --pico-primary-hover-underline: #e6d5b1;
+  --pico-primary-background: #d3bc8e;
+  --pico-primary-hover-background: #e6d5b1;
+  --pico-primary-border: #d3bc8e;
+  --pico-primary-hover-border: #e6d5b1;
+  --pico-primary-inverse: #17181f;
+  --pico-muted-border-color: #2f2f34;
+  --guide-bg: #08080a;
+  --guide-panel: rgba(25, 25, 28, 0.92);
+  --guide-panel-soft: rgba(33, 33, 36, 0.78);
+  --guide-gold: #d3bc8e;
+  --guide-sky: #7aa7d9;
+  --guide-text: #ece5d8;
+  --guide-muted: rgba(236, 229, 216, 0.76);
+}
+
+/* Selettore del tema, in basso a sinistra su ogni pagina */
+.jl-palette {
+  position: fixed;
+  left: 12px;
+  bottom: 12px;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin: 0;
+  padding: 4px 8px;
+  border: 1px solid var(--pico-muted-border-color);
+  border-radius: 4px;
+  background: rgb(var(--jl-panel-rgb) / 0.92);
+  font-size: 0.8rem;
+}
+.jl-palette span {
+  color: var(--pico-muted-color);
+}
+.jl-palette select {
+  width: auto;
+  margin: 0;
+  min-width: 12.5em;
+  padding: 2px 2rem 2px 8px;
+  background-position: center right 0.5rem;
+  height: auto;
+  font-size: 0.8rem;
+}
+@media print {
+  .jl-palette { display: none; }
+}
