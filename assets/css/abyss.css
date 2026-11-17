@@ -136,7 +136,7 @@
 .abyss-slot {
   position: relative;
   z-index: 1;
-  background: rgba(8, 12, 28, 0.52);
+  background: rgb(var(--jl-panel-rgb) / 0.52);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   -webkit-backdrop-filter: blur(18px);
@@ -208,7 +208,7 @@
   bottom: calc(100% + 6px);
   left: 50%;
   transform: translateX(-50%);
-  background: rgba(8, 12, 28, 0.95);
+  background: rgb(var(--jl-panel-rgb) / 0.95);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #e8e8e8;
   font-size: 0.7rem;
@@ -281,7 +281,7 @@
   transform: none;
   min-width: 170px;
   max-width: 280px;
-  background: rgba(8, 12, 28, 0.96);
+  background: rgb(var(--jl-panel-rgb) / 0.96);
   border: 1px solid rgba(255, 255, 255, 0.12);
   color: #ccc;
   font-size: 0.7rem;

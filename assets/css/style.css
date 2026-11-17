@@ -6,9 +6,15 @@
   font-display: swap;
 }
 
+/* Colori di base del tema "Notte JuanLab"; gli altri temi (themes.css) cambiano solo queste variabili e quelle di Pico */
+:root {
+  --jl-bg: #060810;
+  --jl-panel-rgb: 8 12 28;
+}
+
 /* sfondo scuro sull'html come fallback; body trasparente per mostrare il canvas */
 html {
-  background: #060810;
+  background: var(--jl-bg);
 }
 
 [data-theme="dark"] {
@@ -30,7 +36,7 @@ main > header {
   padding: 1.35rem;
   border: 1px solid rgba(255,255,255,0.08);
   border-radius: 1.2rem;
-  background: rgba(8, 12, 28, 0.55);
+  background: rgb(var(--jl-panel-rgb) / 0.55);
   -webkit-backdrop-filter: blur(14px);
   backdrop-filter: blur(14px);
   box-shadow: 0 18px 45px rgba(0, 0, 0, 0.24);
@@ -138,7 +144,7 @@ footer.container {
 /* sfondo glass per le card */
 article {
   aspect-ratio: 1;
-  background-color: rgba(8, 12, 28, 0.55) !important;
+  background-color: rgb(var(--jl-panel-rgb) / 0.55) !important;
   background-size: cover !important;
   background-position: center !important;
   border: 1px solid rgba(255, 255, 255, 0.07) !important;
@@ -147,9 +153,9 @@ article {
 }
 
 /* path relativi a assets/css/ — modifica qui per cambiare sfondo di ogni card */
-.card-1 { background-image: linear-gradient(rgba(8,12,28,.62),rgba(8,12,28,.62)), url('../img/memes/card1.jpeg') !important; }
-.card-2 { background-image: linear-gradient(rgba(8,12,28,.62),rgba(8,12,28,.62)), url('../img/memes/card2.jpeg') !important; }
-.card-3 { background-image: linear-gradient(rgba(8,12,28,.62),rgba(8,12,28,.62)), url('../img/memes/card3.jpeg') !important; }
+.card-1 { background-image: linear-gradient(rgb(var(--jl-panel-rgb) / .62),rgb(var(--jl-panel-rgb) / .62)), url('../img/memes/card1.jpeg') !important; }
+.card-2 { background-image: linear-gradient(rgb(var(--jl-panel-rgb) / .62),rgb(var(--jl-panel-rgb) / .62)), url('../img/memes/card2.jpeg') !important; }
+.card-3 { background-image: linear-gradient(rgb(var(--jl-panel-rgb) / .62),rgb(var(--jl-panel-rgb) / .62)), url('../img/memes/card3.jpeg') !important; }
 
 #stars {
   position: fixed;

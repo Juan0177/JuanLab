@@ -58,7 +58,7 @@
 }
 
 .theater-card {
-  background: rgba(8, 12, 28, 0.52);
+  background: rgb(var(--jl-panel-rgb) / 0.52);
   border: 1px solid rgba(255, 255, 255, 0.08);
   border-radius: 14px;
   -webkit-backdrop-filter: blur(18px);
@@ -459,7 +459,7 @@ article.theater-stage-node {
   transform: none;
   min-width: 170px;
   max-width: 280px;
-  background: rgba(8, 12, 28, 0.96);
+  background: rgb(var(--jl-panel-rgb) / 0.96);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 8px;
   padding: 8px 10px;
