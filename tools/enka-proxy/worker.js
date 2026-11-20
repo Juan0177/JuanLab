@@ -145,8 +145,10 @@ async function createIssue(env, data) {
       },
       body: JSON.stringify({ title, body, ...(labels && { labels }) }),
     });
-  // (con le etichette feedback e bug/enhancement/question; senza, se non si possono mettere)
+  // (con le etichette feedback e bug/enhancement/question; se GitHub ne rifiuta una, per esempio
+  // feedback non ancora creata, solo quella del tipo; poi senza)
   let res = await post(['feedback', FEEDBACK_LABELS[data.kind]]);
+  if (res.status === 422 || res.status === 403) res = await post([FEEDBACK_LABELS[data.kind]]);
   if (res.status === 422 || res.status === 403) res = await post(undefined);
   if (!res.ok) throw new Error(`GitHub ${res.status}`);
   return (await res.json()).html_url;
