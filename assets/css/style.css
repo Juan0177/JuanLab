@@ -188,6 +188,27 @@ article {
   gap: 0.6rem;
 }
 
+/* Invito al server Discord: il colore di Discord, l'icona davanti al testo */
+.hero-actions .discord-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #5865f2;
+  border-color: #5865f2;
+  color: #fff;
+}
+.hero-actions .discord-btn:hover,
+.hero-actions .discord-btn:focus-visible {
+  background: #4752c4;
+  border-color: #4752c4;
+  color: #fff;
+}
+.discord-icon {
+  width: 1.15em;
+  height: 1.15em;
+  flex: none;
+}
+
 .hero-divider {
   width: 1px;
   height: 44px;
