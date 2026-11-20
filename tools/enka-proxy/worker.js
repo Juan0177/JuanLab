@@ -116,7 +116,7 @@ async function createIssue(env, data) {
   const firstLine = data.message.split('\n')[0].slice(0, 70);
   const title = `[Feedback · ${FEEDBACK_KINDS[data.kind]}] ${firstLine}${data.message.length > firstLine.length ? '…' : ''}`;
   const extras = [
-    data.shots ? `${data.shots} screenshot` : '',
+    data.shots ? (data.shots === 1 ? 'lo screenshot' : `i ${data.shots} screenshot`) : '',
     data.context ? 'i dettagli della pagina' : '',
   ].filter(Boolean);
   const body = [
@@ -129,7 +129,9 @@ async function createIssue(env, data) {
     noPing(data.message),
     '',
     '---',
-    `_Inviato dal pulsante Feedback di Juan-optimizer${extras.length ? `; ${extras.join(' e ')} sono su Discord` : ''}._`,
+    `_Inviato dal pulsante Feedback di Juan-optimizer${
+      extras.length ? `; ${extras.join(' e ')} ${extras.length === 1 && data.shots === 1 ? 'è' : 'sono'} su Discord` : ''
+    }._`,
   ]
     .filter((line, i, all) => line !== '' || (all[i - 1] ?? '') !== '')
     .join('\n');
